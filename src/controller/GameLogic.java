@@ -29,7 +29,9 @@ public class GameLogic {
         while (true) {
 //            mathQuestion = new Addition2Numbers(1, 9, 1, 9);
 //            mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
-            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
+//            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
+//            mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
+            mathQuestion = new Division2Numbers(10, 100, 2, 10);
 
             ui.printMessage(mathQuestion.getQuestion());
             ui.printArray(mathQuestion.getAnswerStr());

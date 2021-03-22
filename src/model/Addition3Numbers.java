@@ -1,20 +1,17 @@
 package model;
 
-import java.lang.Math;
-
-/**
- * Creates a math question that subtracts two numbers.
- */
-public class Subtraction2Numbers extends MathQuestions {
+public class Addition3Numbers extends MathQuestions {
     private int[] answers;
     private int correctAnswer;
     private int number1LowerBound;
     private int number1UpperBound;
     private int number2LowerBound;
     private int number2UpperBound;
+    private int number3LowerBound;
+    private int number3UpperBound;
     private int number1;
     private int number2;
-    private boolean negativeAnswer;
+    private int number3;
 
     /**
      * Constructor that initializes the instance variables and generates the answers.
@@ -22,16 +19,19 @@ public class Subtraction2Numbers extends MathQuestions {
      * @param number1UpperBound is the highest value the first number can have.
      * @param number2LowerBound is the lowest value the second number can have.
      * @param number2UpperBound is the highest value the second number can have.
-     * @param negativeAnswer shows if the answer can be a negative number.
+     * @param number3LowerBound is the lowest value the third number can have.
+     * @param number3UpperBound is the highest value the third number can have.
      */
-    public Subtraction2Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound, boolean negativeAnswer) {
+    public Addition3Numbers(int number1LowerBound, int number1UpperBound,
+                            int number2LowerBound, int number2UpperBound,
+                            int number3LowerBound, int number3UpperBound) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
-        this.negativeAnswer = negativeAnswer;
+        this.number3LowerBound = number3LowerBound;
+        this.number3UpperBound = number3UpperBound;
 
         generateAnswers();
     }
@@ -41,20 +41,16 @@ public class Subtraction2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " - " + number2 + "?";
+        return "What is " + number1 + " + " + number2 + " + " + number3 + "?";
     }
 
     /**
-     * Generates the two random numbers from the given bounds. If the answer should not be negative, then the second
-     * number cannot be greater than the first.
+     * Generates the three random numbers from the given bounds.
      */
     private void generateNumbers() {
         number1 = randomInt(number1LowerBound, number1UpperBound);
-        if (negativeAnswer) {
-            number2 = randomInt(number2LowerBound, number2UpperBound);
-        } else {
-            number2 = randomInt(number2LowerBound, Math.min(number2UpperBound, number1));
-        }
+        number2 = randomInt(number2LowerBound, number2UpperBound);
+        number3 = randomInt(number3LowerBound, number3UpperBound);
     }
 
     /**
@@ -65,7 +61,7 @@ public class Subtraction2Numbers extends MathQuestions {
         int fakeAnswer;
 
         generateNumbers();
-        correctAnswer = number1 - number2;
+        correctAnswer = number1 + number2 + number3;
         answers[0] = correctAnswer;
         boolean ok = false;
         while (!ok) {
@@ -97,17 +93,12 @@ public class Subtraction2Numbers extends MathQuestions {
     }
 
     /**
-     * Returns a fake answer that would be possible from the bounds of the inputs. When it is chosen to not have a
-     * negative answer, if the possible lowest number is less than 0, then the lowest possible number is set to 0.
+     * Returns a fake answer that would be possible from the bounds of the inputs.
      * @return a fake answer.
      */
     private int createFakeAnswer() {
-        int lowerBound = Math.min(number1LowerBound - number2UpperBound, number2LowerBound - number1UpperBound);
-        int upperBound = Math.max(number1UpperBound - number2LowerBound, number2UpperBound - number1LowerBound);
-        if (!negativeAnswer && (lowerBound < 0)) {
-            lowerBound = 0;
-        }
-        return randomInt(lowerBound, upperBound);
+        return randomInt(number1LowerBound + number2LowerBound + number3LowerBound,
+                number1UpperBound + number2UpperBound + number3UpperBound);
     }
 
     /**
