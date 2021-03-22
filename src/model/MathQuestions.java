@@ -2,6 +2,9 @@ package model;
 
 import java.util.Random;
 
+/**
+ * Abstract superclass for the math questions.
+ */
 public abstract class MathQuestions {
     private Random rand;
     private String[] answerStr;
@@ -24,6 +27,22 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Generates a random non-zero integer between the two bounds.
+     * @param lowerBound is the lowest value the random integer can have.
+     * @param upperBound is the highest value the random integer can have.
+     * @return the random non-zero integer.
+     */
+    public int randomIntNotZero(int lowerBound, int upperBound) {
+        int randNum;
+        while (true) {
+            randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
+            if (randNum != 0) {
+                return randNum;
+            }
+        }
+    }
+
+    /**
      * Shuffles the positions of the elements in the array.
      * @param array is the array to shuffle the elements of.
      * @return the shuffled array.
@@ -41,15 +60,59 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Shuffles the positions of the elements in the two-dimensional array.
+     * @param array is the array to shuffle the elements of.
+     * @return the shuffled array.
+     */
+    public int[][] shuffleAnswers(int[][] array) {
+        int[] temp = new int[array[0].length];
+        int randIndex;
+        for (int i = 0; i < array.length-1; i++) {
+            randIndex = rand.nextInt(array.length-1);
+            for (int j = 0; j < temp.length; j++) {
+                temp[j] = array[i][j];
+                array[i][j] = array[randIndex][j];
+                array[randIndex][j] = temp[j];
+            }
+        }
+        return array;
+    }
+
+    /**
      * Makes the possible answers into strings.
      * @param answers is the array with the answers as strings.
      */
     public void generateAnswerStrings(int[] answers) {
-        answerStr = new String[4];
-        answerStr[0] = "a. " + answers[0];
-        answerStr[1] = "b. " + answers[1];
-        answerStr[2] = "c. " + answers[2];
-        answerStr[3] = "d. " + answers[3];
+        if (answers != null) {
+            answerStr = new String[4];
+            answerStr[0] = "A. " + answers[0];
+            answerStr[1] = "B. " + answers[1];
+            answerStr[2] = "C. " + answers[2];
+            answerStr[3] = "D. " + answers[3];
+        }
+    }
+
+    /**
+     * Makes the possible answers into strings with fractions.
+     * @param answers is the array of answers
+     * @param denominator is the denominator of the fraction.
+     */
+    public void generateAnswerStringsFractions(int[][] answers, int denominator) {
+        if (answers != null) {
+            answerStr = new String[4];
+            answerStr[0] = "A. " + answers[0][0];
+            if (answers[0][1] != 0)
+                answerStr[0] += " + " + answers[0][1] + "/" + denominator;
+            answerStr[1] = "B. " + answers[1][0];
+            if (answers[1][1] != 0)
+                answerStr[1] += " + " + answers[1][1] + "/" + denominator;
+            answerStr[2] = "C. " + answers[2][0];
+            if (answers[2][1] != 0)
+                answerStr[2] += " + " + answers[2][1] + "/" + denominator;
+            answerStr[3] = "D. " + answers[3][0];
+            if (answers[3][1] != 0)
+                answerStr[3] += " + " + answers[3][1] + "/" + denominator;
+        }
     }
 
     /**
@@ -65,17 +128,6 @@ public abstract class MathQuestions {
      * @return the question as a string.
      */
     public abstract String getQuestion();
-
-    /**
-     * Generates the correct answer and the fake answers. All answers are unique.
-     */
-    public abstract void generateAnswers();
-
-    /**
-     * Returns the answer integer array.
-     * @return the answers as an integer array.
-     */
-    public abstract int[] getAnswers();
 
     /**
      * Compares the users answer with the correct answer.
