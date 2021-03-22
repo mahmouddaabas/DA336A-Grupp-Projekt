@@ -6,6 +6,7 @@ import view.*;
 public class GameLogic {
     private UI ui;
     private MathQuestions mathQuestion;
+    private Player player;
 
     //Used to access the main window and the scene changer.
     public MainFrame window = new MainFrame(this);
