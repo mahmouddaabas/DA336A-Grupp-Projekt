@@ -18,6 +18,7 @@ public class MainFrame {
     JLabel healthLabel[] = new JLabel[5];
 
     public MainFrame(GameLogic controller) {
+
         this.controller = controller;
 
         //Creates the main window the game is displayed on.
@@ -30,8 +31,9 @@ public class MainFrame {
 
     //Creates the main window for the program.
     public void createMainWindow() {
+
         window = new JFrame();
-        window.setSize(800, 600);
+        window.setSize(1000, 700);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.black);
         //Can place things on the window without any restrictions.
@@ -40,10 +42,11 @@ public class MainFrame {
         //Starts the window in the middle of the screen.
         window.setLocationRelativeTo(null);
 
-        mathQuestions = new JTextArea("Hur mycket blir 1+1?");
-        mathQuestions.setBounds(250, 410, 250, 50);
+        mathQuestions = new JTextArea("Welcome adventurer, your goal is to climb the tower and defeat the various monsters in there.");
+        mathQuestions.setBounds(100, 460, 850, 250);
         mathQuestions.setBackground(Color.black);
-        mathQuestions.setBackground(Color.white);
+        mathQuestions.setForeground(Color.white);
+        mathQuestions.setOpaque(false);
         mathQuestions.setEditable(false);
         mathQuestions.setLineWrap(true);
         mathQuestions.setWrapStyleWord(true);
@@ -55,14 +58,14 @@ public class MainFrame {
     public void createBackground(int bgNum, String bgFileName) {
 
         backgroundPanel[bgNum] = new JPanel();
-        backgroundPanel[bgNum].setBounds(50, 50, 700, 350);
+        backgroundPanel[bgNum].setBounds(90, 100, 800, 350);
         backgroundPanel[bgNum].setBackground(Color.blue);
         backgroundPanel[bgNum].setLayout(null);
         backgroundPanel[bgNum].setVisible(false);
         window.add(backgroundPanel[bgNum]);
 
         backgroundLabel[bgNum] = new JLabel();
-        backgroundLabel[bgNum].setBounds(0, 0, 700, 350);
+        backgroundLabel[bgNum].setBounds(0, 0, 800, 350);
 
         ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource(bgFileName));
         backgroundLabel[bgNum].setIcon(bgIcon);
@@ -72,7 +75,7 @@ public class MainFrame {
     public void generateScenes() {
 
         //Scene 1
-        createBackground(1, "images/test11.jpg");
+        createBackground(1, "images/townEntrance800x350.jpg");
         backgroundPanel[1].add(backgroundLabel[1]);
     }
 }

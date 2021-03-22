@@ -13,6 +13,7 @@ public class SceneChanger {
     }
 
     public void showScene1() {
+
         controller.window.backgroundPanel[1].setVisible(true);
         //controller.window.backgroundPanel[2].setVisible(false);
         //controller.window.messageText.setText("Math Questions Here :)");
