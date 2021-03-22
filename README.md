@@ -1,5 +1,3 @@
-# GithubTutorialWorkshopDA336A
+#Climb the Tower DA336A Projekt Grupp 20
 
-
-Workshop git 2021.03.22
-DA336A Projekt Grupp 20
+Climb the Tower by answering questions about maths!
