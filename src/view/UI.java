@@ -1,5 +1,7 @@
 package view;
 
+//Används bara för consolen.
+
 import java.util.Scanner;
 
 public class UI {

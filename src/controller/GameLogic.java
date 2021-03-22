@@ -7,8 +7,15 @@ public class GameLogic {
     private UI ui;
     private MathQuestions mathQuestion;
 
+    //Used to access the main window and the scene changer.
+    public MainFrame window = new MainFrame(this);
+    public SceneChanger scene = new SceneChanger(this);
+
     public GameLogic() {
         ui = new UI();
+
+        //Displays the first scene.
+        scene.showScene1();
 
         startQuiz();
     }
