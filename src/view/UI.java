@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mahmoud Daabas
+ * @author Mattias Bengtsson
  */
 public class UI {
     private Scanner userInput;
