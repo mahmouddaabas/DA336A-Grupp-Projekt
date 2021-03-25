@@ -52,15 +52,19 @@ public class GameLogic {
                 answerText = ui.readText();
                 switch (answerText) {
                     case "a":
+                    case "A":
                         answerIndex = 0;
                         break;
                     case "b":
+                    case "B":
                         answerIndex = 1;
                         break;
                     case "c":
+                    case "C":
                         answerIndex = 2;
                         break;
                     case "d":
+                    case "D":
                         answerIndex = 3;
                         break;
                     default:
