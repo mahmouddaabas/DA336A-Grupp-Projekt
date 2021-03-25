@@ -5,6 +5,10 @@ import controller.GameLogic;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Mahmoud Daabas
+ */
 public class MainFrame {
 
     GameLogic controller;

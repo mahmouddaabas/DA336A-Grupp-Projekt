@@ -2,6 +2,10 @@ package view;
 
 import controller.GameLogic;
 
+/**
+ *
+ * @author Mahmoud Daabas
+ */
 public class SceneChanger {
 
     GameLogic controller;

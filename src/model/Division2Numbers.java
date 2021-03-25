@@ -4,6 +4,7 @@ import java.lang.Math;
 
 /**
  * Creates a math question that divides two numbers.
+ * @author Mattias Bengtsson
  */
 public class Division2Numbers extends MathQuestions {
     private int[][] answers;
@@ -75,7 +76,7 @@ public class Division2Numbers extends MathQuestions {
         ok = false;
         while (!ok) {
             fakeAnswer = createFakeAnswer();
-            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) ||
+            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
                     !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1])) {
                 answers[2][0] = fakeAnswer[0];
                 answers[2][1] = fakeAnswer[1];
@@ -85,8 +86,8 @@ public class Division2Numbers extends MathQuestions {
         ok = false;
         while (!ok) {
             fakeAnswer = createFakeAnswer();
-            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) ||
-                    !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1]) ||
+            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
+                    !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1]) &&
                     !(fakeAnswer[0] == answers[2][0] && fakeAnswer[1] == answers[2][1])) {
                 answers[3][0] = fakeAnswer[0];
                 answers[3][1] = fakeAnswer[1];

@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Creates a math question that adds three numbers.
+ * @author Mattias Bengtsson
+ */
 public class Addition3Numbers extends MathQuestions {
     private int[] answers;
     private int correctAnswer;

@@ -2,7 +2,13 @@ package controller;
 
 import model.*;
 import view.*;
+import java.util.Random;
 
+/**
+ *
+ * @author Mattias Bengtsson
+ * @author Mahmoud Daabas
+ */
 public class GameLogic {
     private UI ui;
     private MathQuestions mathQuestion;
@@ -27,11 +33,14 @@ public class GameLogic {
         boolean isAnswered;
 
         while (true) {
+            // for test purposes
+            // choose which type of question or a random one
 //            mathQuestion = new Addition2Numbers(1, 9, 1, 9);
 //            mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
 //            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
 //            mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
-            mathQuestion = new Division2Numbers(10, 100, 2, 10);
+//            mathQuestion = new Division2Numbers(10, 100, 2, 10);
+            mathQuestion = randomQuestion();
 
             ui.printMessage(mathQuestion.getQuestion());
             ui.printArray(mathQuestion.getAnswerStr());
@@ -69,5 +78,32 @@ public class GameLogic {
                 }
             }
         }
+    }
+
+    // for test purposes
+    public MathQuestions randomQuestion() {
+        Random rand = new Random();
+        MathQuestions newQuestion;
+        int randomInt = rand.nextInt(5);
+
+        switch (randomInt) {
+            case 0:
+                newQuestion = new Addition2Numbers(1, 9, 1, 9);
+                break;
+            case 1:
+                newQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
+                break;
+            case 2:
+                newQuestion = new Multiplication2Numbers(1, 9, 1, 9);
+                break;
+            case 3:
+                newQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
+                break;
+            default:
+                newQuestion = new Division2Numbers(10, 100, 2, 10);
+                break;
+        }
+
+        return newQuestion;
     }
 }

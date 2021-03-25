@@ -1,5 +1,9 @@
 package model;
 
+/**
+ *
+ * @author Duy Nguyen
+ */
 public class Timer extends Thread {
     private int time;
 
