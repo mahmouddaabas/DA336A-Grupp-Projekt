@@ -2,6 +2,10 @@ package view;
 
 import java.util.Scanner;
 
+/**
+ *
+ * @author Mahmoud Daabas
+ */
 public class UI {
     private Scanner userInput;
 

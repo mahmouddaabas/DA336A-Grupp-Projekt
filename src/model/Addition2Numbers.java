@@ -2,6 +2,7 @@ package model;
 
 /**
  * Creates a math question that adds two numbers.
+ * @author Mattias Bengtsson
  */
 public class Addition2Numbers extends MathQuestions {
     private int[] answers;

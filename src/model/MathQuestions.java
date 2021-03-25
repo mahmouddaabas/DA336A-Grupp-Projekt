@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Abstract superclass for the math questions.
+ * @author Mattias Bengtsson
  */
 public abstract class MathQuestions {
     private Random rand;

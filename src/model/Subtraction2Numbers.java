@@ -4,6 +4,7 @@ import java.lang.Math;
 
 /**
  * Creates a math question that subtracts two numbers.
+ * @author Mattias Bengtsson
  */
 public class Subtraction2Numbers extends MathQuestions {
     private int[] answers;

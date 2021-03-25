@@ -2,6 +2,7 @@ package model;
 
 /**
  * Creates a math question that multiplies two numbers.
+ * @author Mattias Bengtsson
  */
 public class Multiplication2Numbers extends MathQuestions {
     private int[] answers;
