@@ -2,6 +2,10 @@ package model.monsters.bosses;
 
 import model.monsters.MonsterType;
 
+/**
+ * @author Duy Nguyen
+ * Fourth boss level 20
+ */
 public class DragonRider extends Boss {
     //Possible properties
 

@@ -2,6 +2,10 @@ package model.monsters.bosses;
 
 import model.monsters.MonsterType;
 
+/**
+ * @author Duy Nguyen
+ * Last boss level 25
+ */
 public class FinalBoss extends Boss {
     private final String name;
 

@@ -2,6 +2,7 @@ package model.monsters;
 
 /**
  * @author Duy Nguyen
+ * Tier 3 monster
  */
 public class Wizard extends Monster {
     //Possible properties

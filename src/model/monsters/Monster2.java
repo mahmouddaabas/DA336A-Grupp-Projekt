@@ -1,5 +1,9 @@
 package model.monsters;
 
+/**
+ * @author Duy Nguyen
+ * Tier 2 monster
+ */
 public class Monster2 extends Monster {
     //Possible properties
 

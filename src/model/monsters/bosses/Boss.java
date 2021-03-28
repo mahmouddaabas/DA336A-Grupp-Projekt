@@ -5,6 +5,7 @@ import model.monsters.MonsterType;
 
 /**
  * @author Duy Nguyen
+ * Super class for the bosses
  */
 public abstract class Boss extends Monster {
     private BossType type;

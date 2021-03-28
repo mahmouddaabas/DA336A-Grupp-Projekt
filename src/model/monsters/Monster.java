@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * @author Duy Nguyen
+ * Super class for the monsters
  */
 public abstract class Monster {
     private MonsterType type;

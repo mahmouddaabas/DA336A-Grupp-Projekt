@@ -2,6 +2,10 @@ package model.monsters.bosses;
 
 import model.monsters.MonsterType;
 
+/**
+ * @author Duy Nguyen
+ * Second boss level 10
+ */
 public class Boss2 extends Boss {
     //Possible properties
 
