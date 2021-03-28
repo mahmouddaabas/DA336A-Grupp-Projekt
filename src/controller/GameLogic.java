@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.questions.*;
 import view.*;
 import java.util.Random;
 

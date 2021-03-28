@@ -1,18 +1,21 @@
-package model;
+package model.questions;
 
 /**
- * Creates a math question that multiplies two numbers.
+ * Creates a math question that adds three numbers.
  * @author Mattias Bengtsson
  */
-public class Multiplication2Numbers extends MathQuestions {
+public class Addition3Numbers extends MathQuestions {
     private int[] answers;
     private int correctAnswer;
     private int number1LowerBound;
     private int number1UpperBound;
     private int number2LowerBound;
     private int number2UpperBound;
+    private int number3LowerBound;
+    private int number3UpperBound;
     private int number1;
     private int number2;
+    private int number3;
 
     /**
      * Constructor that initializes the instance variables and generates the answers.
@@ -20,14 +23,19 @@ public class Multiplication2Numbers extends MathQuestions {
      * @param number1UpperBound is the highest value the first number can have.
      * @param number2LowerBound is the lowest value the second number can have.
      * @param number2UpperBound is the highest value the second number can have.
+     * @param number3LowerBound is the lowest value the third number can have.
+     * @param number3UpperBound is the highest value the third number can have.
      */
-    public Multiplication2Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound) {
+    public Addition3Numbers(int number1LowerBound, int number1UpperBound,
+                            int number2LowerBound, int number2UpperBound,
+                            int number3LowerBound, int number3UpperBound) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
+        this.number3LowerBound = number3LowerBound;
+        this.number3UpperBound = number3UpperBound;
 
         generateAnswers();
     }
@@ -37,15 +45,16 @@ public class Multiplication2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " * " + number2 + "?";
+        return "What is " + number1 + " + " + number2 + " + " + number3 + "?";
     }
 
     /**
-     * Generates the two random numbers from the given bounds.
+     * Generates the three random numbers from the given bounds.
      */
     private void generateNumbers() {
         number1 = randomInt(number1LowerBound, number1UpperBound);
         number2 = randomInt(number2LowerBound, number2UpperBound);
+        number3 = randomInt(number3LowerBound, number3UpperBound);
     }
 
     /**
@@ -56,7 +65,7 @@ public class Multiplication2Numbers extends MathQuestions {
         int fakeAnswer;
 
         generateNumbers();
-        correctAnswer = number1 * number2;
+        correctAnswer = number1 + number2 + number3;
         answers[0] = correctAnswer;
         boolean ok = false;
         while (!ok) {
@@ -92,8 +101,8 @@ public class Multiplication2Numbers extends MathQuestions {
      * @return a fake answer.
      */
     private int createFakeAnswer() {
-        return randomInt(number1LowerBound * number2LowerBound,
-                number1UpperBound * number2UpperBound);
+        return randomInt(number1LowerBound + number2LowerBound + number3LowerBound,
+                number1UpperBound + number2UpperBound + number3UpperBound);
     }
 
     /**

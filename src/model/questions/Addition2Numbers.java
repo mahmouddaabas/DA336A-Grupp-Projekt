@@ -1,4 +1,4 @@
-package model;
+package model.questions;
 
 /**
  * Creates a math question that adds two numbers.
