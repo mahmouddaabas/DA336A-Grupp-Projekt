@@ -16,6 +16,7 @@ public class MainFrame {
     public JTextArea mathQuestions;
     public JPanel backgroundPanel[] = new JPanel[10];
     public JLabel backgroundLabel[] = new JLabel[10];
+    ActionHandler action;
 
     //Player information.
     JPanel healthPanel;
@@ -24,6 +25,7 @@ public class MainFrame {
     public MainFrame(GameLogic controller) {
 
         this.controller = controller;
+        action = new ActionHandler(controller);
 
         //Creates the main window the game is displayed on.
         createMainWindow();
@@ -46,7 +48,7 @@ public class MainFrame {
         //Starts the window in the middle of the screen.
         window.setLocationRelativeTo(null);
 
-        mathQuestions = new JTextArea("Welcome adventurer, your goal is to climb the tower and defeat the various monsters in there.");
+        mathQuestions = new JTextArea();
         mathQuestions.setBounds(100, 460, 850, 250);
         mathQuestions.setBackground(Color.black);
         mathQuestions.setForeground(Color.white);
@@ -75,11 +77,35 @@ public class MainFrame {
         backgroundLabel[bgNum].setIcon(bgIcon);
     }
 
+    //Creates the arrows that changes the scene.
+    public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command) {
+
+        ImageIcon arrowIcon = new ImageIcon(getClass().getClassLoader().getResource(arrowFileName));
+
+        JButton arrowButton = new JButton();
+        arrowButton.setBounds(x, y, width, height);
+        arrowButton.setBackground(null);
+        arrowButton.setContentAreaFilled(false);
+        arrowButton.setFocusPainted(false);
+        arrowButton.setIcon(arrowIcon);
+        arrowButton.setBorderPainted(false);
+
+        arrowButton.addActionListener(action);
+        arrowButton.setActionCommand(command);
+
+        backgroundPanel[bgNum].add(arrowButton);
+    }
+
     //Generates the scene and what is placed on the backgrounds.
     public void generateScenes() {
 
         //Scene 1
         createBackground(1, "images/townEntrance800x350.jpg");
+        createArrowButton(1, 50, 150, 50, 50, "images/rightarrow50x50.png", "goScene2");
         backgroundPanel[1].add(backgroundLabel[1]);
+
+        //Scene 2
+        createBackground(2, "images/test11.jpg");
+        backgroundPanel[2].add(backgroundLabel[2]);
     }
 }
