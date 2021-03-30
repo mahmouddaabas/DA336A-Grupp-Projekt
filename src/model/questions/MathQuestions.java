@@ -1,5 +1,6 @@
 package model.questions;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -9,12 +10,15 @@ import java.util.Random;
 public abstract class MathQuestions {
     private Random rand;
     private String[] answerStr;
+    private int correctAnswerIndex;
 
     /**
-     * Constructor for MathQuestions that initializes the Random object.
+     * Constructor for MathQuestions that initializes the Random object and a random index for the correct answer in
+     * the answer array.
      */
     public MathQuestions() {
         rand = new Random();
+        correctAnswerIndex = randomInt(0, 3);
     }
 
     /**
@@ -23,7 +27,7 @@ public abstract class MathQuestions {
      * @param upperBound is the highest value the random integer can have.
      * @return the random integer.
      */
-    public int randomInt(int lowerBound, int upperBound) {
+    protected int randomInt(int lowerBound, int upperBound) {
         return rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
     }
 
@@ -33,7 +37,7 @@ public abstract class MathQuestions {
      * @param upperBound is the highest value the random integer can have.
      * @return the random non-zero integer.
      */
-    public int randomIntNotZero(int lowerBound, int upperBound) {
+    protected int randomIntNotZero(int lowerBound, int upperBound) {
         int randNum;
         while (true) {
             randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
@@ -44,11 +48,34 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Creates an array with all elements set to the minimum integer value as a value that will not be used.
+     * @return the answer array.
+     */
+    protected int[] createAnswerArray() {
+        int[] answers = new int[4];
+        Arrays.fill(answers, Integer.MIN_VALUE);
+        return answers;
+    }
+
+    /**
+     * Creates a two-dimensional array with all elements set to the minimum integer value as a value that will not be
+     * used.
+     * @return the answer array.
+     */
+    protected int[][] createAnswerArray(int numOfNumbers) {
+        int[][] answers = new int[4][numOfNumbers];
+        for (int[] subArray : answers) {
+            Arrays.fill(subArray, Integer.MIN_VALUE);
+        }
+        return answers;
+    }
+
+    /**
      * Shuffles the positions of the elements in the array.
      * @param array is the array to shuffle the elements of.
      * @return the shuffled array.
      */
-    public int[] shuffleAnswers(int[] array) {
+    protected int[] shuffleAnswers(int[] array) {
         int temp;
         int randIndex;
         for (int i = 0; i < array.length-1; i++) {
@@ -65,7 +92,7 @@ public abstract class MathQuestions {
      * @param array is the array to shuffle the elements of.
      * @return the shuffled array.
      */
-    public int[][] shuffleAnswers(int[][] array) {
+    protected int[][] shuffleAnswers(int[][] array) {
         int[] temp = new int[array[0].length];
         int randIndex;
         for (int i = 0; i < array.length-1; i++) {
@@ -83,7 +110,7 @@ public abstract class MathQuestions {
      * Makes the possible answers into strings.
      * @param answers is the array with the answers as strings.
      */
-    public void generateAnswerStrings(int[] answers) {
+    protected void generateAnswerStrings(int[] answers) {
         if (answers != null) {
             answerStr = new String[4];
             answerStr[0] = "A. " + answers[0];
@@ -95,10 +122,10 @@ public abstract class MathQuestions {
 
     /**
      * Makes the possible answers into strings with fractions.
-     * @param answers is the array of answers
+     * @param answers is the array of answers.
      * @param denominator is the denominator of the fraction.
      */
-    public void generateAnswerStringsFractions(int[][] answers, int denominator) {
+    protected void generateAnswerStringsFractions(int[][] answers, int denominator) {
         if (answers != null) {
             answerStr = new String[4];
             answerStr[0] = "A. " + answers[0][0];
@@ -117,6 +144,23 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Returns the randomly generated index for the correct answer in the answer array.
+     * @return the randomly generated index for the correct answer in the answer array.
+     */
+    protected int getCorrectAnswerIndex() {
+        return correctAnswerIndex;
+    }
+
+    /**
+     * Compares the index of the users answer with the index of the correct answer.
+     * @param index is the index of the user's answer in the answer array.
+     * @return true if the user's answer is correct, false otherwise.
+     */
+    public boolean compareAnswer(int index) {
+        return index == correctAnswerIndex;
+    }
+
+    /**
      * Gets the answers as strings.
      * @return the array with the answers as strings.
      */
@@ -129,11 +173,4 @@ public abstract class MathQuestions {
      * @return the question as a string.
      */
     public abstract String getQuestion();
-
-    /**
-     * Compares the users answer with the correct answer.
-     * @param index is the index of the user's answer in the answer array.
-     * @return true if the user's answer is correct, false otherwise.
-     */
-    public abstract boolean compareAnswer(int index);
 }

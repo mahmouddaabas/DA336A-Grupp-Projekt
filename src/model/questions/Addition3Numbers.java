@@ -6,7 +6,6 @@ package model.questions;
  */
 public class Addition3Numbers extends MathQuestions {
     private int[] answers;
-    private int correctAnswer;
     private int number1LowerBound;
     private int number1UpperBound;
     private int number2LowerBound;
@@ -37,7 +36,9 @@ public class Addition3Numbers extends MathQuestions {
         this.number3LowerBound = number3LowerBound;
         this.number3UpperBound = number3UpperBound;
 
+        generateNumbers();
         generateAnswers();
+        generateAnswerStrings(answers);
     }
 
     /**
@@ -58,59 +59,33 @@ public class Addition3Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the correct answer and 3 fake answers, and then shuffles them. The answers are all unique.
+     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = new int[4];
-        int fakeAnswer;
+        answers = createAnswerArray();
+        answers[getCorrectAnswerIndex()] = number1 + number2 + number3;
 
-        generateNumbers();
-        correctAnswer = number1 + number2 + number3;
-        answers[0] = correctAnswer;
-        boolean ok = false;
-        while (!ok) {
-            fakeAnswer = createFakeAnswer();
-            if (fakeAnswer != answers[0]) {
-                answers[1] = fakeAnswer;
-                ok = true;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] == Integer.MIN_VALUE) {
+                answers[i] = createFakeAnswer();
             }
         }
-        ok = false;
-        while (!ok) {
-            fakeAnswer = createFakeAnswer();
-            if (fakeAnswer != answers[0] && fakeAnswer != answers[1]) {
-                answers[2] = fakeAnswer;
-                ok = true;
-            }
-        }
-        ok = false;
-        while (!ok) {
-            fakeAnswer = createFakeAnswer();
-            if (fakeAnswer != answers[0] && fakeAnswer != answers[1] && fakeAnswer != answers[2]) {
-                answers[3] = fakeAnswer;
-                ok = true;
-            }
-        }
-
-        answers = shuffleAnswers(answers);
-        generateAnswerStrings(answers);
     }
 
     /**
-     * Returns a fake answer that would be possible from the bounds of the inputs.
+     * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
+     * values in the answer array.
      * @return a fake answer.
      */
     private int createFakeAnswer() {
-        return randomInt(number1LowerBound + number2LowerBound + number3LowerBound,
-                number1UpperBound + number2UpperBound + number3UpperBound);
-    }
-
-    /**
-     * Compares the users answer with the correct answer.
-     * @param index is the index of the user's answer in the answer array.
-     * @return true if the user's answer is correct, false otherwise.
-     */
-    public boolean compareAnswer(int index) {
-        return answers[index] == correctAnswer;
+        int fakeAnswer;
+        while (true) {
+            fakeAnswer = randomInt(number1LowerBound + number2LowerBound + number3LowerBound,
+                    number1UpperBound + number2UpperBound + number3UpperBound);
+            if (fakeAnswer != answers[0] && fakeAnswer != answers[1] &&
+                    fakeAnswer != answers[2] && fakeAnswer != answers[3]) {
+                return fakeAnswer;
+            }
+        }
     }
 }
