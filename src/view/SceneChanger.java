@@ -26,7 +26,14 @@ public class SceneChanger {
     public void showScene2() {
         controller.window.backgroundPanel[1].setVisible(false);
         controller.window.backgroundPanel[2].setVisible(true);
-        controller.window.mathQuestions.setText("You just entered the tower, have fun!");
+        controller.window.mathQuestions.setText("You just entered the tower, have fun! \n (Right click on the door to interact with it.)");
+    }
+
+    public void showScene3() {
+        controller.window.backgroundPanel[1].setVisible(false);
+        controller.window.backgroundPanel[2].setVisible(false);
+        controller.window.backgroundPanel[3].setVisible(true);
+        controller.window.mathQuestions.setText("This is scene 3.");
     }
 
 
