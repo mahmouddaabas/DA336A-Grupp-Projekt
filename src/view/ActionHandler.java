@@ -37,6 +37,17 @@ public class ActionHandler implements ActionListener{
                 controller.ev1.enterDoor();
                 break;
 
+                //Scene 3
+            case "lookGoblin":
+                controller.ev2.lookGoblin();
+                break;
+            case "talkGoblin":
+                controller.ev2.talkGoblin();
+                break;
+            case "attackGoblin":
+                controller.ev2.attackGoblin();
+                break;
+
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
                 controller.scene.showScene1();

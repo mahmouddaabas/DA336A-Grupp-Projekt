@@ -4,6 +4,7 @@ import model.*;
 import model.questions.*;
 import view.*;
 import view.events.Event01;
+import view.events.Event02;
 
 import java.util.Random;
 
@@ -14,8 +15,11 @@ import java.util.Random;
  */
 public class GameLogic {
     private UI ui;
-    private MathQuestions mathQuestion;
+    public MathQuestions mathQuestion;
     private Player player;
+    public int answerIndex;
+    public String answerText;
+    public boolean isAnswered;
 
     //Used to access the main window and the scene changer.
     public MainFrame window = new MainFrame(this);
@@ -23,6 +27,7 @@ public class GameLogic {
 
     //Events in the game.
     public Event01 ev1 = new Event01(this);
+    public Event02 ev2 = new Event02(this);
 
     public GameLogic() {
         ui = new UI();
@@ -34,9 +39,9 @@ public class GameLogic {
     }
 
     public void startQuiz() {
-        String answerText;
-        int answerIndex;
-        boolean isAnswered;
+        //answerText;
+        answerIndex = 0;
+        //isAnswered;
 
         while (true) {
             // for test purposes

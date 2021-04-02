@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import view.HandleAnswers.HandleAnswers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +20,24 @@ public class MainFrame {
     public JPanel backgroundPanel[] = new JPanel[10];
     public JLabel backgroundLabel[] = new JLabel[10];
     ActionHandler action;
+    HandleAnswers answers;
 
     //Player information.
     JPanel healthPanel;
     JLabel healthLabel[] = new JLabel[5];
 
+    //Panel with buttons to answer.
+    public JPanel answerPanel;
+    public JButton answerButton1;
+    public JButton answerButton2;
+    public JButton answerButton3;
+    public JButton answerButton4;
+
     public MainFrame(GameLogic controller) {
 
         this.controller = controller;
         action = new ActionHandler(controller);
+        answers = new HandleAnswers(controller);
 
         //Creates the main window the game is displayed on.
         createMainWindow();
@@ -35,6 +45,51 @@ public class MainFrame {
         generateScenes();
         //Makes the window visible.
         window.setVisible(true);
+    }
+
+    public void populateAnswerPanel() {
+
+        answerPanel = new JPanel();
+        answerPanel.setBounds(410, 550, 200, 100);
+        answerPanel.setBackground(Color.BLUE);
+        answerPanel.setLayout(new GridLayout(2, 2));
+        answerPanel.setOpaque(false);
+
+        //Values on buttons set from Events.
+        answerButton1 = new JButton();
+        answerButton1.addActionListener(answers);
+        answerButton1.setActionCommand("firstButton");
+
+        answerButton2 = new JButton();
+        answerButton2.addActionListener(answers);
+        answerButton2.setActionCommand("secondButton");
+
+        answerButton3 = new JButton();
+        answerButton3.addActionListener(answers);
+        answerButton3.setActionCommand("thirdButton");
+
+        answerButton4 = new JButton();
+        answerButton4.addActionListener(answers);
+        answerButton4.setActionCommand("fourthButton");
+
+        answerPanel.add(answerButton1);
+        answerPanel.add(answerButton2);
+        answerPanel.add(answerButton3);
+        answerPanel.add(answerButton4);
+
+        //May use in the future, might be hard to set answer text on the buttons if they are created with a loop.
+        /*//Creates the buttons.
+        for(int i = 0; i < 4; i++) {
+
+            answerButton = new JButton();
+            //Adds the buttons to the panel.
+            answerPanel.add(answerButton);
+        }*/
+
+        //Adds answerPanel to the background.
+        answerPanel.setVisible(false);
+        window.add(answerPanel);
+
     }
 
     //Creates the main window for the program.
@@ -172,7 +227,10 @@ public class MainFrame {
         backgroundPanel[2].add(backgroundLabel[2]);
 
         //Scene 3
-        createBackground(3, "images/hearts35x35.png");
+        createBackground(3, "images/Scene3800x350.jpg");
+        createObjects(3, 300, 0, 250, 250, "images/Goblin150x150.png", "Look", "Talk",
+                "Attack", "lookGoblin", "talkGoblin", "attackGoblin");
+        populateAnswerPanel();
         backgroundPanel[3].add(backgroundLabel[3]);
     }
 }
