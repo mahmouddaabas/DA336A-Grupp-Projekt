@@ -4,6 +4,8 @@ import controller.GameLogic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  *
@@ -77,6 +79,65 @@ public class MainFrame {
         backgroundLabel[bgNum].setIcon(bgIcon);
     }
 
+    //Creates an object on the background and attackes a popmenu to it with 3 options.
+    public void createObjects(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName,
+                              String choice1Name, String choice2Name, String choice3Name, String choice1Command,
+                              String choice2Command, String choice3Command) {
+
+        //Create pop menu.
+        JPopupMenu popMenu = new JPopupMenu();
+
+        //Create pop menu items.
+        JMenuItem menuItem[] = new JMenuItem[4]; //Use [1], [2], [3]
+        menuItem[1] = new JMenuItem(choice1Name);
+        menuItem[1].addActionListener(action);
+        menuItem[1].setActionCommand(choice1Command);
+        popMenu.add(menuItem[1]);
+        menuItem[2] = new JMenuItem(choice2Name);
+        menuItem[2].addActionListener(action);
+        menuItem[2].setActionCommand(choice2Command);
+        popMenu.add(menuItem[2]);
+        menuItem[3] = new JMenuItem(choice3Name);
+        menuItem[3].addActionListener(action);
+        menuItem[3].setActionCommand(choice3Command);
+        popMenu.add(menuItem[3]);
+
+        //Create objects.
+        JLabel objectLabel = new JLabel();
+        //objectLabel.setBounds(460, 160, 200, 200);
+        objectLabel.setBounds(objx, objy, objWidth, objHeight);
+
+        //ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource("hut200x200.png"));
+        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
+        objectLabel.setIcon(objectIcon);
+
+        objectLabel.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+                if(SwingUtilities.isRightMouseButton(e)) {
+                    popMenu.show(objectLabel, e.getX(), e.getY());
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+        });
+
+        backgroundPanel[bgNum].add(objectLabel);
+
+    }
+
     //Creates the arrows that changes the scene.
     public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command) {
 
@@ -101,11 +162,17 @@ public class MainFrame {
 
         //Scene 1
         createBackground(1, "images/townEntrance800x350.jpg");
-        createArrowButton(1, 50, 150, 50, 50, "images/rightarrow50x50.png", "goScene2");
+        createArrowButton(1, 400, 10, 50, 50, "images/uparrow50x50.png", "goScene2");
         backgroundPanel[1].add(backgroundLabel[1]);
 
         //Scene 2
-        createBackground(2, "images/test11.jpg");
+        createBackground(2, "images/Scene2Entrance800x350.png");
+        createObjects(2, 400, 10, 100, 300, "images/blank50x50.png", "Look", "Talk",
+                "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgroundPanel[2].add(backgroundLabel[2]);
+
+        //Scene 3
+        createBackground(3, "images/hearts35x35.png");
+        backgroundPanel[3].add(backgroundLabel[3]);
     }
 }

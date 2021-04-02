@@ -3,6 +3,8 @@ package controller;
 import model.*;
 import model.questions.*;
 import view.*;
+import view.events.Event01;
+
 import java.util.Random;
 
 /**
@@ -18,6 +20,9 @@ public class GameLogic {
     //Used to access the main window and the scene changer.
     public MainFrame window = new MainFrame(this);
     public SceneChanger scene = new SceneChanger(this);
+
+    //Events in the game.
+    public Event01 ev1 = new Event01(this);
 
     public GameLogic() {
         ui = new UI();

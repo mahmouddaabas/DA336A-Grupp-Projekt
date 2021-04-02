@@ -26,6 +26,17 @@ public class ActionHandler implements ActionListener{
 
         switch(yourChoice) {
 
+            //Scene 2
+            case "lookDoor":
+                controller.ev1.lookDoor();
+                break;
+            case "talkDoor":
+                controller.ev1.talkDoor();
+                break;
+            case "enterDoor":
+                controller.ev1.enterDoor();
+                break;
+
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
                 controller.scene.showScene1();
