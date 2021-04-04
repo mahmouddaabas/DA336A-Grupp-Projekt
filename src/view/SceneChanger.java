@@ -33,7 +33,7 @@ public class SceneChanger {
         controller.window.backgroundPanel[1].setVisible(false);
         controller.window.backgroundPanel[2].setVisible(false);
         controller.window.backgroundPanel[3].setVisible(true);
-        controller.window.mathQuestions.setText("This is scene 3.");
+        controller.window.mathQuestions.setText("You walk through the door and spot something.");
     }
 
 
