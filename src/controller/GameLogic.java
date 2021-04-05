@@ -20,6 +20,9 @@ public class GameLogic {
     public int answerIndex;
     public String answerText;
     public boolean isAnswered;
+    private LevelCreator levelCreator;
+    private LevelChanger levelChanger;
+    private int currentLevel = 1;
 
     //Used to access the main window and the scene changer.
     public MainFrame window = new MainFrame(this);
@@ -34,8 +37,30 @@ public class GameLogic {
 
         //Displays the first scene.
         scene.showScene1();
+        
+        this.levelCreator = new LevelCreator();
+        this.levelChanger = new LevelChanger();
+        letTheFightsBegin(); // ska senare kallas på från gui efter knapptryck
+        //startQuiz();
+    }
 
-        startQuiz();
+    public void letTheFightsBegin() {
+        System.out.println("Current level: " + currentLevel);
+        boolean ableToProceed = levelChanger.alterNextLevel(currentLevel);
+        while (currentLevel <= 5) {
+            currentLevel++;
+            System.out.println("Current level: " + currentLevel);
+            if(ableToProceed) {
+                //show next scene in view
+                ableToProceed = levelChanger.alterNextLevel(currentLevel);
+            }
+            else {
+                System.out.println("Better luck next time");
+                break;
+            }
+        }
+        if(currentLevel == 5)
+            System.out.println("Congratulations, you've won all your fights!!");
     }
 
     public void startQuiz() {
