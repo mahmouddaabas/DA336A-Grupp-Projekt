@@ -9,9 +9,9 @@ public class RegularLevel extends Level {
     private MathQuestions mathQuestions;
     private Timer timer;
 
-    public RegularLevel(int id, MathQuestions typeOfQuestions, Monster enemy, int timePressure) {
+    public RegularLevel(int id, MathQuestions questions, Monster enemy, int timePressure) {
         this.id = id;
-        this.mathQuestions = typeOfQuestions;
+        this.mathQuestions = questions;
         this.monster = enemy;
         this.timer = new Timer(timePressure);
     }
@@ -22,13 +22,13 @@ public class RegularLevel extends Level {
     }
 
     @Override
-    public MathQuestions getTypeOfQuestions() {
-        return null;
+    public MathQuestions getQuestionObject() {
+        return this.mathQuestions;
     }
 
     @Override
-    public int getTime() {
-        return timer.getTime();
+    public Timer getTimer() {
+        return timer;
     }
 
     public Monster getMonster() {
