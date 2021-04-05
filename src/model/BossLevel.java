@@ -6,13 +6,13 @@ import model.questions.MathQuestions;
 public class BossLevel extends Level {
     private int id;
     private MathQuestions mathQuestions;
-    private Boss enemy;
+    private Boss boss;
     private Timer timer;
 
-    public BossLevel(int id, MathQuestions typeOfQuestions, Boss boss, int timePressure) {
+    public BossLevel(int id, MathQuestions questions, Boss boss, int timePressure) {
         this.id = id;
-        this.mathQuestions = typeOfQuestions;
-        this.enemy = boss;
+        this.mathQuestions = questions;
+        this.boss = boss;
         this.timer = new Timer(timePressure);
     }
 
@@ -22,17 +22,17 @@ public class BossLevel extends Level {
     }
 
     @Override
-    public MathQuestions getTypeOfQuestions() {
+    public MathQuestions getQuestionObject() {
         return this.mathQuestions;
     }
 
     @Override
-    public int getTime() {
-        return this.timer.getTime();
+    public Timer getTimer() {
+        return this.timer;
     }
 
-    public Boss getEnemy() {
-        return this.enemy;
+    public Boss getBoss() {
+        return this.boss;
     }
 
 }
