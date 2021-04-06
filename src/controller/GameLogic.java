@@ -21,8 +21,9 @@ public class GameLogic {
     public String answerText;
     public boolean isAnswered;
     private LevelCreator levelCreator;
-    private LevelChanger levelChanger;
+    private Thread levelChanger;
     private int currentLevel = 1;
+    boolean ableToProceed;
 
     //Used to access the main window and the scene changer.
     public MainFrame window = new MainFrame(this);
@@ -39,85 +40,44 @@ public class GameLogic {
         scene.showScene1();
         
         this.levelCreator = new LevelCreator();
-        this.levelChanger = new LevelChanger();
-        letTheFightsBegin(); // ska senare kallas på från gui efter knapptryck
+        this.levelChanger = new LevelChanger(this);
         //startQuiz();
     }
 
     public void letTheFightsBegin() {
+        levelChanger.start();
         System.out.println("Current level: " + currentLevel);
-        boolean ableToProceed = levelChanger.alterNextLevel(currentLevel);
-        while (currentLevel <= 5) {
-            currentLevel++;
-            System.out.println("Current level: " + currentLevel);
-            if(ableToProceed) {
-                //show next scene in view
-                ableToProceed = levelChanger.alterNextLevel(currentLevel);
-            }
-            else {
-                System.out.println("Better luck next time");
-                break;
-            }
-        }
-        if(currentLevel == 5)
+        ev2.attackGoblin();
+        //    while (currentLevel <= 5) {}
+        if (this.currentLevel == 5)
             System.out.println("Congratulations, you've won all your fights!!");
+       // }
+    }
+
+    public String getMathQuestion(int level) {
+        return levelCreator.getLevel(level).getQuestionObject().getQuestion();
+    }
+
+    public String[] getAnswerStr(int level) {
+        return levelCreator.getLevel(level).getQuestionObject().getAnswerStr();
+    }
+
+    public void setAbleToProceed(boolean ableToProceed) {
+        this.ableToProceed = ableToProceed;
     }
 
     public void startQuiz() {
-        //answerText;
-        answerIndex = 0;
-        //isAnswered;
-
-        while (true) {
-            // for test purposes
-            // choose which type of question or a random one
-//            mathQuestion = new Addition2Numbers(1, 9, 1, 9);
-//            mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
-//            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
-//            mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
-//            mathQuestion = new Division2Numbers(10, 100, 2, 10);
+/*        while (true) {
+            for test purposes
+            choose which type of question or a random one
+            mathQuestion = new Addition2Numbers(1, 9, 1, 9);
+            mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
+            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
+            mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
+            mathQuestion = new Division2Numbers(10, 100, 2, 10);
             mathQuestion = randomQuestion();
-
-            ui.printMessage(mathQuestion.getQuestion());
-            ui.printArray(mathQuestion.getAnswerStr());
-
-            ui.printMessage("Write your answer (a, b, c, or d): ");
-            isAnswered = false;
-            answerIndex = -1;
-            while (!isAnswered) {
-                answerText = ui.readText();
-                switch (answerText) {
-                    case "a":
-                    case "A":
-                        answerIndex = 0;
-                        break;
-                    case "b":
-                    case "B":
-                        answerIndex = 1;
-                        break;
-                    case "c":
-                    case "C":
-                        answerIndex = 2;
-                        break;
-                    case "d":
-                    case "D":
-                        answerIndex = 3;
-                        break;
-                    default:
-                        ui.printMessage("Invalid input. Try again!");
-                        break;
-                }
-
-                if (answerIndex != -1) {
-                    if (mathQuestion.compareAnswer(answerIndex)) {
-                        ui.printMessage("CORRECT ANSWER!!!");
-                        isAnswered = true;
-                    } else {
-                        ui.printMessage("Incorrect. Try again!");
-                    }
-                }
-            }
         }
+*/
     }
 
     // for test purposes
