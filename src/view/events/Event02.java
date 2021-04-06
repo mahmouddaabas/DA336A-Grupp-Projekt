@@ -28,13 +28,13 @@ public class Event02 {
         //Code to start fight.
 
         //Gets the random math questions.
-        controller.window.mathQuestions.setText(controller.mathQuestion.getQuestion());
+        controller.window.mathQuestions.setText(controller.getMathQuestion(1));
 
         //Sets the answers on the buttons.
-        controller.window.answerButton1.setText(controller.mathQuestion.getAnswerStr()[0]);
-        controller.window.answerButton2.setText(controller.mathQuestion.getAnswerStr()[1]);
-        controller.window.answerButton3.setText(controller.mathQuestion.getAnswerStr()[2]);
-        controller.window.answerButton4.setText(controller.mathQuestion.getAnswerStr()[3]);
+        controller.window.answerButton1.setText(controller.getAnswerStr(1)[0]);
+        controller.window.answerButton2.setText(controller.getAnswerStr(1)[1]);
+        controller.window.answerButton3.setText(controller.getAnswerStr(1)[2]);
+        controller.window.answerButton4.setText(controller.getAnswerStr(1)[3]);
 
         controller.window.answerPanel.setVisible(true);
 
