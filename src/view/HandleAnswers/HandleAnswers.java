@@ -1,58 +1,60 @@
 package view.HandleAnswers;
 
 import controller.GameLogic;
+import controller.LevelChanger;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HandleAnswers implements ActionListener {
 
+    LevelChanger levelChanger;
     GameLogic controller;
 
-    public HandleAnswers(GameLogic controller) {
-
-        this.controller = controller;
+    public HandleAnswers(LevelChanger controller) {
+        this.levelChanger = controller;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         String yourChoice = e.getActionCommand();
+        System.out.println(yourChoice + " is the choice");
 
         switch(yourChoice) {
 
             //First button.
             case "firstButton":
-                controller.answerIndex = 0;
-                controller.answerText = "a";
+                levelChanger.setAnswerIndex(0);
+                levelChanger.setAnswerText("a");
                 break;
 
                 //Second button.
             case "secondButton":
-                controller.answerIndex = 1;
-                controller.answerText = "b";
+                levelChanger.setAnswerIndex(1);
+                levelChanger.setAnswerText("b");
                 break;
 
                 //Third button.
             case "thirdButton":
-                controller.answerIndex = 2;
-                controller.answerText = "c";
+                levelChanger.setAnswerIndex(2);
+                levelChanger.setAnswerText("c");
                 break;
 
                 //Fourth button.
             case "fourthButton":
-                controller.answerIndex = 3;
-                controller.answerText = "d";
+                levelChanger.setAnswerIndex(3);
+                levelChanger.setAnswerText("d");
                 break;
 
 
         }
 
-        if (controller.answerIndex != -1) {
-            if (controller.mathQuestion.compareAnswer(controller.answerIndex)) {
-                controller.window.mathQuestions.setText("Answer is correct!!!");
+      /*  if (levelChanger.answerIndex != -1) {
+            if (levelChanger.mathQuestion.compareAnswer(levelChanger.answerIndex)) {
+                levelChanger.window.mathQuestions.setText("Answer is correct!!!");
                 System.out.println("Answer is correct!");
-                controller.isAnswered = true;
+                levelChanger.isAnswered = true;
                 controller.window.mathQuestions.setBounds(100, 460, 850, 250);
 
                 //Start a new quiz if the answer is correct.
@@ -64,6 +66,6 @@ public class HandleAnswers implements ActionListener {
                 //Reduces health if answer is wrong.
             }
         }
-
+*/
     }
 }
