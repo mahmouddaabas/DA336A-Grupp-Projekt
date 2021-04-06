@@ -45,7 +45,8 @@ public class ActionHandler implements ActionListener{
                 controller.ev2.talkGoblin();
                 break;
             case "attackGoblin":
-                controller.ev2.attackGoblin();
+                controller.letTheFightsBegin();
+             //   controller.ev2.attackGoblin();
                 break;
 
             //Changes the scene by getting a command from the MainFrame arrow button.
