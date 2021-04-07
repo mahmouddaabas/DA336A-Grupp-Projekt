@@ -39,85 +39,16 @@ public class GameLogic {
         //Displays the first scene.
         scene.showScene1();
 
-        startQuiz();
-    }
-
-    /**
-     * Returns the mathQuestion object for use outside of class
-     * @return this class' mathQuestion object
-     */
-    public MathQuestions getMathQuestion() {
-        return mathQuestion;
-    }
-
-    /**
-     * Returns the answerIndex variable for use outside of class
-     * @return this class' answerIndex variable
-     */
-    public int getAnswerIndex() {
-        return answerIndex;
-    }
-
-    /**
-     * Sets isAnswered variable using parameter
-     * @param answered the new boolean value
-     */
-    public void setAnswered(boolean answered) {
-        isAnswered = answered;
-    }
-
-    /**
-     * Sets answerText variable using parameter
-     * @param answerText the new String value
-     */
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
-    }
-
-    /**
-     * Sets answerIndex variable using parameter
-     * @param answerIndex the new Integer value
-     */
-    public void setAnswerIndex(int answerIndex) {
-        this.answerIndex = answerIndex;
-    }
-
-    /**
-     * Returns the ev1 object for use outside of class
-     * @return this class' ev1 object
-     */
-    public Event01 getEv1() {
-        return ev1;
-    }
-
-    /**
-     * Returns the ev2 object for use outside of class
-     * @return this class' ev2 object
-     */
-    public Event02 getEv2() {
-        return ev2;
-    }
-
-    /**
-     * Returns the scene object for use outside of class
-     * @return this class' scene object
-     */
-    public SceneChanger getScene() {
-        return scene;
-    }
-
-    /**
-     * Returns the window object for use outside of class
-     * @return this class' window object
-     */
-    public MainFrame getWindow() {
-        return window;
+        //startQuiz();
+        mathQuestion = randomQuestion();
+        mathQuestion.generateNewQuestion();
     }
 
     /**
      * Method for testing purposes. Infinitely asks questions in the console.
      */
-    public void startQuiz() {
+
+    /*public void startQuiz() {
         //answerText;
         answerIndex = 0;
         //isAnswered;
@@ -169,6 +100,7 @@ public class GameLogic {
             }
         }
     }
+     */
 
     /**
      * Checks if the selected answer was correct by comparing the selected index with the answer index.
@@ -199,6 +131,7 @@ public class GameLogic {
     /**
      * Method for testing purposes. Gets a random question from 4 types.
      */
+
     public MathQuestions randomQuestion() {
         Random rand = new Random();
         MathQuestions newQuestion;
@@ -223,5 +156,87 @@ public class GameLogic {
         }
 
         return newQuestion;
+    }
+
+
+    /**
+     * Returns the mathQuestion object for use outside of class
+     * @return this class' mathQuestion object
+     */
+
+    public MathQuestions getMathQuestion() {
+        return mathQuestion;
+    }
+
+    /**
+     * Returns the answerIndex variable for use outside of class
+     * @return this class' answerIndex variable
+     */
+
+    public int getAnswerIndex() {
+        return answerIndex;
+    }
+
+    /**
+     * Sets isAnswered variable using parameter
+     * @param answered the new boolean value
+     */
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
+    }
+
+    /**
+     * Sets answerText variable using parameter
+     * @param answerText the new String value
+     */
+
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
+    }
+
+    /**
+     * Sets answerIndex variable using parameter
+     * @param answerIndex the new Integer value
+     */
+
+    public void setAnswerIndex(int answerIndex) {
+        this.answerIndex = answerIndex;
+    }
+
+    /**
+     * Returns the ev1 object for use outside of class
+     * @return this class' ev1 object
+     */
+
+    public Event01 getEv1() {
+        return ev1;
+    }
+
+    /**
+     * Returns the ev2 object for use outside of class
+     * @return this class' ev2 object
+     */
+
+    public Event02 getEv2() {
+        return ev2;
+    }
+
+    /**
+     * Returns the scene object for use outside of class
+     * @return this class' scene object
+     */
+
+    public SceneChanger getScene() {
+        return scene;
+    }
+
+    /**
+     * Returns the window object for use outside of class
+     * @return this class' window object
+     */
+
+    public MainFrame getWindow() {
+        return window;
     }
 }

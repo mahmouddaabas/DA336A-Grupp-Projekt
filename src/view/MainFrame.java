@@ -1,7 +1,8 @@
 package view;
 
 import controller.GameLogic;
-import view.HandleAnswers.HandleAnswers;
+import view.Handlers.ActionHandler;
+import view.Handlers.HandleAnswers;
 
 import javax.swing.*;
 import java.awt.*;
