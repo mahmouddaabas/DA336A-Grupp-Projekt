@@ -11,33 +11,33 @@ import java.awt.event.MouseListener;
 /**
  *
  * @author Mahmoud Daabas
+ * @author Duy Nguyen
  */
 public class MainFrame {
-
-    GameLogic controller;
-    JFrame window;
-    public JTextArea mathQuestions;
-    public JPanel backgroundPanel[] = new JPanel[10];
-    public JLabel backgroundLabel[] = new JLabel[10];
-    ActionHandler action;
-    HandleAnswers answers;
+    private GameLogic controller;
+    private JFrame window;
+    private JTextArea mathQuestions;
+    private JPanel backgroundPanel[] = new JPanel[10];
+    private JLabel backgroundLabel[] = new JLabel[10];
+    private ActionHandler action;
+    private HandleAnswers answers;
 
     //Player information.
-    JPanel healthPanel;
-    JLabel healthLabel[] = new JLabel[5];
+    private JPanel healthPanel;
+    private JLabel healthLabel[] = new JLabel[5];
 
     //Panel with buttons to answer.
-    public JPanel answerPanel;
-    public JButton answerButton1;
-    public JButton answerButton2;
-    public JButton answerButton3;
-    public JButton answerButton4;
+    private JPanel answerPanel;
+    private JButton answerButton1;
+    private JButton answerButton2;
+    private JButton answerButton3;
+    private JButton answerButton4;
 
     public MainFrame(GameLogic controller) {
 
         this.controller = controller;
         action = new ActionHandler(controller);
-     //   answers = new HandleAnswers(controller);
+        answers = new HandleAnswers(controller);
 
         //Creates the main window the game is displayed on.
         createMainWindow();
@@ -45,6 +45,34 @@ public class MainFrame {
         generateScenes();
         //Makes the window visible.
         window.setVisible(true);
+    }
+
+    public JPanel[] getBackgroundPanel() {
+        return backgroundPanel;
+    }
+
+    public JPanel getAnswerPanel() {
+        return answerPanel;
+    }
+
+    public JButton getAnswerButton1() {
+        return answerButton1;
+    }
+
+    public JButton getAnswerButton2() {
+        return answerButton2;
+    }
+
+    public JButton getAnswerButton3() {
+        return answerButton3;
+    }
+
+    public JButton getAnswerButton4() {
+        return answerButton4;
+    }
+
+    public JTextArea getMathQuestions() {
+        return mathQuestions;
     }
 
     public void populateAnswerPanel() {
@@ -210,10 +238,6 @@ public class MainFrame {
         arrowButton.setActionCommand(command);
 
         backgroundPanel[bgNum].add(arrowButton);
-    }
-
-    public void setText(String message) {
-        this.mathQuestions.setText(message);
     }
 
     //Generates the scene and what is placed on the backgrounds.

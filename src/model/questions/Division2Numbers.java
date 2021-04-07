@@ -3,8 +3,7 @@ package model.questions;
 import java.lang.Math;
 
 /**
- * Creates a math question that divides two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that divides two numbers.
  * @author Mattias Bengtsson
  */
 public class Division2Numbers extends MathQuestions {
@@ -17,7 +16,8 @@ public class Division2Numbers extends MathQuestions {
     private int denominator;
 
     /**
-     * Constructor that initializes the instance variables for the bounds.
+     * Constructor that initializes the instance variables and generates the answers. The first number is the numerator
+     * and the second is the denominator.
      * @param numeratorLowerBound is the lowest value the first number can have.
      * @param numeratorUpperBound is the highest value the first number can have.
      * @param denominatorLowerBound is the lowest value the second number can have.
@@ -32,6 +32,10 @@ public class Division2Numbers extends MathQuestions {
         this.denominatorUpperBound = denominatorUpperBound;
         numerator = randomInt(numeratorLowerBound, numeratorUpperBound);
         denominator = randomInt(denominatorLowerBound, denominatorUpperBound);
+
+        generateNumbers();
+        generateAnswers();
+        generateAnswerStringsFractions(answers, denominator);
     }
 
     /**
@@ -40,16 +44,6 @@ public class Division2Numbers extends MathQuestions {
      */
     public String getQuestion() {
         return "What is " + numerator + " / " + denominator + "?";
-    }
-
-    /**
-     * Generates a new question within the same bounds and the answers.
-     */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
-        generateNumbers();
-        generateAnswers();
-        generateAnswerStringsFractions(answers, denominator);
     }
 
     /**

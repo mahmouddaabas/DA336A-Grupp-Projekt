@@ -8,11 +8,11 @@ import java.awt.event.ActionListener;
 /**
  *
  * @author Mahmoud Daabas
+ * @author Duy Nguyen
  */
-
 public class ActionHandler implements ActionListener{
 
-    GameLogic controller;
+    private GameLogic controller;
 
     public ActionHandler(GameLogic controller) {
 
@@ -28,35 +28,34 @@ public class ActionHandler implements ActionListener{
 
             //Scene 2
             case "lookDoor":
-                controller.ev1.lookDoor();
+                controller.getEv1().lookDoor();
                 break;
             case "talkDoor":
-                controller.ev1.talkDoor();
+                controller.getEv1().talkDoor();
                 break;
             case "enterDoor":
-                controller.ev1.enterDoor();
+                controller.getEv1().enterDoor();
                 break;
 
-                //Scene 3
+            //Scene 3
             case "lookGoblin":
-                controller.ev2.lookGoblin();
+                controller.getEv2().lookGoblin();
                 break;
             case "talkGoblin":
-                controller.ev2.talkGoblin();
+                controller.getEv2().talkGoblin();
                 break;
             case "attackGoblin":
-                controller.letTheFightsBegin();
-             //   controller.ev2.attackGoblin();
+                controller.getEv2().attackGoblin();
                 break;
 
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
-                controller.scene.showScene1();
-            break;
+                controller.getScene().showScene1();
+                break;
 
             case "goScene2":
-                controller.scene.showScene2();
-            break;
+                controller.getScene().showScene2();
+                break;
         }
 
     }

@@ -1,8 +1,7 @@
 package model.questions;
 
 /**
- * Creates a math question that adds two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that adds two numbers.
  * @author Mattias Bengtsson
  */
 public class Addition2Numbers extends MathQuestions {
@@ -15,7 +14,7 @@ public class Addition2Numbers extends MathQuestions {
     private int number2;
 
     /**
-     * Constructor that initializes the instance variables for the bounds.
+     * Constructor that initializes the instance variables and generates the answers.
      * @param number1LowerBound is the lowest value the first number can have.
      * @param number1UpperBound is the highest value the first number can have.
      * @param number2LowerBound is the lowest value the second number can have.
@@ -28,6 +27,10 @@ public class Addition2Numbers extends MathQuestions {
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
+
+        generateNumbers();
+        generateAnswers();
+        generateAnswerStrings(answers);
     }
 
     /**
@@ -36,16 +39,6 @@ public class Addition2Numbers extends MathQuestions {
      */
     public String getQuestion() {
         return "What is " + number1 + " + " + number2 + "?";
-    }
-
-    /**
-     * Generates a new question within the same bounds and the answers.
-     */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
-        generateNumbers();
-        generateAnswers();
-        generateAnswerStrings(answers);
     }
 
     /**

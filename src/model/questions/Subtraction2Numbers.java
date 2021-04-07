@@ -3,8 +3,7 @@ package model.questions;
 import java.lang.Math;
 
 /**
- * Creates a math question that subtracts two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that subtracts two numbers.
  * @author Mattias Bengtsson
  */
 public class Subtraction2Numbers extends MathQuestions {
@@ -26,13 +25,17 @@ public class Subtraction2Numbers extends MathQuestions {
      * @param negativeAnswer gives if the answer can be a negative number.
      */
     public Subtraction2Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound, boolean negativeAnswer) {
+                               int number2LowerBound, int number2UpperBound, boolean negativeAnswer) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
         this.negativeAnswer = negativeAnswer;
+
+        generateNumbers();
+        generateAnswers();
+        generateAnswerStrings(answers);
     }
 
     /**
@@ -41,16 +44,6 @@ public class Subtraction2Numbers extends MathQuestions {
      */
     public String getQuestion() {
         return "What is " + number1 + " - " + number2 + "?";
-    }
-
-    /**
-     * Generates a new question within the same bounds and the answers.
-     */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
-        generateNumbers();
-        generateAnswers();
-        generateAnswerStrings(answers);
     }
 
     /**
