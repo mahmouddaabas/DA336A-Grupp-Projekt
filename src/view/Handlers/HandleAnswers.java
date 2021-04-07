@@ -1,4 +1,4 @@
-package view.HandleAnswers;
+package view.Handlers;
 
 import controller.GameLogic;
 
