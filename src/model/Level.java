@@ -8,6 +8,6 @@ public abstract class Level {
     private Timer timer;
 
     public abstract int getId();
-    public abstract MathQuestions getTypeOfQuestions();
-    public abstract int getTime();
+    public abstract MathQuestions getQuestionObject();
+    public abstract Timer getTimer();
 }

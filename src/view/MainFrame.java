@@ -37,7 +37,7 @@ public class MainFrame {
 
         this.controller = controller;
         action = new ActionHandler(controller);
-        answers = new HandleAnswers(controller);
+     //   answers = new HandleAnswers(controller);
 
         //Creates the main window the game is displayed on.
         createMainWindow();
@@ -210,6 +210,10 @@ public class MainFrame {
         arrowButton.setActionCommand(command);
 
         backgroundPanel[bgNum].add(arrowButton);
+    }
+
+    public void setText(String message) {
+        this.mathQuestions.setText(message);
     }
 
     //Generates the scene and what is placed on the backgrounds.
