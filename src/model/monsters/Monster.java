@@ -1,7 +1,5 @@
 package model.monsters;
 
-import java.util.Random;
-
 /**
  * @author Duy Nguyen
  * Super class for the monsters
@@ -9,42 +7,46 @@ import java.util.Random;
 public abstract class Monster {
     private MonsterType type;
     private int health;
-    private int maxDamage;
-    private Random rand;
 
-    public Monster(MonsterType type, int health, int maxDamage) {
+    /**
+     * Creates the monster object
+     * @param type type of monster
+     * @param health amount of health
+     */
+    public Monster(MonsterType type, int health) {
         this.type = type;
         this.health = health;
-        this.maxDamage = maxDamage;
-        rand = new Random();
     }
 
-    public void setType(MonsterType type) {
-        this.type = type;
+    /**
+     * Sets the monster type
+     * @param newType new monster type to set
+     */
+    public void setType(MonsterType newType) {
+        this.type = newType;
     }
 
+    /**
+     * Returns the type of monster
+     * @return type of monster
+     */
     public MonsterType getType() {
         return type;
     }
 
+    /**
+     * Sets the amount of health
+     * @param health amount of health
+     */
     public void setHealth(int health) {
         this.health = health;
     }
 
+    /**
+     * Returns the amount of health
+     * @return amount of health
+     */
     public int getHealth() {
         return health;
-    }
-
-    public void setMaxDamage(int maxDamage) {
-        this.maxDamage = maxDamage;
-    }
-
-    //Random damage between 0 and set max damage.
-    public int getDamage() {
-        return rand.nextInt(maxDamage);
-    }
-
-    public int getMaxDamage() {
-        return maxDamage;
     }
 }

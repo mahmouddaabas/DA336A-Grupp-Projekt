@@ -2,17 +2,17 @@ package model.monsters;
 
 /**
  * @author Duy Nguyen
- * Tier 1 monster
+ * Tier 2 monster
  */
-public class Goblin extends Monster {
+public class Skeleton extends Monster {
     //Possible properties
 
     /**
-     * Creates a tier 1 monster - Goblin
+     * Creates a tier 2 monster
      * @param type type of monster
      * @param health amount of health
      */
-    public Goblin(MonsterType type, int health) {
+    public Skeleton(MonsterType type, int health) {
         super(type,health);
     }
 }
