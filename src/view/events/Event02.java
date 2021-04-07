@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ *
+ * Event02 will handle all the different mob interactions in the game.
  */
 public class Event02 {
 
@@ -19,6 +21,11 @@ public class Event02 {
         this.controller = controller;
 
     }
+
+    /**
+     * This method is called if the user selects the "Look" option in the GUI.
+     * All below methods work in the same way and has the same purpose.
+     */
 
     public void lookGoblin() {
         controller.getWindow().getMathQuestions().setText("You see a goblin standing right infront of you, it doesn't seem that strong.");
