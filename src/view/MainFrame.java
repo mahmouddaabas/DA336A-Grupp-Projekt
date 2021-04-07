@@ -12,6 +12,10 @@ import java.awt.event.MouseListener;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ *
+ * This class is the main window of the program.
+ * It creates all objects, backgrounds and buttons and adds them to the window.
+ *
  */
 public class MainFrame {
     private GameLogic controller;
@@ -33,6 +37,9 @@ public class MainFrame {
     private JButton answerButton3;
     private JButton answerButton4;
 
+    /**
+     * Constructs the class and instansiates controller and the action listeners.
+     */
     public MainFrame(GameLogic controller) {
 
         this.controller = controller;
@@ -51,29 +58,10 @@ public class MainFrame {
         return backgroundPanel;
     }
 
-    public JPanel getAnswerPanel() {
-        return answerPanel;
-    }
-
-    public JButton getAnswerButton1() {
-        return answerButton1;
-    }
-
-    public JButton getAnswerButton2() {
-        return answerButton2;
-    }
-
-    public JButton getAnswerButton3() {
-        return answerButton3;
-    }
-
-    public JButton getAnswerButton4() {
-        return answerButton4;
-    }
-
-    public JTextArea getMathQuestions() {
-        return mathQuestions;
-    }
+    /**
+     * Creates the buttons and puts them on a panel with a gridlayout.
+     * The panel is then placed on the window.
+     */
 
     public void populateAnswerPanel() {
 
@@ -120,6 +108,10 @@ public class MainFrame {
 
     }
 
+    /**
+     * Creates the main JFrame of the game.
+     */
+
     //Creates the main window for the program.
     public void createMainWindow() {
 
@@ -145,6 +137,10 @@ public class MainFrame {
         window.add(mathQuestions);
     }
 
+    /**
+     * Creates a background and adds it to the selected spot in the panel array.
+     */
+
     //Creates the background that is displayed on the window.
     public void createBackground(int bgNum, String bgFileName) {
 
@@ -161,6 +157,11 @@ public class MainFrame {
         ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource(bgFileName));
         backgroundLabel[bgNum].setIcon(bgIcon);
     }
+
+    /**
+     * Creates an object by using an image.
+     * Then places the object on the background by selecting its panel number in the array.
+     */
 
     //Creates an object on the background and attackes a popmenu to it with 3 options.
     public void createObjects(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName,
@@ -221,6 +222,11 @@ public class MainFrame {
 
     }
 
+    /**
+     * Creates arrow looking buttons that can be placed on the GUI.
+     * Assigns a command to the button which makes it connectable to the ActionHandler class.
+     */
+
     //Creates the arrows that changes the scene.
     public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command) {
 
@@ -239,6 +245,11 @@ public class MainFrame {
 
         backgroundPanel[bgNum].add(arrowButton);
     }
+
+    /**
+     * Generates all the scenes in the game.
+     * ((This method will be reworked to only create the currently needed scene))
+     */
 
     //Generates the scene and what is placed on the backgrounds.
     public void generateScenes() {
@@ -260,5 +271,34 @@ public class MainFrame {
                 "Attack", "lookGoblin", "talkGoblin", "attackGoblin");
         populateAnswerPanel();
         backgroundPanel[3].add(backgroundLabel[3]);
+    }
+
+    /**
+     * Getter methods to access the GUI parts.
+     */
+
+
+    public JPanel getAnswerPanel() {
+        return answerPanel;
+    }
+
+    public JButton getAnswerButton1() {
+        return answerButton1;
+    }
+
+    public JButton getAnswerButton2() {
+        return answerButton2;
+    }
+
+    public JButton getAnswerButton3() {
+        return answerButton3;
+    }
+
+    public JButton getAnswerButton4() {
+        return answerButton4;
+    }
+
+    public JTextArea getMathQuestions() {
+        return mathQuestions;
     }
 }

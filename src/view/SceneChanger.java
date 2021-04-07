@@ -6,7 +6,10 @@ import controller.GameLogic;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ *
+ * This class manages the changing of the scenes by their boolean property in the panel array.
  */
+
 public class SceneChanger {
 
     private GameLogic controller;
@@ -16,6 +19,11 @@ public class SceneChanger {
         this.controller = controller;
 
     }
+
+    /**
+     * Shows the first scene by setting the boolean to true.
+     * The methods below all operate in the same way and have the same purpose.
+     */
 
     public void showScene1() {
         controller.getWindow().getBackgroundPanel()[1].setVisible(true);

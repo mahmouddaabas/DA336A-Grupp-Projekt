@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ *
+ * This class handles the answer buttons on the GUI.
+ * It sets the answer index in the controller class which helps determine what answer was selected.
  */
 public class HandleAnswers implements ActionListener {
 

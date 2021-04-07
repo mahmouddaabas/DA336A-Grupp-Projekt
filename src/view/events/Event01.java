@@ -6,6 +6,9 @@ import controller.GameLogic;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ *
+ * This class handles the events that happen in the game.
+ * Event01 only handles the first scene after you enter the tower.
  */
 public class Event01 {
 
@@ -16,6 +19,11 @@ public class Event01 {
         this.controller = controller;
 
     }
+
+    /**
+     * This method is called if the user selects the "Look" option in the GUI.
+     * All below methods work in the same way and has the same purpose.
+     */
 
     public void lookDoor() {
         controller.getWindow().getMathQuestions().setText("You take a look at the door. \n You dont seem to spot anything.");
