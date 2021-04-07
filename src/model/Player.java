@@ -1,7 +1,7 @@
 package model;
 
-import model.Vendor.Bag;
-import model.Vendor.Item;
+import model.vendor.Bag;
+import model.vendor.Item;
 
 /**
  *

@@ -1,4 +1,4 @@
-package model.Vendor;
+package model.vendor;
 
 /**
  * @author Duy Nguyen

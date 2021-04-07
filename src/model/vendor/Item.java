@@ -1,6 +1,4 @@
-package model.Vendor;
-
-import model.Vendor.Attributes;
+package model.vendor;
 
 /**
  *

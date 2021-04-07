@@ -7,7 +7,12 @@ package model.monsters;
 public class Wizard extends Monster {
     //Possible properties
 
-    public Wizard(MonsterType type, int health, int maxDamage) {
-        super(type, health, maxDamage);
+    /**
+     * Creates a tier 3 monster - Wizard
+     * @param type type of monster
+     * @param health amount of health
+     */
+    public Wizard(MonsterType type, int health) {
+        super(type, health);
     }
 }

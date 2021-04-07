@@ -6,7 +6,7 @@ package model.monsters;
  */
 public enum MonsterType {
     Goblin,
-    Monster2, //Need a contextual type. -Duy
+    Skeleton,
     Wizard,
     Knight,
     Boss

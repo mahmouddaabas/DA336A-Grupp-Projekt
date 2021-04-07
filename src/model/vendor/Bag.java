@@ -1,4 +1,4 @@
-package model.Vendor;
+package model.vendor;
 
 import java.util.LinkedList;
 /**

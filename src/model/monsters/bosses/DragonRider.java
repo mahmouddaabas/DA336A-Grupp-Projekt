@@ -4,12 +4,18 @@ import model.monsters.MonsterType;
 
 /**
  * @author Duy Nguyen
- * Fourth boss level 20
+ * Tier 4 boss (Level 15)
  */
 public class DragonRider extends Boss {
     //Possible properties
 
-    public DragonRider(MonsterType monsterType, int health, int maxDamage, BossType type) {
-        super(monsterType,health,maxDamage,type);
+    /**
+     * Creates a tier 4 boss - Dragon Rider
+     * @param monsterType type of monster
+     * @param health amount of health
+     * @param type type of boss
+     */
+    public DragonRider(MonsterType monsterType, int health, BossType type) {
+        super(monsterType,health,type);
     }
 }
