@@ -18,6 +18,7 @@ public abstract class MathQuestions {
      */
     public MathQuestions() {
         rand = new Random();
+        correctAnswerIndex = randomInt(0, 3);
     }
 
     /**
@@ -44,10 +45,6 @@ public abstract class MathQuestions {
                 return randNum;
             }
         }
-    }
-
-    protected void newCorrectAnswerIndex() {
-        correctAnswerIndex = randomInt(0, 3);
     }
 
     /**
@@ -176,9 +173,4 @@ public abstract class MathQuestions {
      * @return the question as a string.
      */
     public abstract String getQuestion();
-
-    /**
-     * Generates a new question within the same bounds.
-     */
-    public abstract void generateNewQuestion();
 }

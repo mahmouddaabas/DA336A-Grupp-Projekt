@@ -1,8 +1,7 @@
 package model.questions;
 
 /**
- * Creates a math question that multiplies two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that multiplies two numbers.
  * @author Mattias Bengtsson
  */
 public class Multiplication2Numbers extends MathQuestions {
@@ -23,12 +22,14 @@ public class Multiplication2Numbers extends MathQuestions {
      * @param number2UpperBound is the highest value the second number can have.
      */
     public Multiplication2Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound) {
+                                  int number2LowerBound, int number2UpperBound) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
+
+        generateAnswers();
     }
 
     /**
@@ -40,16 +41,6 @@ public class Multiplication2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates a new question within the same bounds and the answers.
-     */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
-        generateNumbers();
-        generateAnswers();
-        generateAnswerStrings(answers);
-    }
-
-    /**
      * Generates the two random numbers from the given bounds.
      */
     private void generateNumbers() {
@@ -58,34 +49,59 @@ public class Multiplication2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
+     * Generates the correct answer and 3 fake answers, and then shuffles them. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createAnswerArray();
-        answers[getCorrectAnswerIndex()] = number1 * number2;
+        answers = new int[4];
+        int fakeAnswer;
 
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i] == Integer.MIN_VALUE) {
-                answers[i] = createFakeAnswer();
+        generateNumbers();
+        correctAnswer = number1 * number2;
+        answers[0] = correctAnswer;
+        boolean ok = false;
+        while (!ok) {
+            fakeAnswer = createFakeAnswer();
+            if (fakeAnswer != answers[0]) {
+                answers[1] = fakeAnswer;
+                ok = true;
             }
         }
+        ok = false;
+        while (!ok) {
+            fakeAnswer = createFakeAnswer();
+            if (fakeAnswer != answers[0] && fakeAnswer != answers[1]) {
+                answers[2] = fakeAnswer;
+                ok = true;
+            }
+        }
+        ok = false;
+        while (!ok) {
+            fakeAnswer = createFakeAnswer();
+            if (fakeAnswer != answers[0] && fakeAnswer != answers[1] && fakeAnswer != answers[2]) {
+                answers[3] = fakeAnswer;
+                ok = true;
+            }
+        }
+
+        answers = shuffleAnswers(answers);
+        generateAnswerStrings(answers);
     }
 
     /**
-     * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
-     * values in the answer array.
+     * Returns a fake answer that would be possible from the bounds of the inputs.
      * @return a fake answer.
      */
     private int createFakeAnswer() {
-        int fakeAnswer;
-        while (true) {
-            fakeAnswer = randomInt(number1LowerBound * number2LowerBound,
-                    number1UpperBound * number2UpperBound);
-            if (fakeAnswer != answers[0] && fakeAnswer != answers[1] &&
-                    fakeAnswer != answers[2] && fakeAnswer != answers[3]) {
-                return fakeAnswer;
-            }
-        }
+        return randomInt(number1LowerBound * number2LowerBound,
+                number1UpperBound * number2UpperBound);
     }
 
+    /**
+     * Compares the users answer with the correct answer.
+     * @param index is the index of the user's answer in the answer array.
+     * @return true if the user's answer is correct, false otherwise.
+     */
+    public boolean compareAnswer(int index) {
+        return answers[index] == correctAnswer;
+    }
 }

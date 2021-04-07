@@ -2,9 +2,14 @@ package view.events;
 
 import controller.GameLogic;
 
+/**
+ *
+ * @author Mahmoud Daabas
+ * @author Duy Nguyen
+ */
 public class Event01 {
 
-    GameLogic controller;
+    private GameLogic controller;
 
     public Event01(GameLogic controller) {
 
@@ -13,16 +18,15 @@ public class Event01 {
     }
 
     public void lookDoor() {
-
-        controller.window.mathQuestions.setText("You take a look at the door. \n You dont seem to spot anything.");
+        controller.getWindow().getMathQuestions().setText("You take a look at the door. \n You dont seem to spot anything.");
     }
 
     public void talkDoor() {
-        controller.window.mathQuestions.setText("You attempt talking to the door. \n You hear your echo go through the door.");
+        controller.getWindow().getMathQuestions().setText("You attempt talking to the door. \n You hear your echo go through the door.");
     }
 
     public void enterDoor() {
         //Code to swap to Scene 3.
-        controller.scene.showScene3();
+        controller.getScene().showScene3();
     }
 }
