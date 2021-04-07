@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  *
  * This class handles the answer buttons on the GUI.
  * It sets the answer index in the controller class which helps determine what answer was selected.
+ * Then calls the checkAnswer method from the controller to check if selected answer was correct.
  */
 public class HandleAnswers implements ActionListener {
 
@@ -56,22 +57,7 @@ public class HandleAnswers implements ActionListener {
 
         }
 
-        if (controller.getAnswerIndex() != -1) {
-            if (controller.getMathQuestion().compareAnswer(controller.getAnswerIndex())) {
-                controller.getWindow().getMathQuestions().setText("Answer is correct!!!");
-                System.out.println("Answer is correct!");
-                controller.setAnswered(true);
-                controller.getWindow().getMathQuestions().setBounds(100,460,850,250);
-
-                //Start a new quiz if the answer is correct.
-                //controller.startQuiz();
-            } else {
-                controller.getWindow().getMathQuestions().setText(controller.getMathQuestion().getQuestion() + "\n Incorrect, try again!");
-                System.out.println("Incorrect, try again.");
-
-                //Reduces health if answer is wrong.
-            }
-        }
+        controller.checkAnswer();
 
     }
 }

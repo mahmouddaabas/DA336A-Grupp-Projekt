@@ -171,6 +171,32 @@ public class GameLogic {
     }
 
     /**
+     * Checks if the selected answer was correct by comparing the selected index with the answer index.
+     * If answer is correct sets the setAnswered to boolean to true.
+     * If answer is incorrect tells the user and reduces their HP.
+     */
+
+    public void checkAnswer() {
+
+        if (getAnswerIndex() != -1) {
+            if (getMathQuestion().compareAnswer(getAnswerIndex())) {
+                getWindow().getMathQuestions().setText("Answer is correct!!!");
+                System.out.println("Answer is correct!");
+                setAnswered(true);
+                getWindow().getMathQuestions().setBounds(100,460,850,250);
+
+                //Start a new quiz if the answer is correct.
+                //controller.startQuiz();
+            } else {
+                getWindow().getMathQuestions().setText(getMathQuestion().getQuestion() + "\n Incorrect, try again!");
+                System.out.println("Incorrect, try again.");
+
+                //Reduces health if answer is wrong.
+            }
+        }
+    }
+
+    /**
      * Method for testing purposes. Gets a random question from 4 types.
      */
     public MathQuestions randomQuestion() {
