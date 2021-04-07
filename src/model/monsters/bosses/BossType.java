@@ -6,7 +6,7 @@ package model.monsters.bosses;
  */
 public enum BossType {
     Orc,
-    Boss2, //Depends on the second monster type. -Duy
+    Draugr, //Depends on the second monster type. -Duy
     Demon,
     Dragon_Rider,
     FINALBOSS //Final boss will be named "???" -Duy
