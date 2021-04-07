@@ -9,7 +9,7 @@ import view.events.Event02;
 import java.util.Random;
 
 /**
- *
+ * Controller class that handles the overall logic flow for the game.
  * @author Mattias Bengtsson
  * @author Mahmoud Daabas
  */
@@ -33,6 +33,9 @@ public class GameLogic {
     public Event01 ev1 = new Event01(this);
     public Event02 ev2 = new Event02(this);
 
+    /**
+     * Constructor for GameLogic that shows the first scene.
+     */
     public GameLogic() {
         ui = new UI();
 
@@ -44,6 +47,9 @@ public class GameLogic {
         //startQuiz();
     }
 
+    /**
+     * Starts the combat with a monster.
+     */
     public void letTheFightsBegin() {
         levelChanger.start();
         System.out.println("Current level: " + currentLevel);
@@ -54,18 +60,35 @@ public class GameLogic {
        // }
     }
 
-    public String getMathQuestion(int level) {
+    /**
+     * Returns the math question to give the player as a string.
+     * @param level the current level the player is on.
+     * @return the math question to give the player as a string.
+     */
+    public String getQuestion(int level) {
         return levelCreator.getLevel(level).getQuestionObject().getQuestion();
     }
 
+    /**
+     * Returns the 4 different answers to the player as a string array.
+     * @param level the current level the player is on.
+     * @return the 4 different answers to the player as a string array.
+     */
     public String[] getAnswerStr(int level) {
         return levelCreator.getLevel(level).getQuestionObject().getAnswerStr();
     }
 
+    /**
+     * Sets if the player is able to proceed to the next level.
+     * @param ableToProceed flag that shows if the player is able to proceed to the next level.
+     */
     public void setAbleToProceed(boolean ableToProceed) {
         this.ableToProceed = ableToProceed;
     }
 
+    /**
+     * Method for testing purposes. Infinitely asks questions in the console.
+     */
     public void startQuiz() {
 /*        while (true) {
             for test purposes
@@ -80,7 +103,9 @@ public class GameLogic {
 */
     }
 
-    // for test purposes
+    /**
+     * Method for testing purposes. Gets a random question from 4 types.
+     */
     public MathQuestions randomQuestion() {
         Random rand = new Random();
         MathQuestions newQuestion;

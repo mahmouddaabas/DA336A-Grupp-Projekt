@@ -2,9 +2,6 @@ package view.events;
 
 import controller.GameLogic;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class Event02 {
 
     GameLogic controller;
@@ -28,7 +25,7 @@ public class Event02 {
         //Code to start fight.
 
         //Gets the random math questions.
-        controller.window.mathQuestions.setText(controller.getMathQuestion(1));
+        controller.window.mathQuestions.setText(controller.getQuestion(1));
 
         //Sets the answers on the buttons.
         controller.window.answerButton1.setText(controller.getAnswerStr(1)[0]);
