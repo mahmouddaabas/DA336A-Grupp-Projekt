@@ -1,4 +1,4 @@
-package model.monsters.bosses;
+package model.monsters;
 
 /**
  * @author Duy Nguyen
@@ -9,5 +9,5 @@ public enum BossType {
     Draugr,
     Demon,
     Dragon_Rider,
-    FINALBOSS //Final boss will be named "???"
+    FINALBOSS
 }

@@ -26,11 +26,11 @@ public class Event01 {
      */
 
     public void lookDoor() {
-        controller.getWindow().getMathQuestions().setText("You take a look at the door. \n You dont seem to spot anything.");
+        controller.getWindow().getMathQuestions().setText("You take a look at the door. \nYou dont seem to spot anything.");
     }
 
     public void talkDoor() {
-        controller.getWindow().getMathQuestions().setText("You attempt talking to the door. \n You hear your echo go through the door.");
+        controller.getWindow().getMathQuestions().setText("You attempt talking to the door. \nYou hear your echo go through the door.");
     }
 
     public void enterDoor() {

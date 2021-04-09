@@ -1,19 +1,20 @@
 package model;
 
+import controller.GameLogic;
+
 /**
  *
  * @author Duy Nguyen
- * Timer class for the questions. Inherits a thread.
+ * Timer class for the questions. Implements a Runnable i.e a thread.
  */
-public class Timer extends Thread {
+public class Timer implements Runnable {
+    private GameLogic controller;
+    private Thread timer = null;
+    private boolean ticking = false;
     private int time;
 
-    /**
-     * Sets a received time upon creation.
-     * @param time the time
-     */
-    public Timer(int time) {
-        this.time = time;
+    public Timer(GameLogic controller) {
+        this.controller = controller;
     }
 
     /**
@@ -21,54 +22,58 @@ public class Timer extends Thread {
      */
     @Override
     public void run() {
-        while (!Thread.interrupted()) {
-            System.out.print(time+" "); //Show in GUI.
+        while (ticking) {
+            System.out.println(time+" "); //Show in GUI
             try {
                 time--;
                 Thread.sleep(1000);
 
-                if (time==0) {
-                    System.out.println("Player -10HP"); //If timer reaches 0. Show in GUI.
-                    break;
+                if (time == 0) {
+                    controller.getWindow().getMathQuestions().setText("Time's out! *The goblin attacks*");
+                    ticking = false;
                 }
-                /*
-                else if (answer is correct) {
-                    stopTimer();
-                }
-                */
             }
             catch (InterruptedException e) {
-
+                e.printStackTrace();
             }
         }
     }
 
     /**
-     * Returns the current time
-     * @return current time
+     * Starts the timer and sets the ticking flag to true.
+     */
+    public void startTimer() {
+        if (!ticking && timer == null) {
+            timer = new Thread(this);
+            timer.start();
+            ticking = true;
+        }
+    }
+
+    /**
+     * Stops the timer and sets the ticking flag to false.
+     */
+    public void stopTimer() {
+        if (ticking && timer != null) {
+            ticking = false;
+            timer = null;
+            time = -1;
+        }
+    }
+
+    /**
+     * Returns the time limit
+     * @return current time limit
      */
     public int getTime() {
         return time;
     }
 
     /**
-     * Starts the timer
+     * Sets the time limit
+     * @param time new time limit
      */
-    public void startTimer() {
-        start();
-    }
-
-    /**
-     * Stops the timer
-     */
-    public void stopTimer() {
-        interrupt();
-        //thread = null; should set the thread to null so that a new timer can be created for each question
-    }
-
-    //Test timer
-    public static void main(String[] args) {
-        //Timer timer = new Timer(10);
-        //timer.start();
+    public void setTime(int time) {
+        this.time = time;
     }
 }
