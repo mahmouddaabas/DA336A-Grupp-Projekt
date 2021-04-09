@@ -1,11 +1,11 @@
 package model.questions;
 
 /**
- * Creates a math question that adds two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that adds two integer numbers. Need to call generateNewQuestion() to get a question to
+ * generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class Addition2Numbers extends MathQuestions {
+public class Addition2Integers extends MathQuestions {
     private int[] answers;
     private int number1LowerBound;
     private int number1UpperBound;
@@ -16,13 +16,13 @@ public class Addition2Numbers extends MathQuestions {
 
     /**
      * Constructor that initializes the instance variables for the bounds.
-     * @param number1LowerBound is the lowest value the first number can have.
-     * @param number1UpperBound is the highest value the first number can have.
-     * @param number2LowerBound is the lowest value the second number can have.
-     * @param number2UpperBound is the highest value the second number can have.
+     * @param number1LowerBound the lowest value the first number can have.
+     * @param number1UpperBound the highest value the first number can have.
+     * @param number2LowerBound the lowest value the second number can have.
+     * @param number2UpperBound the highest value the second number can have.
      */
-    public Addition2Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound) {
+    public Addition2Integers(int number1LowerBound, int number1UpperBound,
+                             int number2LowerBound, int number2UpperBound) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
@@ -35,7 +35,7 @@ public class Addition2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " + " + number2 + "?";
+        return "What is " + number1 + " + " + parenthesisIfNegativeString(number2) + "?";
     }
 
     /**

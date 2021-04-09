@@ -31,7 +31,8 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Generates a random non-zero integer between the two bounds.
+     * Generates a random non-zero integer between the two bounds. Used to avoid divide-by-zero issues and other similar
+     * issues.
      * @param lowerBound is the lowest value the random integer can have.
      * @param upperBound is the highest value the random integer can have.
      * @return the random non-zero integer.
@@ -46,8 +47,37 @@ public abstract class MathQuestions {
         }
     }
 
+    /**
+     * Places the correct answer in a random element.
+     */
     protected void newCorrectAnswerIndex() {
         correctAnswerIndex = randomInt(0, 3);
+    }
+
+    /**
+     * Returns a positive number as addition and a negative number as subtraction.
+     * @param number the number that is added or subtracted.
+     * @return a positive number as addition and a negative number as subtraction.
+     */
+    protected String additionOrSubtractionString(int number) {
+        if (number >= 0) {
+            return "+ " + number;
+        } else
+            return "- " + (-1 * number);
+    }
+
+    /**
+     * Checks if a number is a negative number and if so returns it with added parenthesis, otherwise returns the number
+     * unchanged. Used to add correct mathematical syntax to the questions.
+     * @param number the number to check.
+     * @return the number enclosed in parenthesis if negative, unchanged otherwise.
+     */
+    protected String parenthesisIfNegativeString(int number) {
+        if (number < 0) {
+            return "(" + number + ")";
+        } else {
+            return Integer.toString(number);
+        }
     }
 
     /**
@@ -74,42 +104,6 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Shuffles the positions of the elements in the array.
-     * @param array is the array to shuffle the elements of.
-     * @return the shuffled array.
-     */
-    protected int[] shuffleAnswers(int[] array) {
-        int temp;
-        int randIndex;
-        for (int i = 0; i < array.length-1; i++) {
-            randIndex = rand.nextInt(array.length-1);
-            temp = array[i];
-            array[i] = array[randIndex];
-            array[randIndex] = temp;
-        }
-        return array;
-    }
-
-    /**
-     * Shuffles the positions of the elements in the two-dimensional array.
-     * @param array is the array to shuffle the elements of.
-     * @return the shuffled array.
-     */
-    protected int[][] shuffleAnswers(int[][] array) {
-        int[] temp = new int[array[0].length];
-        int randIndex;
-        for (int i = 0; i < array.length-1; i++) {
-            randIndex = rand.nextInt(array.length-1);
-            for (int j = 0; j < temp.length; j++) {
-                temp[j] = array[i][j];
-                array[i][j] = array[randIndex][j];
-                array[randIndex][j] = temp[j];
-            }
-        }
-        return array;
-    }
-
-    /**
      * Makes the possible answers into strings.
      * @param answers is the array with the answers as strings.
      */
@@ -131,18 +125,23 @@ public abstract class MathQuestions {
     protected void generateAnswerStringsFractions(int[][] answers, int denominator) {
         if (answers != null) {
             answerStr = new String[4];
+
             answerStr[0] = "A. " + answers[0][0];
-            if (answers[0][1] != 0)
-                answerStr[0] += " + " + answers[0][1] + "/" + denominator;
+            if (answers[0][1] != 0) {
+                answerStr[0] += " + (" + answers[0][1] + "/" + denominator + ")";
+            }
             answerStr[1] = "B. " + answers[1][0];
-            if (answers[1][1] != 0)
-                answerStr[1] += " + " + answers[1][1] + "/" + denominator;
+            if (answers[1][1] != 0) {
+                answerStr[1] += " + (" + answers[1][1] + "/" + denominator + ")";
+            }
             answerStr[2] = "C. " + answers[2][0];
-            if (answers[2][1] != 0)
-                answerStr[2] += " + " + answers[2][1] + "/" + denominator;
+            if (answers[2][1] != 0) {
+                answerStr[2] += " + (" + answers[2][1] + "/" + denominator + ")";
+            }
             answerStr[3] = "D. " + answers[3][0];
-            if (answers[3][1] != 0)
-                answerStr[3] += " + " + answers[3][1] + "/" + denominator;
+            if (answers[3][1] != 0) {
+                answerStr[3] += " + (" + answers[3][1] + "/" + denominator + ")";
+            }
         }
     }
 

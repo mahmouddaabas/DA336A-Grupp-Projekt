@@ -139,19 +139,19 @@ public class GameLogic {
 
         switch (randomInt) {
             case 0:
-                newQuestion = new Addition2Numbers(1, 9, 1, 9);
+                newQuestion = new Addition2Integers(1, 9, 1, 9);
                 break;
             case 1:
-                newQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
+                newQuestion = new Subtraction2Integers(1, 18, 1, 9, false);
                 break;
             case 2:
-                newQuestion = new Multiplication2Numbers(1, 9, 1, 9);
+                newQuestion = new Multiplication2Integers(1, 9, 1, 9);
                 break;
             case 3:
-                newQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
+                newQuestion = new AdditionManyIntegers(1, 9, 3);
                 break;
             default:
-                newQuestion = new Division2Numbers(10, 100, 2, 10);
+                newQuestion = new Division2Integers(10, 100, 2, 10);
                 break;
         }
 
