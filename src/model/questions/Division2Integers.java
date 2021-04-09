@@ -3,11 +3,11 @@ package model.questions;
 import java.lang.Math;
 
 /**
- * Creates a math question that divides two numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that divides two integer numbers. Need to call generateNewQuestion() to get a question to
+ * generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class Division2Numbers extends MathQuestions {
+public class Division2Integers extends MathQuestions {
     private int[][] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -18,13 +18,13 @@ public class Division2Numbers extends MathQuestions {
 
     /**
      * Constructor that initializes the instance variables for the bounds.
-     * @param numeratorLowerBound is the lowest value the first number can have.
-     * @param numeratorUpperBound is the highest value the first number can have.
-     * @param denominatorLowerBound is the lowest value the second number can have.
-     * @param denominatorUpperBound is the highest value the second number can have.
+     * @param numeratorLowerBound the lowest value the numerator can have.
+     * @param numeratorUpperBound the highest value the numerator can have.
+     * @param denominatorLowerBound the lowest value the denominator can have.
+     * @param denominatorUpperBound the highest value the denominator can have.
      */
-    public Division2Numbers(int numeratorLowerBound, int numeratorUpperBound,
-                            int denominatorLowerBound, int denominatorUpperBound) {
+    public Division2Integers(int numeratorLowerBound, int numeratorUpperBound,
+                             int denominatorLowerBound, int denominatorUpperBound) {
         super();
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
@@ -53,8 +53,8 @@ public class Division2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the two random numbers from the given bounds. The first number is the numerator and the second is the
-     * denominator. The first number is greater than the first because otherwise the answer would be too simple.
+     * Generates the two random numbers from the given bounds. The numerator is greater than the denominator because
+     * otherwise the answer would be too simple.
      */
     private void generateNumbers() {
         numerator = randomInt(numeratorLowerBound, numeratorUpperBound);

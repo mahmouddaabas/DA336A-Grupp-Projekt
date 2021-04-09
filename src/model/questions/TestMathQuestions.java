@@ -28,11 +28,11 @@ public class TestMathQuestions {
         boolean isAnswered;
 
         // choose which type of question
-//        mathQuestion = new Addition2Numbers(1, 9, 1, 9);
-//        mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
-//        mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
-//        mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
-        mathQuestion = new Division2Numbers(10, 100, 2, 10);
+//        mathQuestion = new Addition2Integers(1, 9, -9, 0);
+//        mathQuestion = new Subtraction2Integers(1, 18, 1, 9, false);
+//        mathQuestion = new Multiplication2Integers(1, 9, 1, 9);
+//        mathQuestion = new Division2Integers(10, 100, 2, 10);
+        mathQuestion = new AdditionManyIntegers(-9, 9, 5);
 
         while (true) {
             mathQuestion.generateNewQuestion();

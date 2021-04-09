@@ -1,41 +1,33 @@
 package model.questions;
 
 /**
- * Creates a math question that adds three numbers. Need to call generateNewQuestion() to get a question to generate
- * the numbers and answers.
+ * Creates a math question that multiplies two integer numbers. Need to call generateNewQuestion() to get a question to
+ * generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class Addition3Numbers extends MathQuestions {
+public class Multiplication2Integers extends MathQuestions {
     private int[] answers;
     private int number1LowerBound;
     private int number1UpperBound;
     private int number2LowerBound;
     private int number2UpperBound;
-    private int number3LowerBound;
-    private int number3UpperBound;
     private int number1;
     private int number2;
-    private int number3;
 
     /**
-     * Constructor that initializes the instance variables for the bounds.
-     * @param number1LowerBound is the lowest value the first number can have.
-     * @param number1UpperBound is the highest value the first number can have.
-     * @param number2LowerBound is the lowest value the second number can have.
-     * @param number2UpperBound is the highest value the second number can have.
-     * @param number3LowerBound is the lowest value the third number can have.
-     * @param number3UpperBound is the highest value the third number can have.
+     * Constructor that initializes the instance variables and generates the answers.
+     * @param number1LowerBound the lowest value the first number can have.
+     * @param number1UpperBound the highest value the first number can have.
+     * @param number2LowerBound the lowest value the second number can have.
+     * @param number2UpperBound the highest value the second number can have.
      */
-    public Addition3Numbers(int number1LowerBound, int number1UpperBound,
-                            int number2LowerBound, int number2UpperBound,
-                            int number3LowerBound, int number3UpperBound) {
+    public Multiplication2Integers(int number1LowerBound, int number1UpperBound,
+                                   int number2LowerBound, int number2UpperBound) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
-        this.number3LowerBound = number3LowerBound;
-        this.number3UpperBound = number3UpperBound;
     }
 
     /**
@@ -43,7 +35,7 @@ public class Addition3Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " + " + number2 + " + " + number3 + "?";
+        return "What is " + number1 + " * " + parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
@@ -57,12 +49,11 @@ public class Addition3Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the three random numbers from the given bounds.
+     * Generates the two random numbers from the given bounds.
      */
     private void generateNumbers() {
         number1 = randomInt(number1LowerBound, number1UpperBound);
         number2 = randomInt(number2LowerBound, number2UpperBound);
-        number3 = randomInt(number3LowerBound, number3UpperBound);
     }
 
     /**
@@ -70,7 +61,7 @@ public class Addition3Numbers extends MathQuestions {
      */
     private void generateAnswers() {
         answers = createAnswerArray();
-        answers[getCorrectAnswerIndex()] = number1 + number2 + number3;
+        answers[getCorrectAnswerIndex()] = number1 * number2;
 
         for (int i = 0; i < answers.length; i++) {
             if (answers[i] == Integer.MIN_VALUE) {
@@ -87,12 +78,13 @@ public class Addition3Numbers extends MathQuestions {
     private int createFakeAnswer() {
         int fakeAnswer;
         while (true) {
-            fakeAnswer = randomInt(number1LowerBound + number2LowerBound + number3LowerBound,
-                    number1UpperBound + number2UpperBound + number3UpperBound);
+            fakeAnswer = randomInt(number1LowerBound * number2LowerBound,
+                    number1UpperBound * number2UpperBound);
             if (fakeAnswer != answers[0] && fakeAnswer != answers[1] &&
                     fakeAnswer != answers[2] && fakeAnswer != answers[3]) {
                 return fakeAnswer;
             }
         }
     }
+
 }

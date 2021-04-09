@@ -3,14 +3,14 @@ package view;
 import java.util.Scanner;
 
 /**
- * Class for showing information to and reading information from the user.
+ * Class for showing information to and reading information from the user in the console. Used for testing purposes.
  * @author Mattias Bengtsson
  */
 public class UI {
     private Scanner userInput;
 
     /**
-     * Initializes the Scanner object.
+     * Constructor that initializes the Scanner object.
      */
     public UI() {
         userInput = new Scanner(System.in);
