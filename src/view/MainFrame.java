@@ -269,7 +269,7 @@ public class MainFrame {
         //Scene 3
         createBackground(3, "images/Scene3800x350.jpg");
         createObjects(3, 300, 0, 250, 250, "images/Goblin150x150.png", "Look", "Talk",
-                "Attack", "lookGoblin", "talkGoblin", "attackGoblin");
+                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         populateAnswerPanel();
         backgroundPanel[3].add(backgroundLabel[3]);
     }
