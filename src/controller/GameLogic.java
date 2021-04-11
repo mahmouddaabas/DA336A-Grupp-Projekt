@@ -14,6 +14,7 @@ import view.events.Event02;
  * @author Duy Nguyen
  */
 public class GameLogic {
+
     private Player player;
     private UI ui;
     private MathQuestions mathQuestion;
@@ -23,10 +24,14 @@ public class GameLogic {
     private String answerText;
     private boolean isAnswered;
     private int level;
+    private int currentScene;
 
     //Used to access the main window and the scene changer.
     private MainFrame window;
     private SceneChanger scene;
+
+    private HealthBar healthBar;
+    private GameOverScreen gameOver;
 
     //Events in the game.
     private Event01 ev1 = new Event01(this);
@@ -40,6 +45,12 @@ public class GameLogic {
         ui = new UI();
         window = new MainFrame(this);
         scene = new SceneChanger(this);
+
+        //Health Bar
+        healthBar = new HealthBar(window);
+
+        //Game over screen.
+        gameOver = new GameOverScreen(this);
 
         level = 1;
         levelCreator = new LevelCreator(this);
@@ -77,8 +88,14 @@ public class GameLogic {
      * If answer is incorrect tells the user and reduces their HP.
      */
     public void checkAnswer() {
-        if (getAnswerIndex() != -1) {
-            if (getMathQuestion().compareAnswer(getAnswerIndex())) {
+
+        if(player.getPlayerHealth() <= 1) {
+            //gameOver.checkIfGameOver(this);
+            scene.showGameOverScreen(getCurrentScene());
+        }
+
+        else if (getAnswerIndex() != -1) {
+            if(getMathQuestion().compareAnswer(getAnswerIndex())) {
                 getWindow().getMathQuestions().setText("Answer is correct!!!");
                 //System.out.println("Answer is correct!");
                 timer.stopTimer();
@@ -88,21 +105,22 @@ public class GameLogic {
 
                 //Start a new quiz if the answer is correct.
                 //controller.startQuiz();
-            } else {
+            } else if(levelCreator.getLevel(level).getEnemy().isBoss()) {
                 //Reduces health if answer is wrong.
-                if (levelCreator.getLevel(level).getEnemy().isBoss()) {
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
-                    player.wrong(2);
-                    //System.out.println("Incorrect, try again! -2 Hp");
-                }
+                window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                player.wrong(2);
+                healthBar.updateHealth(this);
+
+            }
                 else {
+
                     window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
-                    //System.out.println("Incorrect, try again! -1 Hp");
+                    healthBar.updateHealth(this);
                 }
             }
         }
-    }
+
 
     /**
      * Returns the mathQuestion object for use outside of class
@@ -190,6 +208,26 @@ public class GameLogic {
 
     public String getAttackDialogue() {
         return levelCreator.getLevel(level).getEnemy().getTalkDialogue();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public GameOverScreen getGameOver() {
+        return gameOver;
+    }
+
+    public int getCurrentScene() {
+        return currentScene;
+    }
+
+    public void setCurrentScene(int currentScene) {
+        this.currentScene = currentScene;
+    }
+
+    public HealthBar getHealthBar() {
+        return healthBar;
     }
 
     /**

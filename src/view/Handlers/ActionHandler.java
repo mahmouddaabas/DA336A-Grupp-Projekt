@@ -60,6 +60,15 @@ public class ActionHandler implements ActionListener{
             case "goScene2":
                 controller.getScene().showScene2();
                 break;
+
+
+            //Others
+            //Shows the first scene again if player hits the restart button after losing.
+            //Also resets the players health back to 10.
+            case "restart":
+                controller.getScene().exitGameOverScreen();
+                controller.getScene().showScene1();
+                break;
         }
 
     }
