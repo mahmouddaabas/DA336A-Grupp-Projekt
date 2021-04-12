@@ -36,8 +36,19 @@ public class Event01 {
 
     public void enterDoor() {
         //Code to swap to Scenes by entering a door.
-        controller.getScene().showScene3();
-        controller.getScene().showScene5();
-        controller.getScene().showScene7();
+        switch (controller.getCurrentScene()) {
+            case 2:
+                controller.getScene().showScene3();
+                break;
+            case 4:
+                controller.getScene().showScene5();
+                break;
+            case 6:
+                break;
+            case 8:
+                break;
+            case 10:
+                break;
+        }
     }
 }

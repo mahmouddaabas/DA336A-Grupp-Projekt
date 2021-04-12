@@ -66,9 +66,6 @@ public class ActionHandler implements ActionListener{
             case "goScene6":
                 controller.getScene().showScene6();
                 break;
-            case "goScene8":
-                controller.getScene().showScene8();
-                break;
 
             //Others
             //Shows the first scene again if player hits the restart button after losing.

@@ -29,7 +29,6 @@ public class Timer implements Runnable {
                 Thread.sleep(1000);
 
                 if (time == 0) {
-                    controller.getWindow().getMathQuestions().setText("Time's out! *The goblin attacks*");
                     ticking = false;
                 }
             }

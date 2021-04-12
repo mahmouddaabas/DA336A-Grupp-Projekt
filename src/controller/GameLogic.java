@@ -88,38 +88,50 @@ public class GameLogic {
      * If answer is incorrect tells the user and reduces their HP.
      */
     public void checkAnswer() {
+        if (answerIndex != -1) {
+            if (mathQuestion.compareAnswer(answerIndex)) {
+                window.getMathQuestions().setText("Answer is correct!");
 
-        if(player.getPlayerHealth() <= 1) {
-            //gameOver.checkIfGameOver(this);
-            scene.showGameOverScreen(getCurrentScene());
-        }
-
-        else if (getAnswerIndex() != -1) {
-            if(getMathQuestion().compareAnswer(getAnswerIndex())) {
-                getWindow().getMathQuestions().setText("Answer is correct!!!");
-                //System.out.println("Answer is correct!");
                 timer.stopTimer();
-                //increase level if correct
-                setAnswered(true);
-                getWindow().getMathQuestions().setBounds(100,460,850,250);
 
-                //Start a new quiz if the answer is correct.
-                //controller.startQuiz();
-            } else if(levelCreator.getLevel(level).getEnemy().isBoss()) {
-                //Reduces health if answer is wrong.
-                window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
-                player.wrong(2);
-                healthBar.updateHealth(this);
-
-            }
-                else {
-
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
-                    player.wrong(1);
-                    healthBar.updateHealth(this);
+                switch (currentScene) {
+                    case 3:
+                        scene.showScene4();
+                        break;
+                    case 5:
+                        scene.showScene6();
+                        break;
+                    case 7:
+                        break;
+                    case 9:
+                        break;
+                    case 11:
+                        break;
                 }
+
+                window.getMathQuestions().setBounds(100, 460, 850, 250);
+                window.getAnswerPanel().setVisible(false);
+                level++;
+            }
+            else {
+                if (player.getPlayerHealth() <= 1) {
+                    scene.showGameOverScreen();
+                }
+                else {
+                    if (levelCreator.getLevel(level).getEnemy().isBoss()) {
+                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                        player.wrong(2);
+                    }
+                    else {
+                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                        player.wrong(1);
+
+                    }
+                }
+                healthBar.updateHealth(this);
             }
         }
+    }
 
 
     /**

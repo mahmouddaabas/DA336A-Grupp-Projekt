@@ -36,7 +36,7 @@ public class SceneChanger {
     public void showScene2() {
         controller.getWindow().getBackgroundPanel()[1].setVisible(false);
         controller.getWindow().getBackgroundPanel()[2].setVisible(true);
-        controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n (Right click on the door to interact with it.)");
+        controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n(Right click on the door to interact with it.)");
         controller.setCurrentScene(2);
     }
 
@@ -49,39 +49,33 @@ public class SceneChanger {
     }
 
     public void showScene4() {
-        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
-        controller.getWindow().getMathQuestions().setText("You defeated a goblin! \n (Right click on the door to continue.)");
+        for (int i = 1; i <= 3; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[4].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You defeated a goblin! \n(Right click on the door to continue.)");
+        controller.setCurrentScene(4);
     }
 
     public void showScene5() {
-        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        controller.getWindow().getBackgroundPanel()[2].setVisible(true);
-        controller.getWindow().getBackgroundPanel()[3].setVisible(true);
+        for (int i = 1; i <= 4; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[5].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.");
+        controller.setCurrentScene(5);
     }
 
     public void showScene6() {
-        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
-        controller.getWindow().getMathQuestions().setText("The skeleton has been defeated! \n (Continue by right clicking the door down the hallway!)");
+        for (int i = 1; i <= 5; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[6].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("The skeleton has been defeated! \n(Continue by right clicking the door down the hallway!)");
+        controller.setCurrentScene(6);
     }
 
-    public void showScene7() {
-        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        controller.getWindow().getBackgroundPanel()[2].setVisible(true);
-        controller.getWindow().getBackgroundPanel()[3].setVisible(true);
-        controller.getWindow().getMathQuestions().setText("You see a strange looking individual with staff....");
-    }
-
-    public void showScene8() {
-        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
-        controller.getWindow().getMathQuestions().setText("You defeated a wizard! \n (Venture ahead by right clicking the .....");
-    }
-
-    public void showGameOverScreen(int currentBgNum) {
-
+    public void showGameOverScreen() {
         controller.getWindow().getBackgroundPanel()[controller.getCurrentScene()].setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
         controller.getGameOver().getTitleLabel().setText("YOU DIED!");
@@ -95,7 +89,6 @@ public class SceneChanger {
         controller.getWindow().getAnswerButton4().setVisible(false);*/
         controller.getWindow().getAnswerPanel().setVisible(false);
         controller.getWindow().getMathQuestions().setVisible(false);
-
     }
 
     public void exitGameOverScreen() {
@@ -107,6 +100,4 @@ public class SceneChanger {
         controller.getWindow().getMathQuestions().setVisible(true);
         controller.getHealthBar().getHealthPanel().setVisible(false);
     }
-
-
 }

@@ -33,7 +33,7 @@ public class LevelCreator {
     public void createLevels() {
         Level level1 = new Level(1, new Addition2Integers(1,9,1,9),
                                  new RegularMonster(false, RegularMonsterType.Goblin,5,"You see a goblin standing right infront of you, it doesn't seem that strong.",
-                                         "Prepare to die human!"), 15);
+                                         "Prepare to die human!"), 3);
         Level level2 = new Level(2, new AdditionManyIntegers(2,13,2),
                                  new RegularMonster(false, RegularMonsterType.Skeleton, 7, "A skeleton stands in the way, defeat it!",
                                          "*bone cracks*"), 17);

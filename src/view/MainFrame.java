@@ -255,29 +255,41 @@ public class MainFrame {
     public void generateScenes() {
 
         //Scene 1
-        createBackground(1, "images/townEntrance800x350.jpg");
+        createBackground(1, "images/townEntrance_800x350.jpg");
         createArrowButton(1, 400, 10, 50, 50, "images/uparrow50x50.png", "goScene2");
         backgroundPanel[1].add(backgroundLabel[1]);
 
         //Scene 2
-        createBackground(2, "images/Scene2Entrance800x350.png");
-        createObjects(2, 400, 10, 100, 300, "images/blank50x50.png", "Look", "Talk",
+        createBackground(2, "images/Scene2Entrance_800x350.png");
+        createObjects(2, 400, 10, 100, 300, "images/UsedAsADoor.png", "Look", "Talk",
                 "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgroundPanel[2].add(backgroundLabel[2]);
 
         //Scene 3
-        createBackground(3, "images/Scene3800x350.jpg");
-        createObjects(3, 300, 0, 250, 250, "images/Goblin150x150.png", "Look", "Talk",
+        createBackground(3, "images/GoblinBG_800x350.jpg");
+        createObjects(3, 300, 0, 250, 250, "images/Goblin_150x150.png", "Look", "Talk",
                 "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         populateAnswerPanel();
         backgroundPanel[3].add(backgroundLabel[3]);
 
         //Scene 4
-        createBackground(4, "images/Scene3800x350.jpg");
-        createObjects(4, 300, 0, 250, 250, "images/blank50x50.png", "Look", "Talk",
+        createBackground(4, "images/GoblinBG_800x350.jpg");
+        createObjects(4, 300, 0, 250, 250, "images/UsedAsADoor.png", "Look", "Talk",
                 "Enter", "lookDoor", "talkDoor", "enterDoor");
-        populateAnswerPanel();
         backgroundPanel[4].add(backgroundLabel[4]);
+
+        //Scene 5
+        createBackground(5, "images/SkeletonBG_800x350.png");
+        createObjects(5, 520, 50 , 250, 250, "images/Skeleton_150x150.png", "Look", "Talk",
+                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        populateAnswerPanel();
+        backgroundPanel[5].add(backgroundLabel[5]);
+
+        //Scene 6
+        createBackground(6, "images/SkeletonBG_800x350.png");
+        createObjects(6, 520, 50, 250, 250, "images/UsedAsADoor.png", "Look", "Talk",
+                "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgroundPanel[6].add(backgroundLabel[6]);
     }
 
     /**

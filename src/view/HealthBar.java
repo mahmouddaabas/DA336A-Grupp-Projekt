@@ -34,7 +34,7 @@ public class HealthBar {
         healthPanel.setLayout(new GridLayout(1, 5));
         frame.getJFrame().add(healthPanel);
 
-        ImageIcon healthIcon = new ImageIcon(getClass().getClassLoader().getResource("images/hearts35x35.png"));
+        ImageIcon healthIcon = new ImageIcon(getClass().getClassLoader().getResource("images/hearts_35x35.png"));
         Image image = healthIcon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
         healthIcon = new ImageIcon(image);
 
