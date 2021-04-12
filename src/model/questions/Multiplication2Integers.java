@@ -60,7 +60,7 @@ public class Multiplication2Integers extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createAnswerArray();
+        answers = createIntAnswerArray();
         answers[getCorrectAnswerIndex()] = number1 * number2;
 
         for (int i = 0; i < answers.length; i++) {
