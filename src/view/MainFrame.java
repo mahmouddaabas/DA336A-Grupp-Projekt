@@ -290,13 +290,24 @@ public class MainFrame {
         createObjects(6, 520, 50, 250, 250, "images/UsedAsADoor.png", "Look", "Talk",
                 "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgroundPanel[6].add(backgroundLabel[6]);
+
+        //Scene 7
+        createBackground(7, "images/WardenBG_800x350.png");
+        createObjects(7, 350, 0, 250, 250, "images/Warden_150x150.png", "Look", "Talk",
+                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        populateAnswerPanel();
+        backgroundPanel[7].add(backgroundLabel[7]);
+
+        //Scene 8
+        createBackground(8, "images/WardenBG_800x350.png");
+        createObjects(8, 360, 70, 100, 100, "images/UsedAsADoor.png", "Look", "Talk",
+                "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgroundPanel[8].add(backgroundLabel[8]);
     }
 
     /**
      * Getter methods to access the GUI parts.
      */
-
-
     public JPanel getAnswerPanel() {
         return answerPanel;
     }
@@ -320,7 +331,6 @@ public class MainFrame {
     public JTextArea getMathQuestions() {
         return mathQuestions;
     }
-
 
     public JFrame getJFrame() {
         return window;

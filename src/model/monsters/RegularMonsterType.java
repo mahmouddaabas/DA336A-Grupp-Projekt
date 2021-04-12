@@ -7,6 +7,6 @@ package model.monsters;
 public enum RegularMonsterType {
     Goblin,
     Skeleton,
-    Wizard,
-    Knight
+    Warden,
+    Wizard
 }

@@ -102,6 +102,7 @@ public class GameLogic {
                         scene.showScene6();
                         break;
                     case 7:
+                        scene.showScene8();
                         break;
                     case 9:
                         break;

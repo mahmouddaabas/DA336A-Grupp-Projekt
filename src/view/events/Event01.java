@@ -44,6 +44,7 @@ public class Event01 {
                 controller.getScene().showScene5();
                 break;
             case 6:
+                controller.getScene().showScene7();
                 break;
             case 8:
                 break;

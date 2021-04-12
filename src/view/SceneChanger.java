@@ -75,6 +75,24 @@ public class SceneChanger {
         controller.setCurrentScene(6);
     }
 
+    public void showScene7() {
+        for (int i = 1; i <= 6; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[7].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You enter a dim dungeon. \nYou spot a warden at the end of the hallway.");
+        controller.setCurrentScene(7);
+    }
+
+    public void showScene8() {
+        for (int i = 1; i <= 7; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[8].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("The warden has been defeated! \n(Right click on the door to continue.)");
+        controller.setCurrentScene(8);
+    }
+
     public void showGameOverScreen() {
         controller.getWindow().getBackgroundPanel()[controller.getCurrentScene()].setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
