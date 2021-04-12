@@ -6,6 +6,7 @@ import controller.GameLogic;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * @author Leith Ahmad
  *
  * This class handles the events that happen in the game.
  * Event01 only handles the first scene after you enter the tower.
@@ -34,7 +35,9 @@ public class Event01 {
     }
 
     public void enterDoor() {
-        //Code to swap to Scene 3.
+        //Code to swap to Scenes by entering a door.
         controller.getScene().showScene3();
+        controller.getScene().showScene5();
+        controller.getScene().showScene7();
     }
 }

@@ -6,6 +6,7 @@ import controller.GameLogic;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * @author Leith Ahmad
  *
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
@@ -45,6 +46,38 @@ public class SceneChanger {
         controller.getWindow().getBackgroundPanel()[3].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You walk through the door and spot something.");
         controller.setCurrentScene(3);
+    }
+
+    public void showScene4() {
+        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
+        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
+        controller.getWindow().getMathQuestions().setText("You defeated a goblin! \n (Right click on the door to continue.)");
+    }
+
+    public void showScene5() {
+        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
+        controller.getWindow().getBackgroundPanel()[2].setVisible(true);
+        controller.getWindow().getBackgroundPanel()[3].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.");
+    }
+
+    public void showScene6() {
+        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
+        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
+        controller.getWindow().getMathQuestions().setText("The skeleton has been defeated! \n (Continue by right clicking the door down the hallway!)");
+    }
+
+    public void showScene7() {
+        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
+        controller.getWindow().getBackgroundPanel()[2].setVisible(true);
+        controller.getWindow().getBackgroundPanel()[3].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You see a strange looking individual with staff....");
+    }
+
+    public void showScene8() {
+        controller.getWindow().getBackgroundPanel()[1].setVisible(false);
+        controller.getWindow().getBackgroundPanel()[2].setVisible(false);
+        controller.getWindow().getMathQuestions().setText("You defeated a wizard! \n (Venture ahead by right clicking the .....");
     }
 
     public void showGameOverScreen(int currentBgNum) {

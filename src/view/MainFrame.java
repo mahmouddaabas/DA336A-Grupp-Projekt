@@ -13,7 +13,7 @@ import java.awt.event.MouseListener;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
- *
+ * @author Leith Ahmad
  * This class is the main window of the program.
  * It creates all objects, backgrounds and buttons and adds them to the window.
  *
@@ -271,6 +271,13 @@ public class MainFrame {
                 "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         populateAnswerPanel();
         backgroundPanel[3].add(backgroundLabel[3]);
+
+        //Scene 4
+        createBackground(4, "images/Scene3800x350.jpg");
+        createObjects(4, 300, 0, 250, 250, "images/blank50x50.png", "Look", "Talk",
+                "Enter", "lookDoor", "talkDoor", "enterDoor");
+        populateAnswerPanel();
+        backgroundPanel[4].add(backgroundLabel[4]);
     }
 
     /**
