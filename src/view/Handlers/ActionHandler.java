@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
- *
+ * @author Leith Ahmad
  * This class handles the actions that gets pressed on the GUI by sending an action command.
  * It then calls the appropriate method from the event class to determine what to do.
  *
@@ -60,7 +60,12 @@ public class ActionHandler implements ActionListener{
             case "goScene2":
                 controller.getScene().showScene2();
                 break;
-
+            case "goScene4":
+                controller.getScene().showScene4();
+                break;
+            case "goScene6":
+                controller.getScene().showScene6();
+                break;
 
             //Others
             //Shows the first scene again if player hits the restart button after losing.

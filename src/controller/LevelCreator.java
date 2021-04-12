@@ -4,11 +4,14 @@ import model.Level;
 import model.monsters.RegularMonster;
 import model.monsters.RegularMonsterType;
 import model.questions.Addition2Integers;
+import model.questions.AdditionManyIntegers;
+import model.questions.Subtraction2Integers;
 
 import java.util.LinkedList;
 
 /**
  * @author Duy Nguyen
+ * @author Leith Ahmad
  * Class that creates the levels (including questions and enemies) for the game.
  */
 public class LevelCreator {
@@ -31,9 +34,17 @@ public class LevelCreator {
     public void createLevels() {
         Level level1 = new Level(1, new Addition2Integers(1,9,1,9),
                                  new RegularMonster(false, RegularMonsterType.Goblin,5,"You see a goblin standing right infront of you, it doesn't seem that strong.",
-                                         "Prepare to die human!"), 15);
+                                         "Prepare to die human!"), 3);
+        Level level2 = new Level(2, new AdditionManyIntegers(2,13,2),
+                                 new RegularMonster(false, RegularMonsterType.Skeleton, 7, "A skeleton stands in the way, defeat it!",
+                                         "*bone cracks*"), 17);
+        Level level3 = new Level(3, new Subtraction2Integers(4, 16, 4, 16, false),
+                new RegularMonster(false, RegularMonsterType.Warden, 13, "You see a rather short warden upfront. Should you get any closer?",
+                "Halt! Who goes there?"), 20);
 
         levels.add(level1);
+        levels.add(level2);
+        levels.add(level3);
     }
 
     /**

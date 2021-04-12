@@ -6,6 +6,7 @@ import controller.GameLogic;
  *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * @author Leith Ahmad
  *
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
@@ -35,7 +36,7 @@ public class SceneChanger {
     public void showScene2() {
         controller.getWindow().getBackgroundPanel()[1].setVisible(false);
         controller.getWindow().getBackgroundPanel()[2].setVisible(true);
-        controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n (Right click on the door to interact with it.)");
+        controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n(Right click on the door to interact with it.)");
         controller.setCurrentScene(2);
     }
 
@@ -47,8 +48,52 @@ public class SceneChanger {
         controller.setCurrentScene(3);
     }
 
-    public void showGameOverScreen(int currentBgNum) {
+    public void showScene4() {
+        for (int i = 1; i <= 3; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[4].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You defeated a goblin! \n(Right click on the door to continue.)");
+        controller.setCurrentScene(4);
+    }
 
+    public void showScene5() {
+        for (int i = 1; i <= 4; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[5].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.");
+        controller.setCurrentScene(5);
+    }
+
+    public void showScene6() {
+        for (int i = 1; i <= 5; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[6].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("The skeleton has been defeated! \n(Continue by right clicking the door down the hallway!)");
+        controller.setCurrentScene(6);
+    }
+
+    public void showScene7() {
+        for (int i = 1; i <= 6; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[7].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You enter a dim dungeon. \nYou spot a warden at the end of the hallway.");
+        controller.setCurrentScene(7);
+    }
+
+    public void showScene8() {
+        for (int i = 1; i <= 7; i++) {
+            controller.getWindow().getBackgroundPanel()[i].setVisible(false);
+        }
+        controller.getWindow().getBackgroundPanel()[8].setVisible(true);
+        controller.getWindow().getMathQuestions().setText("The warden has been defeated! \n(Right click on the door to continue.)");
+        controller.setCurrentScene(8);
+    }
+
+    public void showGameOverScreen() {
         controller.getWindow().getBackgroundPanel()[controller.getCurrentScene()].setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
         controller.getGameOver().getTitleLabel().setText("YOU DIED!");
@@ -62,7 +107,6 @@ public class SceneChanger {
         controller.getWindow().getAnswerButton4().setVisible(false);*/
         controller.getWindow().getAnswerPanel().setVisible(false);
         controller.getWindow().getMathQuestions().setVisible(false);
-
     }
 
     public void exitGameOverScreen() {
@@ -74,6 +118,4 @@ public class SceneChanger {
         controller.getWindow().getMathQuestions().setVisible(true);
         controller.getHealthBar().getHealthPanel().setVisible(false);
     }
-
-
 }
