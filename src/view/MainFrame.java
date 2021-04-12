@@ -27,9 +27,8 @@ public class MainFrame {
     private ActionHandler action;
     private HandleAnswers answers;
 
-    //Player information.
-    private JPanel healthPanel;
-    private JLabel healthLabel[] = new JLabel[5];
+    //Game is over.
+    private GameOverScreen gameOver;
 
     //Panel with buttons to answer.
     private JPanel answerPanel;
@@ -301,5 +300,10 @@ public class MainFrame {
 
     public JTextArea getMathQuestions() {
         return mathQuestions;
+    }
+
+
+    public JFrame getJFrame() {
+        return window;
     }
 }

@@ -11,7 +11,7 @@ import model.vendor.Item;
 public class Player {
     private String name;
     private int gold;
-    private int playerHealth = 100;
+    private int playerHealth = 10;
 
     private Bag bag;
 
@@ -31,6 +31,10 @@ public class Player {
     //Method that returns the players health
     public int getPlayerHealth() {
         return playerHealth;
+    }
+
+    public void restoreHealth() {
+        playerHealth = 10;
     }
 
     //Method for when the player is dead
