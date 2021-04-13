@@ -57,7 +57,7 @@ public class GameLogic {
         timer = new Timer(this);
 
         //Displays the first scene.
-        scene.showScene1();
+        scene.showScene0();
 
         //startQuiz();
         //mathQuestion = randomQuestion();
@@ -95,18 +95,18 @@ public class GameLogic {
                 timer.stopTimer();
 
                 switch (currentScene) {
-                    case 3:
+                    case 2:
                         scene.showScene4();
                         break;
-                    case 5:
+                    case 4:
                         scene.showScene6();
                         break;
-                    case 7:
+                    case 6:
                         scene.showScene8();
                         break;
-                    case 9:
+                    case 7:
                         break;
-                    case 11:
+                    case 10:
                         break;
                 }
 

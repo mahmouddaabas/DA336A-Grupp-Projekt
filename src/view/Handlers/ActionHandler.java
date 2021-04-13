@@ -54,11 +54,11 @@ public class ActionHandler implements ActionListener{
 
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
-                controller.getScene().showScene1();
+                controller.getScene().showScene0();
                 break;
 
             case "goScene2":
-                controller.getScene().showScene2();
+                controller.getScene().showScene1();
                 break;
             case "goScene4":
                 controller.getScene().showScene4();
@@ -72,7 +72,7 @@ public class ActionHandler implements ActionListener{
             //Also resets the players health back to 10.
             case "restart":
                 controller.getScene().exitGameOverScreen();
-                controller.getScene().showScene1();
+                controller.getScene().showScene0();
                 break;
         }
 

@@ -18,9 +18,8 @@ import java.awt.event.MouseListener;
  * It creates all objects, backgrounds and buttons and adds them to the window.
  *
  */
-public class MainFrame {
+public class MainFrame extends JFrame {
     private GameLogic controller;
-    private JFrame window;
     private JTextArea mathQuestions;
     private JPanel backgroundPanel[] = new JPanel[10];
     private JLabel backgroundLabel[] = new JLabel[10];
@@ -29,6 +28,7 @@ public class MainFrame {
 
     //Game is over.
     private GameOverScreen gameOver;
+    private SceneCreator sceneCreator;
 
     //Panel with buttons to answer.
     private JPanel answerPanel;
@@ -46,12 +46,15 @@ public class MainFrame {
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
 
+        sceneCreator = new SceneCreator(this, controller);
+
+        sceneCreator.generateScenes();
+
         //Creates the main window the game is displayed on.
         createMainWindow();
         //Generates the scenes.
-        generateScenes();
         //Makes the window visible.
-        window.setVisible(true);
+        setVisible(true);
     }
 
     public JPanel[] getBackgroundPanel() {
@@ -104,7 +107,7 @@ public class MainFrame {
 
         //Adds answerPanel to the background.
         answerPanel.setVisible(false);
-        window.add(answerPanel);
+        add(answerPanel);
 
     }
 
@@ -114,16 +117,14 @@ public class MainFrame {
 
     //Creates the main window for the program.
     public void createMainWindow() {
-
-        window = new JFrame();
-        window.setSize(1000, 700);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.black);
+        setSize(1000, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.black);
         //Can place things on the window without any restrictions.
-        window.setLayout(null);
-        window.setTitle("Climb the Tower");
+        setLayout(null);
+        setTitle("Climb the Tower");
         //Starts the window in the middle of the screen.
-        window.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
 
         mathQuestions = new JTextArea();
         mathQuestions.setBounds(100, 460, 850, 250);
@@ -134,175 +135,7 @@ public class MainFrame {
         mathQuestions.setLineWrap(true);
         mathQuestions.setWrapStyleWord(true);
         mathQuestions.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
-        window.add(mathQuestions);
-    }
-
-    /**
-     * Creates a background and adds it to the selected spot in the panel array.
-     */
-
-    //Creates the background that is displayed on the window.
-    public void createBackground(int bgNum, String bgFileName) {
-
-        backgroundPanel[bgNum] = new JPanel();
-        backgroundPanel[bgNum].setBounds(90, 100, 800, 350);
-        backgroundPanel[bgNum].setBackground(Color.blue);
-        backgroundPanel[bgNum].setLayout(null);
-        backgroundPanel[bgNum].setVisible(false);
-        window.add(backgroundPanel[bgNum]);
-
-        backgroundLabel[bgNum] = new JLabel();
-        backgroundLabel[bgNum].setBounds(0, 0, 800, 350);
-
-        ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource(bgFileName));
-        backgroundLabel[bgNum].setIcon(bgIcon);
-    }
-
-    /**
-     * Creates an object by using an image.
-     * Then places the object on the background by selecting its panel number in the array.
-     */
-
-    //Creates an object on the background and attackes a popmenu to it with 3 options.
-    public void createObjects(int bgNum, int objx, int objy, int objWidth, int objHeight, String objFileName,
-                              String choice1Name, String choice2Name, String choice3Name, String choice1Command,
-                              String choice2Command, String choice3Command) {
-
-        //Create pop menu.
-        JPopupMenu popMenu = new JPopupMenu();
-
-        //Create pop menu items.
-        JMenuItem menuItem[] = new JMenuItem[4]; //Use [1], [2], [3]
-        menuItem[1] = new JMenuItem(choice1Name);
-        menuItem[1].addActionListener(action);
-        menuItem[1].setActionCommand(choice1Command);
-        popMenu.add(menuItem[1]);
-        menuItem[2] = new JMenuItem(choice2Name);
-        menuItem[2].addActionListener(action);
-        menuItem[2].setActionCommand(choice2Command);
-        popMenu.add(menuItem[2]);
-        menuItem[3] = new JMenuItem(choice3Name);
-        menuItem[3].addActionListener(action);
-        menuItem[3].setActionCommand(choice3Command);
-        popMenu.add(menuItem[3]);
-
-        //Create objects.
-        JLabel objectLabel = new JLabel();
-        //objectLabel.setBounds(460, 160, 200, 200);
-        objectLabel.setBounds(objx, objy, objWidth, objHeight);
-
-        //ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource("hut200x200.png"));
-        ImageIcon objectIcon = new ImageIcon(getClass().getClassLoader().getResource(objFileName));
-        objectLabel.setIcon(objectIcon);
-
-        objectLabel.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-                if(SwingUtilities.isRightMouseButton(e)) {
-                    popMenu.show(objectLabel, e.getX(), e.getY());
-                }
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-        });
-
-        backgroundPanel[bgNum].add(objectLabel);
-
-    }
-
-    /**
-     * Creates arrow looking buttons that can be placed on the GUI.
-     * Assigns a command to the button which makes it connectable to the ActionHandler class.
-     */
-
-    //Creates the arrows that changes the scene.
-    public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command) {
-
-        ImageIcon arrowIcon = new ImageIcon(getClass().getClassLoader().getResource(arrowFileName));
-
-        JButton arrowButton = new JButton();
-        arrowButton.setBounds(x, y, width, height);
-        arrowButton.setBackground(null);
-        arrowButton.setContentAreaFilled(false);
-        arrowButton.setFocusPainted(false);
-        arrowButton.setIcon(arrowIcon);
-        arrowButton.setBorderPainted(false);
-
-        arrowButton.addActionListener(action);
-        arrowButton.setActionCommand(command);
-
-        backgroundPanel[bgNum].add(arrowButton);
-    }
-
-    /**
-     * Generates all the scenes in the game.
-     * ((This method will be reworked to only create the currently needed scene))
-     */
-
-    //Generates the scene and what is placed on the backgrounds.
-    public void generateScenes() {
-
-        //Scene 1
-        createBackground(1, "images/townEntrance_800x350.jpg");
-        createArrowButton(1, 400, 10, 50, 50, "images/uparrow50x50.png", "goScene2");
-        backgroundPanel[1].add(backgroundLabel[1]);
-
-        //Scene 2
-        createBackground(2, "images/Scene2Entrance_800x350.png");
-        createObjects(2, 400, 10, 100, 300, "images/UsedAsADoor.png", "Look", "Talk",
-                "Enter", "lookDoor", "talkDoor", "enterDoor");
-        backgroundPanel[2].add(backgroundLabel[2]);
-
-        //Scene 3
-        createBackground(3, "images/GoblinBG_800x350.jpg");
-        createObjects(3, 300, 0, 250, 250, "images/Goblin_150x150.png", "Look", "Talk",
-                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
-        populateAnswerPanel();
-        backgroundPanel[3].add(backgroundLabel[3]);
-
-        //Scene 4
-        createBackground(4, "images/GoblinBG_800x350.jpg");
-        createObjects(4, 300, 0, 250, 250, "images/UsedAsADoor.png", "Look", "Talk",
-                "Enter", "lookDoor", "talkDoor", "enterDoor");
-        backgroundPanel[4].add(backgroundLabel[4]);
-
-        //Scene 5
-        createBackground(5, "images/SkeletonBG_800x350.png");
-        createObjects(5, 520, 50 , 250, 250, "images/Skeleton_150x150.png", "Look", "Talk",
-                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
-        populateAnswerPanel();
-        backgroundPanel[5].add(backgroundLabel[5]);
-
-        //Scene 6
-        createBackground(6, "images/SkeletonBG_800x350.png");
-        createObjects(6, 520, 50, 250, 250, "images/UsedAsADoor.png", "Look", "Talk",
-                "Enter", "lookDoor", "talkDoor", "enterDoor");
-        backgroundPanel[6].add(backgroundLabel[6]);
-
-        //Scene 7
-        createBackground(7, "images/WardenBG_800x350.png");
-        createObjects(7, 350, 0, 250, 250, "images/Warden_150x150.png", "Look", "Talk",
-                "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
-        populateAnswerPanel();
-        backgroundPanel[7].add(backgroundLabel[7]);
-
-        //Scene 8
-        createBackground(8, "images/WardenBG_800x350.png");
-        createObjects(8, 360, 70, 100, 100, "images/UsedAsADoor.png", "Look", "Talk",
-                "Enter", "lookDoor", "talkDoor", "enterDoor");
-        backgroundPanel[8].add(backgroundLabel[8]);
+        add(mathQuestions);
     }
 
     /**
@@ -332,7 +165,7 @@ public class MainFrame {
         return mathQuestions;
     }
 
-    public JFrame getJFrame() {
-        return window;
+    public SceneCreator getSceneCreator() {
+        return sceneCreator;
     }
 }
