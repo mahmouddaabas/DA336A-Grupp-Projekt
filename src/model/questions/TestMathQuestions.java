@@ -33,8 +33,9 @@ public class TestMathQuestions {
 //        mathQuestion = new Multiplication2Integers(1, 9, 1, 9);
 //        mathQuestion = new DivisionFraction2Integers(10, 100, 2, 10);
 //        mathQuestion = new AdditionManyIntegers(-9, 9, 5);
-//        mathQuestion = new Addition2Decimals(1, 9, -9, -1, 2);
-        mathQuestion = new Addition2Decimals(0.1, 0.15, 0, 0, 2);
+//        mathQuestion = new Addition2Decimals(0.1, 0.15, 2, 0, 2, 1);
+//        mathQuestion = new Multiplication2Decimals(1, 9, 2, 1, 9, 1);
+        mathQuestion = new Subtraction2Decimals(1, 9, 0, 1, 9, 0, false);
 
         while (true) {
             mathQuestion.generateNewQuestion();
