@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import jdk.jfr.ContentType;
 
 /**
  *
@@ -34,6 +35,7 @@ public class SceneChanger {
     }
 
     public void showScene2() {
+        controller.getHealthBar().createHealthBar();
         controller.getWindow().getBackgroundPanel()[1].setVisible(false);
         controller.getWindow().getBackgroundPanel()[2].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n(Right click on the door to interact with it.)");
@@ -101,12 +103,9 @@ public class SceneChanger {
         controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
         //Hides all the panels.
-        /*controller.getWindow().getAnswerButton1().setVisible(false);
-        controller.getWindow().getAnswerButton2().setVisible(false);
-        controller.getWindow().getAnswerButton3().setVisible(false);
-        controller.getWindow().getAnswerButton4().setVisible(false);*/
         controller.getWindow().getAnswerPanel().setVisible(false);
         controller.getWindow().getMathQuestions().setVisible(false);
+        controller.getHealthBar().getHealthPanel().setVisible(false);
     }
 
     public void exitGameOverScreen() {
@@ -116,6 +115,5 @@ public class SceneChanger {
 
         //Brings back all the panels.
         controller.getWindow().getMathQuestions().setVisible(true);
-        controller.getHealthBar().getHealthPanel().setVisible(false);
     }
 }

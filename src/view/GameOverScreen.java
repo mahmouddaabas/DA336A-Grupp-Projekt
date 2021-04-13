@@ -6,9 +6,16 @@ import view.Handlers.ActionHandler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Mahmoud Daabas
+ *
+ * This class creates the Game Over screen that is shown if the player loses.
+ * It places a restart button and some text over the screen that allows the player to restart the game.
+ */
+
 public class GameOverScreen {
 
-    private MainFrame frame;
     private GameLogic controller;
     private JLabel titleLabel;
     private JButton restartButton;
