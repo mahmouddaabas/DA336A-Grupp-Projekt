@@ -35,6 +35,7 @@ public class SceneChanger {
     }
 
     public void showScene1() {
+        controller.getHealthBar().createHealthBar();
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(1).setVisible(true);
         //controller.getWindow().getBackgroundPanel()[1].setVisible(false);
@@ -118,12 +119,9 @@ public class SceneChanger {
         controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
         //Hides all the panels.
-        /*controller.getWindow().getAnswerButton1().setVisible(false);
-        controller.getWindow().getAnswerButton2().setVisible(false);
-        controller.getWindow().getAnswerButton3().setVisible(false);
-        controller.getWindow().getAnswerButton4().setVisible(false);*/
         controller.getWindow().getAnswerPanel().setVisible(false);
         controller.getWindow().getMathQuestions().setVisible(false);
+        controller.getHealthBar().getHealthPanel().setVisible(false);
     }
 
     public void exitGameOverScreen() {
@@ -133,6 +131,5 @@ public class SceneChanger {
 
         //Brings back all the panels.
         controller.getWindow().getMathQuestions().setVisible(true);
-        controller.getHealthBar().getHealthPanel().setVisible(false);
     }
 }
