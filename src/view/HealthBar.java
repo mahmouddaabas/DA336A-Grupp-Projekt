@@ -34,8 +34,6 @@ public class HealthBar {
 
     public void createHealthBar() {
 
-        System.out.println("ASDASD");
-        System.out.println(currentHealth);
         healthLabel = new JLabel[11];
         healthPanel = new JPanel();
         healthPanel.setBounds(100, 48, 400, 50);
