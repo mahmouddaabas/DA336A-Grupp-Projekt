@@ -1,10 +1,12 @@
 package model.questions;
 
 import java.lang.Math;
+import java.math.BigDecimal;
 
 /**
  * Creates a math question that subtracts two integer numbers. Need to call generateNewQuestion() to get a question to
- * generate the numbers and answers.
+ * generate the numbers and answers. If chosen to not display a negative answer, then the upper bound for the first
+ * number needs to be greater than for the second number.
  * @author Mattias Bengtsson
  */
 public class Subtraction2Integers extends MathQuestions {
@@ -55,14 +57,17 @@ public class Subtraction2Integers extends MathQuestions {
 
     /**
      * Generates the two random numbers from the given bounds. If the answer should not be negative, then the second
-     * number cannot be greater than the first.
+     * number cannot be greater than the first, so switches numbers 1 and 2 if that happens.
      */
     private void generateNumbers() {
         number1 = randomInt(number1LowerBound, number1UpperBound);
-        if (negativeAnswer) {
-            number2 = randomInt(number2LowerBound, number2UpperBound);
-        } else {
-            number2 = randomInt(number2LowerBound, Math.min(number2UpperBound, number1));
+        number2 = randomInt(number2LowerBound, number2UpperBound);
+        if (!negativeAnswer) {
+            if (number1 < number2) {
+                int temp = number1;
+                number1 = number2;
+                number2 = temp;
+            }
         }
     }
 
