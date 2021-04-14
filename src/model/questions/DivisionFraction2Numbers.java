@@ -7,7 +7,7 @@ import java.lang.Math;
  * generateNewQuestion() to get a question to generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class DivisionFraction2Integers extends MathQuestions {
+public class DivisionFraction2Numbers extends MathQuestions {
     private int[][] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -23,8 +23,8 @@ public class DivisionFraction2Integers extends MathQuestions {
      * @param denominatorLowerBound the lowest value the denominator can have.
      * @param denominatorUpperBound the highest value the denominator can have.
      */
-    public DivisionFraction2Integers(int numeratorLowerBound, int numeratorUpperBound,
-                                     int denominatorLowerBound, int denominatorUpperBound) {
+    public DivisionFraction2Numbers(int numeratorLowerBound, int numeratorUpperBound,
+                                    int denominatorLowerBound, int denominatorUpperBound) {
         super();
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
