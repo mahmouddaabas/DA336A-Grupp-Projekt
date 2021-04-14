@@ -1,29 +1,34 @@
 package model.questions;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Creates a math question that adds a chosen number of integer numbers. Negative numbers become subtraction. All
  * numbers have the same bounds. If using just 2 numbers, please use Addition2Numbers or Subtraction2Numbers instead.
  * Need to call generateNewQuestion() to get a question to generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class AdditionManyIntegers extends MathQuestions {
-    private int[] answers;
-    private int numberLowerBound;
-    private int numberUpperBound;
-    private int[] numbers;
-    private int numOfNumbers;
+public class AdditionManyNumbers extends MathQuestions {
+    private BigDecimal[] answers;
+    private double numberLowerBound;
+    private double numberUpperBound;
+    private BigDecimal[] numbers;
+    private int numOfDecimals;
 
     /**
      * Constructor that initializes the instance variables for the bounds. All numbers share the same bounds.
      * @param numberLowerBound the lowest value the first number can have.
      * @param numberUpperBound the highest value the first number can have.
+     * @param numOfDecimals the number of decimal places for the numbers.
      * @param numOfNumbers the amount of numbers to add.
      */
-    public AdditionManyIntegers(int numberLowerBound, int numberUpperBound, int numOfNumbers) {
+    public AdditionManyNumbers(double numberLowerBound, double numberUpperBound, int numOfDecimals, int numOfNumbers) {
         super();
         this.numberLowerBound = numberLowerBound;
         this.numberUpperBound = numberUpperBound;
-        this.numOfNumbers = numOfNumbers;
+        this.numOfDecimals = numOfDecimals;
+        numbers = new BigDecimal[numOfNumbers];
     }
 
     /**
@@ -56,9 +61,8 @@ public class AdditionManyIntegers extends MathQuestions {
      * Generates the random numbers from the given bounds.
      */
     private void generateNumbers() {
-        numbers = new int[numOfNumbers];
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = randomInt(numberLowerBound, numberUpperBound);
+            numbers[i] = randomBigDecimal(numberLowerBound, numberUpperBound, numOfDecimals);
         }
     }
 
@@ -66,15 +70,16 @@ public class AdditionManyIntegers extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createIntAnswerArray();
+        answers = createBigDecimalAnswerArray();
 
-        answers[getCorrectAnswerIndex()] = 0;
-        for (int number : numbers) {
-            answers[getCorrectAnswerIndex()] += number;
+        answers[getCorrectAnswerIndex()] = new BigDecimal(0);
+        for (int i = 0; i < numbers.length; i++) {
+            answers[getCorrectAnswerIndex()] = answers[getCorrectAnswerIndex()].add(numbers[i]);
         }
 
+
         for (int i = 0; i < answers.length; i++) {
-            if (answers[i] == Integer.MIN_VALUE) {
+            if (answers[i].equals(new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP))) {
                 answers[i] = createFakeAnswer();
             }
         }
@@ -85,13 +90,13 @@ public class AdditionManyIntegers extends MathQuestions {
      * values in the answer array.
      * @return a fake answer.
      */
-    private int createFakeAnswer() {
-        int fakeAnswer;
+    private BigDecimal createFakeAnswer() {
+        BigDecimal fakeAnswer;
         while (true) {
-            fakeAnswer = randomInt(numberLowerBound * numOfNumbers,
-                    numberUpperBound * numOfNumbers);
-            if (fakeAnswer != answers[0] && fakeAnswer != answers[1] &&
-                    fakeAnswer != answers[2] && fakeAnswer != answers[3]) {
+            fakeAnswer = randomBigDecimal(numberLowerBound * numbers.length,
+                    numberUpperBound * numbers.length, numOfDecimals);
+            if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
+                    !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;
             }
         }
