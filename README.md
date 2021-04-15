@@ -1,14 +1,32 @@
 #Climb the Tower DA336A Projekt Grupp 20
 
-Climb the Tower by answering questions about maths!
+Climb the Tower by answering questions about maths! On each level of the tower, 
+you will face dangerous foes. They can only be harmed through the magic of mathematics. 
+Can you make your way up all 25 floors of the tower?
 
-Instruktioner till RS1 granskning:
+**Walkthrough**
 
-Starta programmet genom att köra main-metoden i Main.
-Det kommer upp ett fönster med en bild och text.
-Detta är intro scenen, men det händer inget mer här för tillfället, så flytta det till sidan.
-I konsolen visas en fråga som svaras på genom att skriva a, b, c, eller d.
-Det finns 5 olika typer av frågor: addition, subtraktion, multiplikation och division med 2 tal och addition med 3 tal.
-Programmet väljer ut en slumpmässig fråga ifrån dessa typer, men det går att bara få en viss typ genom att avkommentera 
-och kommentera rader i början startQuiz()-metoden i GameLogic.java klassen (välj en rad från raderna 38 till 43).
-Programmet kommer att fortsätta ställa frågor tills det stängs av.
+On the start screen, left-click the arrow at the top of the screen to begin your 
+journey up the tower. Right-click the door and select an option. The "Enter" option will 
+take you to your first enemy. Right-click this enemy and select "Attack" to begin combat. 
+You will be asked a basic addition question. Choose the correct answer to win. If you 
+answer incorrectly, then you will lose one heart. Lose all hearts and its game over. You 
+can also lose hearts by letting the timer run out (the timer is currently only shown in
+the console and letting it run out does not actually damage you). After the enemy is 
+defeated, you can proceed up to the next level. There are currently three levels in the 
+game, and beating the last level stops you from progressing further.
+
+In the final release, it is expected to be 25 levels and that the enemies will not die 
+after just one correct answer.
+
+**Known Issues**
+
+Right-clicking an enemy is not disabled during combat.
+
+When continuing from a game over causes the questions to start from the enemy you died to
+instead of from the beginning.
+
+If the timer reaches 0, then it does not start again.
+
+
+
