@@ -59,6 +59,7 @@ public class GameLogic {
 
         //Displays the first scene.
         scene.showScene0();
+        //scene.showSceneX(); //Used to test scenes
 
         //startQuiz();
         //mathQuestion = randomQuestion();
@@ -99,17 +100,16 @@ public class GameLogic {
 
                 switch (currentScene) {
                     case 2:
-                        scene.showScene4();
+                        scene.showScene3();
                         break;
                     case 4:
-                        scene.showScene6();
+                        scene.showScene5();
                         break;
                     case 6:
-                        scene.showScene8();
+                        scene.showScene7();
                         break;
-                    case 7:
-                        break;
-                    case 10:
+                    case 8:
+                        scene.showScene9();
                         break;
                 }
 

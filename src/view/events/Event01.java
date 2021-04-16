@@ -41,16 +41,16 @@ public class Event01 {
                 controller.getScene().showScene2();
                 break;
             case 3:
-                controller.getScene().showScene5();
+                controller.getScene().showScene4();
                 break;
             case 5:
-                controller.getScene().showScene7();
+                controller.getScene().showScene6();
                 break;
             case 7:
+                controller.getScene().showScene8();
                 break;
             case 9:
-                break;
-            case 11:
+                controller.getScene().showScene10();
                 break;
         }
     }
