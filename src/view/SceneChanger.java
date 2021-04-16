@@ -10,9 +10,7 @@ import controller.GameLogic;
  *
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
-
 public class SceneChanger {
-
     private GameLogic controller;
 
     public SceneChanger(GameLogic controller) {
@@ -22,10 +20,9 @@ public class SceneChanger {
     }
 
     /**
-     * Shows the first scene by setting the boolean to true.
+     * Shows a scene depending on the number.
      * The methods below all operate in the same way and have the same purpose.
      */
-
     public void showScene0() {
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(true);
         //controller.getWindow().getBackgroundPanel()[1].setVisible(true);
@@ -110,6 +107,9 @@ public class SceneChanger {
         controller.setCurrentScene(7);
     }
 
+    /**
+     * Shows the game over screen
+     */
     public void showGameOverScreen() {
         //controller.getWindow().getBackgroundPanel()[controller.getCurrentScene()].setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(controller.getCurrentScene()).setVisible(false);
@@ -124,10 +124,15 @@ public class SceneChanger {
         controller.getHealthBar().getHealthPanel().setVisible(false);
     }
 
+    /**
+     * Code that executes when exiting the game over screen
+     */
     public void exitGameOverScreen() {
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getPlayer().restoreHealth();
+        controller.setOutOfCombat(true);
+        controller.setLevel(1);
 
         //Brings back all the panels.
         controller.getWindow().getMathQuestions().setVisible(true);

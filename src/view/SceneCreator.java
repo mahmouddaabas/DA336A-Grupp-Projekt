@@ -8,14 +8,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
+/**
+ * @author Duy Nguyen
+ * Class used to create the different scenes with objects and backgrounds
+ */
 public class SceneCreator {
     private MainFrame mainFrame;
     private ActionHandler action;
     private LinkedList<JPanel> backgrounds;
     private LinkedList<JLabel> backgroundLabels;
+    private GameLogic controller;
 
+    /**
+     * Constructor
+     * @param mainFrame mainFrame object used to initialize own mainFrame object
+     * @param controller controller object used to initialize own controller object
+     */
     public SceneCreator(MainFrame mainFrame, GameLogic controller) {
         this.mainFrame = mainFrame;
+        this.controller = controller;
 
         action = new ActionHandler(controller);
         backgrounds = new LinkedList<>();
@@ -45,6 +56,11 @@ public class SceneCreator {
         backgrounds.get(sceneNbr).add(arrowButton);
     }
 
+    /**
+     * Creates a background
+     * @param sceneNbr scene number
+     * @param bgFile background image file
+     */
     public void createBackground(int sceneNbr, String bgFile) {
         JPanel background = new JPanel();
 
@@ -63,6 +79,21 @@ public class SceneCreator {
         mainFrame.add(backgrounds.get(sceneNbr));
     }
 
+    /**
+     * Creates a scene object
+     * @param sceneNbr scene number
+     * @param objX x-position
+     * @param objY y-position
+     * @param objWidth object width
+     * @param objHeight object height
+     * @param objectFile object image file
+     * @param choice1 choice 1 pop-menu
+     * @param choice2 choice 2 pop-menu
+     * @param choice3 choice 3 pop-menu
+     * @param cmd1 command for choice 1
+     * @param cmd2 command for choice 2
+     * @param cmd3 command for choice 3
+     */
     public void createObject(int sceneNbr, int objX, int objY, int objWidth, int objHeight, String objectFile,
                              String choice1, String choice2, String choice3, String cmd1, String cmd2, String cmd3) {
         JLabel lblObject = new JLabel();
@@ -98,7 +129,9 @@ public class SceneCreator {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    popupMenu.show(lblObject, e.getX(), e.getY());
+                    if (controller.getOutOfCombat()) {
+                        popupMenu.show(lblObject, e.getX(), e.getY());
+                    }
                 }
             }
 
@@ -179,10 +212,20 @@ public class SceneCreator {
         backgrounds.get(7).add(backgroundLabels.get(7));
     }
 
+    /**
+     * Returns a scene object (label)
+     * @param sceneNbr scene number
+     * @return the object (label)
+     */
     public JLabel getObject(int sceneNbr) {
         return backgroundLabels.get(sceneNbr);
     }
 
+    /**
+     * Returns a background (panel)
+     * @param sceneNbr scene number
+     * @return the background (panel)
+     */
     public JPanel getBackground(int sceneNbr) {
         return backgrounds.get(sceneNbr);
     }

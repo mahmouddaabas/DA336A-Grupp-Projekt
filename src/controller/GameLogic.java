@@ -42,6 +42,7 @@ public class GameLogic {
      */
     public GameLogic() {
         player = new Player(10,"Player 1");
+
         ui = new UI();
         window = new MainFrame(this);
         scene = new SceneChanger(this);
@@ -70,6 +71,7 @@ public class GameLogic {
      * @param level current level
      */
     public void startFight(int level) {
+        //player.setInFight(true);
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
@@ -90,6 +92,7 @@ public class GameLogic {
     public void checkAnswer() {
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
+                player.setOutOfCombat(true);
                 window.getMathQuestions().setText("Answer is correct!");
 
                 timer.stopTimer();
@@ -215,120 +218,83 @@ public class GameLogic {
         return level;
     }
 
+    /**
+     * Sets the player level
+     * @param level new value
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    /**
+     * Returns dialogue from "Look" action
+     * @return String dialogue
+     */
     public String getLookDialogue() {
         return levelCreator.getLevel(level).getEnemy().getLookDialogue();
     }
 
-    public String getAttackDialogue() {
+    /**
+     * Returns dialogue from "Talk" action
+     * @return String dialogue
+     */
+    public String getTalkDialogue() {
         return levelCreator.getLevel(level).getEnemy().getTalkDialogue();
     }
 
+    /**
+     * Returns the player object
+     * @return player object
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Returns gameOver object
+     * @return gameOver object
+     */
     public GameOverScreen getGameOver() {
         return gameOver;
     }
 
+    /**
+     * Returns the current scene number
+     * @return current scene number
+     */
     public int getCurrentScene() {
         return currentScene;
     }
 
+    /**
+     * Sets the current scene number
+     * @param currentScene new number
+     */
     public void setCurrentScene(int currentScene) {
         this.currentScene = currentScene;
     }
 
+    /**
+     * Returns healthBar object
+     * @return healthBar object
+     */
     public HealthBar getHealthBar() {
         return healthBar;
     }
 
     /**
-     * Method for testing purposes. Infinitely asks questions in the console.
+     * Returns player object's outOfCombat flag
+     * @return boolean flag
      */
-    /*
-    public void startQuiz() {
-        //answerText;
-        answerIndex = 0;
-        //isAnswered;
-
-        while (true) {
-            // for test purposes
-            // choose which type of question or a random one
-//            mathQuestion = new Addition2Numbers(1, 9, 1, 9);
-//            mathQuestion = new Subtraction2Numbers(1, 18, 1, 9, false);
-//            mathQuestion = new Multiplication2Numbers(1, 9, 1, 9);
-//            mathQuestion = new Addition3Numbers(1, 9, 1, 9, 1, 9);
-//            mathQuestion = new Division2Numbers(10, 100, 2, 10);
-            mathQuestion = randomQuestion();
-
-            ui.printMessage(mathQuestion.getQuestion());
-            ui.printArray(mathQuestion.getAnswerStr());
-
-            ui.printMessage("Write your answer (a, b, c, or d): ");
-            isAnswered = false;
-            answerIndex = -1;
-            while (!isAnswered) {
-                answerText = ui.readText();
-                switch (answerText.toLowerCase()) {
-                    case "a":
-                        answerIndex = 0;
-                        break;
-                    case "b":
-                        answerIndex = 1;
-                        break;
-                    case "c":
-                        answerIndex = 2;
-                        break;
-                    case "d":
-                        answerIndex = 3;
-                        break;
-                    default:
-                        ui.printMessage("Invalid input. Try again!");
-                        break;
-                }
-
-                if (answerIndex != -1) {
-                    if (mathQuestion.compareAnswer(answerIndex)) {
-                        ui.printMessage("CORRECT ANSWER!!!");
-                        isAnswered = true;
-                    } else {
-                        ui.printMessage("Incorrect. Try again!");
-                    }
-                }
-            }
-        }
+    public boolean getOutOfCombat() {
+        return player.isOutOfCombat();
     }
-     */
 
     /**
-     * Method for testing purposes. Gets a random question from 4 types.
+     * Sets player object's outOfCombat flag
+     * @param outOfCombat new boolean value
      */
-    /*
-    public MathQuestions randomQuestion() {
-        Random rand = new Random();
-        MathQuestions newQuestion;
-        int randomInt = rand.nextInt(5);
-
-        switch (randomInt) {
-            case 0:
-                newQuestion = new Addition2Integers(1, 9, 1, 9);
-                break;
-            case 1:
-                newQuestion = new Subtraction2Integers(1, 18, 1, 9, false);
-                break;
-            case 2:
-                newQuestion = new Multiplication2Integers(1, 9, 1, 9);
-                break;
-            case 3:
-                newQuestion = new AdditionManyIntegers(1, 9, 3);
-                break;
-            default:
-                newQuestion = new Division2Integers(10, 100, 2, 10);
-                break;
-        }
-
-        return newQuestion;
+    public void setOutOfCombat(boolean outOfCombat) {
+        player.setOutOfCombat(outOfCombat);
     }
-     */
 }

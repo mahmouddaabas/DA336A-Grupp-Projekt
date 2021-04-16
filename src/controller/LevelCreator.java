@@ -34,13 +34,13 @@ public class LevelCreator {
     public void createLevels() {
         Level level1 = new Level(1, new Addition2Numbers(1,9,0,1,9,0),
                                  new RegularMonster(false, RegularMonsterType.Goblin,5,"You see a goblin standing right infront of you, it doesn't seem that strong.",
-                                         "Prepare to die human!"), 3);
+                                         "Prepare to die human!"), 10);
         Level level2 = new Level(2, new AdditionManyNumbers(2,13,0,3),
                                  new RegularMonster(false, RegularMonsterType.Skeleton, 7, "A skeleton stands in the way, defeat it!",
-                                         "*bone cracks*"), 17);
+                                         "*bone cracks*"), 12);
         Level level3 = new Level(3, new Subtraction2Numbers(4, 16,0, 4, 16,0, false),
                 new RegularMonster(false, RegularMonsterType.Warden, 13, "You see a rather short warden upfront. Should you get any closer?",
-                "Halt! Who goes there?"), 20);
+                "Halt! Who goes there?"), 15);
 
         levels.add(level1);
         levels.add(level2);

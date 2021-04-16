@@ -6,12 +6,14 @@ import model.vendor.Item;
 /**
  *
  * @author Leith Ahmad
+ * @author Duy Nguyen
  */
 //Class for the user/player
 public class Player {
     private String name;
     private int gold;
     private int playerHealth = 10;
+    private boolean outOfCombat = true;
 
     private Bag bag;
 
@@ -63,4 +65,21 @@ public class Player {
             System.out.println("Insufficient amount of gold");
         }
     }
+
+    /**
+     * Sets the boolean outOfCombat flag
+     * @param outOfCombat new value
+     */
+    public void setOutOfCombat(boolean outOfCombat) {
+        this.outOfCombat = outOfCombat;
+    }
+
+    /**
+     * Returns the outOfCombat flag
+     * @return the boolean flag's value
+     */
+    public boolean isOutOfCombat() {
+        return outOfCombat;
+    }
+
 }
