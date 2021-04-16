@@ -25,8 +25,6 @@ public class SceneChanger {
      */
     public void showScene0() {
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[1].setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[2].setVisible(false);
         controller.getWindow().getMathQuestions().setText("Welcome adventurer, your goal is to climb the tower and defeat the various monsters in there.");
         controller.setCurrentScene(0);
     }
@@ -35,8 +33,6 @@ public class SceneChanger {
         controller.getHealthBar().createHealthBar();
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(1).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        //controller.getWindow().getBackgroundPanel()[2].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You just entered the tower, have fun! \n(Right click on the door to interact with it.)");
         controller.setCurrentScene(1);
     }
@@ -45,66 +41,92 @@ public class SceneChanger {
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(1).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(2).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[1].setVisible(false);
-        //controller.getWindow().getBackgroundPanel()[2].setVisible(false);
-        //controller.getWindow().getBackgroundPanel()[3].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You walk through the door and spot something.");
         controller.setCurrentScene(2);
     }
 
-    public void showScene4() {
+    public void showScene3() {
         for (int i = 1; i <= 2; i++) {
-            //controller.getWindow().getBackgroundPanel()[i].setVisible(false);
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
         controller.getWindow().getSceneCreator().getBackground(3).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[4].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You defeated a goblin! \n(Right click on the door to continue.)");
         controller.setCurrentScene(3);
     }
 
-    public void showScene5() {
+    public void showScene4() {
         for (int i = 1; i <= 3; i++) {
-            //controller.getWindow().getBackgroundPanel()[i].setVisible(false);
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
         controller.getWindow().getSceneCreator().getBackground(4).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[5].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.");
         controller.setCurrentScene(4);
     }
 
-    public void showScene6() {
+    public void showScene5() {
         for (int i = 1; i <= 4; i++) {
-            //controller.getWindow().getBackgroundPanel()[i].setVisible(false);
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
         controller.getWindow().getSceneCreator().getBackground(5).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[6].setVisible(true);
         controller.getWindow().getMathQuestions().setText("The skeleton has been defeated! \n(Continue by right clicking the door down the hallway!)");
         controller.setCurrentScene(5);
     }
 
-    public void showScene7() {
+    public void showScene6() {
         for (int i = 1; i <= 5; i++) {
-            //controller.getWindow().getBackgroundPanel()[i].setVisible(false);
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
         controller.getWindow().getSceneCreator().getBackground(6).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[7].setVisible(true);
         controller.getWindow().getMathQuestions().setText("You enter a dim dungeon. \nYou spot a warden at the end of the hallway.");
         controller.setCurrentScene(6);
     }
 
-    public void showScene8() {
+    public void showScene7() {
         for (int i = 1; i <= 6; i++) {
-            //controller.getWindow().getBackgroundPanel()[i].setVisible(false);
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
         controller.getWindow().getSceneCreator().getBackground(7).setVisible(true);
-        //controller.getWindow().getBackgroundPanel()[8].setVisible(true);
         controller.getWindow().getMathQuestions().setText("The warden has been defeated! \n(Right click on the door to continue.)");
         controller.setCurrentScene(7);
+    }
+
+    public void showScene8() {
+        for (int i = 1; i <= 7; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(8).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You have finally found a way up. \nSomething seems to lurk in the shadows.");
+        controller.setCurrentScene(8);
+    }
+
+    public void showScene9() {
+        for (int i = 1; i <= 8; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(9).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("The hobgoblin has been defeated! \n(Right click on the stairs to go up.)");
+        controller.setCurrentScene(9);
+    }
+
+    public void showScene10() {
+        for (int i = 1; i <= 9; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(10).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("You have reached the top of the dungeon \nWhat kind of creature is that?");
+        controller.setCurrentScene(10);
+    }
+
+    /**
+     * Method used for testing scenes and levels
+     */
+    public void showSceneX() {
+        for (int i = 0; i <= 9; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(10).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("TEST");
+        controller.setCurrentScene(10);
     }
 
     /**

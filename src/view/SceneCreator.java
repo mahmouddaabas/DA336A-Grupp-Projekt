@@ -161,9 +161,11 @@ public class SceneCreator {
 
     //Generates the scene and what is placed on the backgrounds.
     public void generateScenes() {
+        //Method of creating scenes will be changed later.
+
         //Scene 0
         createBackground(0, "resources/images/townEntrance_800x350.jpg");
-        createArrowButton(0, 400, 10, 50, 50, "resources/images/uparrow50x50.png", "goScene2");
+        createArrowButton(0, 400, 10, 50, 50, "resources/images/uparrow50x50.png", "goScene1");
         backgrounds.get(0).add(backgroundLabels.get(0));
 
         //Scene 1
@@ -210,6 +212,25 @@ public class SceneCreator {
         createObject(7, 360, 70, 100, 100, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(7).add(backgroundLabels.get(7));
+
+        //Scene 8
+        createBackground(8, "resources/images/HobgoblinBG_800x350.png");
+        createObject(8, 425, 50, 250, 250, "resources/images/Hobgoblin_150x150.png",
+                "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        mainFrame.populateAnswerPanel();
+        backgrounds.get(8).add(backgroundLabels.get(8));
+
+        //Scene 9
+        createBackground(9, "resources/images/HobgoblinBG_800x350.png");
+        createObject(9, 450, 110, 120, 70, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(9).add(backgroundLabels.get(9));
+
+        //Scene 10
+        createBackground(10, "resources/images/OrcBG_800x350.png");
+        createObject(10, 330, 40, 250, 250, "resources/images/Orc_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(10).add(backgroundLabels.get(10));
     }
 
     /**

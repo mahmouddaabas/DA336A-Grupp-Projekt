@@ -54,18 +54,17 @@ public class ActionHandler implements ActionListener{
 
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
-                controller.getScene().showScene0();
-                break;
-
-            case "goScene2":
                 controller.getScene().showScene1();
                 break;
+                /*
             case "goScene4":
-                controller.getScene().showScene4();
+                controller.getScene().showScene3();
                 break;
             case "goScene6":
-                controller.getScene().showScene6();
+                controller.getScene().showScene5();
                 break;
+
+                 */
 
             //Others
             //Shows the first scene again if player hits the restart button after losing.

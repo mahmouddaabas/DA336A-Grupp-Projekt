@@ -8,5 +8,5 @@ public enum RegularMonsterType {
     Goblin,
     Skeleton,
     Warden,
-    Wizard
+    Hobgoblin
 }

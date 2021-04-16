@@ -1,11 +1,11 @@
 package controller;
 
 import model.Level;
+import model.monsters.Boss;
+import model.monsters.BossType;
 import model.monsters.RegularMonster;
 import model.monsters.RegularMonsterType;
-import model.questions.Addition2Numbers;
-import model.questions.AdditionManyNumbers;
-import model.questions.Subtraction2Numbers;
+import model.questions.*;
 
 import java.util.LinkedList;
 
@@ -39,12 +39,20 @@ public class LevelCreator {
                                  new RegularMonster(false, RegularMonsterType.Skeleton, 7, "A skeleton stands in the way, defeat it!",
                                          "*bone cracks*"), 12);
         Level level3 = new Level(3, new Subtraction2Numbers(4, 16,0, 4, 16,0, false),
-                new RegularMonster(false, RegularMonsterType.Warden, 13, "You see a rather short warden upfront. Should you get any closer?",
+                new RegularMonster(false, RegularMonsterType.Warden, 10, "You see a rather short warden upfront. Should you get any closer?",
                 "Halt! Who goes there?"), 15);
+        Level level4 = new Level(4, new Multiplication2Numbers(3.0, 11.0, 0, 3.0, 11.0, 0),
+                new RegularMonster(false, RegularMonsterType.Hobgoblin, 14, "The goblin infront of you seem stronger than the previous one. Though he does seem talkative.",
+                        "---"), 18);
+        Level boss1 = new Level(5, new DivisionFraction2Numbers(12, 120, 6, 12),
+                new Boss(true, BossType.Orc, 20, "You spot the biggest green skin ever! Should you turn back?",
+                        "You have come to the wrong place human!"), 20);
 
         levels.add(level1);
         levels.add(level2);
         levels.add(level3);
+        levels.add(level4);
+        levels.add(boss1);
     }
 
     /**
