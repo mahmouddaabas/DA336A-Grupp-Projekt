@@ -29,7 +29,7 @@ public class Timer implements Runnable {
                 Thread.sleep(1000);
 
                 if (time == 0) {
-                    ticking = false;
+                    stopTimer();
                 }
             }
             catch (InterruptedException e) {
