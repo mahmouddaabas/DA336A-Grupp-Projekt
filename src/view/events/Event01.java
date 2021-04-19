@@ -52,6 +52,24 @@ public class Event01 {
             case 9:
                 controller.getScene().showScene10();
                 break;
+            case 11:
+                controller.getScene().showScene12();
+                break;
+            case 13:
+                controller.getScene().showScene14();
+                break;
+            case 15:
+                controller.getScene().showScene16();
+                break;
+            case 17:
+                controller.getScene().showScene18();
+                break;
+            case 19:
+                controller.getScene().showScene20();
+                break;
+            case 20:
+                controller.getScene().showScene21();
+                break;
         }
     }
 }

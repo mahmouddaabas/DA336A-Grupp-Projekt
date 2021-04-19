@@ -117,16 +117,105 @@ public class SceneChanger {
         controller.setCurrentScene(10);
     }
 
+    public void showScene11() {
+        for (int i = 1; i <= 10; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(11).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 11");
+        controller.setCurrentScene(11);
+    }
+    public void showScene12() {
+        for (int i = 1; i <= 11; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(12).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 12");
+        controller.setCurrentScene(12);
+    }
+    public void showScene13() {
+        for (int i = 1; i <= 12; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(13).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 13");
+        controller.setCurrentScene(13);
+    }
+    public void showScene14() {
+        for (int i = 1; i <= 13; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(14).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 14");
+        controller.setCurrentScene(14);
+    }
+    public void showScene15() {
+        for (int i = 1; i <= 14; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(15).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 15");
+        controller.setCurrentScene(15);
+    }
+    public void showScene16() {
+        for (int i = 1; i <= 15; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(16).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 16");
+        controller.setCurrentScene(16);
+    }
+    public void showScene17() {
+        for (int i = 1; i <= 16; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(17).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 17");
+        controller.setCurrentScene(17);
+    }
+    public void showScene18() {
+        for (int i = 1; i <= 17; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(18).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 18");
+        controller.setCurrentScene(18);
+    }
+    public void showScene19() {
+        for (int i = 1; i <= 18; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(19).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 19");
+        controller.setCurrentScene(19);
+    }
+    public void showScene20() {
+        for (int i = 1; i <= 19; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(20).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 20");
+        controller.setCurrentScene(20);
+    }
+    public void showScene21() {
+        for (int i = 1; i <= 20; i++) {
+            controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackground(21).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 21");
+        controller.setCurrentScene(21);
+    }
+
     /**
      * Method used for testing scenes and levels
      */
     public void showSceneX() {
-        for (int i = 0; i <= 9; i++) {
+        for (int i = 0; i <= 12; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
-        controller.getWindow().getSceneCreator().getBackground(10).setVisible(true);
+        controller.getWindow().getSceneCreator().getBackground(13).setVisible(true);
         controller.getWindow().getMathQuestions().setText("TEST");
-        controller.setCurrentScene(10);
+        controller.setCurrentScene(13);
     }
 
     /**

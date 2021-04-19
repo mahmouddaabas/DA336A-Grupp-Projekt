@@ -48,11 +48,27 @@ public class LevelCreator {
                 new Boss(true, BossType.Orc, 20, "You spot the biggest green skin ever! Should you turn back?",
                         "You have come to the wrong place human!"), 20);
 
+        Level level6 = new Level(6, new AdditionManyNumbers(4,26,0,3),
+                new RegularMonster(false, RegularMonsterType.Dwarf, 8, "*Dwarf look*", "*Dwarf talk*"), 18);
+        Level level7 = new Level(7, new Subtraction2Numbers(9, 27, 0, 9, 27, 0, false),
+                new RegularMonster(false, RegularMonsterType.Gargoyle, 12, "*Gargoyle look*", "*Dwarf talk*"), 21);
+        Level level8 = new Level(8, new Multiplication2Numbers(6.0, 12.0, 1, 6.0, 12.0, 1),
+                new RegularMonster(false, RegularMonsterType.SkeletonWarrior, 15, "*SkellyWarrior look*", "*SkellyWarrior talk*"), 24);
+        Level level9 = new Level(9, new DivisionFraction2Numbers(14, 140, 7, 14),
+                new RegularMonster(false, RegularMonsterType.RoyalGuard, 18, "*RoyalGuard look*", "*RoyalGuard talk*"), 24);
+        Level boss2 = new Level(10, new DivisionDecimal2Numbers(18, 360, 2, 9, 18, 2, 2),
+                new Boss(true, BossType.Paladin, 25, "*Boss2 look*", "*Boss2 talk*"), 28);
+
         levels.add(level1);
         levels.add(level2);
         levels.add(level3);
         levels.add(level4);
         levels.add(boss1);
+        levels.add(level6);
+        levels.add(level7);
+        levels.add(level8);
+        levels.add(level9);
+        levels.add(boss2);
     }
 
     /**
