@@ -155,12 +155,12 @@ public class SceneCreator {
     }
 
     /**
-     * Generates all the scenes in the game.
+     * Generates the first scenes of the game.
      * ((This method will be reworked to only create the currently needed scene))
      */
 
     //Generates the scene and what is placed on the backgrounds.
-    public void generateScenes() {
+    public void generateFirstScenes() {
         //Method of creating scenes will be changed later.
 
         //Scene 0
@@ -173,7 +173,12 @@ public class SceneCreator {
         createObject(1, 400, 10, 100, 300, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(1).add(backgroundLabels.get(1));
+    }
 
+    /**
+     * Generates the scenes needed for levels 1 through 5
+     */
+    public void generateScenesLvl1To5() {
         //Scene 2
         createBackground(2, "resources/images/levels/Lvl1BG_800x350.jpg");
         createObject(2, 300, 0, 250, 250, "resources/images/levels/Lvl1Goblin_150x150.png",
@@ -237,7 +242,12 @@ public class SceneCreator {
         createObject(11, 450, 110, 120, 70, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(11).add(backgroundLabels.get(11));
+    }
 
+    /**
+     * Generates the scenes needed for levels 6 through 10
+     */
+    public void generateScenesLvl6To10() {
         //Scene 12 - lvl 6
         createBackground(12, "resources/images/levels/Lvl6BG_800x350.png");
         createObject(12, 100, 100, 250, 250, "resources/images/levels/Lvl6Dwarf_150x150.png",

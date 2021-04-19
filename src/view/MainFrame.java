@@ -6,8 +6,6 @@ import view.Handlers.HandleAnswers;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  *
@@ -48,7 +46,9 @@ public class MainFrame extends JFrame {
 
         sceneCreator = new SceneCreator(this, controller);
 
-        sceneCreator.generateScenes();
+        sceneCreator.generateFirstScenes();
+        sceneCreator.generateScenesLvl1To5();
+        sceneCreator.generateScenesLvl6To10();
 
         //Creates the main window the game is displayed on.
         createMainWindow();

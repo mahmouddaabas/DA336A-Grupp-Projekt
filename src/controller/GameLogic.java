@@ -58,8 +58,8 @@ public class GameLogic {
         timer = new Timer(this);
 
         //Displays the first scene.
-        //scene.showScene0();
-        scene.showSceneX(); //Used to test scenes
+        scene.showScene0();
+        //scene.showSceneX(); //Used to test scenes
 
         //startQuiz();
         //mathQuestion = randomQuestion();
