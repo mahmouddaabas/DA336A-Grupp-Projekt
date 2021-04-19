@@ -8,13 +8,12 @@ import view.events.Event01;
 import view.events.Event02;
 
 /**
- * Controller class that handles the overall logic flow for the game.
  * @author Mattias Bengtsson
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * Controller class that handles the overall logic flow for the game.
  */
 public class GameLogic {
-
     private Player player;
     private UI ui;
     private MathQuestions mathQuestion;
@@ -111,8 +110,25 @@ public class GameLogic {
                     case 8:
                         scene.showScene9();
                         break;
+                    case 10:
+                        scene.showScene11();
+                        break;
+                    case 12:
+                        scene.showScene13();
+                        break;
+                    case 14:
+                        scene.showScene15();
+                        break;
+                    case 16:
+                        scene.showScene17();
+                        break;
+                    case 18:
+                        scene.showScene19();
+                        break;
+                    case 20:
+                        scene.showScene21();
+                        break;
                 }
-
                 window.getMathQuestions().setBounds(100, 460, 850, 250);
                 window.getAnswerPanel().setVisible(false);
                 level++;
@@ -135,8 +151,6 @@ public class GameLogic {
             }
         }
 
-
-
     /**
      * Checks if the player is dead, if they are shows the game over screen.
      */
@@ -145,7 +159,6 @@ public class GameLogic {
             scene.showGameOverScreen();
         }
     }
-
 
     /**
      * Returns the mathQuestion object for use outside of class

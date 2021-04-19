@@ -155,12 +155,12 @@ public class SceneCreator {
     }
 
     /**
-     * Generates all the scenes in the game.
+     * Generates the first scenes of the game.
      * ((This method will be reworked to only create the currently needed scene))
      */
 
     //Generates the scene and what is placed on the backgrounds.
-    public void generateScenes() {
+    public void generateFirstScenes() {
         //Method of creating scenes will be changed later.
 
         //Scene 0
@@ -173,64 +173,140 @@ public class SceneCreator {
         createObject(1, 400, 10, 100, 300, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(1).add(backgroundLabels.get(1));
+    }
 
+    /**
+     * Generates the scenes needed for levels 1 through 5
+     */
+    public void generateScenesLvl1To5() {
         //Scene 2
-        createBackground(2, "resources/images/GoblinBG_800x350.jpg");
-        createObject(2, 300, 0, 250, 250, "resources/images/Goblin_150x150.png",
+        createBackground(2, "resources/images/levels/Lvl1BG_800x350.jpg");
+        createObject(2, 300, 0, 250, 250, "resources/images/levels/Lvl1Goblin_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(2).add(backgroundLabels.get(2));
 
         //Scene 3
-        createBackground(3, "resources/images/GoblinBG_800x350.jpg");
+        createBackground(3, "resources/images/levels/Lvl1BG_800x350.jpg");
         createObject(3, 300, 0, 250, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(3).add(backgroundLabels.get(3));
 
         //Scene 4
-        createBackground(4, "resources/images/SkeletonBG_800x350.png");
-        createObject(4, 520, 50, 250, 250, "resources/images/Skeleton_150x150.png",
+        createBackground(4, "resources/images/levels/Lvl2BG_800x350.png");
+        createObject(4, 520, 50, 250, 250, "resources/images/levels/Lvl2Skeleton_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(4).add(backgroundLabels.get(4));
 
         //Scene 5
-        createBackground(5, "resources/images/SkeletonBG_800x350.png");
+        createBackground(5, "resources/images/levels/Lvl2BG_800x350.png");
         createObject(5, 520, 50, 250, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(5).add(backgroundLabels.get(5));
 
         //Scene 6
-        createBackground(6, "resources/images/WardenBG_800x350.png");
-        createObject(6, 350, 0, 250, 250, "resources/images/Warden_150x150.png",
+        createBackground(6, "resources/images/levels/Lvl3BG_800x350.png");
+        createObject(6, 350, 0, 250, 250, "resources/images/levels/Lvl3Warden_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(6).add(backgroundLabels.get(6));
 
         //Scene 7
-        createBackground(7, "resources/images/WardenBG_800x350.png");
+        createBackground(7, "resources/images/levels/Lvl3BG_800x350.png");
         createObject(7, 360, 70, 100, 100, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(7).add(backgroundLabels.get(7));
 
         //Scene 8
-        createBackground(8, "resources/images/HobgoblinBG_800x350.png");
-        createObject(8, 425, 50, 250, 250, "resources/images/Hobgoblin_150x150.png",
+        createBackground(8, "resources/images/levels/Lvl4BG_800x350.png");
+        createObject(8, 425, 50, 250, 250, "resources/images/levels/Lvl4Hobgoblin_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(8).add(backgroundLabels.get(8));
 
         //Scene 9
-        createBackground(9, "resources/images/HobgoblinBG_800x350.png");
+        createBackground(9, "resources/images/levels/Lvl4BG_800x350.png");
         createObject(9, 450, 110, 120, 70, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(9).add(backgroundLabels.get(9));
 
         //Scene 10
-        createBackground(10, "resources/images/OrcBG_800x350.png");
-        createObject(10, 330, 40, 250, 250, "resources/images/Orc_150x150.png",
+        createBackground(10, "resources/images/levels/Lvl5BG_800x350.png");
+        createObject(10, 330, 40, 250, 250, "resources/images/levels/Lvl5Orc_150x150.png",
                 "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         backgrounds.get(10).add(backgroundLabels.get(10));
+
+        //Scene 11
+        createBackground(11, "resources/images/levels/Lvl5BG_800x350.png");
+        createObject(11, 450, 110, 120, 70, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(11).add(backgroundLabels.get(11));
+    }
+
+    /**
+     * Generates the scenes needed for levels 6 through 10
+     */
+    public void generateScenesLvl6To10() {
+        //Scene 12 - lvl 6
+        createBackground(12, "resources/images/levels/Lvl6BG_800x350.png");
+        createObject(12, 100, 100, 250, 250, "resources/images/levels/Lvl6Dwarf_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(12).add(backgroundLabels.get(12));
+
+        //Scene 13
+        createBackground(13, "resources/images/levels/Lvl6BG_800x350.png");
+        createObject(13, 0, 0, 250, 250, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(13).add(backgroundLabels.get(13));
+
+        //Scene 14 - lvl 7
+        createBackground(14, "resources/images/levels/Lvl7BG_800x350.png");
+        createObject(14, 0, 0, 250, 250, "resources/images/levels/Lvl7Gargoyle_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(14).add(backgroundLabels.get(14));
+
+        //Scene 15
+        createBackground(15, "resources/images/levels/Lvl7BG_800x350.png");
+        createObject(15, 0, 0, 250, 250, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(15).add(backgroundLabels.get(15));
+
+        //Scene 16 - lvl 8
+        createBackground(16, "resources/images/levels/Lvl8BG_800x350.png");
+        createObject(16, 0, 0, 250, 250, "resources/images/levels/Lvl8SkeletonWarrior_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(16).add(backgroundLabels.get(16));
+
+        //Scene 17
+        createBackground(17, "resources/images/levels/Lvl8BG_800x350.png");
+        createObject(17, 0, 0, 250, 250, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(17).add(backgroundLabels.get(17));
+
+        //Scene 18 - lvl 9
+        createBackground(18, "resources/images/levels/Lvl9BG_800x350.png");
+        createObject(18, 0, 0, 250, 250, "resources/images/levels/Lvl9RoyalGuard_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(18).add(backgroundLabels.get(18));
+
+        //Scene 19
+        createBackground(19, "resources/images/levels/Lvl9BG_800x350.png");
+        createObject(19, 0, 0, 250, 250, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(19).add(backgroundLabels.get(19));
+
+        //Scene 20 - lvl 10
+        createBackground(20, "resources/images/levels/Lvl10BG_800x350.png");
+        createObject(20, 0, 0, 250, 250, "resources/images/levels/Lvl10Paladin_150x150.png",
+                "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
+        backgrounds.get(20).add(backgroundLabels.get(20));
+
+        //Scene 21
+        createBackground(21, "resources/images/levels/Lvl10BG_800x350.png");
+        createObject(21, 0, 0, 250, 250, "resources/images/UsedAsADoor.png",
+                "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
+        backgrounds.get(21).add(backgroundLabels.get(21));
     }
 
     /**
