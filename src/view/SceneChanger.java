@@ -121,12 +121,14 @@ public class SceneChanger {
      * Method used for testing scenes and levels
      */
     public void showSceneX() {
+        controller.getHealthBar().createHealthBar();
+        controller.setLevel(4);
         for (int i = 0; i <= 9; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
         }
-        controller.getWindow().getSceneCreator().getBackground(10).setVisible(true);
+        controller.getWindow().getSceneCreator().getBackground(8).setVisible(true);
         controller.getWindow().getMathQuestions().setText("TEST");
-        controller.setCurrentScene(10);
+        controller.setCurrentScene(8);
     }
 
     /**

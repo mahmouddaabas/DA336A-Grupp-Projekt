@@ -118,22 +118,31 @@ public class GameLogic {
                 level++;
             }
             else {
-                if (player.getPlayerHealth() <= 1) {
-                    scene.showGameOverScreen();
-                }
-                else {
                     if (levelCreator.getLevel(level).getEnemy().isBoss()) {
                         window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                        healthBar.setDamageTaken(2);
                         player.wrong(2);
+                        checkPlayerHealth();
+                        healthBar.updateHealth(this);
                     }
                     else {
                         window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                         player.wrong(1);
-
+                        checkPlayerHealth();
+                        healthBar.updateHealth(this);
                     }
                 }
-                healthBar.updateHealth(this);
             }
+        }
+
+
+
+    /**
+     * Checks if the player is dead, if they are shows the game over screen.
+     */
+    public void checkPlayerHealth() {
+        if (player.getPlayerHealth() <= 0) {
+            scene.showGameOverScreen();
         }
     }
 
