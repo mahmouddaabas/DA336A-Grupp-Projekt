@@ -4,6 +4,7 @@ import controller.GameLogic;
 import view.Handlers.ActionHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
@@ -64,19 +65,33 @@ public class SceneCreator {
     public void createBackground(int sceneNbr, String bgFile) {
         JPanel background = new JPanel();
 
-        background.setBounds(90, 100, 800, 350);
+        background.setBounds(90, 100, 1150, 450);
         background.setLayout(null);
         background.setVisible(false);
 
         JLabel lblBg = new JLabel();
-        lblBg.setBounds(0, 0, 800, 350);
+        lblBg.setBounds(0, 0, 1150, 450);
 
         ImageIcon bgIcon = new ImageIcon(bgFile);
-        lblBg.setIcon(bgIcon);
+        lblBg.setIcon(resize(bgFile, 1300, 500));
 
         backgrounds.add(sceneNbr, background);
         backgroundLabels.add(sceneNbr, lblBg);
         mainFrame.add(backgrounds.get(sceneNbr));
+    }
+
+    /**
+     * Method used to resize pictures
+     * Then returns an ImageIcon
+     * @param path
+     * @param width
+     * @param height
+     */
+    public ImageIcon resize(String path, int width, int height) {
+        ImageIcon backgroundPicture = new ImageIcon(path);
+        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon bgIcon = new ImageIcon(image);
+        return bgIcon;
     }
 
     /**
@@ -165,12 +180,12 @@ public class SceneCreator {
 
         //Scene 0
         createBackground(0, "resources/images/townEntrance_800x350.jpg");
-        createArrowButton(0, 400, 10, 50, 50, "resources/images/uparrow50x50.png", "goScene1");
+        createArrowButton(0, 550, 10, 50, 50, "resources/images/uparrow50x50.png", "goScene1");
         backgrounds.get(0).add(backgroundLabels.get(0));
 
         //Scene 1
         createBackground(1, "resources/images/Scene2Entrance_800x350.png");
-        createObject(1, 400, 10, 100, 300, "resources/images/UsedAsADoor.png",
+        createObject(1, 700, 100, 150, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(1).add(backgroundLabels.get(1));
     }
@@ -181,59 +196,59 @@ public class SceneCreator {
     public void generateScenesLvl1To5() {
         //Scene 2
         createBackground(2, "resources/images/levels/Lvl1BG_800x350.jpg");
-        createObject(2, 300, 0, 250, 250, "resources/images/levels/Lvl1Goblin_150x150.png",
+        createObject(2, 550, 40, 250, 250, "resources/images/levels/Lvl1Goblin_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(2).add(backgroundLabels.get(2));
 
         //Scene 3
         createBackground(3, "resources/images/levels/Lvl1BG_800x350.jpg");
-        createObject(3, 300, 0, 250, 250, "resources/images/UsedAsADoor.png",
+        createObject(3, 400, 0, 400, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(3).add(backgroundLabels.get(3));
 
         //Scene 4
         createBackground(4, "resources/images/levels/Lvl2BG_800x350.png");
-        createObject(4, 520, 50, 250, 250, "resources/images/levels/Lvl2Skeleton_150x150.png",
+        createObject(4, 700, 200, 250, 250, "resources/images/levels/Lvl2Skeleton_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(4).add(backgroundLabels.get(4));
 
         //Scene 5
         createBackground(5, "resources/images/levels/Lvl2BG_800x350.png");
-        createObject(5, 520, 50, 250, 250, "resources/images/UsedAsADoor.png",
+        createObject(5, 850, 50, 250, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(5).add(backgroundLabels.get(5));
 
         //Scene 6
         createBackground(6, "resources/images/levels/Lvl3BG_800x350.png");
-        createObject(6, 350, 0, 250, 250, "resources/images/levels/Lvl3Warden_150x150.png",
+        createObject(6, 640, 70, 250, 250, "resources/images/levels/Lvl3Warden_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(6).add(backgroundLabels.get(6));
 
         //Scene 7
         createBackground(7, "resources/images/levels/Lvl3BG_800x350.png");
-        createObject(7, 360, 70, 100, 100, "resources/images/UsedAsADoor.png",
+        createObject(7, 640, 30, 100, 250, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(7).add(backgroundLabels.get(7));
 
         //Scene 8
         createBackground(8, "resources/images/levels/Lvl4BG_800x350.png");
-        createObject(8, 425, 50, 250, 250, "resources/images/levels/Lvl4Hobgoblin_150x150.png",
+        createObject(8, 720, 140, 250, 250, "resources/images/levels/Lvl4Hobgoblin_150x150.png",
                 "Look", "Talk", "Attack", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         mainFrame.populateAnswerPanel();
         backgrounds.get(8).add(backgroundLabels.get(8));
 
         //Scene 9
         createBackground(9, "resources/images/levels/Lvl4BG_800x350.png");
-        createObject(9, 450, 110, 120, 70, "resources/images/UsedAsADoor.png",
+        createObject(9, 720, 140, 200, 100, "resources/images/UsedAsADoor.png",
                 "Look", "Talk", "Enter", "lookDoor", "talkDoor", "enterDoor");
         backgrounds.get(9).add(backgroundLabels.get(9));
 
         //Scene 10
         createBackground(10, "resources/images/levels/Lvl5BG_800x350.png");
-        createObject(10, 330, 40, 250, 250, "resources/images/levels/Lvl5Orc_150x150.png",
+        createObject(10, 600, 140, 250, 250, "resources/images/levels/Lvl5Orc_150x150.png",
                 "Look", "Talk", "Enter", "lookAtEnemy", "talkToEnemy", "attackEnemy");
         backgrounds.get(10).add(backgroundLabels.get(10));
 

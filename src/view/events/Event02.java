@@ -57,8 +57,8 @@ public class Event02 {
             controller.startTimer();
 
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
-            //Default values = mathQuestions.setBounds(100, 460, 850, 250);
-            controller.getWindow().getMathQuestions().setBounds(100,460,800,100);
+            //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
+            controller.getWindow().getMathQuestions().setBounds(100,550,900,100);
         }
     }
 }

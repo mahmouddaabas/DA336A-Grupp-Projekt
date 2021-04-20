@@ -32,14 +32,14 @@ public class GameOverScreen {
 
     public void createGameOverField() {
         titleLabel = new JLabel("", JLabel.CENTER);
-        titleLabel.setBounds(300, 150, 400, 200);
+        titleLabel.setBounds(500, 200, 400, 200);
         titleLabel.setForeground(Color.red);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 70));
         titleLabel.setVisible(false);
         controller.getWindow().add(titleLabel);
 
         restartButton = new JButton();
-        restartButton.setBounds(400, 320, 200, 50);
+        restartButton.setBounds(600, 400, 200, 50);
         restartButton.setBorder(null);
         restartButton.setBackground(null);
         restartButton.setForeground(Color.white);
