@@ -148,9 +148,10 @@ public class MainFrame extends JFrame {
 
         levelLabel = new JLabel();
         levelLabel.setVisible(false);
-        levelLabel.setBounds(100, 600, 200, 150);
+        levelLabel.setBounds(100, 650, 200, 150);
         levelLabel.setLayout(null);
         levelLabel.setText("");
+        levelLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
         levelLabel.setForeground(Color.WHITE);
         add(levelLabel);
 

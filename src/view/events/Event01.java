@@ -30,7 +30,7 @@ public class Event01 {
 
     public void enterDoor() {
         //Code to swap to Scenes by entering a door.
-        switch (controller.getCurrentScene()) {
+        switch (controller.getCounter().getCurrentScene()) {
             case 1:
                 controller.getScene().showScene2();
                 break;

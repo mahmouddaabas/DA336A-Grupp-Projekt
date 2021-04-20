@@ -23,8 +23,8 @@ public class GameLogic {
     private int answerIndex;
     private String answerText;
     private boolean isAnswered;
-    private int level;
-    private int currentScene;
+    //private int level;
+    //private int currentScene;
 
     //Used to access the main window and the scene changer.
     private MainFrame window;
@@ -58,7 +58,7 @@ public class GameLogic {
         //Game over screen.
         gameOver = new GameOverScreen(this);
 
-        level = 1;
+        counter.setLevel(1);
         levelCreator = new LevelCreator(this);
         timer = new Timer(this);
 
@@ -103,7 +103,7 @@ public class GameLogic {
 
                 timer.stopTimer();
 
-                switch (currentScene) {
+                switch (counter.getCurrentScene()) {
                     case 2:
                         scene.showScene3();
                         break;
@@ -136,10 +136,12 @@ public class GameLogic {
                         break;
                 }
                 window.getAnswerPanel().setVisible(false);
-                level++;
+                int currentLevel = counter.getLevel();
+                currentLevel++;
+                counter.setLevel(currentLevel);
             }
             else {
-                    if (levelCreator.getLevel(level).getEnemy().isBoss()) {
+                    if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
                         window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                         healthBar.setDamageTaken(2);
                         player.wrong(2);
@@ -242,23 +244,23 @@ public class GameLogic {
      * @return current level
      */
     public int getLevel() {
-        return level;
+        return counter.getLevel();
     }
 
     /**
      * Sets the player level
      * @param level new value
      */
-    public void setLevel(int level) {
+    /*public void setLevel(int level) {
         this.level = level;
-    }
+    }*/
 
     /**
      * Returns dialogue from "Look" action
      * @return String dialogue
      */
     public String getLookDialogue() {
-        return levelCreator.getLevel(level).getEnemy().getLookDialogue();
+        return levelCreator.getLevel(counter.getLevel()).getEnemy().getLookDialogue();
     }
 
     /**
@@ -266,7 +268,7 @@ public class GameLogic {
      * @return String dialogue
      */
     public String getTalkDialogue() {
-        return levelCreator.getLevel(level).getEnemy().getTalkDialogue();
+        return levelCreator.getLevel(counter.getLevel()).getEnemy().getTalkDialogue();
     }
 
     /**
@@ -289,17 +291,17 @@ public class GameLogic {
      * Returns the current scene number
      * @return current scene number
      */
-    public int getCurrentScene() {
+    /*public int getCurrentScene() {
         return currentScene;
-    }
+    }*/
 
     /**
      * Sets the current scene number
      * @param currentScene new number
      */
-    public void setCurrentScene(int currentScene) {
+   /* public void setCurrentScene(int currentScene) {
         this.currentScene = currentScene;
-    }
+    }*/
 
     /**
      * Returns healthBar object
@@ -323,5 +325,11 @@ public class GameLogic {
      */
     public void setOutOfCombat(boolean outOfCombat) {
         player.setOutOfCombat(outOfCombat);
+    }
+    /**
+     * Returns the counter object.
+     */
+    public Counter getCounter() {
+        return counter;
     }
 }
