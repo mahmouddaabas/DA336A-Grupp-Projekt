@@ -3,29 +3,23 @@ package view.events;
 import controller.GameLogic;
 
 /**
- *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
- *
  * This class handles the events that happen in the game.
  * Event01 only handles the first scene after you enter the tower.
  */
 public class Event01 {
-
     private GameLogic controller;
 
     public Event01(GameLogic controller) {
-
         this.controller = controller;
-
     }
 
     /**
      * This method is called if the user selects the "Look" option in the GUI.
      * All below methods work in the same way and has the same purpose.
      */
-
     public void lookDoor() {
         controller.getWindow().getMathQuestions().setText("You take a look at the door. \nYou dont seem to spot anything.");
     }
@@ -51,6 +45,24 @@ public class Event01 {
                 break;
             case 9:
                 controller.getScene().showScene10();
+                break;
+            case 11:
+                controller.getScene().showScene12();
+                break;
+            case 13:
+                controller.getScene().showScene14();
+                break;
+            case 15:
+                controller.getScene().showScene16();
+                break;
+            case 17:
+                controller.getScene().showScene18();
+                break;
+            case 19:
+                controller.getScene().showScene20();
+                break;
+            case 20:
+                controller.getScene().showScene21();
                 break;
         }
     }

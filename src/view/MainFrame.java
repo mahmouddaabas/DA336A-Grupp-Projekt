@@ -10,13 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
  * This class is the main window of the program.
  * It creates all objects, backgrounds and buttons and adds them to the window.
- *
  */
 public class MainFrame extends JFrame {
     private GameLogic controller;
@@ -48,7 +46,9 @@ public class MainFrame extends JFrame {
 
         sceneCreator = new SceneCreator(this, controller);
 
-        sceneCreator.generateScenes();
+        sceneCreator.generateFirstScenes();
+        sceneCreator.generateScenesLvl1To5();
+        sceneCreator.generateScenesLvl6To10();
 
         //Creates the main window the game is displayed on.
         createMainWindow();
