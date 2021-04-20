@@ -69,7 +69,7 @@ public class MainFrame extends JFrame {
     public void populateAnswerPanel() {
 
         answerPanel = new JPanel();
-        answerPanel.setBounds(410, 550, 200, 100);
+        answerPanel.setBounds(580, 670, 200, 100);
         answerPanel.setBackground(Color.BLUE);
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
@@ -117,7 +117,7 @@ public class MainFrame extends JFrame {
 
     //Creates the main window for the program.
     public void createMainWindow() {
-        setSize(1000, 700);
+        setSize(1350, 850);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
         //Can place things on the window without any restrictions.
@@ -125,9 +125,10 @@ public class MainFrame extends JFrame {
         setTitle("Climb the Tower");
         //Starts the window in the middle of the screen.
         setLocationRelativeTo(null);
+        setResizable(false);
 
         mathQuestions = new JTextArea();
-        mathQuestions.setBounds(100, 460, 850, 250);
+        mathQuestions.setBounds(100, 550, 900, 250);
         mathQuestions.setBackground(Color.black);
         mathQuestions.setForeground(Color.white);
         mathQuestions.setOpaque(false);
