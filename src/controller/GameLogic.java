@@ -49,8 +49,8 @@ public class GameLogic {
         scene = new SceneChanger(this);
 
         //Counter class
-        /*counter = new Counter(this);
-        counter.startCounter();*/
+        counter = new Counter(this);
+        counter.startCounter();
 
         //Health Bar
         healthBar = new HealthBar(window);
@@ -135,7 +135,6 @@ public class GameLogic {
                         scene.showScene21();
                         break;
                 }
-                window.getMathQuestions().setBounds(100, 460, 850, 250);
                 window.getAnswerPanel().setVisible(false);
                 level++;
             }

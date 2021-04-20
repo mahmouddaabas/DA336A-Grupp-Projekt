@@ -38,7 +38,7 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
-                //controller.getWindow().getLevelLabel().setText("Current level: " + controller.getLevel());
+                controller.getWindow().getLevelLabel().setText("Current level: " + controller.getLevel());
                 Thread.sleep(delay);
             }
             catch(InterruptedException e) {

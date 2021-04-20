@@ -6,8 +6,6 @@ import view.Handlers.HandleAnswers;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * @author Mahmoud Daabas
@@ -47,7 +45,7 @@ public class MainFrame extends JFrame {
         this.controller = controller;
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
-        //createLevelLabel();
+        createLevelLabel();
 
         sceneCreator = new SceneCreator(this, controller);
 
@@ -57,7 +55,6 @@ public class MainFrame extends JFrame {
 
         //Creates the main window the game is displayed on.
         createMainWindow();
-        //Generates the scenes.
         //Makes the window visible.
         setVisible(true);
     }
