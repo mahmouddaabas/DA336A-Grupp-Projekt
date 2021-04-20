@@ -1,5 +1,6 @@
 package controller;
 
+import model.Counter;
 import model.Player;
 import model.Timer;
 import model.questions.*;
@@ -31,6 +32,7 @@ public class GameLogic {
 
     private HealthBar healthBar;
     private GameOverScreen gameOver;
+    private Counter counter;
 
     //Events in the game.
     private Event01 ev1 = new Event01(this);
@@ -45,6 +47,10 @@ public class GameLogic {
         ui = new UI();
         window = new MainFrame(this);
         scene = new SceneChanger(this);
+
+        //Counter class
+        /*counter = new Counter(this);
+        counter.startCounter();*/
 
         //Health Bar
         healthBar = new HealthBar(window);

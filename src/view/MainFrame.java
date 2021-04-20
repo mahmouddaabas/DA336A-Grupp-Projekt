@@ -35,6 +35,10 @@ public class MainFrame extends JFrame {
     private JButton answerButton3;
     private JButton answerButton4;
 
+    // Level label
+    private  JLabel levelLabel;
+
+
     /**
      * Constructs the class and instansiates controller and the action listeners.
      */
@@ -43,6 +47,7 @@ public class MainFrame extends JFrame {
         this.controller = controller;
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
+        //createLevelLabel();
 
         sceneCreator = new SceneCreator(this, controller);
 
@@ -125,7 +130,7 @@ public class MainFrame extends JFrame {
         setTitle("Climb the Tower");
         //Starts the window in the middle of the screen.
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
 
         mathQuestions = new JTextArea();
         mathQuestions.setBounds(100, 550, 900, 250);
@@ -137,6 +142,21 @@ public class MainFrame extends JFrame {
         mathQuestions.setWrapStyleWord(true);
         mathQuestions.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         add(mathQuestions);
+    }
+
+    /**
+     * Creates the label that displays the current level on the GUI.
+     */
+    public void createLevelLabel(){
+
+        levelLabel = new JLabel();
+        levelLabel.setVisible(false);
+        levelLabel.setBounds(100, 600, 200, 150);
+        levelLabel.setLayout(null);
+        levelLabel.setText("");
+        levelLabel.setForeground(Color.WHITE);
+        add(levelLabel);
+
     }
 
     /**
@@ -168,5 +188,9 @@ public class MainFrame extends JFrame {
 
     public SceneCreator getSceneCreator() {
         return sceneCreator;
+    }
+
+    public JLabel getLevelLabel() {
+        return levelLabel;
     }
 }

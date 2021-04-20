@@ -36,6 +36,8 @@ public class SceneChanger {
     }
 
     public void showScene2() {
+        //controller.getWindow().getLevelLabel().setText("Current level: " + controller.getLevel());
+        //controller.getWindow().getLevelLabel().setVisible(true);
         controller.getWindow().getSceneCreator().getBackground(0).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(1).setVisible(false);
         controller.getWindow().getSceneCreator().getBackground(2).setVisible(true);
