@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import model.Counter;
 
 /**
  * @author Mahmoud Daabas
@@ -14,7 +15,6 @@ public class SceneChanger {
     public SceneChanger(GameLogic controller) {
 
         this.controller = controller;
-
     }
 
     /**
@@ -136,6 +136,7 @@ public class SceneChanger {
         //controller.setCurrentScene(11);
         controller.getCounter().setCurrentScene(11);
     }
+
     public void showScene12() {
         for (int i = 1; i <= 11; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -145,6 +146,7 @@ public class SceneChanger {
         //controller.setCurrentScene(12);
         controller.getCounter().setCurrentScene(12);
     }
+
     public void showScene13() {
         for (int i = 1; i <= 12; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -154,6 +156,7 @@ public class SceneChanger {
         //controller.setCurrentScene(13);
         controller.getCounter().setCurrentScene(13);
     }
+
     public void showScene14() {
         for (int i = 1; i <= 13; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -163,6 +166,7 @@ public class SceneChanger {
       //  controller.setCurrentScene(14);
         controller.getCounter().setCurrentScene(14);
     }
+
     public void showScene15() {
         for (int i = 1; i <= 14; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -172,6 +176,7 @@ public class SceneChanger {
         //controller.setCurrentScene(15);
         controller.getCounter().setCurrentScene(15);
     }
+
     public void showScene16() {
         for (int i = 1; i <= 15; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -181,6 +186,7 @@ public class SceneChanger {
         //controller.setCurrentScene(16);
         controller.getCounter().setCurrentScene(16);
     }
+
     public void showScene17() {
         for (int i = 1; i <= 16; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -190,6 +196,7 @@ public class SceneChanger {
         //controller.setCurrentScene(17);
         controller.getCounter().setCurrentScene(17);
     }
+
     public void showScene18() {
         for (int i = 1; i <= 17; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -199,6 +206,7 @@ public class SceneChanger {
        // controller.setCurrentScene(18);
         controller.getCounter().setCurrentScene(18);
     }
+
     public void showScene19() {
         for (int i = 1; i <= 18; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -208,6 +216,7 @@ public class SceneChanger {
        // controller.setCurrentScene(19);
         controller.getCounter().setCurrentScene(19);
     }
+
     public void showScene20() {
         for (int i = 1; i <= 19; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -217,6 +226,7 @@ public class SceneChanger {
         //controller.setCurrentScene(20);
         controller.getCounter().setCurrentScene(20);
     }
+
     public void showScene21() {
         for (int i = 1; i <= 20; i++) {
             controller.getWindow().getSceneCreator().getBackground(i).setVisible(false);
@@ -259,12 +269,21 @@ public class SceneChanger {
         controller.getWindow().getMathQuestions().setVisible(false);
         controller.getHealthBar().getHealthPanel().setVisible(false);
         controller.getWindow().getLevelLabel().setVisible(false);
+        controller.getWindow().getTimerLabel().setVisible(false);
+
+        //Stops the timer and kills the counter thread
+        System.out.println(controller.getLevel());
+        controller.killCounter();
+        controller.getTimer().stopTimer();
     }
 
     /**
      * Code that executes when exiting the game over screen
      */
     public void exitGameOverScreen() {
+        //Restarts the thread
+        controller.reviveCounter();
+
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getPlayer().restoreHealth();

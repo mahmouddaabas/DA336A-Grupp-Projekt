@@ -14,18 +14,17 @@ public class Counter extends Thread {
      */
 
     private GameLogic controller;
-    boolean run;
+    private boolean run;
     private int delay = 1000;
     private int level;
     private int currentScene;
-
+    private Thread counter = null;
     /**
      * Constructor that initializes the controller.
      * @param controller
      */
     public Counter(GameLogic controller) {
         this.controller = controller;
-        start();
     }
 
     /**
@@ -34,6 +33,7 @@ public class Counter extends Thread {
     public void startCounter() {
         if(run == false) {
             run = true;
+            start();
         }
     }
 
@@ -43,6 +43,7 @@ public class Counter extends Thread {
     public void stopCounter(){
         if(run == true) {
             run = false;
+            counter = null;
         }
     }
 
@@ -54,13 +55,15 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
+                if(controller.getTimer().getFigthing() == true){
+                    controller.ifNotAnswered();
+                }
                 controller.getWindow().getLevelLabel().setText("Current level: " + getLevel());
                 Thread.sleep(delay);
             }
             catch(InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
