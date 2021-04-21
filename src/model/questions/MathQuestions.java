@@ -175,8 +175,8 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Makes the possible answers into strings.
-     * @param answers is the array with the answers as strings.
+     * Makes the possible int answers into strings.
+     * @param answers the array with the answers as strings.
      */
     protected void generateAnswerStrings(int[] answers) {
         if (answers != null) {
@@ -189,8 +189,8 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Makes the possible answers into strings.
-     * @param answers is the array with the answers as strings.
+     * Makes the possible BigDecimal answers into strings.
+     * @param answers the array with the answers as strings.
      */
     protected void generateAnswerStrings(BigDecimal[] answers) {
         if (answers != null) {
@@ -203,31 +203,11 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Makes the possible answers into strings with fractions.
-     * @param answers is the array of answers.
-     * @param denominator is the denominator of the fraction.
+     * Sets the answer strings. Used by the subclasses when not using simple int or BigDecimal answers.
+     * @param answerStr the string array that will become the answer strings.
      */
-    protected void generateAnswerStringsFractions(int[][] answers, int denominator) {
-        if (answers != null) {
-            answerStr = new String[4];
-
-            answerStr[0] = "A. " + answers[0][0];
-            if (answers[0][1] != 0) {
-                answerStr[0] += " + (" + answers[0][1] + "/" + denominator + ")";
-            }
-            answerStr[1] = "B. " + answers[1][0];
-            if (answers[1][1] != 0) {
-                answerStr[1] += " + (" + answers[1][1] + "/" + denominator + ")";
-            }
-            answerStr[2] = "C. " + answers[2][0];
-            if (answers[2][1] != 0) {
-                answerStr[2] += " + (" + answers[2][1] + "/" + denominator + ")";
-            }
-            answerStr[3] = "D. " + answers[3][0];
-            if (answers[3][1] != 0) {
-                answerStr[3] += " + (" + answers[3][1] + "/" + denominator + ")";
-            }
-        }
+    protected void setAnswerStr(String[] answerStr) {
+        this.answerStr = answerStr;
     }
 
     /**
@@ -240,7 +220,7 @@ public abstract class MathQuestions {
 
     /**
      * Compares the index of the users answer with the index of the correct answer.
-     * @param index is the index of the user's answer in the answer array.
+     * @param index the index of the user's answer in the answer array.
      * @return true if the user's answer is correct, false otherwise.
      */
     public boolean compareAnswer(int index) {

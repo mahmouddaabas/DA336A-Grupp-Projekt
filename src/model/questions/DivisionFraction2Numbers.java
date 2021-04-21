@@ -49,7 +49,7 @@ public class DivisionFraction2Numbers extends MathQuestions {
         newCorrectAnswerIndex();
         generateNumbers();
         generateAnswers();
-        generateAnswerStringsFractions(answers, denominator);
+        generateAnswerStrings();
     }
 
     /**
@@ -95,5 +95,28 @@ public class DivisionFraction2Numbers extends MathQuestions {
                 return fakeAnswer;
             }
         }
+    }
+
+    private void generateAnswerStrings() {
+        String[] answerStr = new String[4];
+
+        answerStr[0] = "A. " + answers[0][0];
+        if (answers[0][1] != 0) {
+            answerStr[0] += " + (" + answers[0][1] + "/" + denominator + ")";
+        }
+        answerStr[1] = "B. " + answers[1][0];
+        if (answers[1][1] != 0) {
+            answerStr[1] += " + (" + answers[1][1] + "/" + denominator + ")";
+        }
+        answerStr[2] = "C. " + answers[2][0];
+        if (answers[2][1] != 0) {
+            answerStr[2] += " + (" + answers[2][1] + "/" + denominator + ")";
+        }
+        answerStr[3] = "D. " + answers[3][0];
+        if (answers[3][1] != 0) {
+            answerStr[3] += " + (" + answers[3][1] + "/" + denominator + ")";
+        }
+
+        setAnswerStr(answerStr);
     }
 }
