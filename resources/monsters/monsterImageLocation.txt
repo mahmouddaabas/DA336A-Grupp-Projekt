@@ -1,0 +1,10 @@
+resources/monsters/Lvl1Goblin.png
+resources/monsters/Lvl2Skeleton.png
+resources/monsters/Lvl3Warden.png
+resources/monsters/Lvl4Hobgoblin.png
+resources/monsters/Lvl5Orc.png
+resources/monsters/Lvl6Dwarf.png
+resources/monsters/Lvl7Gargoyle.png
+resources/monsters/Lvl8SkeletonWarrior.png
+resources/monsters/Lvl9RoyalGuard.png
+resources/monsters/Lvl10Paladin.png
