@@ -124,7 +124,7 @@ public class LevelCreator {
         Level level19 = new Level(19, new AdditionManyNumbers(4, 26,0, 3),
                 new RegularMonster(false, RegularMonsterType.MiniBoss, 20, "*MiniBoss looks at you", "*MiniBoss talk"), 25);
 
-        Level boss4 = new Level(16, new AdditionManyNumbers(4, 26,0, 3),
+        Level boss4 = new Level(20, new AdditionManyNumbers(4, 26,0, 3),
                 new Boss(true, BossType.FinalBoss, 20, "*Keanu looks at you", "*keanu talk"), 25);
 
         levels.add(level16);

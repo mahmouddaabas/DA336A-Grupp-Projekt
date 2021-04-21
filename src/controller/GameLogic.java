@@ -109,25 +109,25 @@ public class GameLogic {
                 currentLevel++;
                 counter.setLevel(currentLevel);
             }
-//            else {
-//                    if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-//                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
-//                        healthBar.setDamageTaken(2);
-//                        player.wrong(2);
-//                        checkPlayerHealth();
-//                        healthBar.updateHealth(this);
-//                        setOutOfCombat(true);
-//                        generateQuestionAndAnswers();
-//                    }
-//                    else {
-//                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
-//                        player.wrong(1);
-//                        checkPlayerHealth();
-//                        healthBar.updateHealth(this);
-//                        setOutOfCombat(true);
-//                        generateQuestionAndAnswers();
-//                    }
-//                }
+            else {
+                    if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                        healthBar.setDamageTaken(2);
+                        player.wrong(2);
+                        checkPlayerHealth();
+                        healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                    }
+                    else {
+                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                        player.wrong(1);
+                        checkPlayerHealth();
+                        healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                    }
+                }
             }
         }
 
