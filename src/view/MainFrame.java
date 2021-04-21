@@ -49,11 +49,9 @@ public class MainFrame extends JFrame {
         createLevelLabel();
         createTimerLabel();
 
-        sceneCreator = new SceneCreator(this, controller);
+        sceneCreator = new SceneCreator(this, controller, action);
 
-        sceneCreator.generateFirstScenes();
-        sceneCreator.generateScenesLvl1To5();
-        sceneCreator.generateScenesLvl6To10();
+        sceneCreator.generateScenes();
 
         //Creates the main window the game is displayed on.
         createMainWindow();
