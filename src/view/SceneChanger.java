@@ -50,6 +50,35 @@ public class SceneChanger {
             case 10:
                 showScene11();
                 break;
+            case 11:
+                showScene12();
+                break;
+            case 12:
+                showScene13();
+                break;
+            case 13:
+                showScene14();
+                break;
+            case 14:
+                showScene15();
+                break;
+            case 15:
+                showScene16();
+                break;
+            case 16:
+                showScene17();
+                break;
+            case 17:
+                showScene18();
+                break;
+            case 18:
+                showScene19();
+                break;
+            case 19:
+                showScene20();
+                break;
+
+
         }
     }
 
@@ -160,6 +189,89 @@ public class SceneChanger {
         controller.getWindow().getMathQuestions().setText("Scene 11/Level 10");
         controller.getCounter().setCurrentScene(11);
     }
+
+    public void showScene12() {
+        for (int i = 1; i <= 11; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(12).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 12/Level 11");
+        controller.getCounter().setCurrentScene(12);
+    }
+
+    public void showScene13() {
+        for (int i = 1; i <= 12; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(13).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 13/Level 12");
+        controller.getCounter().setCurrentScene(13);
+    }
+
+    public void showScene14() {
+        for (int i = 1; i <= 13; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(14).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 14/Level 13");
+        controller.getCounter().setCurrentScene(14);
+    }
+
+    public void showScene15() {
+        for (int i = 1; i <= 14; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(15).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 15/Level 14");
+        controller.getCounter().setCurrentScene(15);
+    }
+
+    public void showScene16() {
+        for (int i = 1; i <= 15; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(16).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 16/Level 15");
+        controller.getCounter().setCurrentScene(16);
+    }
+
+    public void showScene17() {
+        for (int i = 1; i <= 16; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(17).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 17/Level 16");
+        controller.getCounter().setCurrentScene(17);
+    }
+
+    public void showScene18() {
+        for (int i = 1; i <= 17; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(18).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 18/Level 17");
+        controller.getCounter().setCurrentScene(18);
+    }
+
+    public void showScene19() {
+        for (int i = 1; i <= 18; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(19).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 19/Level 18");
+        controller.getCounter().setCurrentScene(19);
+    }
+
+    public void showScene20() {
+        for (int i = 1; i <= 19; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(20).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 20/Level 19");
+        controller.getCounter().setCurrentScene(20);
+    }
+
+
 
     /**
      * Method used for testing scenes and levels

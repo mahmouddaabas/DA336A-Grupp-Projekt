@@ -328,6 +328,11 @@ public class SceneCreator {
             case 6:
             case 8:
             case 10:
+            case 12:
+            case 14:
+            case 16:
+            case 18:
+            case 20:
                 mainFrame.populateAnswerPanel();
                 break;
             default:

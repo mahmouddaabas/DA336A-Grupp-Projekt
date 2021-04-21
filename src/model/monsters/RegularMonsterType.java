@@ -13,4 +13,12 @@ public enum RegularMonsterType {
     Gargoyle,
     SkeletonWarrior,
     RoyalGuard,
+    SnakeMan,
+    WorkSmithDwarf,
+    SkeletonMage,
+    BuddhaGuardian,
+    Ghost,
+    RedGuardian,
+    SpearMaster,
+    MiniBoss
 }
