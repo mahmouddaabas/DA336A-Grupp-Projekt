@@ -85,7 +85,7 @@ public class DivisionFraction2Numbers extends MathQuestions {
         int[] fakeAnswer = new int[2];
         int fakeNumerator;
         while (true) {
-            fakeNumerator = randomInt(numeratorLowerBound, numeratorUpperBound);;
+            fakeNumerator = randomInt(numeratorLowerBound, numeratorUpperBound);
             fakeAnswer[0] = fakeNumerator / denominator;
             fakeAnswer[1] = fakeNumerator % denominator;
             if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
@@ -97,6 +97,9 @@ public class DivisionFraction2Numbers extends MathQuestions {
         }
     }
 
+    /**
+     * Makes the possible int + fraction answers into strings.
+     */
     private void generateAnswerStrings() {
         String[] answerStr = new String[4];
 

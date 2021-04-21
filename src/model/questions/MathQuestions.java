@@ -141,6 +141,33 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Simplifies and returns a fraction by dividing the common factors from both the numerator and the denominator.
+     * Also ensures that the denominator is always positive. The fraction is represented as int array with two elements
+     * with the 0th being the numerator and 1st being the denominator.
+     * @param fraction the fraction to simplify as a two element int array.
+     * @return the simplified fraction.
+     */
+    protected int[] simplifyFraction(int[] fraction) {
+        boolean noChange = false;
+        if (fraction[1] < 0) {
+            fraction[0] *= -1;
+            fraction[1] *= -1;
+        }
+        while (!noChange) {
+            noChange = true;
+            for (int i = Math.min(Math.abs(fraction[0]), fraction[1]); i > 1; i--) {
+                if ((fraction[0] % i == 0) && (fraction[1] % i == 0)) {
+                    fraction[0] /= i;
+                    fraction[1] /= i;
+                    noChange = false;
+                    break;
+                }
+            }
+        }
+        return fraction;
+    }
+
+    /**
      * Creates an array with all elements set to the minimum integer value as a value that will not be used.
      * @return the answer array.
      */
@@ -176,7 +203,7 @@ public abstract class MathQuestions {
 
     /**
      * Makes the possible int answers into strings.
-     * @param answers the array with the answers as strings.
+     * @param answers the array with the int answers.
      */
     protected void generateAnswerStrings(int[] answers) {
         if (answers != null) {
@@ -190,7 +217,7 @@ public abstract class MathQuestions {
 
     /**
      * Makes the possible BigDecimal answers into strings.
-     * @param answers the array with the answers as strings.
+     * @param answers the array with the BigDecimal answers.
      */
     protected void generateAnswerStrings(BigDecimal[] answers) {
         if (answers != null) {
@@ -203,18 +230,42 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Makes the possible fraction int answers into strings.
+     * @param answers the array with the int fraction answers.
+     */
+    protected void generateAnswerStringsFractions(int[][] answers) {
+        if (answers != null) {
+            answerStr = new String[4];
+            answerStr[0] = "A. (" + answers[0][0] + "/" + answers[0][1] + ")";
+            answerStr[1] = "B. (" + answers[1][0] + "/" + answers[1][1] + ")";
+            answerStr[2] = "C. (" + answers[2][0] + "/" + answers[2][1] + ")";
+            answerStr[3] = "D. (" + answers[3][0] + "/" + answers[3][1] + ")";
+        }
+    }
+
+    /**
      * Sets the answer strings. Used by the subclasses when not using simple int or BigDecimal answers.
      * @param answerStr the string array that will become the answer strings.
      */
     protected void setAnswerStr(String[] answerStr) {
-        this.answerStr = answerStr;
+        if (answerStr != null) {
+            this.answerStr = answerStr;
+        }
+    }
+
+    /**
+     * Gets the answers as strings.
+     * @return the array with the answers as strings.
+     */
+    public String[] getAnswerStr() {
+        return answerStr;
     }
 
     /**
      * Returns the randomly generated index for the correct answer in the answer array.
      * @return the randomly generated index for the correct answer in the answer array.
      */
-    protected int getCorrectAnswerIndex() {
+    public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
     }
 
@@ -225,14 +276,6 @@ public abstract class MathQuestions {
      */
     public boolean compareAnswer(int index) {
         return index == correctAnswerIndex;
-    }
-
-    /**
-     * Gets the answers as strings.
-     * @return the array with the answers as strings.
-     */
-    public String[] getAnswerStr() {
-        return answerStr;
     }
 
     /**

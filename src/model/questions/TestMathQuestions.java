@@ -32,8 +32,10 @@ public class TestMathQuestions {
 //        mathQuestion = new Multiplication2Numbers(1, 9, 2, 1, 9, 1);
 //        mathQuestion = new Subtraction2Numbers(1, 9, 0, 1, 9, 0, false);
 //        mathQuestion = new AdditionManyNumbers(1, 9, 2, 3);
-        mathQuestion = new DivisionFraction2Numbers(10, 100, 2, 10);
+//        mathQuestion = new DivisionFraction2Numbers(10, 100, 2, 10);
 //        mathQuestion = new DivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
+//        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 2);
+        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
 
         while (true) {
             mathQuestion.generateNewQuestion();
