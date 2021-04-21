@@ -35,6 +35,7 @@ public class MainFrame extends JFrame {
 
     // Level label
     private  JLabel levelLabel;
+    private JLabel timerLabel;
 
 
     /**
@@ -46,6 +47,7 @@ public class MainFrame extends JFrame {
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
         createLevelLabel();
+        createTimerLabel();
 
         sceneCreator = new SceneCreator(this, controller);
 
@@ -71,7 +73,7 @@ public class MainFrame extends JFrame {
     public void populateAnswerPanel() {
 
         answerPanel = new JPanel();
-        answerPanel.setBounds(580, 670, 200, 100);
+        answerPanel.setBounds(580, 670, 270, 100);
         answerPanel.setBackground(Color.BLUE);
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
@@ -156,6 +158,19 @@ public class MainFrame extends JFrame {
         add(levelLabel);
 
     }
+    /**
+     * Creates the label that displays the timer on the GUI.
+     */
+    public void createTimerLabel(){
+        timerLabel = new JLabel();
+        timerLabel.setVisible(false);
+        timerLabel.setBounds(600, 0, 200, 150);
+        timerLabel.setLayout(null);
+        timerLabel.setText("");
+        timerLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+        timerLabel.setForeground(Color.WHITE);
+        add(timerLabel);
+    }
 
     /**
      * Getter methods to access the GUI parts.
@@ -190,5 +205,9 @@ public class MainFrame extends JFrame {
 
     public JLabel getLevelLabel() {
         return levelLabel;
+    }
+
+    public JLabel getTimerLabel(){
+        return timerLabel;
     }
 }

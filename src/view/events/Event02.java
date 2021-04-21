@@ -40,7 +40,11 @@ public class Event02 {
         //Code to start fight.
         if (controller.getOutOfCombat()) {
             controller.setOutOfCombat(false);
+            System.out.println(controller.getLevel());
             controller.startFight(controller.getLevel());
+
+            //Starts the timer upon attacking the monster
+            controller.startTimer();
 
             //Gets the random math questions.
             controller.getWindow().getMathQuestions().setText(controller.getMathQuestion().getQuestion());
@@ -53,8 +57,6 @@ public class Event02 {
 
             controller.getWindow().getAnswerPanel().setVisible(true);
 
-            //Starts the timer upon attacking the monster
-            controller.startTimer();
 
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);

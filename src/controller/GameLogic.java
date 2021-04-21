@@ -23,8 +23,7 @@ public class GameLogic {
     private int answerIndex;
     private String answerText;
     private boolean isAnswered;
-    //private int level;
-    //private int currentScene;
+
 
     //Used to access the main window and the scene changer.
     private MainFrame window;
@@ -48,6 +47,8 @@ public class GameLogic {
         window = new MainFrame(this);
         scene = new SceneChanger(this);
 
+        timer = new Timer(this);
+
         //Counter class
         counter = new Counter(this);
         counter.startCounter();
@@ -60,7 +61,6 @@ public class GameLogic {
 
         counter.setLevel(1);
         levelCreator = new LevelCreator(this);
-        timer = new Timer(this);
 
         //Displays the first scene.
         scene.showScene0();
@@ -77,7 +77,6 @@ public class GameLogic {
      * @param level current level
      */
     public void startFight(int level) {
-        //player.setInFight(true);
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
@@ -164,6 +163,47 @@ public class GameLogic {
     public void checkPlayerHealth() {
         if (player.getPlayerHealth() <= 0) {
             scene.showGameOverScreen();
+        }
+    }
+
+    /**
+     * Checks if the timer hits zero.
+     * If timer is zero, deals damage to the player.
+     * It will also generate new questions.
+     */
+    public void ifNotAnswered(){
+        if(timer.getTime() == 0){
+          player.wrong(1);
+          checkPlayerHealth();
+          healthBar.updateHealth(this);
+          mathQuestion.generateNewQuestion();
+          setOutOfCombat(true);
+         try {
+             ev2.attackEnemy();
+          }
+         catch (NullPointerException e){
+
+         }
+        }
+    }
+
+    /**
+     * Stops the counter thread and sets it to null.
+     */
+    public void killCounter(){
+        counter.stopCounter();
+        counter = null;
+    }
+
+    /**
+     * Checks if the counter thread is null.
+     * If null, it will create a new object of counter.
+     * It then starts the thread.
+     */
+    public void reviveCounter(){
+        if(counter == null){
+            counter = new Counter(this);
+            counter.startCounter();
         }
     }
 
@@ -332,4 +372,13 @@ public class GameLogic {
     public Counter getCounter() {
         return counter;
     }
+
+    /**
+     * Returns the timer object.
+     */
+    public Timer getTimer(){
+        return timer;
+    }
+
+
 }

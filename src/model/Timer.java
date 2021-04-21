@@ -12,6 +12,7 @@ public class Timer implements Runnable {
     private Thread timer = null;
     private boolean ticking = false;
     private int time;
+    private boolean fighting;
 
     public Timer(GameLogic controller) {
         this.controller = controller;
@@ -25,9 +26,11 @@ public class Timer implements Runnable {
         while (ticking) {
             System.out.println(time+" "); //Show in GUI
             try {
+                fighting = true;
+                controller.getWindow().getTimerLabel().setText("Time Left: " + controller.getTimer().getTime());
+                controller.getWindow().getTimerLabel().setVisible(true);
                 time--;
                 Thread.sleep(1000);
-
                 if (time == 0) {
                     stopTimer();
                 }
@@ -36,6 +39,8 @@ public class Timer implements Runnable {
                 e.printStackTrace();
             }
         }
+        fighting = false;
+        controller.getWindow().getTimerLabel().setVisible(false);
     }
 
     /**
@@ -74,5 +79,13 @@ public class Timer implements Runnable {
      */
     public void setTime(int time) {
         this.time = time;
+    }
+
+    /**
+     * Returns the fighting boolean
+     * @return fighting status
+     */
+    public boolean getFigthing(){
+        return fighting;
     }
 }
