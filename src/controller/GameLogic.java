@@ -146,15 +146,50 @@ public class GameLogic {
                         player.wrong(2);
                         checkPlayerHealth();
                         healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
                     }
                     else {
                         window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                         player.wrong(1);
                         checkPlayerHealth();
                         healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
                     }
                 }
             }
+        }
+
+    /**
+     * This method checks if the player is out of combat.
+     * If player is not in combat generates a new math question and answers.
+     * The generated questions and answers are then put into JButtons.
+     */
+        public void generateQuestionAndAnswers() {
+        if(getOutOfCombat()) {
+            setOutOfCombat(false);
+            System.out.println(getLevel());
+            startFight(getLevel());
+
+            //Starts the timer upon attacking the monster
+            startTimer();
+
+            //Gets the random math questions.
+            getWindow().getMathQuestions().setText(getMathQuestion().getQuestion());
+
+            //Sets the answers on the buttons.
+            getWindow().getAnswerButton1().setText(getMathQuestion().getAnswerStr()[0]);
+            getWindow().getAnswerButton2().setText(getMathQuestion().getAnswerStr()[1]);
+            getWindow().getAnswerButton3().setText(getMathQuestion().getAnswerStr()[2]);
+            getWindow().getAnswerButton4().setText(getMathQuestion().getAnswerStr()[3]);
+
+            getWindow().getAnswerPanel().setVisible(true);
+
+            //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
+            //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
+            getWindow().getMathQuestions().setBounds(100,550,900,100);
+        }
         }
 
     /**
