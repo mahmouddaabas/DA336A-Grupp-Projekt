@@ -1,0 +1,12 @@
+resources/backgrounds/Scene0TownEntrance.jpg
+resources/backgrounds/Scene1TowerEntrance.png
+resources/backgrounds/Lvl1BG.jpg
+resources/backgrounds/Lvl2BG.png
+resources/backgrounds/Lvl3BG.png
+resources/backgrounds/Lvl4BG.png
+resources/backgrounds/Lvl5BG.png
+resources/backgrounds/Lvl6BG.png
+resources/backgrounds/Lvl7BG.png
+resources/backgrounds/Lvl8BG.png
+resources/backgrounds/Lvl9BG.png
+resources/backgrounds/Lvl10BG.png

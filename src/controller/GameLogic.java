@@ -98,42 +98,12 @@ public class GameLogic {
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 player.setOutOfCombat(true);
-                window.getMathQuestions().setText("Answer is correct!");
+                //window.getMathQuestions().setText("Answer is correct!");
 
                 timer.stopTimer();
 
-                switch (counter.getCurrentScene()) {
-                    case 2:
-                        scene.showScene3();
-                        break;
-                    case 4:
-                        scene.showScene5();
-                        break;
-                    case 6:
-                        scene.showScene7();
-                        break;
-                    case 8:
-                        scene.showScene9();
-                        break;
-                    case 10:
-                        scene.showScene11();
-                        break;
-                    case 12:
-                        scene.showScene13();
-                        break;
-                    case 14:
-                        scene.showScene15();
-                        break;
-                    case 16:
-                        scene.showScene17();
-                        break;
-                    case 18:
-                        scene.showScene19();
-                        break;
-                    case 20:
-                        scene.showScene21();
-                        break;
-                }
+                scene.switchScene(counter.getCurrentScene());
+
                 window.getAnswerPanel().setVisible(false);
                 int currentLevel = counter.getLevel();
                 currentLevel++;

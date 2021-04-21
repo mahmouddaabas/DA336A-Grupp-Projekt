@@ -40,7 +40,7 @@ public class Event02 {
         //Code to start fight.
         if (controller.getOutOfCombat()) {
             controller.setOutOfCombat(false);
-            System.out.println(controller.getLevel());
+            //System.out.println(controller.getLevel());
             controller.startFight(controller.getLevel());
 
             //Starts the timer upon attacking the monster
