@@ -77,6 +77,8 @@ public class SceneChanger {
             case 19:
                 showScene20();
                 break;
+            case 20:
+                showScene21();
 
 
         }
@@ -270,6 +272,16 @@ public class SceneChanger {
         controller.getWindow().getMathQuestions().setText("Scene 20/Level 19");
         controller.getCounter().setCurrentScene(20);
     }
+
+    public void showScene21() {
+        for (int i = 1; i <= 20; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getWindow().getSceneCreator().getBackgroundPanel(21).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("Scene 21/Level 20");
+        controller.getCounter().setCurrentScene(21);
+    }
+
 
 
 
