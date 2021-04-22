@@ -1,7 +1,6 @@
 package view;
 
 import controller.GameLogic;
-import model.Counter;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -31,11 +30,17 @@ public class SceneChanger {
      * @param sceneNbr given scene number
      */
     public void showScene(int sceneNbr) {
-        if (sceneNbr == 1) {
-            controller.getHealthBar().createHealthBar();
-        }
-        else if (sceneNbr == 2) {
-            controller.getWindow().getLevelLabel().setVisible(true);
+        switch (sceneNbr) {
+            case 0:
+                controller.getCounter().setCurrentScene(1);
+                break;
+            case 1:
+                controller.getHealthBar().createHealthBar();
+                controller.getCounter().setCurrentScene(2);
+                break;
+            case 2:
+                controller.getWindow().getLevelLabel().setVisible(true);
+                break;
         }
 
         for (int i = 0; i < sceneNbr; i++) {
@@ -44,12 +49,7 @@ public class SceneChanger {
         controller.getWindow().getSceneCreator().getBackgroundPanel(sceneNbr).setVisible(true);
 
         controller.getWindow().getMathQuestions().setText(sceneTexts.get(sceneNbr));
-
-        int nextScene = sceneNbr + 1;
-
-        if (nextScene < sceneTexts.size()) {
-            controller.getCounter().setCurrentScene(nextScene);
-        }
+        controller.getCounter().setCurrentScene(sceneNbr+1);
     }
 
     /**
