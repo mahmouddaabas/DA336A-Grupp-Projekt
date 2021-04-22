@@ -31,8 +31,9 @@ public class Counter extends Thread {
      * This method is used to start the thread by setting the run boolean to true.
      */
     public void startCounter() {
-        if(run == false) {
+        if(!run && counter == null) {
             run = true;
+            counter = new Thread(this);
             start();
         }
     }
@@ -41,7 +42,7 @@ public class Counter extends Thread {
      * This method is used to stop the thread if needed by setting the run boolean to false.
      */
     public void stopCounter(){
-        if(run == true) {
+        if(run && counter != null) {
             run = false;
             counter = null;
         }
@@ -55,7 +56,7 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
-                if(controller.getTimer().getFigthing() == true){
+                if(controller.getTimer().getFigthing()){
                     controller.ifNotAnswered();
                 }
                 controller.getWindow().getLevelLabel().setText("Current level: " + getLevel());

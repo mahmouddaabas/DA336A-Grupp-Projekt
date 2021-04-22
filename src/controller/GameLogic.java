@@ -60,10 +60,13 @@ public class GameLogic {
         gameOver = new GameOverScreen(this);
 
         counter.setLevel(1);
+        counter.setCurrentScene(0);
+
         levelCreator = new LevelCreator(this);
 
         //Displays the first scene.
-        scene.showScene0();
+        scene.showScene(counter.getCurrentScene());
+
         //scene.showSceneX(); //Used to test scenes
 
         //startQuiz();
@@ -102,7 +105,7 @@ public class GameLogic {
 
                 timer.stopTimer();
 
-                scene.switchScene(counter.getCurrentScene());
+                scene.showScene(counter.getCurrentScene());
 
                 window.getAnswerPanel().setVisible(false);
                 int currentLevel = counter.getLevel();
@@ -110,26 +113,26 @@ public class GameLogic {
                 counter.setLevel(currentLevel);
             }
             else {
-                    if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
-                        healthBar.setDamageTaken(2);
-                        player.wrong(2);
-                        checkPlayerHealth();
-                        healthBar.updateHealth(this);
-                        setOutOfCombat(true);
-                        generateQuestionAndAnswers();
-                    }
-                    else {
-                        window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
-                        player.wrong(1);
-                        checkPlayerHealth();
-                        healthBar.updateHealth(this);
-                        setOutOfCombat(true);
-                        generateQuestionAndAnswers();
-                    }
+                if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                    healthBar.setDamageTaken(2);
+                    player.wrong(2);
+                    checkPlayerHealth();
+                    healthBar.updateHealth(this);
+                    setOutOfCombat(true);
+                    generateQuestionAndAnswers();
+                }
+                else {
+                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                    player.wrong(1);
+                    checkPlayerHealth();
+                    healthBar.updateHealth(this);
+                    setOutOfCombat(true);
+                    //generateQuestionAndAnswers();
                 }
             }
         }
+    }
 
     /**
      * This method checks if the player is out of combat.
@@ -139,7 +142,7 @@ public class GameLogic {
         public void generateQuestionAndAnswers() {
         if(getOutOfCombat()) {
             setOutOfCombat(false);
-            System.out.println(getLevel());
+            //System.out.println(getLevel());
             startFight(getLevel());
 
             //Starts the timer upon attacking the monster
