@@ -19,7 +19,6 @@ public class ActionHandler implements ActionListener{
     private GameLogic controller;
 
     public ActionHandler(GameLogic controller) {
-
         this.controller = controller;
     }
 
@@ -52,9 +51,28 @@ public class ActionHandler implements ActionListener{
                 controller.getEv2().attackEnemy();
                 break;
 
+                //Shop options
+            case "lookAtShopKeeper":
+                controller.getEv3().lookAtShopKeeper();
+                break;
+            case "talkToShopKeeper":
+                controller.getEv3().talkToShopKeeper();
+                    break;
+            case "buyFromShopKeeper":
+                controller.getEv3().buyFromShopKeeper();
+                break;
+
+
             //Changes the scene by getting a command from the MainFrame arrow button.
             case "goScene1":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                break;
+
+            case "goBackToTower":
+                controller.getScene().showScene(controller.getLevel()+1);
+                controller.getCounter().setLevel(controller.getLevel());
+                controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
+                controller.getScene().exitShop();
                 break;
                 /*
             case "goScene4":

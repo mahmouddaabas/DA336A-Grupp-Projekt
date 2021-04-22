@@ -12,8 +12,11 @@ import model.vendor.Item;
 public class Player {
     private String name;
     private int gold;
+
     private int playerHealth = 10;
     private boolean outOfCombat = true;
+
+    private int damageTaken;
 
     private Bag bag;
 
@@ -28,6 +31,7 @@ public class Player {
     //Method for the wrong answers applied by user
     public void wrong(int damage) {
         playerHealth -= damage;
+        damageTaken = damage;
     }
 
     //Method that returns the players health
@@ -80,6 +84,30 @@ public class Player {
      */
     public boolean isOutOfCombat() {
         return outOfCombat;
+    }
+
+    /**
+     * Setter for the players health.
+     * @param playerHealth
+     */
+    public void setPlayerHealth(int playerHealth) {
+        this.playerHealth = playerHealth;
+    }
+
+    /**
+     * A getter for the damage taken, it is set when the player takes damage.
+     * @return
+     */
+    public int getDamageTaken() {
+        return damageTaken;
+    }
+
+    /**
+     * A setter for the damage taken variable.
+     * @param damageTaken
+     */
+    public void setDamageTaken(int damageTaken) {
+        this.damageTaken = damageTaken;
     }
 
 }

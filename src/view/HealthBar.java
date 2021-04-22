@@ -20,8 +20,13 @@ public class HealthBar {
     private GameLogic controller;
     private JPanel healthPanel;
     private JLabel[] healthLabel;
+    private ImageIcon healthIcon = new ImageIcon("resources/misc/hearts_35x35.png");
 
     private int damageTaken = 0;
+    /**
+     * Constructs the healthbar class.
+     * @param frame
+     */
 
     public HealthBar(MainFrame frame) {
 
@@ -30,23 +35,31 @@ public class HealthBar {
 
     /**
      * Updates the healthbar by changing the heart icons to null thus removing them when player takes damage.
+     * @param controller
      */
     public void updateHealth(GameLogic controller) {
         this.controller = controller;
         try {
-            //Handles the boss damage by removing an additional element in the array.
-            if(damageTaken == 2 ) {
-                healthLabel[controller.getPlayer().getPlayerHealth()+1].setIcon(null);
-                //Resets the damageTaken variable after removing health.
-                damageTaken = 0;
+            for(int i = 0; i <= controller.getPlayer().getDamageTaken(); i++) {
+                //Removes all hearts on the right side.
+                healthLabel[controller.getPlayer().getPlayerHealth()+i].setIcon(null);
             }
-
-            healthLabel[controller.getPlayer().getPlayerHealth()].setIcon(null);
             healthPanel.repaint();
+            controller.getPlayer().setDamageTaken(0);
         }
         catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("You are most likely dead.");
+            System.out.println("You are most likely dead. If not contact the devs.");
         }
+    }
+
+    /**
+     * Increases the healthbar by adding heartIcons.
+     * @param controller
+     */
+    public void increaseHealth(GameLogic controller) {
+        this.controller = controller;
+        healthLabel[controller.getPlayer().getPlayerHealth()-1].setIcon(healthIcon);
+        healthPanel.repaint();
     }
 
     /**
@@ -61,7 +74,6 @@ public class HealthBar {
         healthPanel.setLayout(new GridLayout(1, 5));
         frame.add(healthPanel);
 
-        ImageIcon healthIcon = new ImageIcon("resources/misc/hearts_35x35.png");
         Image image = healthIcon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
         healthIcon = new ImageIcon(image);
 

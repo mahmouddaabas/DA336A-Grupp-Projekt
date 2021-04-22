@@ -70,6 +70,38 @@ public class SceneChanger {
         }
     }
 
+    /**
+     * This method is called when the shop is visited.
+     * Hides certain things.
+     */
+    public void visitShop() {
+        //Hide things when the shop is visited.
+        controller.getWindow().getSceneCreator().getBtnArrow().setVisible(true);
+        controller.getTimer().stopTimer();
+        controller.getPlayer().setOutOfCombat(true);
+        controller.getWindow().getAnswerPanel().setVisible(false);
+        controller.getWindow().getTimerLabel().setVisible(false);
+        controller.getWindow().getLevelLabel().setVisible(false);
+
+        for (int i = 0; i <= 12; i++) {
+            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+
+        controller.getWindow().getSceneCreator().getBackgroundPanel(22).setVisible(true);
+        controller.getCounter().setCurrentScene(22);
+        controller.getCounter().setLevel(controller.getCounter().getLevel());
+    }
+
+    /**
+     * This method is called when the shop is exited.
+     * Returns certain things to visible.
+     */
+    public void exitShop() {
+        controller.getWindow().getLevelLabel().setVisible(true);
+        controller.getWindow().getShopPanel().setVisible(false);
+        controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
+    }
+
 
     /**
      * Method used for testing scenes and levels
@@ -82,10 +114,10 @@ public class SceneChanger {
             controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
 
-        controller.getWindow().getSceneCreator().getBackgroundPanel(10).setVisible(true);
-        controller.getWindow().getMathQuestions().setText("TEST");
-        controller.getCounter().setCurrentScene(10);
-        controller.getCounter().setLevel(5);
+        controller.getWindow().getSceneCreator().getBackgroundPanel(21).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("SHOP KEEPER");
+        controller.getCounter().setCurrentScene(21);
+        controller.getCounter().setLevel(20);
     }
 
     /**

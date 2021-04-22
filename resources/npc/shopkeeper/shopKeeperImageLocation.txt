@@ -1,0 +1,1 @@
+resources/npc/shopkeeper/Oleg.png
