@@ -118,17 +118,23 @@ public class GameLogic {
                     healthBar.setDamageTaken(2);
                     player.wrong(2);
                     checkPlayerHealth();
-                    healthBar.updateHealth(this);
-                    setOutOfCombat(true);
-                    generateQuestionAndAnswers();
+
+                    if (!player.isDead()) {
+                        healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                    }
                 }
                 else {
                     window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
-                    healthBar.updateHealth(this);
-                    setOutOfCombat(true);
-                    //generateQuestionAndAnswers();
+
+                    if (!player.isDead()) {
+                        healthBar.updateHealth(this);
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                    }
                 }
             }
         }
@@ -169,7 +175,7 @@ public class GameLogic {
      * Checks if the player is dead, if they are shows the game over screen.
      */
     public void checkPlayerHealth() {
-        if (player.getPlayerHealth() <= 0) {
+        if (player.isDead()) {
             scene.showGameOverScreen();
         }
     }
