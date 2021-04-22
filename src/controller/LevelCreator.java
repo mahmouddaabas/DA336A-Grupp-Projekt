@@ -27,6 +27,8 @@ public class LevelCreator {
         levels = new LinkedList<>();
         create1To5();
         create6To10();
+        create11To15();
+        create16To20();
     }
 
     /**
@@ -84,6 +86,52 @@ public class LevelCreator {
         levels.add(level8);
         levels.add(level9);
         levels.add(boss2);
+    }
+
+    private void create11To15() {
+        Level level11 = new Level(11, new AdditionManyNumbers(4, 26, 0, 3),
+                new RegularMonster(false, RegularMonsterType.SnakeMan, 18, "*SnakeMan look*", "*SnakeMan talk*"), 24);
+
+        Level level12 = new Level(12, new Multiplication2Numbers(7.0, 13.0, 1, 6.0, 12.0, 1 ),
+                new RegularMonster(false, RegularMonsterType.WorkSmithDwarf, 20, "*Buff Dwarf looks at you*", "*Worksmith dwarf talk*" ), 25);
+
+        Level level13 = new Level(13, new Subtraction2Numbers(10, 29, 0, 9, 29, 0, false),
+                new RegularMonster(false, RegularMonsterType.SkeletonMage, 20, "*Skeleton Mage looks at you*", "Skeleton Mage talk*"), 25);
+
+        Level level14 = new Level(14, new Multiplication2Numbers(9.0, 15.0, 1, 7.0, 15.0, 1),
+                new RegularMonster(false, RegularMonsterType.BuddhaGuardian, 25, "*BuddhaGuardian looks at you*", "BuddhaGuardian talk*"), 28);
+
+        Level boss3 = new Level(15, new DivisionDecimal2Numbers(20, 360, 2, 10, 20, 2, 2),
+                new Boss(true, BossType.MageWarlord, 30, "*Boss3 look", "Boss3 talk*"), 30);
+
+        levels.add(level11);
+        levels.add(level12);
+        levels.add(level13);
+        levels.add(level14);
+        levels.add(boss3);
+    }
+
+    private void create16To20() {
+        Level level16 = new Level(16, new AdditionManyNumbers(4, 26,0, 3),
+                new RegularMonster(false, RegularMonsterType.Ghost, 20, "*Ghost looks at you", "*Ghost talk"), 25);
+
+        Level level17 = new Level(17, new AdditionManyNumbers(4, 26,0, 3),
+                new RegularMonster(false, RegularMonsterType.RedGuardian, 20, "*RedGuardian looks at you", "*RedGuardian talk"), 25);
+
+        Level level18 = new Level(18, new AdditionManyNumbers(4, 26,0, 3),
+                new RegularMonster(false, RegularMonsterType.SpearMaster, 20, "*Spear Master looks at you", "*Spear Master talk"), 25);
+
+        Level level19 = new Level(19, new AdditionManyNumbers(4, 26,0, 3),
+                new RegularMonster(false, RegularMonsterType.MiniBoss, 20, "*MiniBoss looks at you", "*MiniBoss talk"), 25);
+
+        Level boss4 = new Level(20, new AdditionManyNumbers(4, 26,0, 3),
+                new Boss(true, BossType.FinalBoss, 20, "*Keanu looks at you", "*keanu talk"), 25);
+
+        levels.add(level16);
+        levels.add(level17);
+        levels.add(level18);
+        levels.add(level19);
+        levels.add(boss4);
     }
 
     /**

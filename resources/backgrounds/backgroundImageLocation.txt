@@ -10,3 +10,13 @@ resources/backgrounds/Lvl7BG.png
 resources/backgrounds/Lvl8BG.png
 resources/backgrounds/Lvl9BG.png
 resources/backgrounds/Lvl10BG.png
+resources/backgrounds/Lvl11BG.png
+resources/backgrounds/Lvl12BG.png
+resources/backgrounds/Lvl13BG.png
+resources/backgrounds/Lvl14BG.png
+resources/backgrounds/Lvl15BG.png
+resources/backgrounds/Lvl16BG.png
+resources/backgrounds/Lvl17BG.png
+resources/backgrounds/Lvl18BG.png
+resources/backgrounds/Lvl19BG.png
+resources/backgrounds/Lvl20BG.png

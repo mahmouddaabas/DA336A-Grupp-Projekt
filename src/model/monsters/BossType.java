@@ -7,6 +7,6 @@ package model.monsters;
 public enum BossType {
     Orc,
     Paladin,
-    Dragon_Rider,
-    FINALBOSS
+    MageWarlord,
+    FinalBoss
 }
