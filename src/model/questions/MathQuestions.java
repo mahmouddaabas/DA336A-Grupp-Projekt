@@ -168,6 +168,88 @@ public abstract class MathQuestions {
     }
 
     /**
+     * Converts the numbers into characters representing superscript numbers.
+     * @param number the numbers to make superscript.
+     * @return the strings of numbers made to superscript.
+     */
+    protected String toSuperscriptNumbers(int number) {
+        String numberStr = Integer.toString(number);
+        numberStr = numberStr.replaceAll("0", "⁰");
+        numberStr = numberStr.replaceAll("1", "¹");
+        numberStr = numberStr.replaceAll("2", "²");
+        numberStr = numberStr.replaceAll("3", "³");
+        numberStr = numberStr.replaceAll("4", "⁴");
+        numberStr = numberStr.replaceAll("5", "⁵");
+        numberStr = numberStr.replaceAll("6", "⁶");
+        numberStr = numberStr.replaceAll("7", "⁷");
+        numberStr = numberStr.replaceAll("8", "⁸");
+        numberStr = numberStr.replaceAll("9", "⁹");
+
+        return numberStr;
+    }
+
+    /**
+     * Converts the numbers into characters representing subscript numbers.
+     * @param number the numbers to make subscript.
+     * @return the strings of numbers made to subscript.
+     */
+    protected String toSubscriptNumbers(int number) {
+        String numberStr = Integer.toString(number);
+        numberStr = numberStr.replaceAll("0", "₀");
+        numberStr = numberStr.replaceAll("1", "₁");
+        numberStr = numberStr.replaceAll("2", "₂");
+        numberStr = numberStr.replaceAll("3", "₃");
+        numberStr = numberStr.replaceAll("4", "₄");
+        numberStr = numberStr.replaceAll("5", "₅");
+        numberStr = numberStr.replaceAll("6", "₆");
+        numberStr = numberStr.replaceAll("7", "₇");
+        numberStr = numberStr.replaceAll("8", "₈");
+        numberStr = numberStr.replaceAll("9", "₉");
+
+        return numberStr;
+    }
+
+    /**
+     * Writes the given terms of the polynomial as a string. The terms are represented by a 2D array with the 1st
+     * dimension being the number of terms and the 2nd being 0 for the coefficient and 1 for the exponent.
+     * @param terms the terms of the polynomial.
+     * @return The polynomial as a string.
+     */
+    protected String writePolynomial(int[][] terms) {
+        StringBuilder polynomial = new StringBuilder();
+        polynomial.append(terms[0][0]).append("x").append(toSuperscriptNumbers(terms[0][1]));
+        for (int i = 1; i < terms.length; i++) {
+            if (terms[i][0] >= 0) {
+                polynomial.append(" + ").append(terms[i][0]);
+            } else {
+                polynomial.append(" - ").append(terms[i][0] * -1);
+            }
+            polynomial.append("x").append(toSuperscriptNumbers(terms[i][1]));
+        }
+        return polynomial.toString();
+    }
+
+    /**
+     * Sorts the terms of a polynomial in order of their exponents. The terms are represented by a 2D array with the
+     * 1st dimension being the number of terms and the 2nd being 0 for the coefficient and 1 for the exponent.
+     * @param terms the terms of the polynomial.
+     * @return the sorted terms from greatest to lowest.
+     */
+    protected int[][] sortTerms(int[][] terms) {
+        int[] temp;
+        for (int i = 0; i < terms.length - 1; i++) {
+            for (int j = i + 1; j < terms.length; j++) {
+                if (terms[i][1] < terms[j][1]) {
+                    temp = terms[i];
+                    terms[i] = terms[j];
+                    terms[j] = temp;
+                }
+            }
+        }
+        return terms;
+    }
+
+    /**
      * Creates an array with all elements set to the minimum integer value as a value that will not be used.
      * @return the answer array.
      */
@@ -186,6 +268,21 @@ public abstract class MathQuestions {
         int[][] answers = new int[4][numOfNumbers];
         for (int[] subArray : answers) {
             Arrays.fill(subArray, Integer.MIN_VALUE);
+        }
+        return answers;
+    }
+
+    /**
+     * Creates a three-dimensional array with all elements set to the minimum integer value as a value that will not be
+     * used.
+     * @return the answer array.
+     */
+    protected int[][][] createIntAnswerArray(int numOfNumbers, int numOfParts) {
+        int[][][] answers = new int[4][numOfNumbers][numOfParts];
+        for (int[][] subArray : answers) {
+            for (int[] subsubArray : subArray) {
+                Arrays.fill(subsubArray, Integer.MIN_VALUE);
+            }
         }
         return answers;
     }
@@ -240,6 +337,20 @@ public abstract class MathQuestions {
             answerStr[1] = "B. (" + answers[1][0] + "/" + answers[1][1] + ")";
             answerStr[2] = "C. (" + answers[2][0] + "/" + answers[2][1] + ")";
             answerStr[3] = "D. (" + answers[3][0] + "/" + answers[3][1] + ")";
+        }
+    }
+
+    /**
+     * Makes the possible polynomial answers into strings.
+     * @param answers the array with the polynomials.
+     */
+    protected void generateAnswerStringsPolynomial(int[][][] answers) {
+        if (answers != null) {
+            answerStr = new String[4];
+            answerStr[0] = "A. " + writePolynomial(answers[0]);
+            answerStr[1] = "B. " + writePolynomial(answers[1]);
+            answerStr[2] = "C. " + writePolynomial(answers[2]);
+            answerStr[3] = "D. " + writePolynomial(answers[3]);
         }
     }
 
