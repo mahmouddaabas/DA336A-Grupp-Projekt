@@ -68,21 +68,13 @@ public class ActionHandler implements ActionListener{
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
 
+                //This is activated when the arrow in the shop is pressed.
             case "goBackToTower":
                 controller.getScene().showScene(controller.getLevel()+1);
                 controller.getCounter().setLevel(controller.getLevel());
                 controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
                 controller.getScene().exitShop();
                 break;
-                /*
-            case "goScene4":
-                controller.getScene().showScene3();
-                break;
-            case "goScene6":
-                controller.getScene().showScene5();
-                break;
-
-                 */
 
             //Others
             //Shows the first scene again if player hits the restart button after losing.

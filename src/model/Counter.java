@@ -18,7 +18,6 @@ public class Counter extends Thread {
     private int delay = 1000;
     private int level;
     private int currentScene;
-    private Thread counter = null;
     /**
      * Constructor that initializes the controller.
      * @param controller
@@ -31,9 +30,8 @@ public class Counter extends Thread {
      * This method is used to start the thread by setting the run boolean to true.
      */
     public void startCounter() {
-        if(!run && counter == null) {
+        if(run == false) {
             run = true;
-            counter = new Thread(this);
             start();
         }
     }
@@ -42,9 +40,8 @@ public class Counter extends Thread {
      * This method is used to stop the thread if needed by setting the run boolean to false.
      */
     public void stopCounter(){
-        if(run && counter != null) {
+        if(run == true) {
             run = false;
-            counter = null;
         }
     }
 
