@@ -7,6 +7,9 @@ import model.questions.*;
 import view.*;
 import view.events.Event01;
 import view.events.Event02;
+import view.events.Event03;
+
+import javax.swing.*;
 
 /**
  * @author Mattias Bengtsson
@@ -33,14 +36,20 @@ public class GameLogic {
     private GameOverScreen gameOver;
     private Counter counter;
 
+    private ShopItems shopItems;
+
     //Events in the game.
     private Event01 ev1 = new Event01(this);
     private Event02 ev2 = new Event02(this);
+    private Event03 ev3 = new Event03(this);
 
     /**
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
+        //Creates a counter object.
+        counter = new Counter(this);
+
         player = new Player(10,"Player 1");
 
         ui = new UI();
@@ -49,8 +58,7 @@ public class GameLogic {
 
         timer = new Timer(this);
 
-        //Counter class
-        counter = new Counter(this);
+        //Starts the counter thread.
         counter.startCounter();
 
         //Health Bar
@@ -59,6 +67,9 @@ public class GameLogic {
         //Game over screen.
         gameOver = new GameOverScreen(this);
 
+        //The shop items.
+        shopItems = new ShopItems(this);
+
         counter.setLevel(1);
         counter.setCurrentScene(0);
 
@@ -66,12 +77,7 @@ public class GameLogic {
 
         //Displays the first scene.
         scene.showScene(counter.getCurrentScene());
-
         //scene.showSceneX(); //Used to test scenes
-
-        //startQuiz();
-        //mathQuestion = randomQuestion();
-        //mathQuestion.generateNewQuestion();
     }
 
     /**
@@ -104,6 +110,17 @@ public class GameLogic {
                 //window.getMathQuestions().setText("Answer is correct!");
 
                 timer.stopTimer();
+
+                //Temporary solution to show the shop, will be changed later.
+                //Lvl 20 is final lvl?? If so remove the last statement.
+                if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                counter.getLevel() == 15 || counter.getLevel() ==  20) {
+                    int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
+                            "Shop?", JOptionPane.YES_NO_OPTION);
+                    if(reply == JOptionPane.YES_OPTION) {
+                        scene.visitShop();
+                    }
+                }
 
                 scene.showScene(counter.getCurrentScene());
 
@@ -148,7 +165,6 @@ public class GameLogic {
         public void generateQuestionAndAnswers() {
         if(getOutOfCombat()) {
             setOutOfCombat(false);
-            //System.out.println(getLevel());
             startFight(getLevel());
 
             //Starts the timer upon attacking the monster
@@ -157,11 +173,9 @@ public class GameLogic {
             //Gets the random math questions.
             getWindow().getMathQuestions().setText(getMathQuestion().getQuestion());
 
-            //Sets the answers on the buttons.
-            getWindow().getAnswerButton1().setText(getMathQuestion().getAnswerStr()[0]);
-            getWindow().getAnswerButton2().setText(getMathQuestion().getAnswerStr()[1]);
-            getWindow().getAnswerButton3().setText(getMathQuestion().getAnswerStr()[2]);
-            getWindow().getAnswerButton4().setText(getMathQuestion().getAnswerStr()[3]);
+            for(int i = 0; i < 4; i++) {
+                window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
+            }
 
             getWindow().getAnswerPanel().setVisible(true);
 
@@ -392,6 +406,22 @@ public class GameLogic {
      */
     public Timer getTimer(){
         return timer;
+    }
+
+    /**
+     * Returns an object of Event03.
+     * @return ev3
+     */
+    public Event03 getEv3() {
+        return ev3;
+    }
+
+    /***
+     * Returns an object of the shopItems.
+     * @return shopItems
+     */
+    public ShopItems getShopItems() {
+        return shopItems;
     }
 
 

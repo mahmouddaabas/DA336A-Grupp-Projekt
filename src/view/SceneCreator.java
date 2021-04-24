@@ -22,11 +22,13 @@ public class SceneCreator {
     private LinkedList<JPanel> bgPanels;
     private LinkedList<JLabel> bgImages;
     private LinkedList<JLabel> monsters;
+    private LinkedList<JLabel> shop;
     private LinkedList<JLabel> doors;
 
     private MainFrame mainFrame;
     private ActionHandler actionHandler;
     private GameLogic controller;
+    private JButton btnArrow;
 
     /**
      * Constructor
@@ -42,6 +44,7 @@ public class SceneCreator {
         bgPanels = new LinkedList<>();
         bgImages = new LinkedList<>();
         monsters = new LinkedList<>();
+        shop = new LinkedList<>();
         doors = new LinkedList<>();
     }
 
@@ -52,6 +55,7 @@ public class SceneCreator {
         createBackgrounds();
         createDoorObjects();
         createMonsterObjects();
+        createShopKeeper();
     }
 
     /**
@@ -68,7 +72,7 @@ public class SceneCreator {
     public JButton arrowButton(int x, int y, int width, int height, String arrowFile, String cmd) {
         ImageIcon arrowIcon = new ImageIcon(arrowFile);
 
-        JButton btnArrow = new JButton();
+        btnArrow = new JButton();
         btnArrow.setBounds(x, y, width, height);
         btnArrow.setBackground(null);
         btnArrow.setContentAreaFilled(false);
@@ -107,6 +111,11 @@ public class SceneCreator {
                 if (sceneNbr == 0) {
                     bgPanels.get(sceneNbr).add(arrowButton(550, 10, 50, 50,
                             "resources/misc/uparrow50x50.png", "goScene1"));
+                }
+
+                if(sceneNbr == 22) {
+                    bgPanels.get(sceneNbr).add(arrowButton(550, 10, 50, 50,
+                            "resources/misc/uparrow50x50.png", "goBackToTower"));
                 }
 
                 mainFrame.add(bgPanels.get(sceneNbr));
@@ -260,7 +269,6 @@ public class SceneCreator {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/monsters/monsterImageLocation.txt")));
             String str = br.readLine();
-
             JPopupMenu popupMenu = createMonsterMenu();
 
             int lvlNbr = 0;
@@ -315,6 +323,124 @@ public class SceneCreator {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method creates the shop keeper (Label).
+     */
+    public void createShopKeeper() {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/npc/shopkeeper/shopKeeperImageLocation.txt")));
+            String str = br.readLine();
+            JPopupMenu popupMenu = createShopMenu();
+
+            int lvlNbr = 0;
+            while (str != null) {
+                JLabel lblShopKeeper = new JLabel();
+
+                ImageIcon shopKeeperIcon = resize(str, 200, 350);
+                lblShopKeeper.setIcon(shopKeeperIcon);
+
+                lblShopKeeper.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (SwingUtilities.isRightMouseButton(e)) {
+                            if (controller.getOutOfCombat()) {
+                                popupMenu.show(lblShopKeeper, e.getX(), e.getY());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
+
+                shop.add(lvlNbr, lblShopKeeper);
+                bgPanels.get(22).add(shop.get(lvlNbr));
+                mainFrame.populateShopPanel();
+                bgPanels.get(22).add(bgImages.get(22));
+
+                lvlNbr++;
+                str = br.readLine();
+            }
+            setShopBounds();
+            br.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets the shopkeepers bounds by reading a txt file.
+     */
+    public void setShopBounds() {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/npc/shopkeeper/shopBounds.txt")));
+            String str = br.readLine();
+
+            while (str != null) {
+                int level = Integer.parseInt(str)-1; //LinkedList starts at 0
+                str = br.readLine();
+                int x = Integer.parseInt(str);
+                str = br.readLine();
+                int y = Integer.parseInt(str);
+                str = br.readLine();
+                int width = Integer.parseInt(str);
+                str = br.readLine();
+                int height = Integer.parseInt(str);
+                str = br.readLine();
+
+                shop.get(level).setBounds(x, y, width, height);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a popup menu for the shop keeper and returns it for use
+     * @return the popup menu
+     */
+    public JPopupMenu createShopMenu() {
+        JPopupMenu shopMenu = new JPopupMenu();
+
+        JMenuItem[] menuItems = new JMenuItem[3];
+        menuItems[0] = new JMenuItem("Look");
+        menuItems[0].addActionListener(actionHandler);
+        menuItems[0].setActionCommand("lookAtShopKeeper");
+
+        menuItems[1] = new JMenuItem("Talk");
+        menuItems[1].addActionListener(actionHandler);
+        menuItems[1].setActionCommand("talkToShopKeeper");
+
+        menuItems[2] = new JMenuItem("Buy");
+        menuItems[2].addActionListener(actionHandler);
+        menuItems[2].setActionCommand("buyFromShopKeeper");
+
+        for (JMenuItem mi : menuItems) {
+            shopMenu.add(mi);
+        }
+
+        return shopMenu;
     }
 
     /**
@@ -391,5 +517,13 @@ public class SceneCreator {
      */
     public JPanel getBackgroundPanel(int sceneNbr) {
         return bgPanels.get(sceneNbr);
+    }
+
+    /**
+     * Returns the arrow button for use outside of the class.
+     * @return
+     */
+    public JButton getBtnArrow() {
+        return btnArrow;
     }
 }

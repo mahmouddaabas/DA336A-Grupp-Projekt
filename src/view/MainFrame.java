@@ -3,6 +3,7 @@ package view;
 import controller.GameLogic;
 import view.Handlers.ActionHandler;
 import view.Handlers.HandleAnswers;
+import view.Handlers.HandleShopKeeper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +20,11 @@ public class MainFrame extends JFrame {
     private JTextArea mathQuestions;
     private JPanel backgroundPanel[] = new JPanel[10];
     private JLabel backgroundLabel[] = new JLabel[10];
+
+    //Handlers
     private ActionHandler action;
     private HandleAnswers answers;
+    private HandleShopKeeper shop;
 
     //Game is over.
     private GameOverScreen gameOver;
@@ -28,10 +32,11 @@ public class MainFrame extends JFrame {
 
     //Panel with buttons to answer.
     private JPanel answerPanel;
-    private JButton answerButton1;
-    private JButton answerButton2;
-    private JButton answerButton3;
-    private JButton answerButton4;
+    private JButton answerButton[];
+
+    //Panel with buttons to interact with shop.
+    private JPanel shopPanel;
+    private JButton shopButtons[];
 
     // Level label
     private  JLabel levelLabel;
@@ -46,6 +51,9 @@ public class MainFrame extends JFrame {
         this.controller = controller;
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
+        shop = new HandleShopKeeper(controller);
+
+        //Create timer and level labels.
         createLevelLabel();
         createTimerLabel();
 
@@ -76,41 +84,48 @@ public class MainFrame extends JFrame {
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
 
-        //Values on buttons set from Events.
-        answerButton1 = new JButton();
-        answerButton1.addActionListener(answers);
-        answerButton1.setActionCommand("firstButton");
-
-        answerButton2 = new JButton();
-        answerButton2.addActionListener(answers);
-        answerButton2.setActionCommand("secondButton");
-
-        answerButton3 = new JButton();
-        answerButton3.addActionListener(answers);
-        answerButton3.setActionCommand("thirdButton");
-
-        answerButton4 = new JButton();
-        answerButton4.addActionListener(answers);
-        answerButton4.setActionCommand("fourthButton");
-
-        answerPanel.add(answerButton1);
-        answerPanel.add(answerButton2);
-        answerPanel.add(answerButton3);
-        answerPanel.add(answerButton4);
-
-        //May use in the future, might be hard to set answer text on the buttons if they are created with a loop.
-        /*//Creates the buttons.
+        String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
+        //Initialize the array.
+        answerButton = new JButton[4];
         for(int i = 0; i < 4; i++) {
-
-            answerButton = new JButton();
+            //Initialize the buttons.
+            answerButton[i] = new JButton();
+            String s = commandsForButtons[i];
+            answerButton[i].addActionListener(answers);
+            answerButton[i].setActionCommand(s);
             //Adds the buttons to the panel.
-            answerPanel.add(answerButton);
-        }*/
+            answerPanel.add(answerButton[i]);
+        }
 
         //Adds answerPanel to the background.
         answerPanel.setVisible(false);
         add(answerPanel);
+    }
 
+    public void populateShopPanel() {
+
+        shopPanel = new JPanel();
+        shopPanel.setBounds(580, 670, 270, 100);
+        shopPanel.setBackground(Color.BLUE);
+        shopPanel.setLayout(new GridLayout(2, 2));
+        shopPanel.setOpaque(false);
+
+        String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
+        //Initialize the array.
+        shopButtons = new JButton[4];
+        for(int i = 0; i < 4; i++) {
+            //Initialize the buttons.
+            shopButtons[i] = new JButton();
+            String s = commandsForButtons[i];
+            shopButtons[i].addActionListener(shop);
+            shopButtons[i].setActionCommand(s);
+            //Adds the buttons to the panel.
+            shopPanel.add(shopButtons[i]);
+        }
+
+        //Adds answerPanel to the background.
+        shopPanel.setVisible(false);
+        add(shopPanel);
     }
 
     /**
@@ -127,7 +142,7 @@ public class MainFrame extends JFrame {
         setTitle("Climb the Tower");
         //Starts the window in the middle of the screen.
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
 
         mathQuestions = new JTextArea();
         mathQuestions.setBounds(100, 550, 900, 250);
@@ -177,22 +192,6 @@ public class MainFrame extends JFrame {
         return answerPanel;
     }
 
-    public JButton getAnswerButton1() {
-        return answerButton1;
-    }
-
-    public JButton getAnswerButton2() {
-        return answerButton2;
-    }
-
-    public JButton getAnswerButton3() {
-        return answerButton3;
-    }
-
-    public JButton getAnswerButton4() {
-        return answerButton4;
-    }
-
     public JTextArea getMathQuestions() {
         return mathQuestions;
     }
@@ -207,5 +206,17 @@ public class MainFrame extends JFrame {
 
     public JLabel getTimerLabel(){
         return timerLabel;
+    }
+
+    public JButton[] getAnswerButton() {
+        return answerButton;
+    }
+
+    public JButton[] getShopButtons() {
+        return shopButtons;
+    }
+
+    public JPanel getShopPanel() {
+        return shopPanel;
     }
 }

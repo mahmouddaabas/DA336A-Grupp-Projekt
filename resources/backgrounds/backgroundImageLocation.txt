@@ -20,3 +20,4 @@ resources/backgrounds/Lvl17BG.png
 resources/backgrounds/Lvl18BG.png
 resources/backgrounds/Lvl19BG.png
 resources/backgrounds/Lvl20BG.png
+resources/backgrounds/Lvl21ShopBG.jpg

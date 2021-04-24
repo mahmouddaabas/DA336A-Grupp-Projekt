@@ -1,4 +1,4 @@
-I doorBounds.txt och monsterBounds.txt står det på följande sätt:
+I doorBounds.txt, monsterBounds.txt och shopBounds.txt står det på följande sätt:
 
 1
 550
@@ -8,7 +8,7 @@ I doorBounds.txt och monsterBounds.txt står det på följande sätt:
 
 Detta betyder följande:
 
-scennummer (doorBounds) eller nivå (monsterBounds)
+scennummer (doorBounds) eller nivå (monsterBounds, shopBounds)
 X värde 
 Y värde
 Width
