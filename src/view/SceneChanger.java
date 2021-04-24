@@ -124,7 +124,6 @@ public class SceneChanger {
      * Shows the game over screen
      */
     public void showGameOverScreen() {
-        //controller.getWindow().getBackgroundPanel()[controller.getCurrentScene()].setVisible(false);
         controller.getWindow().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
         controller.getGameOver().getTitleLabel().setText("YOU DIED!");
@@ -139,7 +138,6 @@ public class SceneChanger {
         controller.getWindow().getTimerLabel().setVisible(false);
 
         //Stops the timer and kills the counter thread
-        //System.out.println(controller.getLevel());
         controller.killCounter();
         controller.getTimer().stopTimer();
     }
