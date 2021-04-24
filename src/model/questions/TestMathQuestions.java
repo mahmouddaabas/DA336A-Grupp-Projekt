@@ -34,8 +34,10 @@ public class TestMathQuestions {
 //        mathQuestion = new AdditionManyNumbers(1, 9, 2, 3);
 //        mathQuestion = new DivisionFraction2Numbers(10, 100, 2, 10);
 //        mathQuestion = new DivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
-//        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 2);
-        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
+//        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 3);
+//        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
+//        mathQuestion = new DerivationPolynomial(-9, 9, -9, 9, 1);
+        mathQuestion = new IntegrationPolynomial(-9, 9, -9, 9, 3);
 
         while (true) {
             mathQuestion.generateNewQuestion();

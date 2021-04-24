@@ -11,7 +11,7 @@ public class AdditionManyFractions extends MathQuestions {
     private int numeratorUpperBound;
     private int denominatorLowerBound;
     private int denominatorUpperBound;
-    private int[][] numbers;
+    private int[][] fractions;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the amount of numbers. All numbers share
@@ -20,15 +20,15 @@ public class AdditionManyFractions extends MathQuestions {
      * @param numeratorUpperBound the highest value the numerators can have.
      * @param denominatorLowerBound the lowest value the denominators can have.
      * @param denominatorUpperBound the highest value the denominator can have.
-     * @param numOfNumbers the amount of numbers to add.
+     * @param numOfFractions the amount of fractions to add. 2 or greater.
      */
     public AdditionManyFractions(int numeratorLowerBound, int numeratorUpperBound,
-                                 int denominatorLowerBound, int denominatorUpperBound, int numOfNumbers) {
+                                 int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
         this.denominatorUpperBound = denominatorUpperBound;
-        numbers = new int[numOfNumbers][2];
+        fractions = new int[numOfFractions][2];
     }
 
     /**
@@ -36,14 +36,13 @@ public class AdditionManyFractions extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        StringBuilder question = new StringBuilder("What is (" + numbers[0][0] + "/" + numbers[0][1] + ")");
+        StringBuilder question = new StringBuilder("What is (" + fractions[0][0] + "/" + fractions[0][1] + ")");
 
-        for (int i = 1; i < (numbers.length - 1); i++) {
-            question.append(" + (").append(numbers[i][0]).append("/").append(numbers[i][1]).append(")");
+        for (int i = 1; i < (fractions.length); i++) {
+            question.append(" + (").append(fractions[i][0]).append("/").append(fractions[i][1]).append(")");
         }
 
-        question.append(" + (").append(numbers[numbers.length-1][0]).append("/").append(numbers[numbers.length-1][1])
-                .append(")").append("?");
+        question.append("?");
 
         return question.toString();
     }
@@ -53,20 +52,21 @@ public class AdditionManyFractions extends MathQuestions {
      */
     public void generateNewQuestion() {
         newCorrectAnswerIndex();
-        numbers = generateNumbers();
+        fractions = generateFractions();
         generateAnswers();
         generateAnswerStringsFractions(answers);
     }
 
     /**
-     * Generates random numbers from the given bounds. The denominators cannot be 0. Also used to generate the fake
-     * answers for more believable answers.
+     * Generates random fractions from the given bounds. The denominators cannot be 0. Also used to generate the
+     * fractions for the fake answers for more believable answers.
      */
-    private int[][] generateNumbers() {
-        int[][] numberArray = new int[numbers.length][2];
+    private int[][] generateFractions() {
+        int[][] numberArray = new int[fractions.length][2];
         for (int i = 0; i < numberArray.length; i++) {
             numberArray[i][0] = randomInt(numeratorLowerBound, numeratorUpperBound);
             numberArray[i][1] = randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
+            simplifyFraction(numberArray[i]);
         }
         return numberArray;
     }
@@ -76,7 +76,7 @@ public class AdditionManyFractions extends MathQuestions {
      */
     private void generateAnswers() {
         answers = createIntAnswerArray(2);
-        answers[getCorrectAnswerIndex()] = newAnswer(numbers);
+        answers[getCorrectAnswerIndex()] = newAnswer(fractions);
 
         for (int i = 0; i < answers.length; i++) {
             if (answers[i][0] == Integer.MIN_VALUE) {
@@ -119,7 +119,7 @@ public class AdditionManyFractions extends MathQuestions {
         int[] fakeAnswer;
         int[][] fakeNumbers;
         while (true) {
-            fakeNumbers = generateNumbers();
+            fakeNumbers = generateFractions();
             fakeAnswer = newAnswer(fakeNumbers);
             if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
                     !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1]) &&
