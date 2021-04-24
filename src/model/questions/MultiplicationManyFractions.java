@@ -20,7 +20,7 @@ public class MultiplicationManyFractions extends MathQuestions {
      * @param numeratorUpperBound the highest value the numerators can have.
      * @param denominatorLowerBound the lowest value the denominators can have.
      * @param denominatorUpperBound the highest value the denominator can have.
-     * @param numOfFractions the amount of fractions to add.
+     * @param numOfFractions the amount of fractions to multiply. 2 or greater.
      */
     public MultiplicationManyFractions(int numeratorLowerBound, int numeratorUpperBound,
                                  int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {

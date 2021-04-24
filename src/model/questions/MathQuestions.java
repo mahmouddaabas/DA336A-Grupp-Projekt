@@ -184,6 +184,7 @@ public abstract class MathQuestions {
         numberStr = numberStr.replaceAll("7", "⁷");
         numberStr = numberStr.replaceAll("8", "⁸");
         numberStr = numberStr.replaceAll("9", "⁹");
+        numberStr = numberStr.replaceAll("-", "⁻");
 
         return numberStr;
     }
@@ -205,6 +206,7 @@ public abstract class MathQuestions {
         numberStr = numberStr.replaceAll("7", "₇");
         numberStr = numberStr.replaceAll("8", "₈");
         numberStr = numberStr.replaceAll("9", "₉");
+        numberStr = numberStr.replaceAll("-", "₋");
 
         return numberStr;
     }
@@ -217,16 +219,43 @@ public abstract class MathQuestions {
      */
     protected String writePolynomial(int[][] terms) {
         StringBuilder polynomial = new StringBuilder();
-        polynomial.append(terms[0][0]).append("x").append(toSuperscriptNumbers(terms[0][1]));
+        polynomial.append(writePolynomialTerm(terms[0][0], terms[0][1]));
         for (int i = 1; i < terms.length; i++) {
             if (terms[i][0] >= 0) {
-                polynomial.append(" + ").append(terms[i][0]);
+                polynomial.append(" + ").append(writePolynomialTerm(terms[i][0], terms[i][1]));
             } else {
-                polynomial.append(" - ").append(terms[i][0] * -1);
+                polynomial.append(" - ").append(writePolynomialTerm(-1 * terms[i][0], terms[i][1]));
             }
-            polynomial.append("x").append(toSuperscriptNumbers(terms[i][1]));
         }
         return polynomial.toString();
+    }
+
+    /**
+     * Writes a polynomial term as a string in the form of axⁿ with a being the coefficient and n being the exponent.
+     * @param coefficient the coefficient of the term.
+     * @param exponent the exponent of the term.
+     * @return the polynomial term as a string.
+     */
+    private String writePolynomialTerm(int coefficient, int exponent) {
+        StringBuilder termStr = new StringBuilder();
+        if (coefficient != 0) {
+            termStr.append(coefficient);
+            if (exponent > 0) {
+                termStr.append("x");
+                if (exponent != 1) {
+                    termStr.append(toSuperscriptNumbers(exponent));
+                }
+            } else if (exponent < 0) {
+                termStr.append("/x");
+                if (exponent != -1) {
+                    termStr.append(toSuperscriptNumbers(-1 * exponent));
+                }
+            }
+        } else {
+            termStr.append("0");
+        }
+
+        return termStr.toString();
     }
 
     /**
@@ -337,20 +366,6 @@ public abstract class MathQuestions {
             answerStr[1] = "B. (" + answers[1][0] + "/" + answers[1][1] + ")";
             answerStr[2] = "C. (" + answers[2][0] + "/" + answers[2][1] + ")";
             answerStr[3] = "D. (" + answers[3][0] + "/" + answers[3][1] + ")";
-        }
-    }
-
-    /**
-     * Makes the possible polynomial answers into strings.
-     * @param answers the array with the polynomials.
-     */
-    protected void generateAnswerStringsPolynomial(int[][][] answers) {
-        if (answers != null) {
-            answerStr = new String[4];
-            answerStr[0] = "A. " + writePolynomial(answers[0]);
-            answerStr[1] = "B. " + writePolynomial(answers[1]);
-            answerStr[2] = "C. " + writePolynomial(answers[2]);
-            answerStr[3] = "D. " + writePolynomial(answers[3]);
         }
     }
 

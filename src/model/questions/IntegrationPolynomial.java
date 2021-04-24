@@ -3,12 +3,12 @@ package model.questions;
 import java.util.Arrays;
 
 /**
- * Creates a math question that derives a chosen number of terms in a polynomial. All the coefficients have the same
+ * Creates a math question that integrates a chosen number of terms in a polynomial. All the coefficients have the same
  * bounds and so do the exponents. Need to call generateNewQuestion() to get a question to generate the numbers and
- * answers.
+ * answers. Unlike the other classes, this one generates the answer first and then the question.
  * @author Mattias Bengtsson
  */
-public class DerivationPolynomial extends MathQuestions {
+public class IntegrationPolynomial extends MathQuestions {
     private int[][][] answers;
     private int coefficientLowerBound;
     private int coefficientUpperBound;
@@ -19,13 +19,13 @@ public class DerivationPolynomial extends MathQuestions {
     /**
      * Constructor that initializes the instance variables for the bounds and the amount of terms. All coefficients
      * share the same bounds and so do all exponents.
-     * @param coefficientLowerBound the lowest value the coefficients of the question can have.
-     * @param coefficientUpperBound the highest value the coefficients of the question can have.
-     * @param exponentLowerBound the lowest value the exponents of the question can have.
-     * @param exponentUpperBound the highest value the exponents of the question can have.
+     * @param coefficientLowerBound the lowest value the coefficients of the answer can have.
+     * @param coefficientUpperBound the highest value the coefficients of the answer can have.
+     * @param exponentLowerBound the lowest value the exponents of the answer can have.
+     * @param exponentUpperBound the highest value the exponents of the answer can have.
      * @param numOfTerms the number of terms in the polynomial. 1 or greater.
      */
-    public DerivationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
+    public IntegrationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
                                 int exponentLowerBound, int exponentUpperBound, int numOfTerms) {
         this.coefficientLowerBound = coefficientLowerBound;
         this.coefficientUpperBound = coefficientUpperBound;
@@ -39,7 +39,7 @@ public class DerivationPolynomial extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "y = " + writePolynomial(terms) + "\nWhat is (dy/dx)?";
+        return "y = " + writePolynomial(terms) + "\nWhat is ∫y dx?";
     }
 
     /**
@@ -47,32 +47,19 @@ public class DerivationPolynomial extends MathQuestions {
      */
     public void generateNewQuestion() {
         newCorrectAnswerIndex();
-        generateTerms();
         generateAnswers();
+        generateTerms();
         generateAnswerStringsPolynomial(answers);
     }
 
     /**
-     * Generates the random terms for the question from the given bounds. The exponents cannot be equal. The
-     * coefficients cannot be 0.
+     * Generates the terms for the question from the correct answer.
      */
     private void generateTerms() {
-        boolean done;
         for (int i = 0; i < terms.length; i++) {
-            done = false;
-            while (!done) {
-                done = true;
-                terms[i][1] = randomInt(exponentLowerBound, exponentUpperBound);
-                for (int j = 0; j < i; j++) {
-                    if (terms[i][1] == terms[j][1]) {
-                        done = false;
-                        break;
-                    }
-                }
-            }
-            terms[i][0] = randomIntNotZero(coefficientLowerBound, coefficientUpperBound);
+            terms[i][0] = answers[getCorrectAnswerIndex()][i][0] * answers[getCorrectAnswerIndex()][i][1];
+            terms[i][1] = answers[getCorrectAnswerIndex()][i][1] - 1;
         }
-        terms = sortTerms(terms);
     }
 
     /**
@@ -80,10 +67,7 @@ public class DerivationPolynomial extends MathQuestions {
      */
     private void generateAnswers() {
         answers = createIntAnswerArray(terms.length, 2);
-        for (int i = 0; i < answers[0].length; i++) {
-            answers[getCorrectAnswerIndex()][i][0] = terms[i][0] * terms[i][1];
-            answers[getCorrectAnswerIndex()][i][1] = terms[i][1] - 1;
-        }
+        createCorrectAnswer();
 
         for (int i = 0; i < answers.length; i++) {
             if (i != getCorrectAnswerIndex()) {
@@ -93,8 +77,33 @@ public class DerivationPolynomial extends MathQuestions {
     }
 
     /**
+     * Generates the random terms for the correct answer from the given bounds. the exponents cannot be equal or equal
+     * to 0 or -1. The coefficients cannot be 0.
+     */
+    private void createCorrectAnswer() {
+        boolean done;
+        for (int i = 0; i < terms.length; i++) {
+            done = false;
+            while (!done) {
+                done = true;
+                answers[getCorrectAnswerIndex()][i][1] = randomInt(exponentLowerBound, exponentUpperBound);
+                for (int j = 0; j < i; j++) {
+                    if ((answers[getCorrectAnswerIndex()][i][1] == answers[getCorrectAnswerIndex()][j][1])
+                            || (answers[getCorrectAnswerIndex()][i][1] == -1)) {
+                        done = false;
+                        break;
+                    }
+                }
+            }
+            answers[getCorrectAnswerIndex()][i][0] = randomIntNotZero(coefficientLowerBound, coefficientUpperBound);
+        }
+        answers[getCorrectAnswerIndex()] = sortTerms(answers[getCorrectAnswerIndex()]);
+
+    }
+
+    /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
-     * values in the answer array.
+     * values in the answer array. Uses the same method as for the real answer.
      * @return a fake answer.
      */
     private int[][] createFakeAnswer() {
@@ -106,7 +115,7 @@ public class DerivationPolynomial extends MathQuestions {
                 done = false;
                 while (!done) {
                     done = true;
-                    fakeAnswer[i][1] = randomInt(exponentLowerBound - 1, exponentUpperBound - 1);
+                    fakeAnswer[i][1] = randomInt(exponentLowerBound, exponentUpperBound);
                     for (int j = 0; j < i; j++) {
                         if (fakeAnswer[i][1] == fakeAnswer[j][1]) {
                             done = false;
@@ -114,7 +123,7 @@ public class DerivationPolynomial extends MathQuestions {
                         }
                     }
                 }
-                fakeAnswer[i][0] = randomInt(coefficientLowerBound, coefficientUpperBound) * (fakeAnswer[i][1] + 1);
+                fakeAnswer[i][0] = randomInt(coefficientLowerBound, coefficientUpperBound);
             }
             fakeAnswer = sortTerms(fakeAnswer);
 
@@ -152,10 +161,10 @@ public class DerivationPolynomial extends MathQuestions {
     private void generateAnswerStringsPolynomial(int[][][] answers) {
         if (answers != null) {
             String[] answerStr = new String[4];
-            answerStr[0] = "A. " + writePolynomial(answers[0]);
-            answerStr[1] = "B. " + writePolynomial(answers[1]);
-            answerStr[2] = "C. " + writePolynomial(answers[2]);
-            answerStr[3] = "D. " + writePolynomial(answers[3]);
+            answerStr[0] = "A. " + writePolynomial(answers[0]) + " + C";
+            answerStr[1] = "B. " + writePolynomial(answers[1]) + " + C";
+            answerStr[2] = "C. " + writePolynomial(answers[2]) + " + C";
+            answerStr[3] = "D. " + writePolynomial(answers[3]) + " + C";
             setAnswerStr(answerStr);
         }
     }
