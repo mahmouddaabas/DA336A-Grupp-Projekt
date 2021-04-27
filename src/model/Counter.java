@@ -97,11 +97,11 @@ public class Counter extends Thread {
         this.currentScene = currentScene;
     }
 
+    /**
+     *Returns the current coins.
+     * @return
+     */
     public int getCoins() {
         return coins;
-    }
-
-    public void setCoins(int coins) {
-        this.coins = coins;
     }
 }

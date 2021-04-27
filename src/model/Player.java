@@ -13,7 +13,7 @@ public class Player {
     private String name;
     private int gold;
 
-    private int playerHealth = 10;
+    private int playerHealth;
     private boolean outOfCombat = true;
 
     private int damageTaken;
@@ -105,11 +105,20 @@ public class Player {
         this.damageTaken = damageTaken;
     }
 
+    /**
+     * Returns the players current gold.
+     * @return
+     */
     //Method that returns gold
     public int getGold() {
         return this.gold;
     }
 
+    /**
+     * Setter to be able to set the players gold.
+     * Does not allow gold to be set to negative, if gold is < 0 sets it to 0.
+     * @param gold
+     */
     public void setGold(int gold) {
         if (gold < 0){
             setGold(0);

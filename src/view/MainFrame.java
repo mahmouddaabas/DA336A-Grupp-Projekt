@@ -69,15 +69,10 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    public JPanel[] getBackgroundPanel() {
-        return backgroundPanel;
-    }
-
     /**
      * Creates the buttons and puts them on a panel with a gridlayout.
      * The panel is then placed on the window.
      */
-
     public void populateAnswerPanel() {
 
         answerPanel = new JPanel();
@@ -104,6 +99,9 @@ public class MainFrame extends JFrame {
         add(answerPanel);
     }
 
+    /**
+     * Creates the button that are displayed when the shop is visited.
+     */
     public void populateShopPanel() {
 
         shopPanel = new JPanel();
@@ -133,7 +131,6 @@ public class MainFrame extends JFrame {
     /**
      * Creates the main JFrame of the game.
      */
-
     //Creates the main window for the program.
     public void createMainWindow() {
         setSize(1350, 850);
@@ -173,6 +170,7 @@ public class MainFrame extends JFrame {
         add(levelLabel);
 
     }
+
     /**
      * Creates the label that displays the timer on the GUI.
      */
@@ -187,6 +185,9 @@ public class MainFrame extends JFrame {
         add(timerLabel);
     }
 
+    /**
+     * Creates the coin label that displays the users coins on the GUI.
+     */
     public void createCoinLabel() {
         ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
         coinLabel = new JLabel();
@@ -199,7 +200,13 @@ public class MainFrame extends JFrame {
         coinLabel.setForeground(Color.WHITE);
         add(coinLabel);
     }
-
+    /**
+     * Method used to resize images and return them as an ImageIcon
+     * @param path
+     * @param width
+     * @param height
+     * @return
+     */
     public ImageIcon resize(String path, int width, int height) {
         ImageIcon backgroundPicture = new ImageIcon(path);
         Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
