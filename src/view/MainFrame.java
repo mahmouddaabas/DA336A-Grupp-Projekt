@@ -38,9 +38,10 @@ public class MainFrame extends JFrame {
     private JPanel shopPanel;
     private JButton shopButtons[];
 
-    // Level label
+    //Level labels and coin label.
     private  JLabel levelLabel;
     private JLabel timerLabel;
+    private JLabel coinLabel;
 
 
     /**
@@ -56,6 +57,7 @@ public class MainFrame extends JFrame {
         //Create timer and level labels.
         createLevelLabel();
         createTimerLabel();
+        createCoinLabel();
 
         sceneCreator = new SceneCreator(this, controller, action);
 
@@ -183,6 +185,26 @@ public class MainFrame extends JFrame {
         timerLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
         timerLabel.setForeground(Color.WHITE);
         add(timerLabel);
+    }
+
+    public void createCoinLabel() {
+        ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
+        coinLabel = new JLabel();
+        coinLabel.setVisible(true);
+        coinLabel.setBounds(1000, 0, 200, 150);
+        coinLabel.setLayout(null);
+        coinLabel.setIcon(coinIcon);
+        coinLabel.setText(" 0");
+        coinLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        coinLabel.setForeground(Color.WHITE);
+        add(coinLabel);
+
+    }
+    public ImageIcon resize(String path, int width, int height) {
+        ImageIcon backgroundPicture = new ImageIcon(path);
+        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon bgIcon = new ImageIcon(image);
+        return bgIcon;
     }
 
     /**
