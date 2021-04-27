@@ -132,7 +132,6 @@ public class GameLogic {
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
                     window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
-                    healthBar.setDamageTaken(2);
                     player.wrong(2);
                     checkPlayerHealth();
 

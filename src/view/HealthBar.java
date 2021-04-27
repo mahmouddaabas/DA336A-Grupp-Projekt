@@ -22,7 +22,6 @@ public class HealthBar {
     private JLabel[] healthLabel;
     private ImageIcon healthIcon = new ImageIcon("resources/misc/hearts_35x35.png");
 
-    private int damageTaken = 0;
     /**
      * Constructs the healthbar class.
      * @param frame
@@ -39,17 +38,12 @@ public class HealthBar {
      */
     public void updateHealth(GameLogic controller) {
         this.controller = controller;
-        try {
-            for(int i = 0; i <= controller.getPlayer().getDamageTaken(); i++) {
+            for(int i = 0; i < controller.getPlayer().getDamageTaken(); i++) {
                 //Removes all hearts on the right side.
                 healthLabel[controller.getPlayer().getPlayerHealth()+i].setIcon(null);
             }
             healthPanel.repaint();
             controller.getPlayer().setDamageTaken(0);
-        }
-        catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("You are most likely dead. If not contact the devs.");
-        }
     }
 
     /**
@@ -87,22 +81,11 @@ public class HealthBar {
     }
 
     /**
-     * A simple getter to get the health panel from outside of the class.
+     * A getter to use the health panel from outside of the class.
+     * @return healthPanel
      */
     public JPanel getHealthPanel() {
         return healthPanel;
-    }
-    /**
-     * A simple getter to get the damage taken from outside of the class.
-     */
-    public int getDamageTaken() {
-        return damageTaken;
-    }
-    /**
-     * A simple setter to set the damage taken from outside of the class.
-     */
-    public void setDamageTaken(int damageTaken) {
-        this.damageTaken = damageTaken;
     }
 
 
