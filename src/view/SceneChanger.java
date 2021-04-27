@@ -36,6 +36,7 @@ public class SceneChanger {
                 break;
             case 1:
                 controller.getHealthBar().createHealthBar();
+                controller.getWindow().getCoinLabel().setVisible(true);
                 controller.getCounter().setCurrentScene(2);
                 break;
             case 2:

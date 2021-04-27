@@ -190,7 +190,7 @@ public class MainFrame extends JFrame {
     public void createCoinLabel() {
         ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
         coinLabel = new JLabel();
-        coinLabel.setVisible(true);
+        coinLabel.setVisible(false);
         coinLabel.setBounds(1000, 0, 200, 150);
         coinLabel.setLayout(null);
         coinLabel.setIcon(coinIcon);
@@ -198,8 +198,8 @@ public class MainFrame extends JFrame {
         coinLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
         coinLabel.setForeground(Color.WHITE);
         add(coinLabel);
-
     }
+
     public ImageIcon resize(String path, int width, int height) {
         ImageIcon backgroundPicture = new ImageIcon(path);
         Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
@@ -240,5 +240,9 @@ public class MainFrame extends JFrame {
 
     public JPanel getShopPanel() {
         return shopPanel;
+    }
+
+    public JLabel getCoinLabel() {
+        return coinLabel;
     }
 }

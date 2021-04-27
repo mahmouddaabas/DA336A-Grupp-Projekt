@@ -48,11 +48,6 @@ public class Player {
         return this.playerHealth <= 0;
     }
 
-    //Method that returns gold
-    public int getGold() {
-        return this.gold;
-    }
-
     //Method for buying items with gold.
     public void buyItem(Item item) {
         if (this.gold >= item.getValue()) {
@@ -110,4 +105,17 @@ public class Player {
         this.damageTaken = damageTaken;
     }
 
+    //Method that returns gold
+    public int getGold() {
+        return this.gold;
+    }
+
+    public void setGold(int gold) {
+        if (gold < 0){
+            setGold(0);
+        }
+        else {
+            this.gold = gold;
+        }
+    }
 }

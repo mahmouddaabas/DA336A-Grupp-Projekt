@@ -37,7 +37,7 @@ public class Event03 {
      * The panel/buttons can be expanded from the MainFrame class.
      */
     public void buyFromShopKeeper() {
-        controller.getWindow().getShopButtons()[0].setText("Purchase Health");
+        controller.getWindow().getShopButtons()[0].setText("Health (2 coins)");
         controller.getWindow().getShopButtons()[1].setText("To be added");
         controller.getWindow().getShopButtons()[2].setText("To be added");
         controller.getWindow().getShopButtons()[3].setText("To be added");
