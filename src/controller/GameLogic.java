@@ -31,7 +31,7 @@ public class GameLogic {
     //Used to access the main window and the scene changer.
     private MainFrame window;
     private SceneChanger scene;
-
+    private EnemyHealthBar enemyHealthBar;
     private HealthBar healthBar;
     private GameOverScreen gameOver;
     private Counter counter;
@@ -61,8 +61,9 @@ public class GameLogic {
         //Starts the counter thread.
         counter.startCounter();
 
-        //Health Bar
-        healthBar = new HealthBar(window);
+        //Player health bar and Enemy health bar.
+        healthBar = new HealthBar(this, window);
+        enemyHealthBar = new EnemyHealthBar(this, window);
 
         //Game over screen.
         gameOver = new GameOverScreen(this);
@@ -89,6 +90,9 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
+        if(getTimer().getFigthing() == false) {
+            enemyHealthBar.createEnemyHealthBar();
+        }
     }
 
     /**
@@ -107,9 +111,6 @@ public class GameLogic {
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 player.setOutOfCombat(true);
-                //window.getMathQuestions().setText("Answer is correct!");
-
-                timer.stopTimer();
 
                 //Temporary solution to show the shop, will be changed later.
                 //Lvl 20 is final lvl?? If so remove the last statement.
@@ -122,19 +123,27 @@ public class GameLogic {
                     }
                 }
 
-                scene.showScene(counter.getCurrentScene());
-
-                if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
-                    player.setGold(player.getGold() +2);
+                //Handles the combat, if enemy is not dead generates new questions and answers.
+                if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
+                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-1;
+                    levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
+                    enemyHealthBar.updateEnemyHealth();
+                    generateQuestionAndAnswers();
                 }
                 else {
-                    player.setGold(player.getGold() +1);
+                    //Adds gold to the player based on enemy defeated.
+                    if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
+                        player.setGold(player.getGold() +2);
+                    }
+                    else {
+                        player.setGold(player.getGold() +1);
+                    }
+                    enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+                    scene.showScene(counter.getCurrentScene());
+                    counter.setLevel(counter.getLevel()+1);
+                    timer.stopTimer();
+                    window.getAnswerPanel().setVisible(false);
                 }
-
-                window.getAnswerPanel().setVisible(false);
-                int currentLevel = counter.getLevel();
-                currentLevel++;
-                counter.setLevel(currentLevel);
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
@@ -144,7 +153,7 @@ public class GameLogic {
                     player.setGold(player.getGold() -1);
 
                     if (!player.isDead()) {
-                        healthBar.updateHealth(this);
+                        healthBar.updateHealth();
                         setOutOfCombat(true);
                         generateQuestionAndAnswers();
                     }
@@ -156,7 +165,7 @@ public class GameLogic {
                     player.setGold(player.getGold() -2);
 
                     if (!player.isDead()) {
-                        healthBar.updateHealth(this);
+                        healthBar.updateHealth();
                         setOutOfCombat(true);
                         generateQuestionAndAnswers();
                     }
@@ -209,9 +218,10 @@ public class GameLogic {
      */
     public void ifNotAnswered(){
         if(timer.getTime() == 0){
+            player.setGold(player.getGold()-2);
           player.wrong(1);
           checkPlayerHealth();
-          healthBar.updateHealth(this);
+          healthBar.updateHealth();
           mathQuestion.generateNewQuestion();
           setOutOfCombat(true);
          try {
@@ -249,22 +259,6 @@ public class GameLogic {
      */
     public MathQuestions getMathQuestion() {
         return mathQuestion;
-    }
-
-    /**
-     * Returns the answerIndex variable for use outside of class
-     * @return this class' answerIndex variable
-     */
-    public int getAnswerIndex() {
-        return answerIndex;
-    }
-
-    /**
-     * Sets isAnswered variable using parameter
-     * @param answered the new boolean value
-     */
-    public void setAnswered(boolean answered) {
-        isAnswered = answered;
     }
 
     /**
@@ -324,14 +318,6 @@ public class GameLogic {
     }
 
     /**
-     * Sets the player level
-     * @param level new value
-     */
-    /*public void setLevel(int level) {
-        this.level = level;
-    }*/
-
-    /**
      * Returns dialogue from "Look" action
      * @return String dialogue
      */
@@ -362,22 +348,6 @@ public class GameLogic {
     public GameOverScreen getGameOver() {
         return gameOver;
     }
-
-    /**
-     * Returns the current scene number
-     * @return current scene number
-     */
-    /*public int getCurrentScene() {
-        return currentScene;
-    }*/
-
-    /**
-     * Sets the current scene number
-     * @param currentScene new number
-     */
-   /* public void setCurrentScene(int currentScene) {
-        this.currentScene = currentScene;
-    }*/
 
     /**
      * Returns healthBar object
@@ -430,6 +400,30 @@ public class GameLogic {
      */
     public ShopItems getShopItems() {
         return shopItems;
+    }
+
+    /**
+     * Returns an object of levelCreator.
+     * @return levelCreator
+     */
+    public LevelCreator getLevelCreator() {
+        return levelCreator;
+    }
+
+    /**
+     * Returns an object of enemyHealthBar.
+     * @return enemyHealthBar
+     */
+    public EnemyHealthBar getEnemyHealthBar() {
+        return enemyHealthBar;
+    }
+
+    /**
+     * Allows you to set the status of the levelCreator object from outside the class.
+     * @param levelCreator
+     */
+    public void setLevelCreator(LevelCreator levelCreator) {
+        this.levelCreator = levelCreator;
     }
 
 

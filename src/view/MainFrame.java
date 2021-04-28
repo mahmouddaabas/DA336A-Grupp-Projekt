@@ -192,7 +192,7 @@ public class MainFrame extends JFrame {
         ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
         coinLabel = new JLabel();
         coinLabel.setVisible(false);
-        coinLabel.setBounds(1000, 0, 200, 150);
+        coinLabel.setBounds(100, -45, 200, 150);
         coinLabel.setLayout(null);
         coinLabel.setIcon(coinIcon);
         coinLabel.setText(" 0");

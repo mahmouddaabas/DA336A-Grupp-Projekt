@@ -27,17 +27,15 @@ public class HealthBar {
      * @param frame
      */
 
-    public HealthBar(MainFrame frame) {
-
+    public HealthBar(GameLogic controller, MainFrame frame) {
+        this.controller = controller;
         this.frame = frame;
     }
 
     /**
      * Updates the healthbar by changing the heart icons to null thus removing them when player takes damage.
-     * @param controller
      */
-    public void updateHealth(GameLogic controller) {
-        this.controller = controller;
+    public void updateHealth() {
             for(int i = 0; i < controller.getPlayer().getDamageTaken(); i++) {
                 //Removes all hearts on the right side.
                 healthLabel[controller.getPlayer().getPlayerHealth()+i].setIcon(null);
