@@ -124,6 +124,13 @@ public class GameLogic {
 
                 scene.showScene(counter.getCurrentScene());
 
+                if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
+                    player.setGold(player.getGold() +2);
+                }
+                else {
+                    player.setGold(player.getGold() +1);
+                }
+
                 window.getAnswerPanel().setVisible(false);
                 int currentLevel = counter.getLevel();
                 currentLevel++;
@@ -134,6 +141,7 @@ public class GameLogic {
                     window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
                     checkPlayerHealth();
+                    player.setGold(player.getGold() -1);
 
                     if (!player.isDead()) {
                         healthBar.updateHealth(this);
@@ -145,6 +153,7 @@ public class GameLogic {
                     window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
+                    player.setGold(player.getGold() -2);
 
                     if (!player.isDead()) {
                         healthBar.updateHealth(this);

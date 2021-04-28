@@ -38,9 +38,10 @@ public class MainFrame extends JFrame {
     private JPanel shopPanel;
     private JButton shopButtons[];
 
-    // Level label
+    //Level labels and coin label.
     private  JLabel levelLabel;
     private JLabel timerLabel;
+    private JLabel coinLabel;
 
 
     /**
@@ -56,6 +57,7 @@ public class MainFrame extends JFrame {
         //Create timer and level labels.
         createLevelLabel();
         createTimerLabel();
+        createCoinLabel();
 
         sceneCreator = new SceneCreator(this, controller, action);
 
@@ -67,15 +69,10 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    public JPanel[] getBackgroundPanel() {
-        return backgroundPanel;
-    }
-
     /**
      * Creates the buttons and puts them on a panel with a gridlayout.
      * The panel is then placed on the window.
      */
-
     public void populateAnswerPanel() {
 
         answerPanel = new JPanel();
@@ -102,6 +99,9 @@ public class MainFrame extends JFrame {
         add(answerPanel);
     }
 
+    /**
+     * Creates the button that are displayed when the shop is visited.
+     */
     public void populateShopPanel() {
 
         shopPanel = new JPanel();
@@ -131,7 +131,6 @@ public class MainFrame extends JFrame {
     /**
      * Creates the main JFrame of the game.
      */
-
     //Creates the main window for the program.
     public void createMainWindow() {
         setSize(1350, 850);
@@ -171,6 +170,7 @@ public class MainFrame extends JFrame {
         add(levelLabel);
 
     }
+
     /**
      * Creates the label that displays the timer on the GUI.
      */
@@ -183,6 +183,35 @@ public class MainFrame extends JFrame {
         timerLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
         timerLabel.setForeground(Color.WHITE);
         add(timerLabel);
+    }
+
+    /**
+     * Creates the coin label that displays the users coins on the GUI.
+     */
+    public void createCoinLabel() {
+        ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
+        coinLabel = new JLabel();
+        coinLabel.setVisible(false);
+        coinLabel.setBounds(1000, 0, 200, 150);
+        coinLabel.setLayout(null);
+        coinLabel.setIcon(coinIcon);
+        coinLabel.setText(" 0");
+        coinLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        coinLabel.setForeground(Color.WHITE);
+        add(coinLabel);
+    }
+    /**
+     * Method used to resize images and return them as an ImageIcon
+     * @param path
+     * @param width
+     * @param height
+     * @return
+     */
+    public ImageIcon resize(String path, int width, int height) {
+        ImageIcon backgroundPicture = new ImageIcon(path);
+        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon bgIcon = new ImageIcon(image);
+        return bgIcon;
     }
 
     /**
@@ -218,5 +247,9 @@ public class MainFrame extends JFrame {
 
     public JPanel getShopPanel() {
         return shopPanel;
+    }
+
+    public JLabel getCoinLabel() {
+        return coinLabel;
     }
 }

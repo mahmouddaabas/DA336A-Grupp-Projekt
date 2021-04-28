@@ -24,7 +24,7 @@ public class Timer implements Runnable {
     @Override
     public void run() {
         while (ticking) {
-            System.out.println(time+" "); //Show in GUI
+            //System.out.println(time+" "); //Show in GUI
             try {
                 fighting = true;
                 controller.getWindow().getTimerLabel().setText("Time Left: " + controller.getTimer().getTime());

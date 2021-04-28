@@ -18,6 +18,8 @@ public class Counter extends Thread {
     private int delay = 1000;
     private int level;
     private int currentScene;
+    private int coins;
+
     /**
      * Constructor that initializes the controller.
      * @param controller
@@ -57,6 +59,8 @@ public class Counter extends Thread {
                     controller.ifNotAnswered();
                 }
                 controller.getWindow().getLevelLabel().setText("Current level: " + getLevel());
+                coins = controller.getPlayer().getGold();
+                controller.getWindow().getCoinLabel().setText(" " + coins);
                 Thread.sleep(delay);
             }
             catch(InterruptedException e) {
@@ -91,5 +95,13 @@ public class Counter extends Thread {
      */
     public void setCurrentScene(int currentScene) {
         this.currentScene = currentScene;
+    }
+
+    /**
+     *Returns the current coins.
+     * @return
+     */
+    public int getCoins() {
+        return coins;
     }
 }
