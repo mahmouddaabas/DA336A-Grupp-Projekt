@@ -1,34 +1,32 @@
 package view.Handlers;
 
 import controller.GameLogic;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
  * This class handles the actions that gets pressed on the GUI by sending an action command.
  * It then calls the appropriate method from the event class to determine what to do.
- *
  */
 public class ActionHandler implements ActionListener{
-
     private GameLogic controller;
 
+    /**
+     * Constructor
+     * @param controller GameLogic-object used to initialize own GameLogic-object
+     */
     public ActionHandler(GameLogic controller) {
         this.controller = controller;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         String yourChoice = e.getActionCommand();
 
         switch(yourChoice) {
-
             //Scene 2
             case "lookDoor":
                 controller.getEv1().lookDoor();
@@ -85,7 +83,5 @@ public class ActionHandler implements ActionListener{
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
         }
-
     }
-
 }

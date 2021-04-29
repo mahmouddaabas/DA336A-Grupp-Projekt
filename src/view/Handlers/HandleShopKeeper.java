@@ -1,21 +1,19 @@
 package view.Handlers;
 
 import controller.GameLogic;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Mahmoud Daabas
+ * Handles the button choices in the shop by calling appropriate methods.
+ */
 public class HandleShopKeeper implements ActionListener {
-
-    /**
-     * Handles the button choices in the shop by calling appropriate methods.
-     */
-
     private GameLogic controller;
 
     /**
-     * Constructs the class.
-     * @param controller
+     * Constructor
+     * @param controller GameLogic-object used to initialize own GameLogic-object
      */
     public HandleShopKeeper(GameLogic controller) {
         this.controller = controller;
@@ -23,11 +21,10 @@ public class HandleShopKeeper implements ActionListener {
 
     /**
      * ActionPerformed method.
-     * @param e
+     * @param e event
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
         String choiceInShop = e.getActionCommand();
 
         switch(choiceInShop) {
@@ -36,17 +33,16 @@ public class HandleShopKeeper implements ActionListener {
                 break;
 
             case "secondButton":
-                controller.getWindow().getMathQuestions().setText("Not added yet.");
+                controller.getWindow().getTextArea().setText("Not added yet.");
                 break;
 
             case "thirdButton":
-                controller.getWindow().getMathQuestions().setText("Not added yet..");
+                controller.getWindow().getTextArea().setText("Not added yet..");
                 break;
 
             case "fourthButton":
-                controller.getWindow().getMathQuestions().setText("Not added yet...");
+                controller.getWindow().getTextArea().setText("Not added yet...");
                 break;
         }
-
     }
 }

@@ -1,6 +1,7 @@
-package model.questions;
+package TEST;
 
-import view.UI;
+import model.questions.IntegrationPolynomial;
+import model.questions.MathQuestions;
 
 /**
  * Test class for testing MathQuestions. To be removed in final release.

@@ -1,11 +1,10 @@
 package model.vendor;
 /**
- *
  * @author Leith Ahmad
+ * Class for the attributes of the consumables
  */
-//Class for the attributes of the consumables
 public class Attributes {
-    //Diffrent types of attributes
+    //Different types of attributes
     enum Type {
         Damage,
         Health,
@@ -16,12 +15,17 @@ public class Attributes {
     private int strength;
     private int resilience;
 
-    //Constructor for the class that initializes the type of attribute
+    /**
+     * Constructor for the class that initializes the type of attribute
+     * @param type type of attribute
+     */
     public Attributes(Type type) {
         this.type = type;
     }
 
-    //Set method for the attributes
+    /**
+     * Set method for the attributes
+     */
     public void setAttributes() {
     }
 }
