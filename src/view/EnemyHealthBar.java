@@ -1,17 +1,15 @@
 package view;
 
 import controller.GameLogic;
-
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @Author Mahmoud Daabas
+ * This class creates the enemy health bar.
+ * The class also manages the removal of the skulls if the player damages the enemy.
+ */
 public class EnemyHealthBar {
-
-    /**
-     * @Author Mahmoud Daabas
-     * This class creates the enemy health bar.
-     * The class also manages the removal of the skulls if the player damages the enemy.
-     */
     private GameLogic controller;
     private MainFrame frame;
     private JPanel enemyHealthPanel;
@@ -20,8 +18,8 @@ public class EnemyHealthBar {
 
     /**
      * Constructs the class.
-     * @param controller
-     * @param frame
+     * @param controller GameLogic-object used to initialize own GameLogic-object
+     * @param frame MainFrame-object used to initialize own MainFrame-object
      */
     public EnemyHealthBar(GameLogic controller, MainFrame frame) {
         this.controller = controller;
@@ -44,7 +42,6 @@ public class EnemyHealthBar {
      * Method to create the enemy health bar.
      */
     public void createEnemyHealthBar() {
-
         enemyHealthPanel = new JPanel();
         enemyHealthLabel = new JLabel[10];
         enemyHealthPanel.setBounds(800, 48, 400, 50);
@@ -55,13 +52,12 @@ public class EnemyHealthBar {
         Image image = enemyHealthIcon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
         enemyHealthIcon = new ImageIcon(image);
 
-        //Adds skulls in form of labels to the enemyHealthpanel.
+        //Adds skulls in form of labels to the enemyHealthPanel.
         for(int i = 0; i < controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().getHealth(); i++) {
             enemyHealthLabel[i] = new JLabel();
             enemyHealthLabel[i].setIcon(enemyHealthIcon);
             enemyHealthPanel.add(enemyHealthLabel[i]);
         }
-
     }
 
     /**
@@ -71,5 +67,4 @@ public class EnemyHealthBar {
     public JPanel getEnemyHealthPanel() {
         return enemyHealthPanel;
     }
-
 }

@@ -25,15 +25,15 @@ public class ShopItems {
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
-            controller.getHealthBar().increaseHealth(controller);
+            controller.getHealthBar().increaseHealth();
             controller.getPlayer().setGold(controller.getPlayer().getGold() -2);
-            controller.getWindow().getMathQuestions().setText("You purchased 1 HP.");
+            controller.getWindow().getTextArea().setText("You purchased 1 HP.");
         }
         else if (controller.getCounter().getCoins() < 2) {
-            controller.getWindow().getMathQuestions().setText("You don't have enough coins!");
+            controller.getWindow().getTextArea().setText("You don't have enough coins!");
         }
         else {
-            controller.getWindow().getMathQuestions().setText("You already have full hp!");
+            controller.getWindow().getTextArea().setText("You already have full hp!");
         }
     }
 }

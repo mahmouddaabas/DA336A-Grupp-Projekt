@@ -141,7 +141,7 @@ public class GameLogic {
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
                     checkPlayerHealth();
                     player.setGold(player.getGold() -1);
@@ -153,7 +153,7 @@ public class GameLogic {
                     }
                 }
                 else {
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
                     player.setGold(player.getGold() -2);
@@ -182,7 +182,7 @@ public class GameLogic {
             startTimer();
 
             //Gets the random math questions.
-            getWindow().getMathQuestions().setText(getMathQuestion().getQuestion());
+            getWindow().getTextArea().setText(getMathQuestion().getQuestion());
 
             for(int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
@@ -191,7 +191,7 @@ public class GameLogic {
 
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
-            getWindow().getMathQuestions().setBounds(100,550,900,100);
+            getWindow().getTextArea().setBounds(100,550,900,100);
         }
     }
 
