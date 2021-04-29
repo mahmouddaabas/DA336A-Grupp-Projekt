@@ -12,7 +12,7 @@ import controller.GameLogic;
 public class Counter extends Thread {
     private GameLogic controller;
     private boolean run;
-    private int delay = 1000;
+    private int delay = 250;
     private int level;
     private int currentScene;
     private int coins;

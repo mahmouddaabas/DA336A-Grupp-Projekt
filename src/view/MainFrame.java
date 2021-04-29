@@ -85,6 +85,7 @@ public class MainFrame extends JFrame {
             answerButton[i] = new JButton();
             String s = commandsForButtons[i];
             answerButton[i].addActionListener(answers);
+            answerButton[i].addKeyListener(answers);
             answerButton[i].setActionCommand(s);
             //Adds the buttons to the panel.
             answerPanel.add(answerButton[i]);
@@ -135,7 +136,6 @@ public class MainFrame extends JFrame {
         //Starts the window in the middle of the screen.
         setLocationRelativeTo(null);
         setResizable(false);
-
         textArea = new JTextArea();
         textArea.setBounds(100, 550, 900, 250);
         textArea.setBackground(Color.black);
@@ -143,6 +143,7 @@ public class MainFrame extends JFrame {
         textArea.setOpaque(false);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
+        textArea.setFocusable(false);
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
         add(textArea);
@@ -180,8 +181,9 @@ public class MainFrame extends JFrame {
      * Creates the coin label that displays the users coins on the GUI.
      */
     public void createCoinLabel() {
-        ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
+        ImageIcon coinIcon = resize("resources/misc/coin.png", 35, 35);
         lblCoins = new JLabel();
+        lblCoins.setOpaque(false);
         lblCoins.setVisible(false);
         lblCoins.setBounds(100, -45, 200, 150);
         lblCoins.setLayout(null);

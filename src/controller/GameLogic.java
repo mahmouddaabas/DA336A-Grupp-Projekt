@@ -122,20 +122,21 @@ public class GameLogic {
                         player.setGold(player.getGold() +1);
                     }
 
+                    enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+                    timer.stopTimer();
+
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
                     if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
-                            counter.getLevel() == 15) {
+                            counter.getLevel() == 15 && levelCreator.getLevel(getLevel()).getEnemy().getHealth() <= 0) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
                         if(reply == JOptionPane.YES_OPTION) {
                             scene.visitShop();
                         }
                     }
-                    enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     scene.showScene(counter.getCurrentScene());
                     counter.setLevel(counter.getLevel()+1);
-                    timer.stopTimer();
                     window.getAnswerPanel().setVisible(false);
                 }
             }
@@ -144,7 +145,6 @@ public class GameLogic {
                     window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
                     checkPlayerHealth();
-                    player.setGold(player.getGold() -1);
 
                     if (!player.isDead()) {
                         healthBar.updateHealth();
@@ -156,7 +156,6 @@ public class GameLogic {
                     window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
-                    player.setGold(player.getGold() -2);
 
                     if (!player.isDead()) {
                         healthBar.updateHealth();
@@ -189,6 +188,9 @@ public class GameLogic {
             }
             getWindow().getAnswerPanel().setVisible(true);
 
+            //Must request focus after panel is visible.
+            window.getAnswerButton()[0].requestFocus();
+
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
             getWindow().getTextArea().setBounds(100,550,900,100);
@@ -211,7 +213,6 @@ public class GameLogic {
      */
     public void ifNotAnswered() {
         if(timer.getTime() == 0) {
-            player.setGold(player.getGold()-2);
             player.wrong(1);
             checkPlayerHealth();
             healthBar.updateHealth();
