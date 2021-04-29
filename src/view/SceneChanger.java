@@ -34,11 +34,11 @@ public class SceneChanger {
                 break;
             case 1:
                 controller.getHealthBar().createHealthBar();
-                controller.getWindow().getCoinLabel().setVisible(true);
+                controller.getWindow().getLblCoins().setVisible(true);
                 controller.getCounter().setCurrentScene(2);
                 break;
             case 2:
-                controller.getWindow().getLevelLabel().setVisible(true);
+                controller.getWindow().getLblLevel().setVisible(true);
                 break;
         }
 
@@ -47,7 +47,7 @@ public class SceneChanger {
         }
         controller.getWindow().getSceneCreator().getBackgroundPanel(sceneNbr).setVisible(true);
 
-        controller.getWindow().getMathQuestions().setText(sceneTexts.get(sceneNbr));
+        controller.getWindow().getTextArea().setText(sceneTexts.get(sceneNbr));
         controller.getCounter().setCurrentScene(sceneNbr+1);
     }
 
@@ -79,8 +79,8 @@ public class SceneChanger {
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
         controller.getWindow().getAnswerPanel().setVisible(false);
-        controller.getWindow().getTimerLabel().setVisible(false);
-        controller.getWindow().getLevelLabel().setVisible(false);
+        controller.getWindow().getLblTimer().setVisible(false);
+        controller.getWindow().getLblLevel().setVisible(false);
 
         for (int i = 0; i <= 12; i++) {
             controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
@@ -96,8 +96,8 @@ public class SceneChanger {
      * Returns certain things to visible.
      */
     public void exitShop() {
-        controller.getWindow().getLevelLabel().setVisible(true);
-        controller.getWindow().getShopPanel().setVisible(false);
+        controller.getWindow().getLblLevel().setVisible(true);
+        controller.getWindow().getPnlShop().setVisible(false);
         controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
     }
 
@@ -106,14 +106,14 @@ public class SceneChanger {
      * Method used for testing scenes and levels
      */
     public void showSceneX() {
-        controller.getWindow().getLevelLabel().setVisible(true);
+        controller.getWindow().getLblLevel().setVisible(true);
 
         for (int i = 0; i <= 12; i++) {
             controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
 
         controller.getWindow().getSceneCreator().getBackgroundPanel(4).setVisible(true);
-        controller.getWindow().getMathQuestions().setText("TEST");
+        controller.getWindow().getTextArea().setText("TEST");
         controller.getCounter().setCurrentScene(4);
         controller.getCounter().setLevel(3);
         controller.getHealthBar().createHealthBar();
@@ -132,11 +132,11 @@ public class SceneChanger {
 
         //Hides all the panels.
         controller.getWindow().getAnswerPanel().setVisible(false);
-        controller.getWindow().getMathQuestions().setVisible(false);
+        controller.getWindow().getTextArea().setVisible(false);
         controller.getHealthBar().getHealthPanel().setVisible(false);
-        controller.getWindow().getLevelLabel().setVisible(false);
-        controller.getWindow().getTimerLabel().setVisible(false);
-        controller.getWindow().getCoinLabel().setVisible(false);
+        controller.getWindow().getLblLevel().setVisible(false);
+        controller.getWindow().getLblTimer().setVisible(false);
+        controller.getWindow().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
@@ -162,6 +162,6 @@ public class SceneChanger {
         controller.getCounter().setLevel(1);
 
         //Brings back all the panels.
-        controller.getWindow().getMathQuestions().setVisible(true);
+        controller.getWindow().getTextArea().setVisible(true);
     }
 }

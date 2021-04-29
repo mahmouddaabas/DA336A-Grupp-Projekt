@@ -1,6 +1,6 @@
-resources/backgrounds/Scene0TownEntrance.jpg
+resources/backgrounds/Scene0TownEntrance.png
 resources/backgrounds/Scene1TowerEntrance.png
-resources/backgrounds/Lvl1BG.jpg
+resources/backgrounds/Lvl1BG.png
 resources/backgrounds/Lvl2BG.png
 resources/backgrounds/Lvl3BG.png
 resources/backgrounds/Lvl4BG.png
@@ -20,4 +20,4 @@ resources/backgrounds/Lvl17BG.png
 resources/backgrounds/Lvl18BG.png
 resources/backgrounds/Lvl19BG.png
 resources/backgrounds/Lvl20BG.png
-resources/backgrounds/Lvl21ShopBG.jpg
+resources/backgrounds/Lvl21ShopBG.png

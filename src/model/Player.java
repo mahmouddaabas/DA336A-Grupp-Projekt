@@ -4,11 +4,10 @@ import model.vendor.Bag;
 import model.vendor.Item;
 
 /**
- *
  * @author Leith Ahmad
  * @author Duy Nguyen
+ * Class for the user/player
  */
-//Class for the user/player
 public class Player {
     private String name;
     private int gold;
@@ -20,7 +19,11 @@ public class Player {
 
     private Bag bag;
 
-    //Constructor for the class that initializes the instance variables
+    /**
+     * Constructor for the class that initializes the instance variables
+     * @param playerHealth amount of health
+     * @param name player name
+     */
     public Player(int playerHealth, String name) {
         this.playerHealth = playerHealth;
         this.name = name;
@@ -28,41 +31,36 @@ public class Player {
         this.bag = new Bag();
     }
 
-    //Method for the wrong answers applied by user
+    /**
+     * Method for the wrong answers applied by user
+     * @param damage amount of damage taken
+     */
     public void wrong(int damage) {
         playerHealth -= damage;
         damageTaken = damage;
     }
 
-    //Method that returns the players health
+    /**
+     * Method that returns the players health
+     * @return player health
+     */
     public int getPlayerHealth() {
         return playerHealth;
     }
 
+    /**
+     * Restores player health to 10
+     */
     public void restoreHealth() {
         playerHealth = 10;
     }
 
-    //Method for when the player is dead
+    /**
+     * Method for when the player is dead
+     * @return true if dead
+     */
     public boolean isDead() {
         return this.playerHealth <= 0;
-    }
-
-    //Method for buying items with gold.
-    public void buyItem(Item item) {
-        if (this.gold >= item.getValue()) {
-            this.gold -= item.getValue();
-            bag.getInventory().add(item);
-//            for (int i = 0; i <= this.bag.length - 1; i++) {
-//                if (!(this.bag[i] == null)) {
-//                    this.bag[i] == item;
-//                    break;
-//                }
-//            }
-            // Visas i GUI senare*
-        } else {
-            System.out.println("Insufficient amount of gold");
-        }
     }
 
     /**
@@ -109,7 +107,6 @@ public class Player {
      * Returns the players current gold.
      * @return
      */
-    //Method that returns gold
     public int getGold() {
         return this.gold;
     }

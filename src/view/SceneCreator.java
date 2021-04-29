@@ -2,7 +2,6 @@ package view;
 
 import controller.GameLogic;
 import view.Handlers.ActionHandler;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;

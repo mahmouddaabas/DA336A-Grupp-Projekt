@@ -49,14 +49,6 @@ public abstract class Monster {
     }
 
     /**
-     * Sets the look dialogue
-     * @param lookDialogue new look dialogue
-     */
-    public void setLookDialogue(String lookDialogue) {
-        this.lookDialogue = lookDialogue;
-    }
-
-    /**
      * Returns the attack dialogue
      * @return attack dialogue
      */
@@ -65,26 +57,10 @@ public abstract class Monster {
     }
 
     /**
-     * Sets the attack dialogue
-     * @param talkDialogue new attack dialogue
-     */
-    public void setTalkDialogue(String talkDialogue) {
-        this.talkDialogue = talkDialogue;
-    }
-
-    /**
      * Returns true if the monster in question is a boss
      * @return true or false
      */
     public boolean isBoss() {
         return isBoss;
-    }
-
-    /**
-     * Sets the boolean variable to true or false
-     * @param boss new boolean value
-     */
-    public void setBoss(boolean boss) {
-        isBoss = boss;
     }
 }

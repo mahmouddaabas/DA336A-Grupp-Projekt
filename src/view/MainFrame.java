@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame {
     private GameLogic controller;
-    private JTextArea mathQuestions;
+    private JTextArea textArea;
     private JPanel backgroundPanel[] = new JPanel[10];
     private JLabel backgroundLabel[] = new JLabel[10];
 
@@ -27,7 +27,6 @@ public class MainFrame extends JFrame {
     private HandleShopKeeper shop;
 
     //Game is over.
-    private GameOverScreen gameOver;
     private SceneCreator sceneCreator;
 
     //Panel with buttons to answer.
@@ -35,20 +34,18 @@ public class MainFrame extends JFrame {
     private JButton answerButton[];
 
     //Panel with buttons to interact with shop.
-    private JPanel shopPanel;
+    private JPanel pnlShop;
     private JButton shopButtons[];
 
     //Level labels and coin label.
-    private  JLabel levelLabel;
-    private JLabel timerLabel;
-    private JLabel coinLabel;
-
+    private  JLabel lblLevel;
+    private JLabel lblTimer;
+    private JLabel lblCoins;
 
     /**
      * Constructs the class and instansiates controller and the action listeners.
      */
     public MainFrame(GameLogic controller) {
-
         this.controller = controller;
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
@@ -74,7 +71,6 @@ public class MainFrame extends JFrame {
      * The panel is then placed on the window.
      */
     public void populateAnswerPanel() {
-
         answerPanel = new JPanel();
         answerPanel.setBounds(580, 670, 270, 100);
         answerPanel.setBackground(Color.BLUE);
@@ -93,7 +89,6 @@ public class MainFrame extends JFrame {
             //Adds the buttons to the panel.
             answerPanel.add(answerButton[i]);
         }
-
         //Adds answerPanel to the background.
         answerPanel.setVisible(false);
         add(answerPanel);
@@ -103,12 +98,11 @@ public class MainFrame extends JFrame {
      * Creates the button that are displayed when the shop is visited.
      */
     public void populateShopPanel() {
-
-        shopPanel = new JPanel();
-        shopPanel.setBounds(580, 670, 270, 100);
-        shopPanel.setBackground(Color.BLUE);
-        shopPanel.setLayout(new GridLayout(2, 2));
-        shopPanel.setOpaque(false);
+        pnlShop = new JPanel();
+        pnlShop.setBounds(580, 670, 270, 100);
+        pnlShop.setBackground(Color.BLUE);
+        pnlShop.setLayout(new GridLayout(2, 2));
+        pnlShop.setOpaque(false);
 
         String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
         //Initialize the array.
@@ -120,12 +114,11 @@ public class MainFrame extends JFrame {
             shopButtons[i].addActionListener(shop);
             shopButtons[i].setActionCommand(s);
             //Adds the buttons to the panel.
-            shopPanel.add(shopButtons[i]);
+            pnlShop.add(shopButtons[i]);
         }
-
         //Adds answerPanel to the background.
-        shopPanel.setVisible(false);
-        add(shopPanel);
+        pnlShop.setVisible(false);
+        add(pnlShop);
     }
 
     /**
@@ -143,46 +136,44 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        mathQuestions = new JTextArea();
-        mathQuestions.setBounds(100, 550, 900, 250);
-        mathQuestions.setBackground(Color.black);
-        mathQuestions.setForeground(Color.white);
-        mathQuestions.setOpaque(false);
-        mathQuestions.setEditable(false);
-        mathQuestions.setLineWrap(true);
-        mathQuestions.setWrapStyleWord(true);
-        mathQuestions.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
-        add(mathQuestions);
+        textArea = new JTextArea();
+        textArea.setBounds(100, 550, 900, 250);
+        textArea.setBackground(Color.black);
+        textArea.setForeground(Color.white);
+        textArea.setOpaque(false);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
+        add(textArea);
     }
 
     /**
      * Creates the label that displays the current level on the GUI.
      */
     public void createLevelLabel(){
-
-        levelLabel = new JLabel();
-        levelLabel.setVisible(false);
-        levelLabel.setBounds(100, 650, 200, 150);
-        levelLabel.setLayout(null);
-        levelLabel.setText("");
-        levelLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
-        levelLabel.setForeground(Color.WHITE);
-        add(levelLabel);
-
+        lblLevel = new JLabel();
+        lblLevel.setVisible(false);
+        lblLevel.setBounds(100, 650, 200, 150);
+        lblLevel.setLayout(null);
+        lblLevel.setText("");
+        lblLevel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        lblLevel.setForeground(Color.WHITE);
+        add(lblLevel);
     }
 
     /**
      * Creates the label that displays the timer on the GUI.
      */
     public void createTimerLabel(){
-        timerLabel = new JLabel();
-        timerLabel.setVisible(false);
-        timerLabel.setBounds(600, 0, 200, 150);
-        timerLabel.setLayout(null);
-        timerLabel.setText("");
-        timerLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
-        timerLabel.setForeground(Color.WHITE);
-        add(timerLabel);
+        lblTimer = new JLabel();
+        lblTimer.setVisible(false);
+        lblTimer.setBounds(600, 0, 200, 150);
+        lblTimer.setLayout(null);
+        lblTimer.setText("");
+        lblTimer.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+        lblTimer.setForeground(Color.WHITE);
+        add(lblTimer);
     }
 
     /**
@@ -190,22 +181,23 @@ public class MainFrame extends JFrame {
      */
     public void createCoinLabel() {
         ImageIcon coinIcon = resize("resources/misc/coin.png", 40, 40);
-        coinLabel = new JLabel();
-        coinLabel.setVisible(false);
-        coinLabel.setBounds(100, -45, 200, 150);
-        coinLabel.setLayout(null);
-        coinLabel.setIcon(coinIcon);
-        coinLabel.setText(" 0");
-        coinLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
-        coinLabel.setForeground(Color.WHITE);
-        add(coinLabel);
+        lblCoins = new JLabel();
+        lblCoins.setVisible(false);
+        lblCoins.setBounds(100, -45, 200, 150);
+        lblCoins.setLayout(null);
+        lblCoins.setIcon(coinIcon);
+        lblCoins.setText(" 0");
+        lblCoins.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        lblCoins.setForeground(Color.WHITE);
+        add(lblCoins);
     }
+
     /**
      * Method used to resize images and return them as an ImageIcon
-     * @param path
-     * @param width
-     * @param height
-     * @return
+     * @param path path of image file
+     * @param width width of image
+     * @param height height of image
+     * @return ImageIcon
      */
     public ImageIcon resize(String path, int width, int height) {
         ImageIcon backgroundPicture = new ImageIcon(path);
@@ -215,41 +207,74 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Getter methods to access the GUI parts.
+     * Returns answerPanel
+     * @return answerPanel
      */
     public JPanel getAnswerPanel() {
         return answerPanel;
     }
 
-    public JTextArea getMathQuestions() {
-        return mathQuestions;
+    /**
+     * Returns textArea
+     * @return textArea
+     */
+    public JTextArea getTextArea() {
+        return textArea;
     }
 
+    /**
+     * Returns sceneCreator
+     * @return sceneCreator
+     */
     public SceneCreator getSceneCreator() {
         return sceneCreator;
     }
 
-    public JLabel getLevelLabel() {
-        return levelLabel;
+    /**
+     * Returns lblLevel
+     * @return lblLevel
+     */
+    public JLabel getLblLevel() {
+        return lblLevel;
     }
 
-    public JLabel getTimerLabel(){
-        return timerLabel;
+    /**
+     * Returns lblTimer
+     * @return lblTimer
+     */
+    public JLabel getLblTimer(){
+        return lblTimer;
     }
 
+    /**
+     * Returns answerButton
+     * @return answerButton
+     */
     public JButton[] getAnswerButton() {
         return answerButton;
     }
 
+    /**
+     * Returns shopButtons
+     * @return  shopButtons
+     */
     public JButton[] getShopButtons() {
         return shopButtons;
     }
 
-    public JPanel getShopPanel() {
-        return shopPanel;
+    /**
+     * Returns pnlShop
+     * @return pnlShop
+     */
+    public JPanel getPnlShop() {
+        return pnlShop;
     }
 
-    public JLabel getCoinLabel() {
-        return coinLabel;
+    /**
+     * Returns lblCoins
+     * @return lblCoins
+     */
+    public JLabel getLblCoins() {
+        return lblCoins;
     }
 }

@@ -19,14 +19,10 @@ import javax.swing.*;
  */
 public class GameLogic {
     private Player player;
-    private UI ui;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
-    private String answerText;
-    private boolean isAnswered;
-
 
     //Used to access the main window and the scene changer.
     private MainFrame window;
@@ -52,7 +48,6 @@ public class GameLogic {
 
         player = new Player(10,"Player 1");
 
-        ui = new UI();
         window = new MainFrame(this);
         scene = new SceneChanger(this);
 
@@ -78,7 +73,6 @@ public class GameLogic {
 
         //Displays the first scene.
         scene.showScene(counter.getCurrentScene());
-        //scene.showSceneX(); //Used to test scenes
     }
 
     /**
@@ -90,7 +84,7 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
-        if(getTimer().getFigthing() == false) {
+        if(getTimer().getFighting() == false) {
             enemyHealthBar.createEnemyHealthBar();
         }
     }
@@ -128,7 +122,6 @@ public class GameLogic {
                         player.setGold(player.getGold() +1);
                     }
 
-
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
                     if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
@@ -139,7 +132,6 @@ public class GameLogic {
                             scene.visitShop();
                         }
                     }
-
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     scene.showScene(counter.getCurrentScene());
                     counter.setLevel(counter.getLevel()+1);
@@ -149,7 +141,7 @@ public class GameLogic {
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
                     checkPlayerHealth();
                     player.setGold(player.getGold() -1);
@@ -161,7 +153,7 @@ public class GameLogic {
                     }
                 }
                 else {
-                    window.getMathQuestions().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
                     player.setGold(player.getGold() -2);
@@ -181,7 +173,7 @@ public class GameLogic {
      * If player is not in combat generates a new math question and answers.
      * The generated questions and answers are then put into JButtons.
      */
-        public void generateQuestionAndAnswers() {
+    public void generateQuestionAndAnswers() {
         if(getOutOfCombat()) {
             setOutOfCombat(false);
             startFight(getLevel());
@@ -190,19 +182,18 @@ public class GameLogic {
             startTimer();
 
             //Gets the random math questions.
-            getWindow().getMathQuestions().setText(getMathQuestion().getQuestion());
+            getWindow().getTextArea().setText(getMathQuestion().getQuestion());
 
             for(int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
             }
-
             getWindow().getAnswerPanel().setVisible(true);
 
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
-            getWindow().getMathQuestions().setBounds(100,550,900,100);
+            getWindow().getTextArea().setBounds(100,550,900,100);
         }
-        }
+    }
 
     /**
      * Checks if the player is dead, if they are shows the game over screen.
@@ -218,27 +209,27 @@ public class GameLogic {
      * If timer is zero, deals damage to the player.
      * It will also generate new questions.
      */
-    public void ifNotAnswered(){
-        if(timer.getTime() == 0){
+    public void ifNotAnswered() {
+        if(timer.getTime() == 0) {
             player.setGold(player.getGold()-2);
-          player.wrong(1);
-          checkPlayerHealth();
-          healthBar.updateHealth();
-          mathQuestion.generateNewQuestion();
-          setOutOfCombat(true);
-         try {
-             ev2.attackEnemy();
-          }
-         catch (NullPointerException e){
-
-         }
+            player.wrong(1);
+            checkPlayerHealth();
+            healthBar.updateHealth();
+            mathQuestion.generateNewQuestion();
+            setOutOfCombat(true);
+            try {
+                ev2.attackEnemy();
+            }
+            catch (NullPointerException e){
+                e.printStackTrace();
+            }
         }
     }
 
     /**
      * Stops the counter thread and sets it to null.
      */
-    public void killCounter(){
+    public void killCounter() {
         counter.stopCounter();
         counter = null;
     }
@@ -248,7 +239,7 @@ public class GameLogic {
      * If null, it will create a new object of counter.
      * It then starts the thread.
      */
-    public void reviveCounter(){
+    public void reviveCounter() {
         if(counter == null){
             counter = new Counter(this);
             counter.startCounter();
@@ -261,14 +252,6 @@ public class GameLogic {
      */
     public MathQuestions getMathQuestion() {
         return mathQuestion;
-    }
-
-    /**
-     * Sets answerText variable using parameter
-     * @param answerText the new String value
-     */
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
     }
 
     /**
@@ -427,6 +410,4 @@ public class GameLogic {
     public void setLevelCreator(LevelCreator levelCreator) {
         this.levelCreator = levelCreator;
     }
-
-
 }
