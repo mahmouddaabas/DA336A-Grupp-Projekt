@@ -72,7 +72,8 @@ public class GameLogic {
         levelCreator = new LevelCreator(this);
 
         //Displays the first scene.
-        scene.showScene(counter.getCurrentScene());
+        //scene.showScene(counter.getCurrentScene());
+        scene.showMainMenu();
     }
 
     /**

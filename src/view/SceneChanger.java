@@ -23,6 +23,10 @@ public class SceneChanger {
         readSceneTexts();
     }
 
+    public void showMainMenu() {
+        controller.getWindow().getMainMenu().getMenuPane().setVisible(true);
+    }
+
     /**
      * Shows a specific scene based on given scene number
      * @param sceneNbr given scene number

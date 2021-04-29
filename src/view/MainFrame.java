@@ -29,6 +29,8 @@ public class MainFrame extends JFrame {
     //Game is over.
     private SceneCreator sceneCreator;
 
+    private MainMenu mainMenu;
+
     //Panel with buttons to answer.
     private JPanel answerPanel;
     private JButton answerButton[];
@@ -55,6 +57,8 @@ public class MainFrame extends JFrame {
         createLevelLabel();
         createTimerLabel();
         createCoinLabel();
+
+        mainMenu = new MainMenu(controller, this);
 
         sceneCreator = new SceneCreator(this, controller, action);
 
@@ -278,5 +282,9 @@ public class MainFrame extends JFrame {
      */
     public JLabel getLblCoins() {
         return lblCoins;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
     }
 }
