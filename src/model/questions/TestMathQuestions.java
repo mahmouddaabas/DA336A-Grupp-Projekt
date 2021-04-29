@@ -37,7 +37,7 @@ public class TestMathQuestions {
 //        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 3);
 //        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
 //        mathQuestion = new DerivationPolynomial(-9, 9, -9, 9, 1);
-        mathQuestion = new IntegrationPolynomial(-9, 9, -9, 9, 3);
+        mathQuestion = new IntegrationPolynomial(-9, 9, 1, 9, 3);
 
         while (true) {
             mathQuestion.generateNewQuestion();

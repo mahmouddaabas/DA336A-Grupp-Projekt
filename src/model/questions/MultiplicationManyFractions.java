@@ -6,16 +6,16 @@ package model.questions;
  * @author Mattias Bengtsson
  */
 public class MultiplicationManyFractions extends MathQuestions {
-    private int[][] answers;
+    private Fraction[] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
     private int denominatorLowerBound;
     private int denominatorUpperBound;
-    private int[][] fractions;
+    private Fraction[] fractions;
 
     /**
-     * Constructor that initializes the instance variables for the bounds and the amount of numbers. All numbers share
-     * the same bounds.
+     * Constructor that initializes the instance variables for the bounds and the amount of fractions. All fractions
+     * share the same bounds.
      * @param numeratorLowerBound the lowest value the numerators can have.
      * @param numeratorUpperBound the highest value the numerators can have.
      * @param denominatorLowerBound the lowest value the denominators can have.
@@ -28,7 +28,7 @@ public class MultiplicationManyFractions extends MathQuestions {
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
         this.denominatorUpperBound = denominatorUpperBound;
-        fractions = new int[numOfFractions][2];
+        fractions = new Fraction[numOfFractions];
     }
 
     /**
@@ -36,10 +36,10 @@ public class MultiplicationManyFractions extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        StringBuilder question = new StringBuilder("What is (" + fractions[0][0] + "/" + fractions[0][1] + ")");
+        StringBuilder question = new StringBuilder("What is " + fractions[0].toString());
 
         for (int i = 1; i < (fractions.length); i++) {
-            question.append(" * (").append(fractions[i][0]).append("/").append(fractions[i][1]).append(")");
+            question.append(" * ").append(fractions[i].toString());
         }
 
         question.append("?");
@@ -61,25 +61,27 @@ public class MultiplicationManyFractions extends MathQuestions {
      * Generates random fractions from the given bounds. The denominators cannot be 0. Also used to generate the
      * fractions for the fake answers for more believable answers.
      */
-    private int[][] generateFractions() {
-        int[][] numberArray = new int[fractions.length][2];
-        for (int i = 0; i < numberArray.length; i++) {
-            numberArray[i][0] = randomInt(numeratorLowerBound, numeratorUpperBound);
-            numberArray[i][1] = randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
-            simplifyFraction(numberArray[i]);
+    private Fraction[] generateFractions() {
+        Fraction[] fractionArray = new Fraction[fractions.length];
+        int numerator;
+        int denominator;
+        for (int i = 0; i < fractionArray.length; i++) {
+            numerator = randomInt(numeratorLowerBound, numeratorUpperBound);
+            denominator = randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
+            fractionArray[i] = new Fraction(numerator, denominator);
         }
-        return numberArray;
+        return fractionArray;
     }
 
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createIntAnswerArray(2);
+        answers = createFractionAnswerArray();
         answers[getCorrectAnswerIndex()] = newAnswer(fractions);
 
         for (int i = 0; i < answers.length; i++) {
-            if (answers[i][0] == Integer.MIN_VALUE) {
+            if (answers[i].getDenominator() == 0) {
                 answers[i] = createFakeAnswer();
             }
         }
@@ -88,19 +90,14 @@ public class MultiplicationManyFractions extends MathQuestions {
     /**
      * Multiplies all the fractions into a single fraction that is then simplified by dividing common factors from the
      * numerator and denominator if able to do so.
-     * @param numberArray the array of the fractions to add.
+     * @param fractionArray the array of the fractions to add.
      * @return the answer.
      */
-    private int[] newAnswer(int[][] numberArray) {
-        int[] answer = new int[2];
-
-        answer[0] = 1;
-        answer[1] = 1;
-        for (int[] ints : numberArray) {
-            answer[0] *= ints[0];
-            answer[1] *= ints[1];
+    private Fraction newAnswer(Fraction[] fractionArray) {
+        Fraction answer = new Fraction(1, 1);
+        for (Fraction fraction : fractionArray) {
+            answer = answer.multiply(fraction);
         }
-        answer = simplifyFraction(answer);
         return answer;
     }
 
@@ -109,16 +106,14 @@ public class MultiplicationManyFractions extends MathQuestions {
      * values in the answer array. Uses the same method as for the real answer.
      * @return a fake answer.
      */
-    private int[] createFakeAnswer() {
-        int[] fakeAnswer;
-        int[][] fakeNumbers;
+    private Fraction createFakeAnswer() {
+        Fraction fakeAnswer;
+        Fraction[] fakeNumbers;
         while (true) {
             fakeNumbers = generateFractions();
             fakeAnswer = newAnswer(fakeNumbers);
-            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
-                    !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1]) &&
-                    !(fakeAnswer[0] == answers[2][0] && fakeAnswer[1] == answers[2][1]) &&
-                    !(fakeAnswer[0] == answers[3][0] && fakeAnswer[1] == answers[3][1])) {
+            if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) && !fakeAnswer.equals(answers[2])
+                    && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;
             }
         }

@@ -14,6 +14,8 @@ public abstract class MathQuestions {
     private String[] answerStr;
     private int correctAnswerIndex;
 
+    private final int NUM_OF_ANSWERS = 4;
+
     /**
      * Constructor for MathQuestions that initializes the Random object and a random index for the correct answer in
      * the answer array.
@@ -141,33 +143,6 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Simplifies and returns a fraction by dividing the common factors from both the numerator and the denominator.
-     * Also ensures that the denominator is always positive. The fraction is represented as int array with two elements
-     * with the 0th being the numerator and 1st being the denominator.
-     * @param fraction the fraction to simplify as a two element int array.
-     * @return the simplified fraction.
-     */
-    protected int[] simplifyFraction(int[] fraction) {
-        boolean noChange = false;
-        if (fraction[1] < 0) {
-            fraction[0] *= -1;
-            fraction[1] *= -1;
-        }
-        while (!noChange) {
-            noChange = true;
-            for (int i = Math.min(Math.abs(fraction[0]), fraction[1]); i > 1; i--) {
-                if ((fraction[0] % i == 0) && (fraction[1] % i == 0)) {
-                    fraction[0] /= i;
-                    fraction[1] /= i;
-                    noChange = false;
-                    break;
-                }
-            }
-        }
-        return fraction;
-    }
-
-    /**
      * Converts the numbers into characters representing superscript numbers.
      * @param number the numbers to make superscript.
      * @return the strings of numbers made to superscript.
@@ -283,7 +258,7 @@ public abstract class MathQuestions {
      * @return the answer array.
      */
     protected int[] createIntAnswerArray() {
-        int[] answers = new int[4];
+        int[] answers = new int[NUM_OF_ANSWERS];
         Arrays.fill(answers, Integer.MIN_VALUE);
         return answers;
     }
@@ -294,7 +269,7 @@ public abstract class MathQuestions {
      * @return the answer array.
      */
     protected int[][] createIntAnswerArray(int numOfNumbers) {
-        int[][] answers = new int[4][numOfNumbers];
+        int[][] answers = new int[NUM_OF_ANSWERS][numOfNumbers];
         for (int[] subArray : answers) {
             Arrays.fill(subArray, Integer.MIN_VALUE);
         }
@@ -307,7 +282,7 @@ public abstract class MathQuestions {
      * @return the answer array.
      */
     protected int[][][] createIntAnswerArray(int numOfNumbers, int numOfParts) {
-        int[][][] answers = new int[4][numOfNumbers][numOfParts];
+        int[][][] answers = new int[NUM_OF_ANSWERS][numOfNumbers][numOfParts];
         for (int[][] subArray : answers) {
             for (int[] subsubArray : subArray) {
                 Arrays.fill(subsubArray, Integer.MIN_VALUE);
@@ -322,8 +297,16 @@ public abstract class MathQuestions {
      * @return the answer array.
      */
     protected BigDecimal[] createBigDecimalAnswerArray() {
-        BigDecimal[] answers = new BigDecimal[4];
+        BigDecimal[] answers = new BigDecimal[NUM_OF_ANSWERS];
         Arrays.fill(answers, new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP));
+        return answers;
+    }
+
+    protected Fraction[] createFractionAnswerArray() {
+        Fraction[] answers = new Fraction[NUM_OF_ANSWERS];
+        for (int i = 0; i < answers.length; i++) {
+            answers[i] = new Fraction();
+        }
         return answers;
     }
 
@@ -359,13 +342,13 @@ public abstract class MathQuestions {
      * Makes the possible fraction int answers into strings.
      * @param answers the array with the int fraction answers.
      */
-    protected void generateAnswerStringsFractions(int[][] answers) {
+    protected void generateAnswerStringsFractions(Fraction[] answers) {
         if (answers != null) {
             answerStr = new String[4];
-            answerStr[0] = "A. (" + answers[0][0] + "/" + answers[0][1] + ")";
-            answerStr[1] = "B. (" + answers[1][0] + "/" + answers[1][1] + ")";
-            answerStr[2] = "C. (" + answers[2][0] + "/" + answers[2][1] + ")";
-            answerStr[3] = "D. (" + answers[3][0] + "/" + answers[3][1] + ")";
+            answerStr[0] = "A. " + answers[0].toString();
+            answerStr[1] = "B. " + answers[1].toString();
+            answerStr[2] = "C. " + answers[2].toString();
+            answerStr[3] = "D. " + answers[3].toString();
         }
     }
 
