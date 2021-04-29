@@ -1,11 +1,9 @@
 package view;
 
 import controller.GameLogic;
+import controller.LevelCreator;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.LinkedList;
 
 /**
@@ -108,17 +106,18 @@ public class SceneChanger {
      * Method used for testing scenes and levels
      */
     public void showSceneX() {
-        controller.getHealthBar().createHealthBar();
         controller.getWindow().getLevelLabel().setVisible(true);
 
         for (int i = 0; i <= 12; i++) {
             controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
 
-        controller.getWindow().getSceneCreator().getBackgroundPanel(21).setVisible(true);
-        controller.getWindow().getMathQuestions().setText("SHOP KEEPER");
-        controller.getCounter().setCurrentScene(21);
-        controller.getCounter().setLevel(20);
+        controller.getWindow().getSceneCreator().getBackgroundPanel(4).setVisible(true);
+        controller.getWindow().getMathQuestions().setText("TEST");
+        controller.getCounter().setCurrentScene(4);
+        controller.getCounter().setLevel(3);
+        controller.getHealthBar().createHealthBar();
+        controller.getEnemyHealthBar().createEnemyHealthBar();
     }
 
     /**
@@ -137,6 +136,12 @@ public class SceneChanger {
         controller.getHealthBar().getHealthPanel().setVisible(false);
         controller.getWindow().getLevelLabel().setVisible(false);
         controller.getWindow().getTimerLabel().setVisible(false);
+        controller.getWindow().getCoinLabel().setVisible(false);
+        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+
+        //Sets the level creator to null then creates a new instance of the object to reset the game.
+        controller.setLevelCreator(null);
+        controller.setLevelCreator(new LevelCreator(controller));
 
         //Stops the timer and kills the counter thread
         controller.killCounter();
