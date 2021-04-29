@@ -27,12 +27,4 @@ public class RegularMonster extends Monster {
     public RegularMonsterType getType() {
         return type;
     }
-
-    /**
-     * Sets the type of monster
-     * @param type new type of monster
-     */
-    public void setType(RegularMonsterType type) {
-        this.type = type;
-    }
 }

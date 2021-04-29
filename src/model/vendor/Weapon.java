@@ -1,8 +1,7 @@
 package model.vendor;
 /**
- *
  * @author Leith Ahmad
+ * Class for the Item Weapon
  */
-//class for the Item Weapon
 public class Weapon {
 }

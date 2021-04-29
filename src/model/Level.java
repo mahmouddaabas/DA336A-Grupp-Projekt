@@ -36,14 +36,6 @@ public class Level {
     }
 
     /**
-     * Sets the id of the level
-     * @param id new id of level
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
      * Returns mathQuestions object
      * @return mathQuestions object
      */
@@ -68,26 +60,10 @@ public class Level {
     }
 
     /**
-     * Sets the type of enemy/monster
-     * @param enemy new enemy/monster
-     */
-    public void setEnemy(Monster enemy) {
-        this.enemy = enemy;
-    }
-
-    /**
      * Returns the time limit
      * @return time limit
      */
     public int getTime() {
         return time;
-    }
-
-    /**
-     * Sets the time limit
-     * @param time new time limit
-     */
-    public void setTime(int time) {
-        this.time = time;
     }
 }

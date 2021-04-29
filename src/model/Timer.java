@@ -3,7 +3,6 @@ package model;
 import controller.GameLogic;
 
 /**
- *
  * @author Duy Nguyen
  * Timer class for the questions. Implements a Runnable i.e a thread.
  */
@@ -24,7 +23,6 @@ public class Timer implements Runnable {
     @Override
     public void run() {
         while (ticking) {
-            //System.out.println(time+" "); //Show in GUI
             try {
                 fighting = true;
                 controller.getWindow().getTimerLabel().setText("Time Left: " + controller.getTimer().getTime());
@@ -85,7 +83,7 @@ public class Timer implements Runnable {
      * Returns the fighting boolean
      * @return fighting status
      */
-    public boolean getFigthing(){
+    public boolean getFighting(){
         return fighting;
     }
 }

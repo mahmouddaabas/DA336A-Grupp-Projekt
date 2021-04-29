@@ -1,34 +1,45 @@
 package model.vendor;
 
 /**
- *
  * @author Leith Ahmad
+ * Super class for all the different items.
  */
-//Super class for all the diffrent items.
 public class Item {
-
     private final String name;
-//  private final Attributes attributes;
+    //private final Attributes attributes;
     private int value;
 
-    //Constructor for the class with name as the parameter
+    /**
+     * Constructor for the class with name as the parameter
+     * @param name name of item
+     */
     public Item(String name) {
         this.name = name;
-//        this.attributes = Attributes.None;
+        //this.attributes = Attributes.None;
     }
 
-    //Second constructor for the class with name and attributes as parameters.
-    public Item(String name, Attributes attributes) {
+    /**
+     * Second constructor for the class with name and attributes as parameters.
+     * @param name name of item
+     * @param attribute attribute of item
+     */
+    public Item(String name, Attributes attribute) {
         this.name = name;
-//        this.attributes = attributes;
+        //this.attributes = attributes;
     }
 
-    //get method to return the value
+    /**
+     * Get method to return the value
+     * @return value of item
+     */
     public int getValue() {
         return this.value;
     }
 
-    //get method to return name
+    /**
+     * Get method to return name
+     * @return item name
+     */
     public String getName(){
         return this.name;
     }

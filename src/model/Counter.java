@@ -2,17 +2,14 @@ package model;
 
 import controller.GameLogic;
 
+/**
+ * @Author Mahmoud Daabas
+ * @Author Annie Tran
+ * This is a counter class that will always run.
+ * The class update the timer and the current level.
+ * The class can also hold the latest information on current scene or current level.
+ */
 public class Counter extends Thread {
-
-    /**
-     * @Author Mahmoud Daabas
-     * @Author Annie Tran
-     *
-     * This is a counter class that will always run.
-     * The class update the timer and the current level.
-     * The class can also hold the latest information on current scene or current level.
-     */
-
     private GameLogic controller;
     private boolean run;
     private int delay = 1000;
@@ -55,7 +52,7 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
-                if(controller.getTimer().getFigthing()){
+                if(controller.getTimer().getFighting()){
                     controller.ifNotAnswered();
                 }
                 controller.getWindow().getLevelLabel().setText("Current level: " + getLevel());
@@ -99,7 +96,7 @@ public class Counter extends Thread {
 
     /**
      *Returns the current coins.
-     * @return
+     * @return current coins
      */
     public int getCoins() {
         return coins;

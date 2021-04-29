@@ -84,7 +84,7 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
-        if(getTimer().getFigthing() == false) {
+        if(getTimer().getFighting() == false) {
             enemyHealthBar.createEnemyHealthBar();
         }
     }
