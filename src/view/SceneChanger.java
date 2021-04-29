@@ -143,6 +143,9 @@ public class SceneChanger {
         controller.setLevelCreator(null);
         controller.setLevelCreator(new LevelCreator(controller));
 
+        //Resets the player gold.
+        controller.getPlayer().setGold(0);
+
         //Stops the timer and kills the counter thread
         controller.killCounter();
         controller.getTimer().stopTimer();

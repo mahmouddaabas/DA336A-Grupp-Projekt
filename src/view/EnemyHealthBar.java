@@ -14,7 +14,7 @@ public class EnemyHealthBar {
     private MainFrame frame;
     private JPanel enemyHealthPanel;
     private JLabel[] enemyHealthLabel;
-    private ImageIcon enemyHealthIcon = new ImageIcon("resources/misc/skull.png");
+    private ImageIcon enemyHealthIcon;
 
     /**
      * Constructs the class.
@@ -42,6 +42,7 @@ public class EnemyHealthBar {
      * Method to create the enemy health bar.
      */
     public void createEnemyHealthBar() {
+        checkEnemyType();
         enemyHealthPanel = new JPanel();
         enemyHealthLabel = new JLabel[10];
         enemyHealthPanel.setBounds(800, 48, 400, 50);
@@ -58,6 +59,17 @@ public class EnemyHealthBar {
             enemyHealthLabel[i].setIcon(enemyHealthIcon);
             enemyHealthPanel.add(enemyHealthLabel[i]);
         }
+    }
+
+    public void checkEnemyType() {
+        String path = "";
+        if(controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().isBoss()) {
+           path = "resources/misc/skullRed.png";
+        }
+        else {
+            path = "resources/misc/skull.png";
+        }
+        enemyHealthIcon = new ImageIcon(path);
     }
 
     /**
