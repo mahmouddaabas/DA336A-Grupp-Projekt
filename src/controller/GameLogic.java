@@ -112,17 +112,6 @@ public class GameLogic {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 player.setOutOfCombat(true);
 
-                //Temporary solution to show the shop, will be changed later.
-                //Lvl 20 is final lvl?? If so remove the last statement.
-                if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
-                counter.getLevel() == 15 || counter.getLevel() ==  20) {
-                    int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
-                            "Shop?", JOptionPane.YES_NO_OPTION);
-                    if(reply == JOptionPane.YES_OPTION) {
-                        scene.visitShop();
-                    }
-                }
-
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
                     int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-1;
@@ -138,6 +127,19 @@ public class GameLogic {
                     else {
                         player.setGold(player.getGold() +1);
                     }
+
+
+                    //Temporary solution to show the shop, will be changed later.
+                    //Lvl 20 is final lvl?? If so remove the last statement.
+                    if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                            counter.getLevel() == 15) {
+                        int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
+                                "Shop?", JOptionPane.YES_NO_OPTION);
+                        if(reply == JOptionPane.YES_OPTION) {
+                            scene.visitShop();
+                        }
+                    }
+
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     scene.showScene(counter.getCurrentScene());
                     counter.setLevel(counter.getLevel()+1);
