@@ -159,6 +159,9 @@ public class SceneChanger {
 
         //Brings back all the panels.
         controller.getWindow().getTextArea().setVisible(true);
+
+        //Reset the status and set the text back to white.
         controller.getWindow().getTextArea().setForeground(Color.WHITE);
+        controller.setStatus("");
     }
 }
