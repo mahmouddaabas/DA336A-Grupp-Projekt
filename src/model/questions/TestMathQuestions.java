@@ -82,6 +82,6 @@ public class TestMathQuestions {
     }
 
     public static void main(String[] args) {
-        TestMathQuestions test = new TestMathQuestions();
+        new TestMathQuestions();
     }
 }
