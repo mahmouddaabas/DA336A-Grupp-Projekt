@@ -112,25 +112,6 @@ public class SceneChanger {
         controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
     }
 
-
-    /**
-     * Method used for testing scenes and levels
-     */
-    public void showSceneX() {
-        controller.getWindow().getLblLevel().setVisible(true);
-
-        for (int i = 0; i <= 12; i++) {
-            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
-        }
-
-        controller.getWindow().getSceneCreator().getBackgroundPanel(4).setVisible(true);
-        controller.getWindow().getTextArea().setText("TEST");
-        controller.getCounter().setCurrentScene(4);
-        controller.getCounter().setLevel(3);
-        controller.getHealthBar().createHealthBar();
-        controller.getEnemyHealthBar().createEnemyHealthBar();
-    }
-
     /**
      * Shows the game over screen
      */
@@ -152,7 +133,7 @@ public class SceneChanger {
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
         controller.setLevelCreator(null);
-        controller.setLevelCreator(new LevelCreator(controller));
+        controller.setLevelCreator(new LevelCreator());
 
         //Resets the player gold.
         controller.getPlayer().setGold(0);

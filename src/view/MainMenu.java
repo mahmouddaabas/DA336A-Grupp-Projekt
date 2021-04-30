@@ -59,6 +59,9 @@ public class MainMenu {
         mainFrame.add(pnlMainMenu);
     }
 
+    /**
+     * Creates main menu buttons
+     */
     public void createButtons() {
         pnlButtons = new JPanel(new GridLayout(4, 1));
 
@@ -84,6 +87,9 @@ public class MainMenu {
         pnlMainMenu.add(pnlButtons, BorderLayout.CENTER);
     }
 
+    /**
+     * Change attributes of main menu buttons
+     */
     public void changeButtonAttributes() {
         btnNew.setContentAreaFilled(false);
         btnLoad.setContentAreaFilled(false);
@@ -111,6 +117,9 @@ public class MainMenu {
         btnExit.setFont(new Font("Oswald", Font.BOLD, 20));
     }
 
+    /**
+     * Add action listeners to main menu buttons
+     */
     public void addActionListener() {
         btnNew.addActionListener(actionHandler);
         btnLoad.addActionListener(actionHandler);

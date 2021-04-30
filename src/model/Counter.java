@@ -19,7 +19,7 @@ public class Counter extends Thread {
 
     /**
      * Constructor that initializes the controller.
-     * @param controller
+     * @param controller GameLogic-object used to initialize own GameLogic-object
      */
     public Counter(GameLogic controller) {
         this.controller = controller;
@@ -29,7 +29,7 @@ public class Counter extends Thread {
      * This method is used to start the thread by setting the run boolean to true.
      */
     public void startCounter() {
-        if(run == false) {
+        if(!run) {
             run = true;
             start();
         }
@@ -39,7 +39,7 @@ public class Counter extends Thread {
      * This method is used to stop the thread if needed by setting the run boolean to false.
      */
     public void stopCounter(){
-        if(run == true) {
+        if(run) {
             run = false;
         }
     }
@@ -52,7 +52,7 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
-                if(controller.getTimer().getFighting()){
+                if (controller.getTimer().getFighting()){
                     controller.ifNotAnswered();
                 }
                 controller.getWindow().getLblLevel().setText("Current level: " + getLevel());
