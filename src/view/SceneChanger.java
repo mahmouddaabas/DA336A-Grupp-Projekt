@@ -23,8 +23,11 @@ public class SceneChanger {
         readSceneTexts();
     }
 
+    /**
+     * Shows the main menu when starting
+     */
     public void showMainMenu() {
-        controller.getWindow().getMainMenu().getMenuPane().setVisible(true);
+        controller.getWindow().getMainMenu().getPnlMainMenu().setVisible(true);
     }
 
     /**
@@ -32,6 +35,10 @@ public class SceneChanger {
      * @param sceneNbr given scene number
      */
     public void showScene(int sceneNbr) {
+        if (controller.getWindow().getMainMenu().getPnlMainMenu().isVisible()) {
+            controller.getWindow().getMainMenu().getPnlMainMenu().setVisible(false);
+        }
+
         switch (sceneNbr) {
             case 0:
                 controller.getCounter().setCurrentScene(1);

@@ -58,7 +58,7 @@ public class MainFrame extends JFrame {
         createTimerLabel();
         createCoinLabel();
 
-        mainMenu = new MainMenu(controller, this);
+        mainMenu = new MainMenu(this, action);
 
         sceneCreator = new SceneCreator(this, controller, action);
 
