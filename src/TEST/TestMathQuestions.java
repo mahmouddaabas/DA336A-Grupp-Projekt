@@ -1,5 +1,6 @@
-package model.questions;
+package TEST;
 
+import model.questions.*;
 import view.UI;
 
 /**
