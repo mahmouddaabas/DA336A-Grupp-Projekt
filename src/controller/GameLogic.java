@@ -21,6 +21,7 @@ public class GameLogic {
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
+
     private String status;
 
     //Used to access the main window and the scene changer.
@@ -186,7 +187,7 @@ public class GameLogic {
             startTimer();
 
             //Checks damage taken/done then gets the random math questions.
-            checkDamageAndGetQuestion();
+            checkStatusAndGetQuestion();
 
             for (int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
@@ -259,7 +260,7 @@ public class GameLogic {
         }
     }
 
-    public void checkDamageAndGetQuestion() {
+    public void checkStatusAndGetQuestion() {
         if(status == "incorrect") {
             window.getTextArea().setForeground(Color.RED);
             window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
@@ -440,5 +441,13 @@ public class GameLogic {
      */
     public void setLevelCreator(LevelCreator levelCreator) {
         this.levelCreator = levelCreator;
+    }
+
+    /**
+     * Allows you to set the status from outside of the class.
+     * @param status
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
