@@ -2,7 +2,7 @@ package controller;
 
 /**
  * @Author Mahmoud Daabas
- * @Authour Annie Tran
+ * @Author Annie Tran
  * This class has the items that are available for purchase in the shop.
  */
 public class ShopItems {
@@ -10,7 +10,7 @@ public class ShopItems {
 
     /**
      * Constructs the class.
-     * @param controller
+     * @param controller GameLogic-object used to initialize own GameLogic-object
      */
     public ShopItems(GameLogic controller) {
         this.controller = controller;
@@ -21,12 +21,12 @@ public class ShopItems {
      * Unfinished will implement coin system later.
      */
     public void buyHealth() {
-        if(controller.getPlayer().getPlayerHealth() < 10 && controller.getCounter().getCoins() > 1) {
+        if (controller.getPlayer().getPlayerHealth() < 10 && controller.getCounter().getCoins() > 1) {
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
             controller.getHealthBar().increaseHealth();
-            controller.getPlayer().setGold(controller.getPlayer().getGold() -2);
+            controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
             controller.getWindow().getTextArea().setText("You purchased 1 HP.");
         }
         else if (controller.getCounter().getCoins() < 2) {
