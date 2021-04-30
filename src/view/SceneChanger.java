@@ -3,6 +3,7 @@ package view;
 import controller.GameLogic;
 import controller.LevelCreator;
 
+import java.awt.*;
 import java.io.*;
 import java.util.LinkedList;
 
@@ -158,5 +159,6 @@ public class SceneChanger {
 
         //Brings back all the panels.
         controller.getWindow().getTextArea().setVisible(true);
+        controller.getWindow().getTextArea().setForeground(Color.WHITE);
     }
 }

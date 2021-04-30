@@ -7,6 +7,7 @@ import model.questions.*;
 import view.*;
 import view.events.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author Mattias Bengtsson
@@ -20,6 +21,7 @@ public class GameLogic {
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
+    private String status;
 
     //Used to access the main window and the scene changer.
     private MainFrame window;
@@ -104,10 +106,12 @@ public class GameLogic {
                 player.setOutOfCombat(true);
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
-                if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() - 1;
+                if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
+                    player.setDamageDealt(1);
+                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
+                    status = "correct";
                     generateQuestionAndAnswers();
                 }
                 else {
@@ -121,6 +125,8 @@ public class GameLogic {
 
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     timer.stopTimer();
+                    getWindow().getTextArea().setForeground(Color.WHITE);
+                    status = "";
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
@@ -139,20 +145,28 @@ public class GameLogic {
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
+                    //window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
+                    checkPlayerHealth();
+                    status = "incorrectBoss";
 
+                    if (!player.isDead()) {
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                        healthBar.updateHealth();
+                    }
                 }
                 else {
-                    window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
+                    //window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
+                    checkPlayerHealth();
+                    status = "incorrect";
 
-                }
-                checkPlayerHealth();
-                if (!player.isDead()) {
-                    healthBar.updateHealth();
-                    setOutOfCombat(true);
-                    generateQuestionAndAnswers();
+                    if (!player.isDead()) {
+                        setOutOfCombat(true);
+                        generateQuestionAndAnswers();
+                        healthBar.updateHealth();
+                    }
                 }
             }
         }
@@ -171,8 +185,8 @@ public class GameLogic {
             //Starts the timer upon attacking the monster
             startTimer();
 
-            //Gets the random math questions.
-            getWindow().getTextArea().setText(getMathQuestion().getQuestion());
+            //Checks damage taken/done then gets the random math questions.
+            checkDamageAndGetQuestion();
 
             for (int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
@@ -203,12 +217,19 @@ public class GameLogic {
      * It will also generate new questions.
      */
     public void ifNotAnswered() {
-        if (timer.getTime() == 0) {
-            player.wrong(1);
+        if(timer.getTime() == 0) {
+            if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+                status = "incorrectBoss";
+                player.wrong(2);
+            }
+            else {
+                status = "incorrect";
+                player.wrong(1);
+            }
             checkPlayerHealth();
-            healthBar.updateHealth();
-            mathQuestion.generateNewQuestion();
             setOutOfCombat(true);
+            generateQuestionAndAnswers();
+            healthBar.updateHealth();
             try {
                 ev2.attackEnemy();
             }
@@ -235,6 +256,24 @@ public class GameLogic {
         if (counter == null){
             counter = new Counter(this);
             counter.startCounter();
+        }
+    }
+
+    public void checkDamageAndGetQuestion() {
+        if(status == "incorrect") {
+            window.getTextArea().setForeground(Color.RED);
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else if(status == "incorrectBoss") {
+            window.getTextArea().setForeground(Color.RED);
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else if(status == "correct"){
+            window.getTextArea().setForeground(Color.GREEN);
+            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else {
+            window.getTextArea().setText(getMathQuestion().getQuestion());
         }
     }
 

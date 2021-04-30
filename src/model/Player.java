@@ -13,6 +13,7 @@ public class Player {
     private boolean outOfCombat = true;
 
     private int damageTaken;
+    private int damageDealt;
 
     /**
      * Constructor for the class that initializes the instance variables
@@ -117,5 +118,21 @@ public class Player {
         else {
             this.gold = gold;
         }
+    }
+
+    /**
+     * Returns the damage done by the player.
+     * @return
+     */
+    public int getDamageDealt() {
+        return damageDealt;
+    }
+
+    /**
+     * Sets the damage done by the player.
+     * @param damageDealt
+     */
+    public void setDamageDealt(int damageDealt) {
+        this.damageDealt = damageDealt;
     }
 }
