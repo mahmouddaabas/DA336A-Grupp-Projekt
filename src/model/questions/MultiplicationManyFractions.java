@@ -66,8 +66,8 @@ public class MultiplicationManyFractions extends MathQuestions {
         int numerator;
         int denominator;
         for (int i = 0; i < fractionArray.length; i++) {
-            numerator = randomInt(numeratorLowerBound, numeratorUpperBound);
-            denominator = randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
+            numerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
+            denominator = Utilities.randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
             fractionArray[i] = new Fraction(numerator, denominator);
         }
         return fractionArray;
@@ -77,7 +77,7 @@ public class MultiplicationManyFractions extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createFractionAnswerArray();
+        answers = Utilities.createFractionAnswerArray();
         answers[getCorrectAnswerIndex()] = newAnswer(fractions);
 
         for (int i = 0; i < answers.length; i++) {

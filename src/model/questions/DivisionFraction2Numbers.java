@@ -30,8 +30,8 @@ public class DivisionFraction2Numbers extends MathQuestions {
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
         this.denominatorUpperBound = denominatorUpperBound;
-        numerator = randomInt(numeratorLowerBound, numeratorUpperBound);
-        denominator = randomInt(denominatorLowerBound, denominatorUpperBound);
+        numerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
+        denominator = Utilities.randomInt(denominatorLowerBound, denominatorUpperBound);
     }
 
     /**
@@ -57,15 +57,15 @@ public class DivisionFraction2Numbers extends MathQuestions {
      * otherwise the answer would be too simple.
      */
     private void generateNumbers() {
-        numerator = randomInt(numeratorLowerBound, numeratorUpperBound);
-        denominator = randomIntNotZero(denominatorLowerBound, Math.min(denominatorUpperBound, numerator));
+        numerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
+        denominator = Utilities.randomIntNotZero(denominatorLowerBound, Math.min(denominatorUpperBound, numerator));
     }
 
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createIntAnswerArray(2);
+        answers = Utilities.createIntAnswerArray(2);
         answers[getCorrectAnswerIndex()][0] = numerator / denominator;
         answers[getCorrectAnswerIndex()][1] = numerator % denominator;
 
@@ -85,7 +85,7 @@ public class DivisionFraction2Numbers extends MathQuestions {
         int[] fakeAnswer = new int[2];
         int fakeNumerator;
         while (true) {
-            fakeNumerator = randomInt(numeratorLowerBound, numeratorUpperBound);
+            fakeNumerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
             fakeAnswer[0] = fakeNumerator / denominator;
             fakeAnswer[1] = fakeNumerator % denominator;
             if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&

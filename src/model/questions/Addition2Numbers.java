@@ -30,7 +30,6 @@ public class Addition2Numbers extends MathQuestions {
      */
     public Addition2Numbers(double number1LowerBound, double number1UpperBound, int numOfDecimalsNumber1,
                             double number2LowerBound, double number2UpperBound, int numOfDecimalsNumber2) {
-        super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.numOfDecimalsNumber1 = numOfDecimalsNumber1;
@@ -44,7 +43,7 @@ public class Addition2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " + " + parenthesisIfNegativeString(number2) + "?";
+        return "What is " + number1 + " + " + Utilities.parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
@@ -61,15 +60,15 @@ public class Addition2Numbers extends MathQuestions {
      * Generates the two random numbers from the given bounds.
      */
     private void generateNumbers() {
-        number1 = randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
-        number2 = randomBigDecimal(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
+        number1 = Utilities.randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
+        number2 = Utilities.randomBigDecimal(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
     }
 
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createBigDecimalAnswerArray();
+        answers = Utilities.createBigDecimalAnswerArray();
         answers[getCorrectAnswerIndex()] = number1.add(number2);
 
         for (int i = 0; i < answers.length; i++) {
@@ -88,7 +87,7 @@ public class Addition2Numbers extends MathQuestions {
         BigDecimal fakeAnswer;
         int numOfDecimalsAnswer = answers[getCorrectAnswerIndex()].scale();
         while (true) {
-            fakeAnswer = randomBigDecimal(number1LowerBound + number2LowerBound,
+            fakeAnswer = Utilities.randomBigDecimal(number1LowerBound + number2LowerBound,
                     number1UpperBound + number2UpperBound, numOfDecimalsAnswer);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {

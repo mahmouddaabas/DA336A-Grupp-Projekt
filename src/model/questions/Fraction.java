@@ -1,7 +1,8 @@
 package model.questions;
 
 /**
- * Represents a fraction with a numerator and a denominator.
+ * A representation of a fraction with a numerator and a denominator.
+ * @author Mattias Bengtsson
  */
 public class Fraction {
     private int numerator;
@@ -36,27 +37,11 @@ public class Fraction {
     }
 
     /**
-     * Sets the value of the numerator of the fraction.
-     * @param numerator the numerator of the fraction.
-     */
-    public void setNumerator(int numerator) {
-        this.numerator = numerator;
-    }
-
-    /**
      * Returns the denominator of the fraction.
      * @return the denominator of the fraction.
      */
     public int getDenominator() {
         return denominator;
-    }
-
-    /**
-     * Sets the value of the denominator of the fraction.
-     * @param denominator the denominator of the fraction.
-     */
-    public void setDenominator(int denominator) {
-        this.denominator = denominator;
     }
 
     /**

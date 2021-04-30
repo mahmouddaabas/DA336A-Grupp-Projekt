@@ -40,10 +40,10 @@ public class AdditionManyNumbers extends MathQuestions {
         StringBuilder question = new StringBuilder("What is " + numbers[0]);
 
         for (int i = 1; i < (numbers.length - 1); i++) {
-            question.append(" ").append(additionOrSubtractionString(numbers[i]));
+            question.append(" ").append(Utilities.additionOrSubtractionString(numbers[i]));
         }
 
-        question.append(" ").append(additionOrSubtractionString(numbers[numbers.length - 1])).append("?");
+        question.append(" ").append(Utilities.additionOrSubtractionString(numbers[numbers.length - 1])).append("?");
 
         return question.toString();
     }
@@ -63,7 +63,7 @@ public class AdditionManyNumbers extends MathQuestions {
      */
     private void generateNumbers() {
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = randomBigDecimal(numberLowerBound, numberUpperBound, numOfDecimals);
+            numbers[i] = Utilities.randomBigDecimal(numberLowerBound, numberUpperBound, numOfDecimals);
         }
     }
 
@@ -71,7 +71,7 @@ public class AdditionManyNumbers extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createBigDecimalAnswerArray();
+        answers = Utilities.createBigDecimalAnswerArray();
 
         answers[getCorrectAnswerIndex()] = new BigDecimal(0);
         for (BigDecimal number : numbers) {
@@ -93,7 +93,7 @@ public class AdditionManyNumbers extends MathQuestions {
     private BigDecimal createFakeAnswer() {
         BigDecimal fakeAnswer;
         while (true) {
-            fakeAnswer = randomBigDecimal(numberLowerBound * numbers.length,
+            fakeAnswer = Utilities.randomBigDecimal(numberLowerBound * numbers.length,
                     numberUpperBound * numbers.length, numOfDecimals);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
