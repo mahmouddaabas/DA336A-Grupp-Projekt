@@ -29,6 +29,8 @@ public class MainFrame extends JFrame {
     //Game is over.
     private SceneCreator sceneCreator;
 
+    private MainMenu mainMenu;
+
     //Panel with buttons to answer.
     private JPanel answerPanel;
     private JButton answerButton[];
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame {
     private JLabel lblCoins;
 
     /**
-     * Constructs the class and instansiates controller and the action listeners.
+     * Constructs the class and instantiates controller and the action listeners.
      */
     public MainFrame(GameLogic controller) {
         this.controller = controller;
@@ -55,6 +57,8 @@ public class MainFrame extends JFrame {
         createLevelLabel();
         createTimerLabel();
         createCoinLabel();
+
+        mainMenu = new MainMenu(this, action);
 
         sceneCreator = new SceneCreator(this, controller, action);
 
@@ -278,5 +282,13 @@ public class MainFrame extends JFrame {
      */
     public JLabel getLblCoins() {
         return lblCoins;
+    }
+
+    /**
+     * Returns mainMenu
+     * @return mainMenu
+     */
+    public MainMenu getMainMenu() {
+        return mainMenu;
     }
 }

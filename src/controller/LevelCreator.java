@@ -15,15 +15,12 @@ import java.util.LinkedList;
  * Class that creates the levels (including questions and enemies) for the game.
  */
 public class LevelCreator {
-    private GameLogic controller;
     private LinkedList<Level> levels;
 
     /**
      * Creates the LevelCreator object.
-     * @param controller object to set own controller object to
      */
-    public LevelCreator(GameLogic controller) {
-        this.controller = controller;
+    public LevelCreator() {
         levels = new LinkedList<>();
         create1To5();
         create6To10();

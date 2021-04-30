@@ -60,12 +60,6 @@ public class ActionHandler implements ActionListener{
                 controller.getEv3().buyFromShopKeeper();
                 break;
 
-
-            //Changes the scene by getting a command from the MainFrame arrow button.
-            case "goScene1":
-                controller.getScene().showScene(controller.getCounter().getCurrentScene());
-                break;
-
                 //This is activated when the arrow in the shop is pressed.
             case "goBackToTower":
                 controller.getScene().showScene(controller.getLevel()+1);
@@ -81,6 +75,20 @@ public class ActionHandler implements ActionListener{
                 controller.getScene().exitGameOverScreen();
                 controller.getCounter().setCurrentScene(0);
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                break;
+
+            case "newGame":
+            case "goScene1":
+                controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                break;
+            case "loadGame":
+                System.out.println("Load Game");
+                break;
+            case "profiles":
+                System.out.println("Profiles");
+                break;
+            case "exitGame":
+                System.exit(0);
                 break;
         }
     }

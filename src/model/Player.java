@@ -1,7 +1,5 @@
 package model;
 
-import model.vendor.Bag;
-
 /**
  * @author Leith Ahmad
  * @author Duy Nguyen
@@ -17,8 +15,6 @@ public class Player {
     private int damageTaken;
     private int damageDealt;
 
-    private Bag bag;
-
     /**
      * Constructor for the class that initializes the instance variables
      * @param playerHealth amount of health
@@ -28,7 +24,6 @@ public class Player {
         this.playerHealth = playerHealth;
         this.name = name;
         this.gold = 0;
-        this.bag = new Bag();
     }
 
     /**
@@ -81,7 +76,7 @@ public class Player {
 
     /**
      * Setter for the players health.
-     * @param playerHealth
+     * @param playerHealth new value
      */
     public void setPlayerHealth(int playerHealth) {
         this.playerHealth = playerHealth;
@@ -89,7 +84,7 @@ public class Player {
 
     /**
      * A getter for the damage taken, it is set when the player takes damage.
-     * @return
+     * @return damage taken
      */
     public int getDamageTaken() {
         return damageTaken;
@@ -97,7 +92,7 @@ public class Player {
 
     /**
      * A setter for the damage taken variable.
-     * @param damageTaken
+     * @param damageTaken new value
      */
     public void setDamageTaken(int damageTaken) {
         this.damageTaken = damageTaken;
@@ -105,7 +100,7 @@ public class Player {
 
     /**
      * Returns the players current gold.
-     * @return
+     * @return current gold
      */
     public int getGold() {
         return this.gold;
@@ -114,7 +109,7 @@ public class Player {
     /**
      * Setter to be able to set the players gold.
      * Does not allow gold to be set to negative, if gold is < 0 sets it to 0.
-     * @param gold
+     * @param gold new value
      */
     public void setGold(int gold) {
         if (gold < 0){

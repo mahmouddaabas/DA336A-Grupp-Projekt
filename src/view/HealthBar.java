@@ -5,9 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
  * @author Mahmoud Daabas
- *
  * This class creates the Health Bar for the GUI.
  * It also manages deducting hearts if the player takes damage.
  */

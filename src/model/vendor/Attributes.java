@@ -4,6 +4,8 @@ package model.vendor;
  * Class for the attributes of the consumables
  */
 public class Attributes {
+    //TODO Remake class into enum of potion types
+    //TODO Damage, Protection, etc.
     //Different types of attributes
     enum Type {
         Damage,

@@ -12,7 +12,7 @@ public class Event03 {
 
     /**
      * Constructs the class.
-     * @param controller
+     * @param controller GameLogic-object used to initialize own GameLogic-object
      */
     public Event03(GameLogic controller) {
         this.controller = controller;

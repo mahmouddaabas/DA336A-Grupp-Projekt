@@ -5,10 +5,7 @@ import model.Player;
 import model.Timer;
 import model.questions.*;
 import view.*;
-import view.events.Event01;
-import view.events.Event02;
-import view.events.Event03;
-
+import view.events.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -71,10 +68,10 @@ public class GameLogic {
         counter.setLevel(1);
         counter.setCurrentScene(0);
 
-        levelCreator = new LevelCreator(this);
+        levelCreator = new LevelCreator();
 
-        //Displays the first scene.
-        scene.showScene(counter.getCurrentScene());
+        //Displays main menu
+        scene.showMainMenu();
     }
 
     /**
@@ -86,7 +83,7 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
-        if(getTimer().getFighting() == false) {
+        if (!getTimer().getFighting()) {
             enemyHealthBar.createEnemyHealthBar();
         }
     }
@@ -120,10 +117,10 @@ public class GameLogic {
                 else {
                     //Adds gold to the player based on enemy defeated.
                     if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
-                        player.setGold(player.getGold() +2);
+                        player.setGold(player.getGold() + 2);
                     }
                     else {
-                        player.setGold(player.getGold() +1);
+                        player.setGold(player.getGold() + 1);
                     }
 
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
@@ -133,11 +130,11 @@ public class GameLogic {
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
-                    if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                    if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                             counter.getLevel() == 15 && levelCreator.getLevel(getLevel()).getEnemy().getHealth() <= 0) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
-                        if(reply == JOptionPane.YES_OPTION) {
+                        if (reply == JOptionPane.YES_OPTION) {
                             scene.visitShop();
                         }
                     }
@@ -181,7 +178,7 @@ public class GameLogic {
      * The generated questions and answers are then put into JButtons.
      */
     public void generateQuestionAndAnswers() {
-        if(getOutOfCombat()) {
+        if (getOutOfCombat()) {
             setOutOfCombat(false);
             startFight(getLevel());
 
@@ -191,7 +188,7 @@ public class GameLogic {
             //Checks damage taken/done then gets the random math questions.
             checkDamageAndGetQuestion();
 
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
             }
             getWindow().getAnswerPanel().setVisible(true);
@@ -256,7 +253,7 @@ public class GameLogic {
      * It then starts the thread.
      */
     public void reviveCounter() {
-        if(counter == null){
+        if (counter == null){
             counter = new Counter(this);
             counter.startCounter();
         }
@@ -439,7 +436,7 @@ public class GameLogic {
 
     /**
      * Allows you to set the status of the levelCreator object from outside the class.
-     * @param levelCreator
+     * @param levelCreator new object
      */
     public void setLevelCreator(LevelCreator levelCreator) {
         this.levelCreator = levelCreator;

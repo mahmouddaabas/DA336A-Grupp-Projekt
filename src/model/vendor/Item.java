@@ -5,6 +5,7 @@ package model.vendor;
  * Super class for all the different items.
  */
 public class Item {
+    //TODO Same as HealthPotion-class
     private final String name;
     //private final Attributes attributes;
     private int value;

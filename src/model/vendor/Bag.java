@@ -6,6 +6,7 @@ import java.util.LinkedList;
  * Class for inventory
  */
 public class Bag {
+    //TODO Remove class if "inventory" will be shown as icons on GUI.
     private LinkedList<Item> inventory;
 
     /**

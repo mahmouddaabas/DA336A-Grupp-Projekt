@@ -18,7 +18,7 @@ public class HandleAnswers implements ActionListener, KeyListener {
 
     /**
      * Constructs the class.
-     * @param controller
+     * @param controller GameLogic-object used to initialize own GameLogic-object
      */
     public HandleAnswers(GameLogic controller) {
         this.controller = controller;

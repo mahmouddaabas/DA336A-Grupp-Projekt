@@ -61,6 +61,9 @@ public class EnemyHealthBar {
         }
     }
 
+    /**
+     * Method to check enemy type before creating health bar
+     */
     public void checkEnemyType() {
         String path = "";
         if(controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().isBoss()) {
