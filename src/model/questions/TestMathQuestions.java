@@ -36,8 +36,8 @@ public class TestMathQuestions {
 //        mathQuestion = new DivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
 //        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 3);
 //        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
-//        mathQuestion = new DerivationPolynomial(-9, 9, -9, 9, 1);
-        mathQuestion = new IntegrationPolynomial(-9, 9, 1, 9, 3);
+//        mathQuestion = new DerivationPolynomial(-9, 9, -9, 9, 5);
+        mathQuestion = new IntegrationPolynomial(-9, 9, 1, 9, 5);
 
         while (true) {
             mathQuestion.generateNewQuestion();
