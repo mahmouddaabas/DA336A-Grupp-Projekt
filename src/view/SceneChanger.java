@@ -108,6 +108,7 @@ public class SceneChanger {
      * Returns certain things to visible.
      */
     public void exitShop() {
+        controller.getWindow().getSceneCreator().getBackgroundPanel(22).setVisible(false);
         controller.getWindow().getLblLevel().setVisible(true);
         controller.getWindow().getPnlShop().setVisible(false);
         controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
