@@ -110,7 +110,8 @@ public class GameLogic {
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-1;
+                    player.setDamageDealt(1);
+                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
                     status = "correct";
@@ -187,22 +188,8 @@ public class GameLogic {
             //Starts the timer upon attacking the monster
             startTimer();
 
-            //Gets the random math questions.
-            if(status == "incorrect") {
-                getWindow().getTextArea().setForeground(Color.RED);
-                getWindow().getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage" + "\n" + getMathQuestion().getQuestion());
-            }
-            else if(status == "incorrectBoss") {
-                getWindow().getTextArea().setForeground(Color.RED);
-                getWindow().getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage" + "\n" + getMathQuestion().getQuestion());
-            }
-            else if(status == "correct"){
-                getWindow().getTextArea().setForeground(Color.GREEN);
-                getWindow().getTextArea().setText("Correct answer, you deal 1 damage. \n" + getMathQuestion().getQuestion());
-            }
-            else {
-                getWindow().getTextArea().setText(getMathQuestion().getQuestion());
-            }
+            //Checks damage taken/done then gets the random math questions.
+            checkDamageAndGetQuestion();
 
             for(int i = 0; i < 4; i++) {
                 window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
@@ -272,6 +259,24 @@ public class GameLogic {
         if(counter == null){
             counter = new Counter(this);
             counter.startCounter();
+        }
+    }
+
+    public void checkDamageAndGetQuestion() {
+        if(status == "incorrect") {
+            window.getTextArea().setForeground(Color.RED);
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else if(status == "incorrectBoss") {
+            window.getTextArea().setForeground(Color.RED);
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else if(status == "correct"){
+            window.getTextArea().setForeground(Color.GREEN);
+            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n" + getMathQuestion().getQuestion());
+        }
+        else {
+            window.getTextArea().setText(getMathQuestion().getQuestion());
         }
     }
 

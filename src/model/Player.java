@@ -1,7 +1,6 @@
 package model;
 
 import model.vendor.Bag;
-import model.vendor.Item;
 
 /**
  * @author Leith Ahmad
@@ -16,6 +15,7 @@ public class Player {
     private boolean outOfCombat = true;
 
     private int damageTaken;
+    private int damageDealt;
 
     private Bag bag;
 
@@ -123,5 +123,21 @@ public class Player {
         else {
             this.gold = gold;
         }
+    }
+
+    /**
+     * Returns the damage done by the player.
+     * @return
+     */
+    public int getDamageDealt() {
+        return damageDealt;
+    }
+
+    /**
+     * Sets the damage done by the player.
+     * @param damageDealt
+     */
+    public void setDamageDealt(int damageDealt) {
+        this.damageDealt = damageDealt;
     }
 }
