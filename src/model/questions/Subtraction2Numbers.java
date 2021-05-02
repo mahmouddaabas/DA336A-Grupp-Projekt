@@ -50,7 +50,7 @@ public class Subtraction2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " - " + parenthesisIfNegativeString(number2) + "?";
+        return "What is " + number1 + " - " + Utilities.parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
@@ -68,8 +68,8 @@ public class Subtraction2Numbers extends MathQuestions {
      * number cannot be greater than the first, so switches numbers 1 and 2 if that happens.
      */
     private void generateNumbers() {
-        number1 = randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
-        number2 = randomBigDecimal(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
+        number1 = Utilities.randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
+        number2 = Utilities.randomBigDecimal(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
         if (!negativeAnswer) {
             if (number1.compareTo(number2) < 0) {
                 BigDecimal temp = number1;
@@ -83,7 +83,7 @@ public class Subtraction2Numbers extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createBigDecimalAnswerArray();
+        answers = Utilities.createBigDecimalAnswerArray();
         answers[getCorrectAnswerIndex()] = number1.subtract(number2);
 
         for (int i = 0; i < answers.length; i++) {
@@ -108,7 +108,7 @@ public class Subtraction2Numbers extends MathQuestions {
         BigDecimal fakeAnswer;
         int numOfDecimalsAnswer = answers[getCorrectAnswerIndex()].scale();
         while (true) {
-            fakeAnswer = randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
+            fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;

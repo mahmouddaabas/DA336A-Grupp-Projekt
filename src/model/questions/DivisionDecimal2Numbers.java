@@ -48,7 +48,7 @@ public class DivisionDecimal2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " / " + parenthesisIfNegativeString(number2) + "?";
+        return "What is " + number1 + " / " + Utilities.parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
@@ -65,15 +65,15 @@ public class DivisionDecimal2Numbers extends MathQuestions {
      * Generates the two random numbers from the given bounds. The second number cannot be 0.
      */
     private void generateNumbers() {
-        number1 = randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
-        number2 = randomBigDecimalNotZero(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
+        number1 = Utilities.randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
+        number2 = Utilities.randomBigDecimalNotZero(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
     }
 
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createBigDecimalAnswerArray();
+        answers = Utilities.createBigDecimalAnswerArray();
         answers[getCorrectAnswerIndex()] = number1.divide(number2, numOfDecimalsAnswer, RoundingMode.HALF_UP);
 
         for (int i = 0; i < answers.length; i++) {
@@ -94,7 +94,7 @@ public class DivisionDecimal2Numbers extends MathQuestions {
         BigDecimal fakeAnswer;
 
         while (true) {
-            fakeAnswer = randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
+            fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;

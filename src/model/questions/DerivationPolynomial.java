@@ -9,12 +9,12 @@ import java.util.Arrays;
  * @author Mattias Bengtsson
  */
 public class DerivationPolynomial extends MathQuestions {
-    private int[][][] answers;
+    private Polynomial[] answers;
     private int coefficientLowerBound;
     private int coefficientUpperBound;
     private int exponentLowerBound;
     private int exponentUpperBound;
-    private int[][] terms;
+    private Polynomial polynomial;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the amount of terms. All coefficients
@@ -31,7 +31,7 @@ public class DerivationPolynomial extends MathQuestions {
         this.coefficientUpperBound = coefficientUpperBound;
         this.exponentLowerBound = exponentLowerBound;
         this.exponentUpperBound = exponentUpperBound;
-        terms = new int[numOfTerms][2];
+        polynomial = new Polynomial(numOfTerms);
     }
 
     /**
@@ -39,7 +39,7 @@ public class DerivationPolynomial extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "y = " + writePolynomial(terms) + "\nWhat is (dy/dx)?";
+        return "y = " + polynomial.toString() + "\nWhat is (dy/dx)?";
     }
 
     /**
@@ -47,43 +47,42 @@ public class DerivationPolynomial extends MathQuestions {
      */
     public void generateNewQuestion() {
         newCorrectAnswerIndex();
-        generateTerms();
+        generatePolynomial();
         generateAnswers();
-        generateAnswerStringsPolynomial(answers);
+        generateAnswerStringsPolynomial();
     }
 
     /**
-     * Generates the random terms for the question from the given bounds. The exponents cannot be equal. The
-     * coefficients cannot be 0.
+     * Generates the random terms of the polynomial for the question from the given bounds. The exponents cannot be
+     * equal. The coefficients cannot be 0.
      */
-    private void generateTerms() {
+    private void generatePolynomial() {
+        int[] coefficients = new int[polynomial.getSize()];
+        int[] exponents = new int[coefficients.length];
         boolean done;
-        for (int i = 0; i < terms.length; i++) {
+        for (int i = 0; i < coefficients.length; i++) {
             done = false;
             while (!done) {
                 done = true;
-                terms[i][1] = randomInt(exponentLowerBound, exponentUpperBound);
+                exponents[i] = Utilities.randomInt(exponentLowerBound, exponentUpperBound);
                 for (int j = 0; j < i; j++) {
-                    if (terms[i][1] == terms[j][1]) {
+                    if (exponents[i] == exponents[j]) {
                         done = false;
                         break;
                     }
                 }
             }
-            terms[i][0] = randomIntNotZero(coefficientLowerBound, coefficientUpperBound);
+            coefficients[i] = Utilities.randomIntNotZero(coefficientLowerBound, coefficientUpperBound);
         }
-        terms = sortTerms(terms);
+        polynomial = new Polynomial(coefficients, exponents);
     }
 
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = createIntAnswerArray(terms.length, 2);
-        for (int i = 0; i < answers[0].length; i++) {
-            answers[getCorrectAnswerIndex()][i][0] = terms[i][0] * terms[i][1];
-            answers[getCorrectAnswerIndex()][i][1] = terms[i][1] - 1;
-        }
+        answers = Utilities.createPolynomialAnswerArray();
+        answers[getCorrectAnswerIndex()] = polynomial.derive();
 
         for (int i = 0; i < answers.length; i++) {
             if (i != getCorrectAnswerIndex()) {
@@ -97,65 +96,46 @@ public class DerivationPolynomial extends MathQuestions {
      * values in the answer array.
      * @return a fake answer.
      */
-    private int[][] createFakeAnswer() {
-        int[][] fakeAnswer = new int[terms.length][2];
+    private Polynomial createFakeAnswer() {
+        Polynomial fakeAnswer;
+        int[] coefficients = new int[polynomial.getSize()];
+        int[] exponents = new int[coefficients.length];
 
         while (true) {
             boolean done;
-            for (int i = 0; i < terms.length; i++) {
+            for (int i = 0; i < coefficients.length; i++) {
                 done = false;
                 while (!done) {
                     done = true;
-                    fakeAnswer[i][1] = randomInt(exponentLowerBound - 1, exponentUpperBound - 1);
+                    exponents[i] = Utilities.randomInt(exponentLowerBound - 1, exponentUpperBound - 1);
                     for (int j = 0; j < i; j++) {
-                        if (fakeAnswer[i][1] == fakeAnswer[j][1]) {
+                        if (exponents[i] == exponents[j]) {
                             done = false;
                             break;
                         }
                     }
                 }
-                fakeAnswer[i][0] = randomInt(coefficientLowerBound, coefficientUpperBound) * (fakeAnswer[i][1] + 1);
+                coefficients[i] = Utilities.randomInt(coefficientLowerBound, coefficientUpperBound) * (exponents[i] + 1);
             }
-            fakeAnswer = sortTerms(fakeAnswer);
+            fakeAnswer = new Polynomial(coefficients, exponents);
 
-            if (!compareFakeAnswer(fakeAnswer)) {
+            if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) && !fakeAnswer.equals(answers[2])
+                    && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;
             }
         }
     }
 
     /**
-     * Compares the fake answer to the answers in the answer array and returns true if it is equal to another answer.
-     * @param fakeAnswer the fake answer to compare.
-     * @return true if the fake answer equals another answer, false otherwise.
-     */
-    private boolean compareFakeAnswer(int[][] fakeAnswer) {
-        int equalCount;
-        for (int[][] answer : answers) {
-            equalCount = 0;
-            for (int j = 0; j < answers[0].length; j++) {
-                if (Arrays.equals(fakeAnswer[j], answer[j])) {
-                    equalCount++;
-                }
-            }
-            if (equalCount == answers.length) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Makes the possible polynomial answers into strings.
-     * @param answers the array with the polynomials.
      */
-    private void generateAnswerStringsPolynomial(int[][][] answers) {
+    private void generateAnswerStringsPolynomial() {
         if (answers != null) {
             String[] answerStr = new String[4];
-            answerStr[0] = "A. " + writePolynomial(answers[0]);
-            answerStr[1] = "B. " + writePolynomial(answers[1]);
-            answerStr[2] = "C. " + writePolynomial(answers[2]);
-            answerStr[3] = "D. " + writePolynomial(answers[3]);
+            answerStr[0] = "A. " + answers[0].toString();
+            answerStr[1] = "B. " + answers[1].toString();
+            answerStr[2] = "C. " + answers[2].toString();
+            answerStr[3] = "D. " + answers[3].toString();
             setAnswerStr(answerStr);
         }
     }
