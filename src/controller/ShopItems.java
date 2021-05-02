@@ -80,10 +80,10 @@ public class ShopItems {
     }
 
     /**
-     * Returns the limit.
-     * @return limit
+     * Allows you to set the limit from outside of the class.
+     * @param  limit
      */
-    public int getLimit() {
-        return limit;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }
