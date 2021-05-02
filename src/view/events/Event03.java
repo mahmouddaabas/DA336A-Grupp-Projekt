@@ -39,7 +39,7 @@ public class Event03 {
      */
     public void buyFromShopKeeper() {
         controller.getWindow().getShopButtons()[0].setText("Health (2 coins)");
-        controller.getWindow().getShopButtons()[1].setText("To be added");
+        controller.getWindow().getShopButtons()[1].setText("Damage Potion (3 coins)");
         controller.getWindow().getShopButtons()[2].setText("To be added");
         controller.getWindow().getShopButtons()[3].setText("To be added");
         controller.getWindow().getPnlShop().setVisible(true);

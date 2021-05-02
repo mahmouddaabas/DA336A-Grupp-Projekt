@@ -90,6 +90,9 @@ public class ActionHandler implements ActionListener{
             case "exitGame":
                 System.exit(0);
                 break;
+            case "drinkDamagePotion":
+                controller.getShopItems().drinkDamagePotion();
+                break;
         }
     }
 }

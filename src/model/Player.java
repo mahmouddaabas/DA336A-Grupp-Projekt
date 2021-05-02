@@ -24,6 +24,7 @@ public class Player {
         this.playerHealth = playerHealth;
         this.name = name;
         this.gold = 0;
+        this.damageDealt = 1;
     }
 
     /**

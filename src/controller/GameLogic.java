@@ -108,7 +108,6 @@ public class GameLogic {
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    player.setDamageDealt(1);
                     int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
@@ -128,6 +127,8 @@ public class GameLogic {
                     timer.stopTimer();
                     getWindow().getTextArea().setForeground(Color.WHITE);
                     status = "";
+                    //Resets the damage dealt to 1 incase a damage potion was active before.
+                    player.setDamageDealt(1);
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.

@@ -44,6 +44,9 @@ public class MainFrame extends JFrame {
     private JLabel lblTimer;
     private JLabel lblCoins;
 
+    //Potion buttons.
+    private JButton btnDamagePotion;
+
     /**
      * Constructs the class and instantiates controller and the action listeners.
      */
@@ -53,10 +56,11 @@ public class MainFrame extends JFrame {
         answers = new HandleAnswers(controller);
         shop = new HandleShopKeeper(controller);
 
-        //Create timer and level labels.
+        //Create all necessary labels.
         createLevelLabel();
         createTimerLabel();
         createCoinLabel();
+        createDamagePotion();
 
         mainMenu = new MainMenu(this, action);
 
@@ -104,7 +108,7 @@ public class MainFrame extends JFrame {
      */
     public void populateShopPanel() {
         pnlShop = new JPanel();
-        pnlShop.setBounds(580, 670, 270, 100);
+        pnlShop.setBounds(580, 670, 350, 100);
         pnlShop.setBackground(Color.BLUE);
         pnlShop.setLayout(new GridLayout(2, 2));
         pnlShop.setOpaque(false);
@@ -199,6 +203,31 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * Creates the damage potion button that is shown on the GUI.
+     */
+    public void createDamagePotion() {
+        ImageIcon damagePotionIcon = resize("resources/misc/DamagePotion.png", 50, 50);
+        btnDamagePotion = new JButton();
+        btnDamagePotion.setOpaque(false);
+        btnDamagePotion.setVisible(false);
+        btnDamagePotion.setBounds(1100, 700, 200, 150);
+        btnDamagePotion.setLayout(null);
+
+        btnDamagePotion.addActionListener(action);
+        btnDamagePotion.setActionCommand("drinkDamagePotion");
+
+        btnDamagePotion.setIcon(damagePotionIcon);
+        btnDamagePotion.setContentAreaFilled(false);
+        btnDamagePotion.setFocusPainted(false);
+        btnDamagePotion.setBackground(null);
+        btnDamagePotion.setBorderPainted(false);
+
+        btnDamagePotion.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        btnDamagePotion.setForeground(Color.WHITE);
+        add(btnDamagePotion);
+    }
+
+    /**
      * Method used to resize images and return them as an ImageIcon
      * @param path path of image file
      * @param width width of image
@@ -290,5 +319,13 @@ public class MainFrame extends JFrame {
      */
     public MainMenu getMainMenu() {
         return mainMenu;
+    }
+
+    /**
+     * Returns the damagePotion button.
+     * @return btnDamagePotion
+     */
+    public JButton getBtnDamagePotion() {
+        return btnDamagePotion;
     }
 }
