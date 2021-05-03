@@ -33,7 +33,7 @@ public class HandleShopKeeper implements ActionListener {
                 break;
 
             case "secondButton":
-                controller.getWindow().getTextArea().setText("Not added yet.");
+                controller.getShopItems().buyDamagePotion();
                 break;
 
             case "thirdButton":
