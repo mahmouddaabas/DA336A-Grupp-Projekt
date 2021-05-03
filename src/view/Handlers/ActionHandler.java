@@ -1,6 +1,8 @@
 package view.Handlers;
 
 import controller.GameLogic;
+import view.HelpFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -92,6 +94,9 @@ public class ActionHandler implements ActionListener{
                 break;
             case "drinkDamagePotion":
                 controller.getPlayerActions().drinkDamagePotion();
+                break;
+            case "requestHelp":
+                HelpFrame help = new HelpFrame();
                 break;
         }
     }

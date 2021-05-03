@@ -88,7 +88,9 @@ public class GameLogic {
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
         if (!getTimer().getFighting()) {
+            System.out.println(timer.getFighting());
             enemyHealthBar.createEnemyHealthBar();
+            window.getLblCombatStatus().setVisible(true);
         }
     }
 
@@ -120,6 +122,8 @@ public class GameLogic {
                 else {
                     addGold();
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+                    window.getLblPotionStatus().setVisible(false);
+                    window.getLblCombatStatus().setVisible(false);
                     timer.stopTimer();
                     getWindow().getTextArea().setForeground(Color.WHITE);
                     status = "";

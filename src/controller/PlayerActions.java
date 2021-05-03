@@ -22,6 +22,7 @@ public class PlayerActions {
             controller.getShopItems().setLimit(0);
             controller.getShopItems().getDmgPot().setPotionActive(false);
             controller.getWindow().getBtnDamagePotion().setVisible(false);
+            controller.getWindow().getLblPotionStatus().setVisible(true);
         }
     }
 }

@@ -38,6 +38,7 @@ public class ShopItems {
             controller.getHealthBar().increaseHealth();
             controller.getPlayer().setGold(controller.getPlayer().getGold()-2);
             controller.getWindow().getTextArea().setText("You purchased 1 HP for 2 gold.");
+            controller.getWindow().getLblPotionStatus().setVisible(false);
         }
         else if (controller.getCounter().getCoins() < 2) {
             controller.getWindow().getTextArea().setText("You don't have enough gold!");
