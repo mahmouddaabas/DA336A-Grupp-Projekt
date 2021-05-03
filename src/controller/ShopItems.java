@@ -67,23 +67,14 @@ public class ShopItems {
     }
 
     /**
-     * Method that allows the user to drink the damage potion.
-     */
-    public void drinkDamagePotion() {
-        dmgPot.setPotionActive(true);
-        if(dmgPot.getPotionActive() == true) {
-            controller.getPlayer().setDamageDealt(dmgPot.getDamageBoost());
-            limit = 0;
-            dmgPot.setPotionActive(false);
-            controller.getWindow().getBtnDamagePotion().setVisible(false);
-        }
-    }
-
-    /**
      * Allows you to set the limit from outside of the class.
      * @param  limit
      */
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public DamagePotion getDmgPot() {
+        return dmgPot;
     }
 }
