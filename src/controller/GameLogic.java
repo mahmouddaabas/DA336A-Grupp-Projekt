@@ -133,7 +133,7 @@ public class GameLogic {
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
                     if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
-                            counter.getLevel() == 15 && levelCreator.getLevel(getLevel()).getEnemy().getHealth() <= 0) {
+                            counter.getLevel() == 15) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
                         if (reply == JOptionPane.YES_OPTION) {
