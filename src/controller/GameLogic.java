@@ -115,14 +115,7 @@ public class GameLogic {
                     generateQuestionAndAnswers();
                 }
                 else {
-                    //Adds gold to the player based on enemy defeated.
-                    if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
-                        player.setGold(player.getGold() + 2);
-                    }
-                    else {
-                        player.setGold(player.getGold() + 1);
-                    }
-
+                    addGold();
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     timer.stopTimer();
                     getWindow().getTextArea().setForeground(Color.WHITE);
@@ -132,7 +125,7 @@ public class GameLogic {
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
-                    if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                    if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
                             counter.getLevel() == 15) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
@@ -151,26 +144,31 @@ public class GameLogic {
                     player.wrong(2);
                     checkPlayerHealth();
                     status = "incorrectBoss";
-
-                    if (!player.isDead()) {
-                        setOutOfCombat(true);
-                        generateQuestionAndAnswers();
-                        healthBar.updateHealth();
-                    }
                 }
                 else {
                     //window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
                     status = "incorrect";
-
-                    if (!player.isDead()) {
-                        setOutOfCombat(true);
-                        generateQuestionAndAnswers();
-                        healthBar.updateHealth();
-                    }
+                }
+                if (!player.isDead()) {
+                    setOutOfCombat(true);
+                    generateQuestionAndAnswers();
+                    healthBar.updateHealth();
                 }
             }
+        }
+    }
+
+    /**
+     * Method that adds gold to the player based on the type of enemy defeated.
+     */
+    public void addGold() {
+        if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
+            player.setGold(player.getGold() + 2);
+        }
+        else {
+            player.setGold(player.getGold() + 1);
         }
     }
 
