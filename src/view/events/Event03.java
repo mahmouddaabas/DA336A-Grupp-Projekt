@@ -29,7 +29,7 @@ public class Event03 {
      * Handles what happens when "Talk" is pressed on the shopkeeper.
      */
     public void talkToShopKeeper() {
-        controller.getWindow().getTextArea().setText("I'm not much of at talker, are you buying or not?");
+        controller.getWindow().getTextArea().setText("I'm not much of at talker. Are you buying or not?");
     }
 
     /**

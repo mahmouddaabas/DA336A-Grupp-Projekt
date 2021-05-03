@@ -81,6 +81,19 @@ public class Fraction {
     }
 
     /**
+     * Divides a specified fraction with this fraction and returns the answer as a new Fraction.
+     * The operation uses (n1/d1) / (n2/d2) = (n1*d2)/(d1*n2).
+     * @param fraction the Fraction to multiply to this fraction.
+     * @return a Fraction whose value is this Fraction * the specified Fraction.
+     */
+    public Fraction divide(Fraction fraction) {
+        int numeratorAnswer = numerator * fraction.getDenominator();
+        int denominatorAnswer = denominator * fraction.getNumerator();
+
+        return new Fraction(numeratorAnswer, denominatorAnswer);
+    }
+
+    /**
      * Simplifies the fraction by dividing the common factors from both the numerator and the denominator.
      * Also ensures that the denominator is always positive.
      */

@@ -4,12 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Creates a math question that adds a chosen number of decimal numbers. Negative numbers become subtraction. All
- * numbers have the same bounds. If using just 2 numbers, please use Addition2Numbers or Subtraction2Numbers instead.
- * Need to call generateNewQuestion() to get a question to generate the numbers and answers.
+ * Creates a math question that multiplies a chosen number of decimal numbers. Negative numbers become subtraction. All
+ * numbers have the same bounds. If using just 2 numbers, please use MQMultiply2Numbers instead. Need to call
+ * generateNewQuestion() to get a question to generate the numbers and answers. BigDecimal is used instead of double to
+ * aid with the precision and rounding.
  * @author Mattias Bengtsson
  */
-public class AdditionManyNumbers extends MathQuestions {
+public class MQMultiplicationManyNumbers extends MathQuestions {
     private BigDecimal[] answers;
     private double numberLowerBound;
     private double numberUpperBound;
@@ -22,10 +23,10 @@ public class AdditionManyNumbers extends MathQuestions {
      * @param numberLowerBound the lowest value the numbers can have.
      * @param numberUpperBound the highest value the numbers can have.
      * @param numOfDecimals the number of decimal places for the numbers.
-     * @param numOfNumbers the amount of numbers to add.
+     * @param numOfNumbers the amount of numbers to add. 3 or greater.
      */
-    public AdditionManyNumbers(double numberLowerBound, double numberUpperBound, int numOfDecimals, int numOfNumbers) {
-        super();
+    public MQMultiplicationManyNumbers(double numberLowerBound, double numberUpperBound, int numOfDecimals,
+                                       int numOfNumbers) {
         this.numberLowerBound = numberLowerBound;
         this.numberUpperBound = numberUpperBound;
         this.numOfDecimals = numOfDecimals;
@@ -40,10 +41,10 @@ public class AdditionManyNumbers extends MathQuestions {
         StringBuilder question = new StringBuilder("What is " + numbers[0]);
 
         for (int i = 1; i < (numbers.length - 1); i++) {
-            question.append(" ").append(Utilities.additionOrSubtractionString(numbers[i]));
+            question.append(" * ").append(Utilities.parenthesisIfNegativeString(numbers[i]));
         }
 
-        question.append(" ").append(Utilities.additionOrSubtractionString(numbers[numbers.length - 1])).append("?");
+        question.append(" * ").append(Utilities.parenthesisIfNegativeString(numbers[numbers.length - 1])).append("?");
 
         return question.toString();
     }
@@ -73,9 +74,9 @@ public class AdditionManyNumbers extends MathQuestions {
     private void generateAnswers() {
         answers = Utilities.createBigDecimalAnswerArray();
 
-        answers[getCorrectAnswerIndex()] = new BigDecimal(0);
+        answers[getCorrectAnswerIndex()] = new BigDecimal(1);
         for (BigDecimal number : numbers) {
-            answers[getCorrectAnswerIndex()] = answers[getCorrectAnswerIndex()].add(number);
+            answers[getCorrectAnswerIndex()] = answers[getCorrectAnswerIndex()].multiply(number);
         }
 
         for (int i = 0; i < answers.length; i++) {
@@ -94,7 +95,7 @@ public class AdditionManyNumbers extends MathQuestions {
         BigDecimal fakeAnswer;
         while (true) {
             fakeAnswer = Utilities.randomBigDecimal(numberLowerBound * numbers.length,
-                    numberUpperBound * numbers.length, numOfDecimals);
+                    numberUpperBound * numbers.length, numOfDecimals * numbers.length);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;

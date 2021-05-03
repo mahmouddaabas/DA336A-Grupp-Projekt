@@ -8,7 +8,7 @@ import java.util.Arrays;
  * answers.
  * @author Mattias Bengtsson
  */
-public class DerivationPolynomial extends MathQuestions {
+public class MQDerivationPolynomial extends MathQuestions {
     private Polynomial[] answers;
     private int coefficientLowerBound;
     private int coefficientUpperBound;
@@ -25,8 +25,8 @@ public class DerivationPolynomial extends MathQuestions {
      * @param exponentUpperBound the highest value the exponents of the question can have.
      * @param numOfTerms the number of terms in the polynomial. 1 or greater.
      */
-    public DerivationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
-                                int exponentLowerBound, int exponentUpperBound, int numOfTerms) {
+    public MQDerivationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
+                                  int exponentLowerBound, int exponentUpperBound, int numOfTerms) {
         this.coefficientLowerBound = coefficientLowerBound;
         this.coefficientUpperBound = coefficientUpperBound;
         this.exponentLowerBound = exponentLowerBound;

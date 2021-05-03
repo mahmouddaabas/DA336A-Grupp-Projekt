@@ -1,14 +1,15 @@
 package model.questions;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
- * Creates a math question that multiplies two BigDecimal numbers. Need to call generateNewQuestion() to get a question
- * to generate the numbers and answers. BigDecimal is used instead of double to aid with the precision and rounding.
+ * Creates a math question that divides two BigDecimal numbers. Need to call generateNewQuestion() to get a question to
+ * generate the numbers and answers. BigDecimal is used instead of double to aid with the precision and rounding.
  * @author Mattias Bengtsson
  */
-public class Multiplication2Numbers extends MathQuestions {
+public class MQDivisionDecimal2Numbers extends MathQuestions {
     private BigDecimal[] answers;
     private double number1LowerBound;
     private double number1UpperBound;
@@ -16,6 +17,7 @@ public class Multiplication2Numbers extends MathQuestions {
     private double number2UpperBound;
     private int numOfDecimalsNumber1;
     private int numOfDecimalsNumber2;
+    private int numOfDecimalsAnswer;
     private BigDecimal number1;
     private BigDecimal number2;
 
@@ -28,8 +30,9 @@ public class Multiplication2Numbers extends MathQuestions {
      * @param number2UpperBound the highest value the second number can have.
      * @param numOfDecimalsNumber2 the number of decimal places for the second number.
      */
-    public Multiplication2Numbers(double number1LowerBound, double number1UpperBound, int numOfDecimalsNumber1,
-                                  double number2LowerBound, double number2UpperBound, int numOfDecimalsNumber2) {
+    public MQDivisionDecimal2Numbers(double number1LowerBound, double number1UpperBound, int numOfDecimalsNumber1,
+                                     double number2LowerBound, double number2UpperBound, int numOfDecimalsNumber2,
+                                     int numOfDecimalsAnswer) {
         super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
@@ -37,6 +40,7 @@ public class Multiplication2Numbers extends MathQuestions {
         this.number2LowerBound = number2LowerBound;
         this.number2UpperBound = number2UpperBound;
         this.numOfDecimalsNumber2 = numOfDecimalsNumber2;
+        this.numOfDecimalsAnswer = numOfDecimalsAnswer;
     }
 
     /**
@@ -44,7 +48,7 @@ public class Multiplication2Numbers extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + " * " + Utilities.parenthesisIfNegativeString(number2) + "?";
+        return "What is " + number1 + " / " + Utilities.parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
@@ -58,11 +62,11 @@ public class Multiplication2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the two random numbers from the given bounds.
+     * Generates the two random numbers from the given bounds. The second number cannot be 0.
      */
     private void generateNumbers() {
         number1 = Utilities.randomBigDecimal(number1LowerBound, number1UpperBound, numOfDecimalsNumber1);
-        number2 = Utilities.randomBigDecimal(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
+        number2 = Utilities.randomBigDecimalNotZero(number2LowerBound, number2UpperBound, numOfDecimalsNumber2);
     }
 
     /**
@@ -70,7 +74,7 @@ public class Multiplication2Numbers extends MathQuestions {
      */
     private void generateAnswers() {
         answers = Utilities.createBigDecimalAnswerArray();
-        answers[getCorrectAnswerIndex()] = number1.multiply(number2);
+        answers[getCorrectAnswerIndex()] = number1.divide(number2, numOfDecimalsAnswer, RoundingMode.HALF_UP);
 
         for (int i = 0; i < answers.length; i++) {
             if (answers[i].equals(new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP))) {
@@ -79,23 +83,26 @@ public class Multiplication2Numbers extends MathQuestions {
         }
     }
 
-
     /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
      * values in the answer array.
      * @return a fake answer.
      */
     private BigDecimal createFakeAnswer() {
+        double bound1 = number1LowerBound / number2LowerBound;
+        double bound2 = number1LowerBound / number2UpperBound;
+        double bound3 = number1UpperBound / number2LowerBound;
+        double bound4 = number1UpperBound / number2UpperBound;
+        double lowerBoundAnswer = Math.min(Math.min(bound1, bound2), Math.min(bound3, bound4));
+        double upperBoundAnswer = Math.max(Math.max(bound1, bound2), Math.max(bound3, bound4));
         BigDecimal fakeAnswer;
-        int numOfDecimalsAnswer = answers[getCorrectAnswerIndex()].scale();
+
         while (true) {
-            fakeAnswer = Utilities.randomBigDecimal(number1LowerBound * number2LowerBound,
-                    number1UpperBound * number2UpperBound, numOfDecimalsAnswer);
+            fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) &&
                     !fakeAnswer.equals(answers[2]) && !fakeAnswer.equals(answers[3])) {
                 return fakeAnswer;
             }
         }
     }
-
 }

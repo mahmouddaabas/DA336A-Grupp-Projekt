@@ -1,7 +1,6 @@
 package TEST;
 
-import model.questions.IntegrationPolynomial;
-import model.questions.MathQuestions;
+import model.questions.*;
 
 /**
  * Test class for testing MathQuestions. To be removed in final release.
@@ -29,16 +28,19 @@ public class TestMathQuestions {
         boolean isAnswered;
 
         // choose which type of question
-//        mathQuestion = new Addition2Numbers(0.1, 9.9, 0, 0, 7, 0);
-//        mathQuestion = new Multiplication2Numbers(1, 9, 2, 1, 9, 1);
-//        mathQuestion = new Subtraction2Numbers(1, 9, 0, 1, 9, 0, false);
-//        mathQuestion = new AdditionManyNumbers(1, 9, 2, 3);
-//        mathQuestion = new DivisionFraction2Numbers(10, 100, 2, 10);
-//        mathQuestion = new DivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
-//        mathQuestion = new AdditionManyFractions(-10, 10, -10, 10, 3);
-//        mathQuestion = new MultiplicationManyFractions(-10, 10, -10, 10, 3);
-//        mathQuestion = new DerivationPolynomial(-9, 9, -9, 9, 1);
-        mathQuestion = new IntegrationPolynomial(-9, 9, -9, 9, 3);
+//        mathQuestion = new MQAddition2Numbers(0.1, 9.9, 0, 0, 7, 0);
+//        mathQuestion = new MQMultiplication2Numbers(1, 9, 2, 1, 9, 1);
+//        mathQuestion = new MQSubtraction2Numbers(1, 9, 0, 1, 9, 0, false);
+//        mathQuestion = new MQAdditionManyNumbers(1, 9, 2, 3);
+//        mathQuestion = new MQDivisionFraction2Numbers(10, 100, 2, 10);
+//        mathQuestion = new MQDivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
+//        mathQuestion = new MQAdditionManyFractions(-10, 10, -10, 10, 3);
+//        mathQuestion = new MQMultiplicationManyFractions(-10, 10, -10, 10, 3);
+//        mathQuestion = new MQDerivationPolynomial(-9, 9, -9, 9, 1);
+//        mathQuestion = new MQIntegrationPolynomial(-9, 9, -9, 9, 3);
+//        mathQuestion = new MQMultiplicationManyNumbers(-9, 9, 2, 4);
+        mathQuestion = new MQDivision2Fractions(-9, 9, -9, 9);
+//        mathQuestion = new MQFinalBossRandom(2);
 
         while (true) {
             mathQuestion.generateNewQuestion();
