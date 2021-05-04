@@ -1,11 +1,11 @@
 package model.questions;
 
 /**
- * Creates a math question that adds a chosen number of integer fractions. All the numerators have the same bounds and
- * so do the denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
+ * Creates a math question that multiplies a chosen number of integer fractions. All the numerators have the same bounds
+ * and so do the denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class AdditionManyFractions extends MathQuestions {
+public class MQMultiplicationManyFractions extends MathQuestions {
     private Fraction[] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -20,10 +20,10 @@ public class AdditionManyFractions extends MathQuestions {
      * @param numeratorUpperBound the highest value the numerators can have.
      * @param denominatorLowerBound the lowest value the denominators can have.
      * @param denominatorUpperBound the highest value the denominator can have.
-     * @param numOfFractions the amount of fractions to add. 2 or greater.
+     * @param numOfFractions the amount of fractions to multiply. 2 or greater.
      */
-    public AdditionManyFractions(int numeratorLowerBound, int numeratorUpperBound,
-                                 int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
+    public MQMultiplicationManyFractions(int numeratorLowerBound, int numeratorUpperBound,
+                                         int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
@@ -39,7 +39,7 @@ public class AdditionManyFractions extends MathQuestions {
         StringBuilder question = new StringBuilder("What is " + fractions[0].toString());
 
         for (int i = 1; i < (fractions.length); i++) {
-            question.append(" + ").append(fractions[i].toString());
+            question.append(" * ").append(fractions[i].toString());
         }
 
         question.append("?");
@@ -88,15 +88,15 @@ public class AdditionManyFractions extends MathQuestions {
     }
 
     /**
-     * Adds all the fractions into a single fraction that is then simplified by dividing common factors from the
+     * Multiplies all the fractions into a single fraction that is then simplified by dividing common factors from the
      * numerator and denominator if able to do so.
-     * @param fractionArray the array of the fractions to add.
+     * @param fractionArray the array of the fractions to multiply.
      * @return the answer.
      */
     private Fraction newAnswer(Fraction[] fractionArray) {
-        Fraction answer = new Fraction(0, 1);
+        Fraction answer = new Fraction(1, 1);
         for (Fraction fraction : fractionArray) {
-            answer = answer.add(fraction);
+            answer = answer.multiply(fraction);
         }
         return answer;
     }
@@ -118,5 +118,4 @@ public class AdditionManyFractions extends MathQuestions {
             }
         }
     }
-
 }

@@ -78,7 +78,7 @@ public abstract class MathQuestions {
     }
 
     /**
-     * Gets the answers as strings.
+     * Returns the answers as strings.
      * @return the array with the answers as strings.
      */
     public String[] getAnswerStr() {

@@ -59,11 +59,11 @@ public class ShopItems {
             limit = 1;
         }
         else if(limit == 1) {
-            controller.getWindow().getTextArea().setText("You already have a damage potion. \n" +
+            controller.getWindow().getTextArea().setText("You already have a damage potion.\n" +
                     "You need to consume it before buying a new one.");
         }
         else {
-            controller.getWindow().getTextArea().setText("You dont have enough gold.");
+            controller.getWindow().getTextArea().setText("You don't have enough gold!");
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.Arrays;
  * answers. Unlike most other classes, this one generates the answer first and then the question.
  * @author Mattias Bengtsson
  */
-public class IntegrationPolynomial extends MathQuestions {
+public class MQIntegrationPolynomial extends MathQuestions {
     private Polynomial[] answers;
     private int coefficientLowerBound;
     private int coefficientUpperBound;
@@ -25,8 +25,8 @@ public class IntegrationPolynomial extends MathQuestions {
      * @param exponentUpperBound the highest value the exponents of the answer can have.
      * @param numOfTerms the number of terms in the polynomial. 1 or greater.
      */
-    public IntegrationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
-                                int exponentLowerBound, int exponentUpperBound, int numOfTerms) {
+    public MQIntegrationPolynomial(int coefficientLowerBound, int coefficientUpperBound,
+                                   int exponentLowerBound, int exponentUpperBound, int numOfTerms) {
         this.coefficientLowerBound = coefficientLowerBound;
         this.coefficientUpperBound = coefficientUpperBound;
         this.exponentLowerBound = exponentLowerBound;

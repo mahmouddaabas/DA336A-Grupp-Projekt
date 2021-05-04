@@ -1,23 +1,23 @@
 Welcome adventurer, your goal is to climb the tower and defeat the various monsters in there.
 You just entered the tower, have fun! (Right click on the door to interact with it.)
-You walk through the door and spot something.
+You walk through the door and spot something. (Right click on the goblin to interact with it.)
 You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.
 You enter a dim dungeon. You spot a warden at the end of the hallway.
 You have finally found a way up. Something seems to lurk in the shadows.
 You have reached the top of the dungeon. What kind of creature is that?
-Scene 7/Level 6
-Scene 8/Level 7
-Scene 9/Level 8
-Scene 10/Level 9
-Scene 11/Level 10
-Scene 12/Level 11
-Scene 13/Level 12
-Scene 14/Level 13
-Scene 15/Level 14
-Scene 16/Level 15
-Scene 17/Level 16
-Scene 18/Level 17
-Scene 19/Level 18
-Scene 20/Level 19
-Final Boss?
-Welcome to the shop, Look around and see if you find something you like.
+You advance upwards past the savage orc, but a short figure blocks your path.
+On your way onwards you jump as a statue comes to life!
+After the statue, it is the dead's turn to come to life before you.
+On the next floor you find a knight blocking your path.
+The knight's commander awaits you at the tower's midpoint.
+You have climbed half the tower, but you have no time to rest!
+Your progress forward is halted by an old warrior.
+You feel a chill down your spine as the skeleton mage descends upon you!
+The air on the next floor feels serene and peaceful, contrasting the rest of the tower.
+The way forward is guarded by your greatest foe yet.
+You have entered the final section of the tower. Do not lose hope!
+Toxic fumes permeate the air on this level.
+As you enter the next floor, you barely manage to step out of the way of a fiendish trap!
+You only have this guardian left before the final battle.
+The final battle awaits. This is your moment of triumph! All your skills will be put to the test right now!
+You find yourself in a magical shop seemingly out of place for the tower. (Right click on the shopkeeper to interact or click the arrow to continue.)

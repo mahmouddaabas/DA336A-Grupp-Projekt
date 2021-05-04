@@ -7,8 +7,8 @@ import java.util.Arrays;
  * @author Mattias Bengtsson
  */
 public class Polynomial {
-    int[] coefficients;
-    int[] exponents;
+    private int[] coefficients;
+    private int[] exponents;
 
     /**
      * Initializes the instance variables with a value that will not be used. This constructor is used to generate a
