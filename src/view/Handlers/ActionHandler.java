@@ -79,15 +79,15 @@ public class ActionHandler implements ActionListener{
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
 
-            case "newGame":
             case "goScene1":
+            case "newGame":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
-            case "loadGame":
-                System.out.println("Load Game");
-                break;
             case "profiles":
-                System.out.println("Profiles");
+                if (controller.getWindow().getMainMenu().getPnlButtons().isVisible()) {
+                    controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
+                    controller.getWindow().getMainMenu().getPnlProfiles().setVisible(true);
+                }
                 break;
             case "exitGame":
                 System.exit(0);
