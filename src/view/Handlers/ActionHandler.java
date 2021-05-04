@@ -1,6 +1,8 @@
 package view.Handlers;
 
 import controller.GameLogic;
+import view.HelpFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,35 +31,35 @@ public class ActionHandler implements ActionListener{
         switch(yourChoice) {
             //Scene 2
             case "lookDoor":
-                controller.getEv1().lookDoor();
+                controller.getEventEntrance().lookDoor();
                 break;
             case "talkDoor":
-                controller.getEv1().talkDoor();
+                controller.getEventEntrance().talkDoor();
                 break;
             case "enterDoor":
-                controller.getEv1().enterDoor();
+                controller.getEventEntrance().enterDoor();
                 break;
 
             //Scene 3
             case "lookAtEnemy":
-                controller.getEv2().lookAtEnemy();
+                controller.getEventMonsters().lookAtEnemy();
                 break;
             case "talkToEnemy":
-                controller.getEv2().talkToEnemy();
+                controller.getEventMonsters().talkToEnemy();
                 break;
             case "attackEnemy":
-                controller.getEv2().attackEnemy();
+                controller.getEventMonsters().attackEnemy();
                 break;
 
                 //Shop options
             case "lookAtShopKeeper":
-                controller.getEv3().lookAtShopKeeper();
+                controller.getEventShop().lookAtShopKeeper();
                 break;
             case "talkToShopKeeper":
-                controller.getEv3().talkToShopKeeper();
+                controller.getEventShop().talkToShopKeeper();
                     break;
             case "buyFromShopKeeper":
-                controller.getEv3().buyFromShopKeeper();
+                controller.getEventShop().buyFromShopKeeper();
                 break;
 
                 //This is activated when the arrow in the shop is pressed.
@@ -91,7 +93,10 @@ public class ActionHandler implements ActionListener{
                 System.exit(0);
                 break;
             case "drinkDamagePotion":
-                controller.getShopItems().drinkDamagePotion();
+                controller.getPlayerActions().drinkDamagePotion();
+                break;
+            case "requestHelp":
+                HelpFrame help = new HelpFrame();
                 break;
         }
     }

@@ -7,14 +7,14 @@ import controller.GameLogic;
  * @Author Annie Tran
  * This class handles the event that occur when the player visits the shop.
  */
-public class Event03 {
+public class EventShop {
     private GameLogic controller;
 
     /**
      * Constructs the class.
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
-    public Event03(GameLogic controller) {
+    public EventShop(GameLogic controller) {
         this.controller = controller;
     }
 

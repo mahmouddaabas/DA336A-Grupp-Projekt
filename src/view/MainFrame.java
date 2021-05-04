@@ -46,6 +46,11 @@ public class MainFrame extends JFrame {
 
     //Potion buttons.
     private JButton btnDamagePotion;
+    private JLabel lblPotionStatus;
+    private JLabel lblCombatStatus;
+
+    //Help button
+    private JButton btnGetHelp;
 
     /**
      * Constructs the class and instantiates controller and the action listeners.
@@ -57,10 +62,7 @@ public class MainFrame extends JFrame {
         shop = new HandleShopKeeper(controller);
 
         //Create all necessary labels.
-        createLevelLabel();
-        createTimerLabel();
-        createCoinLabel();
-        createDamagePotion();
+        createAllLabels();
 
         mainMenu = new MainMenu(this, action);
 
@@ -72,6 +74,19 @@ public class MainFrame extends JFrame {
         createMainWindow();
         //Makes the window visible.
         setVisible(true);
+    }
+
+    /**
+     * Creates all labels.
+     */
+    public void createAllLabels() {
+        createLevelLabel();
+        createTimerLabel();
+        createCoinLabel();
+        createDamagePotion();
+        createHelpQuestionMark();
+        createPotionStatusLabel();
+        createCombatStatusLabel();
     }
 
     /**
@@ -210,7 +225,7 @@ public class MainFrame extends JFrame {
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
         btnDamagePotion.setVisible(false);
-        btnDamagePotion.setBounds(1100, 700, 200, 150);
+        btnDamagePotion.setBounds(1230, 750, 50, 50);
         btnDamagePotion.setLayout(null);
 
         btnDamagePotion.addActionListener(action);
@@ -222,9 +237,59 @@ public class MainFrame extends JFrame {
         btnDamagePotion.setBackground(null);
         btnDamagePotion.setBorderPainted(false);
 
-        btnDamagePotion.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
         btnDamagePotion.setForeground(Color.WHITE);
         add(btnDamagePotion);
+    }
+
+    /**
+     * Creates the damage potion button that is shown on the GUI.
+     */
+    public void createHelpQuestionMark() {
+        ImageIcon getHelpIcon = resize("resources/misc/QuestionMark.png", 50, 50);
+        btnGetHelp = new JButton();
+        btnGetHelp.setOpaque(false);
+        btnGetHelp.setVisible(true);
+        btnGetHelp.setBounds(1280, 750, 50, 50);
+        btnGetHelp.setLayout(null);
+
+        btnGetHelp.addActionListener(action);
+        btnGetHelp.setActionCommand("requestHelp");
+
+        btnGetHelp.setIcon(getHelpIcon);
+        btnGetHelp.setContentAreaFilled(false);
+        btnGetHelp.setFocusPainted(false);
+        btnGetHelp.setBackground(null);
+        btnGetHelp.setBorderPainted(false);
+
+        btnGetHelp.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        btnGetHelp.setForeground(Color.WHITE);
+        add(btnGetHelp);
+    }
+
+    /**
+     * Creates the potion status label.
+     */
+    public void createPotionStatusLabel() {
+        ImageIcon statusIcon = resize("resources/misc/bicep.png", 50, 50);
+        lblPotionStatus = new JLabel();
+        lblPotionStatus.setBounds(1230, 750, 50, 50);
+        lblPotionStatus.setOpaque(false);
+        lblPotionStatus.setVisible(false);
+        lblPotionStatus.setIcon(statusIcon);
+        add(lblPotionStatus);
+    }
+
+    /**
+     * Creates the combat status label.
+     */
+    public void createCombatStatusLabel() {
+        ImageIcon statusIcon = resize("resources/misc/combat.png", 50, 50);
+        lblCombatStatus = new JLabel();
+        lblCombatStatus.setBounds(1170, 750, 50, 50);
+        lblCombatStatus.setOpaque(false);
+        lblCombatStatus.setVisible(false);
+        lblCombatStatus.setIcon(statusIcon);
+        add(lblCombatStatus);
     }
 
     /**
@@ -327,5 +392,21 @@ public class MainFrame extends JFrame {
      */
     public JButton getBtnDamagePotion() {
         return btnDamagePotion;
+    }
+
+    /**
+     * Returns the Potion Status label.
+     * @return lblPotionStatus
+     */
+    public JLabel getLblPotionStatus() {
+        return lblPotionStatus;
+    }
+
+    /**
+     * Returns the combat label.
+     * @return lblCombatStatus
+     */
+    public JLabel getLblCombatStatus() {
+        return lblCombatStatus;
     }
 }

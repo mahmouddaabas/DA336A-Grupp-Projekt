@@ -9,14 +9,14 @@ import controller.GameLogic;
  * This class handles the events that happen in the game.
  * Event01 only handles the first scene after you enter the tower.
  */
-public class Event01 {
+public class EventEntrance {
     private GameLogic controller;
 
     /**
      * Constructor
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
-    public Event01(GameLogic controller) {
+    public EventEntrance(GameLogic controller) {
         this.controller = controller;
     }
 

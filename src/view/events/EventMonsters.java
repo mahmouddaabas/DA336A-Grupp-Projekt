@@ -7,14 +7,14 @@ import controller.GameLogic;
  * @author Duy Nguyen
  * Event02 will handle all the different mob interactions in the game.
  */
-public class Event02 {
+public class EventMonsters {
     private GameLogic controller;
 
     /**
      * Constructor
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
-    public Event02(GameLogic controller) {
+    public EventMonsters(GameLogic controller) {
         this.controller = controller;
     }
 

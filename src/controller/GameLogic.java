@@ -33,11 +33,13 @@ public class GameLogic {
     private Counter counter;
 
     private ShopItems shopItems;
+    private PlayerActions playerActions;
 
     //Events in the game.
-    private Event01 ev1 = new Event01(this);
-    private Event02 ev2 = new Event02(this);
-    private Event03 ev3 = new Event03(this);
+    private EventEntrance eventEntrance = new EventEntrance(this);
+    private EventMonsters eventMonsters = new EventMonsters(this);
+    private EventShop eventShop = new EventShop(this);
+
 
     /**
      * Constructor for GameLogic that shows the first scene.
@@ -65,6 +67,7 @@ public class GameLogic {
 
         //The shop items.
         shopItems = new ShopItems(this);
+        playerActions = new PlayerActions(this);
 
         counter.setLevel(1);
         counter.setCurrentScene(0);
@@ -85,7 +88,9 @@ public class GameLogic {
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
         if (!getTimer().getFighting()) {
+            System.out.println(timer.getFighting());
             enemyHealthBar.createEnemyHealthBar();
+            window.getLblCombatStatus().setVisible(true);
         }
     }
 
@@ -117,6 +122,8 @@ public class GameLogic {
                 else {
                     addGold();
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+                    window.getLblPotionStatus().setVisible(false);
+                    window.getLblCombatStatus().setVisible(false);
                     timer.stopTimer();
                     getWindow().getTextArea().setForeground(Color.WHITE);
                     status = "";
@@ -231,7 +238,7 @@ public class GameLogic {
             generateQuestionAndAnswers();
             healthBar.updateHealth();
             try {
-                ev2.attackEnemy();
+                eventMonsters.attackEnemy();
             }
             catch (NullPointerException e){
                 e.printStackTrace();
@@ -294,19 +301,19 @@ public class GameLogic {
     }
 
     /**
-     * Returns the ev1 object for use outside of class
-     * @return this class' ev1 object
+     * Returns the eventEntrance object for use outside of class
+     * @return this class' eventEntrance object
      */
-    public Event01 getEv1() {
-        return ev1;
+    public EventEntrance getEventEntrance() {
+        return eventEntrance;
     }
 
     /**
-     * Returns the ev2 object for use outside of class
-     * @return this class' ev2 object
+     * Returns the eventMonsters object for use outside of class
+     * @return this class' eventMonsters object
      */
-    public Event02 getEv2() {
-        return ev2;
+    public EventMonsters getEventMonsters() {
+        return eventMonsters;
     }
 
     /**
@@ -403,11 +410,11 @@ public class GameLogic {
     }
 
     /**
-     * Returns an object of Event03.
-     * @return ev3
+     * Returns an object of EventShop.
+     * @return getEventShop.
      */
-    public Event03 getEv3() {
-        return ev3;
+    public EventShop getEventShop() {
+        return eventShop;
     }
 
     /***
@@ -448,5 +455,13 @@ public class GameLogic {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * Returns an object of playerActions.
+     * @return playerActions
+     */
+    public PlayerActions getPlayerActions() {
+        return playerActions;
     }
 }
