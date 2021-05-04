@@ -3,6 +3,7 @@ package view.Handlers;
 import controller.GameLogic;
 import view.HelpFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -80,14 +81,20 @@ public class ActionHandler implements ActionListener{
                 break;
 
             case "goScene1":
-            case "newGame":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
-            case "profiles":
-                if (controller.getWindow().getMainMenu().getPnlButtons().isVisible()) {
-                    controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
-                    controller.getWindow().getMainMenu().getPnlProfiles().setVisible(true);
+
+            case "newGame":
+                if (controller.getPlayer() == null) {
+                    JOptionPane.showMessageDialog(null, "Please select a profile");
                 }
+                else {
+                    controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                }
+                break;
+            case "profiles":
+                controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
+                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(true);
                 break;
             case "exitGame":
                 System.exit(0);
@@ -97,6 +104,23 @@ public class ActionHandler implements ActionListener{
                 break;
             case "requestHelp":
                 HelpFrame help = new HelpFrame();
+                break;
+
+            case "addProfile":
+                String playerName = JOptionPane.showInputDialog("Enter player name");
+                if (playerName != null && !playerName.equals("")) {
+
+                }
+                break;
+            case "deleteProfile":
+                System.out.println("Delete profile");
+                break;
+            case "goMainMenu":
+                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getWindow().getMainMenu().getPnlButtons().setVisible(true);
+                break;
+            case "selectProfile":
+                System.out.println("Select profile");
                 break;
         }
     }

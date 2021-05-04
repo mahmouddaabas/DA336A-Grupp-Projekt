@@ -1,30 +1,131 @@
 package view;
 
+import view.Handlers.ActionHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Duy Nguyen
+ * Class that functions as the profiles panel associated with main menu
+ */
 public class ProfilesPanel extends JPanel {
-    private MainFrame mainFrame;
+    private ActionHandler actionHandler;
 
     private JList<String> profiles;
+    private JButton btnBack;
+    private JButton btnSelect;
+    private JButton btnAdd;
+    private JButton btnDel;
 
+    /**
+     * Constructor
+     * @param actionHandler ActionHandler-object to set own ActionHandler-object
+     */
+    public ProfilesPanel(ActionHandler actionHandler) {
+        this.actionHandler = actionHandler;
 
-    public ProfilesPanel(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
         createPanel();
     }
 
+    /**
+     * Creates the panel, its label and the JList which houses the profiles
+     */
     public void createPanel() {
         setLayout(new BorderLayout());
-        setBounds(100, 250, 200, 300);
+
+        JLabel lblProfiles = new JLabel("Profiles");
+        lblProfiles.setFont(new Font("Permanent Marker", Font.ITALIC, 20));
+        lblProfiles.setForeground(Color.BLACK);
+        lblProfiles.setBackground(Color.GRAY);
+        lblProfiles.setOpaque(true);
 
         profiles = new JList<>();
-        JScrollBar jScrollBar = new JScrollBar(Adjustable.VERTICAL);
-        profiles.setBounds(0, 0, 200, 100);
+        profiles.setBackground(Color.DARK_GRAY);
+        profiles.setForeground(Color.BLACK);
+        profiles.setFont(new Font("Oswald", Font.PLAIN, 15));
 
+        add(profiles, BorderLayout.CENTER);
+        add(lblProfiles, BorderLayout.NORTH);
 
-        profiles.add(jScrollBar);
-        add(profiles);
+        createSouthButtons();
+
         setVisible(false);
+    }
+
+    /**
+     * Creates the panel's south buttons
+     */
+    public void createSouthButtons() {
+        JPanel pnlSouthButtons = new JPanel(new GridLayout(2, 2));
+
+        btnAdd = new JButton("Add");
+        btnDel = new JButton("Delete");
+        btnBack = new JButton("Back");
+        btnSelect = new JButton("Select");
+
+        btnAdd.setPreferredSize(new Dimension(50, 50));
+        btnDel.setPreferredSize(new Dimension(50, 50));
+        btnBack.setPreferredSize(new Dimension(50, 50));
+        btnSelect.setPreferredSize(new Dimension(50, 50));
+
+        southButtonAttributes();
+        southButtonListeners();
+
+        pnlSouthButtons.add(btnAdd);
+        pnlSouthButtons.add(btnDel);
+        pnlSouthButtons.add(btnBack);
+        pnlSouthButtons.add(btnSelect);
+
+        add(pnlSouthButtons, BorderLayout.SOUTH);
+    }
+
+    /**
+     * Changes the attributes of the south buttons
+     */
+    public void southButtonAttributes() {
+        btnAdd.setContentAreaFilled(false);
+        btnDel.setContentAreaFilled(false);
+        btnBack.setContentAreaFilled(false);
+        btnSelect.setContentAreaFilled(false);
+
+        btnAdd.setFocusPainted(false);
+        btnDel.setFocusPainted(false);
+        btnBack.setFocusPainted(false);
+        btnSelect.setFocusPainted(false);
+
+        btnAdd.setBackground(Color.GRAY);
+        btnDel.setBackground(Color.GRAY);
+        btnBack.setBackground(Color.GRAY);
+        btnSelect.setBackground(Color.GRAY);
+
+        btnAdd.setOpaque(true);
+        btnDel.setOpaque(true);
+        btnBack.setOpaque(true);
+        btnSelect.setOpaque(true);
+
+        btnAdd.setFont(new Font("Oswald", Font.BOLD, 15));
+        btnDel.setFont(new Font("Oswald", Font.BOLD, 15));
+        btnBack.setFont(new Font("Oswald", Font.BOLD, 15));
+        btnSelect.setFont(new Font("Oswald", Font.BOLD, 15));
+    }
+
+    /**
+     * Adds an actionListener and sets an action command to each south button
+     */
+    public void southButtonListeners() {
+        btnAdd.addActionListener(actionHandler);
+        btnDel.addActionListener(actionHandler);
+        btnBack.addActionListener(actionHandler);
+        btnSelect.addActionListener(actionHandler);
+
+        btnAdd.setActionCommand("addProfile");
+        btnDel.setActionCommand("deleteProfile");
+        btnBack.setActionCommand("goMainMenu");
+        btnSelect.setActionCommand("selectProfile");
+    }
+
+    public JList<String> getProfiles() {
+        return profiles;
     }
 }

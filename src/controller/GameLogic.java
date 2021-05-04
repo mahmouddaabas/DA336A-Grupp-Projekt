@@ -17,6 +17,7 @@ import java.awt.*;
  */
 public class GameLogic {
     private Player player;
+    private String[] playerProfiles = new String[10];
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
@@ -48,7 +49,7 @@ public class GameLogic {
         //Creates a counter object.
         counter = new Counter(this);
 
-        player = new Player(10,"Player 1");
+        //player = new Player(10,"Player 1");
 
         window = new MainFrame(this);
         scene = new SceneChanger(this);
@@ -56,7 +57,7 @@ public class GameLogic {
         timer = new Timer(this);
 
         //Starts the counter thread.
-        counter.startCounter();
+        //counter.startCounter();
 
         //Player health bar and Enemy health bar.
         healthBar = new HealthBar(this, window);
@@ -69,13 +70,18 @@ public class GameLogic {
         shopItems = new ShopItems(this);
         playerActions = new PlayerActions(this);
 
-        counter.setLevel(1);
-        counter.setCurrentScene(0);
-
         levelCreator = new LevelCreator();
 
         //Displays main menu
         scene.showMainMenu();
+    }
+
+    public void createPlayer() {
+        player = new Player(10, window.getMainMenu().getPnlProfiles().getProfiles().getSelectedValue());
+
+        counter.startCounter();
+        counter.setLevel(1);
+        counter.setCurrentScene(0);
     }
 
     /**

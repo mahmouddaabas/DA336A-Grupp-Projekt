@@ -53,11 +53,13 @@ public class MainMenu {
 
         createButtons();
 
+        pnlProfiles = new ProfilesPanel(actionHandler);
+        pnlProfiles.setBounds(100, 250, 200, 350);
+
+        pnlMainMenu.add(pnlProfiles, BorderLayout.CENTER);
+
         pnlMainMenu.add(lblGameName);
         pnlMainMenu.add(lblBg);
-
-        pnlProfiles = new ProfilesPanel(mainFrame);
-        pnlMainMenu.add(pnlProfiles);
 
         mainFrame.add(pnlMainMenu);
     }
