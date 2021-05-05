@@ -46,10 +46,10 @@ public abstract class MathQuestions {
     protected void generateAnswerStrings(BigDecimal[] answers) {
         if (answers != null) {
             answerStr = new String[4];
-            answerStr[0] = "A. " + answers[0].toString();
-            answerStr[1] = "B. " + answers[1].toString();
-            answerStr[2] = "C. " + answers[2].toString();
-            answerStr[3] = "D. " + answers[3].toString();
+            answerStr[0] = "1.  " + answers[0].toString();
+            answerStr[1] = "2.  " + answers[1].toString();
+            answerStr[2] = "3.  " + answers[2].toString();
+            answerStr[3] = "4.  " + answers[3].toString();
         }
     }
 

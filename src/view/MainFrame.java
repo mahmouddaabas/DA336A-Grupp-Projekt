@@ -178,10 +178,10 @@ public class MainFrame extends JFrame {
     public void createLevelLabel(){
         lblLevel = new JLabel();
         lblLevel.setVisible(false);
-        lblLevel.setBounds(100, 650, 220, 150);
+        lblLevel.setBounds(600, 0, 300, 150);
         lblLevel.setLayout(null);
         lblLevel.setText("");
-        lblLevel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        lblLevel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
         lblLevel.setForeground(Color.WHITE);
         add(lblLevel);
     }
@@ -192,7 +192,7 @@ public class MainFrame extends JFrame {
     public void createTimerLabel(){
         lblTimer = new JLabel();
         lblTimer.setVisible(false);
-        lblTimer.setBounds(600, 0, 200, 150);
+        lblTimer.setBounds(100, 650, 220, 150);
         lblTimer.setLayout(null);
         lblTimer.setText("");
         lblTimer.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
