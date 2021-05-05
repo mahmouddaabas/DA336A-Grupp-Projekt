@@ -3,6 +3,7 @@ package view.Handlers;
 import controller.GameLogic;
 import view.HelpFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -79,15 +80,22 @@ public class ActionHandler implements ActionListener{
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
 
-            case "newGame":
             case "goScene1":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
-            case "loadGame":
-                System.out.println("Load Game");
+
+            case "newGame":
+                if (controller.getPlayer() == null) {
+                    JOptionPane.showMessageDialog(null, "Please select a profile");
+                }
+                else {
+                    controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
+                    controller.getWindow().getMainMenu().getPnlDiff().setVisible(true);
+                }
                 break;
             case "profiles":
-                System.out.println("Profiles");
+                controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
+                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(true);
                 break;
             case "exitGame":
                 System.exit(0);
@@ -97,6 +105,35 @@ public class ActionHandler implements ActionListener{
                 break;
             case "requestHelp":
                 HelpFrame help = new HelpFrame();
+                break;
+
+            case "addProfile":
+                String playerName = JOptionPane.showInputDialog("Enter player name");
+                if (playerName != null && !playerName.equals("")) {
+                    controller.addPlayer(playerName);
+                }
+                break;
+            case "deleteProfile":
+                int i1 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                controller.deletePlayer(i1);
+                break;
+            case "goMainMenu":
+                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getWindow().getMainMenu().getPnlButtons().setVisible(true);
+                break;
+            case "selectProfile":
+                int i2 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                controller.setPlayer(i2);
+                break;
+
+            case "hard":
+                System.out.println("Hard difficulty");
+                break;
+            case "medium":
+                controller.startGame();
+                break;
+            case "easy":
+                System.out.println("Easy difficulty");
                 break;
         }
     }

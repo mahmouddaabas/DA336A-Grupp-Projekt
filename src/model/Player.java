@@ -123,7 +123,7 @@ public class Player {
 
     /**
      * Returns the damage done by the player.
-     * @return
+     * @return damageDealt
      */
     public int getDamageDealt() {
         return damageDealt;
@@ -131,9 +131,18 @@ public class Player {
 
     /**
      * Sets the damage done by the player.
-     * @param damageDealt
+     * @param damageDealt new damage dealt
      */
     public void setDamageDealt(int damageDealt) {
         this.damageDealt = damageDealt;
+    }
+
+    /**
+     * To-String method that returns the player name
+     * @return player name
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }
