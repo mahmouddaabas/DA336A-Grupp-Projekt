@@ -23,6 +23,7 @@ public class GameLogic {
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
+    private boolean combat;
 
     private String status;
 
@@ -69,6 +70,9 @@ public class GameLogic {
 
         levelCreator = new LevelCreator();
 
+        //Starts the counter thread.
+        counter.startCounter();
+
         //Displays main menu
         scene.showMainMenu();
     }
@@ -111,11 +115,13 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
-        if (!getTimer().getFighting()) {
-            System.out.println(timer.getFighting());
+        if (!combat) {
             enemyHealthBar.createEnemyHealthBar();
             window.getLblCombatStatus().setVisible(true);
+            window.getBtnGetHelp().setFocusable(false);
         }
+        //Sets combat to true after if statement.
+        combat = true;
     }
 
     /**
@@ -145,9 +151,14 @@ public class GameLogic {
                 }
                 else {
                     addGold();
+
+                    //Hide or change this when the combat is over.
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     window.getLblPotionStatus().setVisible(false);
                     window.getLblCombatStatus().setVisible(false);
+                    window.getBtnGetHelp().setFocusable(true);
+                    combat = false;
+
                     timer.stopTimer();
                     getWindow().getTextArea().setForeground(Color.WHITE);
                     status = "";
@@ -171,13 +182,11 @@ public class GameLogic {
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    //window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -2 Hp");
                     player.wrong(2);
                     checkPlayerHealth();
                     status = "incorrectBoss";
                 }
                 else {
-                    //window.getTextArea().setText(mathQuestion.getQuestion() + "\nIncorrect, try again! -1 Hp");
                     player.wrong(1);
                     checkPlayerHealth();
                     status = "incorrect";

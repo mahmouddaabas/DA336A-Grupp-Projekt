@@ -55,7 +55,12 @@ public class Counter extends Thread {
                 if (controller.getTimer().getFighting()){
                     controller.ifNotAnswered();
                 }
-                controller.getWindow().getLblLevel().setText("Current level: " + getLevel());
+                if(controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
+                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel() + " (Boss)");
+                }
+                else {
+                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel());
+                }
                 coins = controller.getPlayer().getGold();
                 controller.getWindow().getLblCoins().setText(" " + coins);
                 Thread.sleep(delay);

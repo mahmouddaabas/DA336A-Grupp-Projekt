@@ -178,7 +178,7 @@ public class MainFrame extends JFrame {
     public void createLevelLabel(){
         lblLevel = new JLabel();
         lblLevel.setVisible(false);
-        lblLevel.setBounds(100, 650, 200, 150);
+        lblLevel.setBounds(600, 0, 300, 150);
         lblLevel.setLayout(null);
         lblLevel.setText("");
         lblLevel.setFont(new Font("Cambria", Font.PLAIN, 20));
@@ -192,7 +192,7 @@ public class MainFrame extends JFrame {
     public void createTimerLabel(){
         lblTimer = new JLabel();
         lblTimer.setVisible(false);
-        lblTimer.setBounds(600, 0, 200, 150);
+        lblTimer.setBounds(100, 650, 220, 150);
         lblTimer.setLayout(null);
         lblTimer.setText("");
         lblTimer.setFont(new Font("Cambria", Font.PLAIN, 25));
@@ -254,6 +254,7 @@ public class MainFrame extends JFrame {
 
         btnGetHelp.addActionListener(action);
         btnGetHelp.setActionCommand("requestHelp");
+        btnGetHelp.addKeyListener(action);
 
         btnGetHelp.setIcon(getHelpIcon);
         btnGetHelp.setContentAreaFilled(false);
@@ -408,5 +409,13 @@ public class MainFrame extends JFrame {
      */
     public JLabel getLblCombatStatus() {
         return lblCombatStatus;
+    }
+
+    /**
+     * Returns the BtnGetHelp button.
+     * @return getBtnGetHelp
+     */
+    public JButton getBtnGetHelp() {
+        return btnGetHelp;
     }
 }

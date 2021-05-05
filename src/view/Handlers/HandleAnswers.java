@@ -1,6 +1,8 @@
 package view.Handlers;
 
 import controller.GameLogic;
+import view.HelpFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -84,6 +86,9 @@ public class HandleAnswers implements ActionListener, KeyListener {
         else if(e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(3);
             controller.checkAnswer();
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_H) {
+            HelpFrame openHelp = new HelpFrame();
         }
     }
 

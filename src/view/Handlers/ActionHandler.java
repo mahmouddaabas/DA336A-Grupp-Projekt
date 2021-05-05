@@ -6,6 +6,8 @@ import view.HelpFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * @author Mahmoud Daabas
@@ -14,7 +16,7 @@ import java.awt.event.ActionListener;
  * This class handles the actions that gets pressed on the GUI by sending an action command.
  * It then calls the appropriate method from the event class to determine what to do.
  */
-public class ActionHandler implements ActionListener{
+public class ActionHandler implements ActionListener, KeyListener {
     private GameLogic controller;
 
     /**
@@ -25,6 +27,10 @@ public class ActionHandler implements ActionListener{
         this.controller = controller;
     }
 
+    /**
+     * ActionPerformed method that selects a switch case based on action commands.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();
@@ -136,5 +142,34 @@ public class ActionHandler implements ActionListener{
                 System.out.println("Easy difficulty");
                 break;
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    /**
+     * KeyPressed method that activates when a button is pressed.
+     * @param e
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keycode = e.getKeyCode();
+
+        if(keycode == KeyEvent.VK_H) {
+            HelpFrame openHelp = new HelpFrame();
+        }
+        //Checks if the current scene is correct before allowing player to start combat with enter.
+        else if(controller.getCounter().getCurrentScene() == controller.getCounter().getLevel()+2) {
+            if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                controller.generateQuestionAndAnswers();
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
