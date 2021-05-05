@@ -125,7 +125,19 @@ public class ProfilesPanel extends JPanel {
         btnSelect.setActionCommand("selectProfile");
     }
 
-    public JList<String> getProfiles() {
-        return profiles;
+    /**
+     * Updates the player list with names
+     * @param playerNames String-array of player names
+     */
+    public void updatePlayerNames(String[] playerNames) {
+        profiles.setListData(playerNames);
+    }
+
+    /**
+     * Returns the selected index in the list
+     * @return the index
+     */
+    public int getProfilesIndex() {
+        return profiles.getSelectedIndex();
     }
 }

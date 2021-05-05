@@ -89,7 +89,7 @@ public class ActionHandler implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Please select a profile");
                 }
                 else {
-                    controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                    controller.startGame();
                 }
                 break;
             case "profiles":
@@ -109,18 +109,20 @@ public class ActionHandler implements ActionListener{
             case "addProfile":
                 String playerName = JOptionPane.showInputDialog("Enter player name");
                 if (playerName != null && !playerName.equals("")) {
-
+                    controller.addPlayer(playerName);
                 }
                 break;
             case "deleteProfile":
-                System.out.println("Delete profile");
+                int i1 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                controller.deletePlayer(i1);
                 break;
             case "goMainMenu":
                 controller.getWindow().getMainMenu().getPnlProfiles().setVisible(false);
                 controller.getWindow().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
-                System.out.println("Select profile");
+                int i2 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                controller.setPlayer(i2);
                 break;
         }
     }
