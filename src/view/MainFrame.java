@@ -168,7 +168,7 @@ public class MainFrame extends JFrame {
         textArea.setLineWrap(true);
         textArea.setFocusable(false);
         textArea.setWrapStyleWord(true);
-        textArea.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
+        textArea.setFont(new Font("Cambria", Font.PLAIN, 26));
         add(textArea);
     }
 
@@ -181,7 +181,7 @@ public class MainFrame extends JFrame {
         lblLevel.setBounds(100, 650, 200, 150);
         lblLevel.setLayout(null);
         lblLevel.setText("");
-        lblLevel.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        lblLevel.setFont(new Font("Cambria", Font.PLAIN, 20));
         lblLevel.setForeground(Color.WHITE);
         add(lblLevel);
     }
@@ -195,7 +195,7 @@ public class MainFrame extends JFrame {
         lblTimer.setBounds(600, 0, 200, 150);
         lblTimer.setLayout(null);
         lblTimer.setText("");
-        lblTimer.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+        lblTimer.setFont(new Font("Cambria", Font.PLAIN, 25));
         lblTimer.setForeground(Color.WHITE);
         add(lblTimer);
     }
@@ -212,7 +212,7 @@ public class MainFrame extends JFrame {
         lblCoins.setLayout(null);
         lblCoins.setIcon(coinIcon);
         lblCoins.setText(" 0");
-        lblCoins.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        lblCoins.setFont(new Font("Cambria", Font.PLAIN, 20));
         lblCoins.setForeground(Color.WHITE);
         add(lblCoins);
     }
@@ -261,7 +261,7 @@ public class MainFrame extends JFrame {
         btnGetHelp.setBackground(null);
         btnGetHelp.setBorderPainted(false);
 
-        btnGetHelp.setFont(new Font("Book Antiqua", Font.PLAIN, 20));
+        btnGetHelp.setFont(new Font("Cambria", Font.PLAIN, 20));
         btnGetHelp.setForeground(Color.WHITE);
         add(btnGetHelp);
     }
