@@ -47,8 +47,6 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
-        //Creates a counter object.
-        counter = new Counter(this);
 
         playerList = new PlayerList(10);
 
@@ -56,6 +54,11 @@ public class GameLogic {
         scene = new SceneChanger(this);
 
         timer = new Timer(this);
+
+        levelCreator = new LevelCreator();
+
+        //Creates a counter object.
+        counter = new Counter(this);
 
         //Player health bar and Enemy health bar.
         healthBar = new HealthBar(this, window);
@@ -67,11 +70,6 @@ public class GameLogic {
         //The shop items.
         shopItems = new ShopItems(this);
         playerActions = new PlayerActions(this);
-
-        levelCreator = new LevelCreator();
-
-        //Starts the counter thread.
-        counter.startCounter();
 
         //Displays main menu
         scene.showMainMenu();
@@ -295,7 +293,6 @@ public class GameLogic {
     public void reviveCounter() {
         if (counter == null){
             counter = new Counter(this);
-            counter.startCounter();
         }
     }
 

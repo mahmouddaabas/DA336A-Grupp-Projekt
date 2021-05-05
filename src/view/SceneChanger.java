@@ -156,6 +156,7 @@ public class SceneChanger {
     public void exitGameOverScreen() {
         //Restarts the thread
         controller.reviveCounter();
+        controller.startGame();
 
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);

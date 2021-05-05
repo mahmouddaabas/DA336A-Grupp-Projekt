@@ -181,7 +181,7 @@ public class MainFrame extends JFrame {
         lblLevel.setBounds(600, 0, 300, 150);
         lblLevel.setLayout(null);
         lblLevel.setText("");
-        lblLevel.setFont(new Font("Cambria", Font.PLAIN, 20));
+        lblLevel.setFont(new Font("Cambria", Font.PLAIN, 25));
         lblLevel.setForeground(Color.WHITE);
         add(lblLevel);
     }
