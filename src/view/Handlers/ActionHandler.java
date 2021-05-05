@@ -89,7 +89,8 @@ public class ActionHandler implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Please select a profile");
                 }
                 else {
-                    controller.startGame();
+                    controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
+                    controller.getWindow().getMainMenu().getPnlDiff().setVisible(true);
                 }
                 break;
             case "profiles":
@@ -123,6 +124,16 @@ public class ActionHandler implements ActionListener{
             case "selectProfile":
                 int i2 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
                 controller.setPlayer(i2);
+                break;
+
+            case "hard":
+                System.out.println("Hard difficulty");
+                break;
+            case "medium":
+                controller.startGame();
+                break;
+            case "easy":
+                System.out.println("Easy difficulty");
                 break;
         }
     }

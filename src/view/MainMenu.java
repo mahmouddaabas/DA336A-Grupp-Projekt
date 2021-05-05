@@ -16,6 +16,7 @@ public class MainMenu {
     private JPanel pnlMainMenu;
     private JPanel pnlButtons;
     private ProfilesPanel pnlProfiles;
+    private DifficultiesPanel pnlDiff;
 
     private JButton btnNew;
     private JButton btnProfiles;
@@ -56,7 +57,11 @@ public class MainMenu {
         pnlProfiles = new ProfilesPanel(actionHandler);
         pnlProfiles.setBounds(100, 250, 200, 350);
 
+        pnlDiff = new DifficultiesPanel(actionHandler);
+        pnlDiff.setBounds(100, 250, 200, 300);
+
         pnlMainMenu.add(pnlProfiles, BorderLayout.CENTER);
+        pnlMainMenu.add(pnlDiff, BorderLayout.CENTER);
 
         pnlMainMenu.add(lblGameName);
         pnlMainMenu.add(lblBg);
@@ -163,5 +168,13 @@ public class MainMenu {
      */
     public ProfilesPanel getPnlProfiles() {
         return pnlProfiles;
+    }
+
+    /**
+     * Returns pnlDiff
+     * @return pnlDiff
+     */
+    public DifficultiesPanel getPnlDiff() {
+        return pnlDiff;
     }
 }
