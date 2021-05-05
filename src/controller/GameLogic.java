@@ -2,6 +2,7 @@ package controller;
 
 import model.Counter;
 import model.Player;
+import model.PlayerList;
 import model.Timer;
 import model.questions.*;
 import view.*;
@@ -17,6 +18,7 @@ import java.awt.*;
  */
 public class GameLogic {
     private Player player;
+    private PlayerList playerList;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
@@ -41,7 +43,6 @@ public class GameLogic {
     private EventMonsters eventMonsters = new EventMonsters(this);
     private EventShop eventShop = new EventShop(this);
 
-
     /**
      * Constructor for GameLogic that shows the first scene.
      */
@@ -49,7 +50,7 @@ public class GameLogic {
         //Creates a counter object.
         counter = new Counter(this);
 
-        player = new Player(10,"Player 1");
+        playerList = new PlayerList(10);
 
         window = new MainFrame(this);
         scene = new SceneChanger(this);
@@ -67,9 +68,6 @@ public class GameLogic {
         shopItems = new ShopItems(this);
         playerActions = new PlayerActions(this);
 
-        counter.setLevel(1);
-        counter.setCurrentScene(0);
-
         levelCreator = new LevelCreator();
 
         //Starts the counter thread.
@@ -77,6 +75,35 @@ public class GameLogic {
 
         //Displays main menu
         scene.showMainMenu();
+    }
+
+    /**
+     * Adds a player to the profiles list
+     * @param name player name
+     */
+    public void addPlayer(String name) {
+        playerList.addPlayer(name);
+        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+    }
+
+    /**
+     * Deletes a player from the profiles list
+     * @param index index of player
+     */
+    public void deletePlayer(int index) {
+        playerList.deletePlayer(index);
+        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+    }
+
+    /**
+     * Starts the game
+     */
+    public void startGame() {
+        counter.startCounter();
+        counter.setLevel(1);
+        counter.setCurrentScene(0);
+
+        scene.showScene(counter.getCurrentScene());
     }
 
     /**
@@ -469,5 +496,16 @@ public class GameLogic {
      */
     public PlayerActions getPlayerActions() {
         return playerActions;
+    }
+
+    /**
+     * Sets the player object using a player profile
+     * @param index index of player profile in profile list
+     */
+    public void setPlayer(int index) {
+        if (index >= 0) {
+            player = playerList.getPlayer(index);
+            JOptionPane.showMessageDialog(null, player.toString() + " Selected!");
+        }
     }
 }

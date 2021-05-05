@@ -15,10 +15,10 @@ public class MainMenu {
 
     private JPanel pnlMainMenu;
     private JPanel pnlButtons;
+    private ProfilesPanel pnlProfiles;
+    private DifficultiesPanel pnlDiff;
 
-    private JLabel lblGameName;
     private JButton btnNew;
-    private JButton btnLoad;
     private JButton btnProfiles;
     private JButton btnExit;
 
@@ -30,6 +30,7 @@ public class MainMenu {
     public MainMenu(MainFrame mainFrame, ActionHandler actionHandler) {
         this.mainFrame = mainFrame;
         this.actionHandler = actionHandler;
+
         createMenu();
     }
 
@@ -46,12 +47,21 @@ public class MainMenu {
         lblBg.setIcon(resize("resources/backgrounds/mainMenuBG.png", 1350, 850));
         lblBg.setBounds(0, 0, 1350, 850);
 
-        lblGameName = new JLabel("Climb The Tower", JLabel.CENTER);
+        JLabel lblGameName = new JLabel("Climb The Tower", JLabel.CENTER);
         lblGameName.setFont(new Font("Permanent Marker", Font.ITALIC, 75));
         lblGameName.setBounds(0, 0, 1350, 100);
         lblGameName.setForeground(Color.BLACK); //Color of text
 
         createButtons();
+
+        pnlProfiles = new ProfilesPanel(actionHandler);
+        pnlProfiles.setBounds(100, 250, 200, 350);
+
+        pnlDiff = new DifficultiesPanel(actionHandler);
+        pnlDiff.setBounds(100, 250, 200, 300);
+
+        pnlMainMenu.add(pnlProfiles, BorderLayout.CENTER);
+        pnlMainMenu.add(pnlDiff, BorderLayout.CENTER);
 
         pnlMainMenu.add(lblGameName);
         pnlMainMenu.add(lblBg);
@@ -63,15 +73,13 @@ public class MainMenu {
      * Creates main menu buttons
      */
     public void createButtons() {
-        pnlButtons = new JPanel(new GridLayout(4, 1));
+        pnlButtons = new JPanel(new GridLayout(3, 1));
 
         btnNew = new JButton("New Game");
-        btnLoad = new JButton("Load Game");
         btnProfiles = new JButton("Profiles");
         btnExit = new JButton("Exit");
 
         btnNew.setBounds(0, 0, 200, 100);
-        btnLoad.setBounds(0, 0, 200, 100);
         btnProfiles.setBounds(0, 0, 200, 100);
         btnExit.setBounds(0, 0, 200, 100);
 
@@ -79,7 +87,6 @@ public class MainMenu {
         addActionListener();
 
         pnlButtons.add(btnNew);
-        pnlButtons.add(btnLoad);
         pnlButtons.add(btnProfiles);
         pnlButtons.add(btnExit);
 
@@ -92,27 +99,22 @@ public class MainMenu {
      */
     public void changeButtonAttributes() {
         btnNew.setContentAreaFilled(false);
-        btnLoad.setContentAreaFilled(false);
         btnProfiles.setContentAreaFilled(false);
         btnExit.setContentAreaFilled(false);
 
         btnNew.setFocusPainted(false);
-        btnLoad.setFocusPainted(false);
         btnProfiles.setFocusPainted(false);
         btnExit.setFocusPainted(false);
 
         btnNew.setBackground(Color.GRAY);
-        btnLoad.setBackground(Color.GRAY);
         btnProfiles.setBackground(Color.GRAY);
         btnExit.setBackground(Color.GRAY);
 
         btnNew.setOpaque(true);
-        btnLoad.setOpaque(true);
         btnProfiles.setOpaque(true);
         btnExit.setOpaque(true);
 
         btnNew.setFont(new Font("Oswald", Font.BOLD, 20));
-        btnLoad.setFont(new Font("Oswald", Font.BOLD, 20));
         btnProfiles.setFont(new Font("Oswald", Font.BOLD, 20));
         btnExit.setFont(new Font("Oswald", Font.BOLD, 20));
     }
@@ -122,12 +124,10 @@ public class MainMenu {
      */
     public void addActionListener() {
         btnNew.addActionListener(actionHandler);
-        btnLoad.addActionListener(actionHandler);
         btnProfiles.addActionListener(actionHandler);
         btnExit.addActionListener(actionHandler);
 
         btnNew.setActionCommand("newGame");
-        btnLoad.setActionCommand("loadGame");
         btnProfiles.setActionCommand("profiles");
         btnExit.setActionCommand("exitGame");
     }
@@ -152,5 +152,29 @@ public class MainMenu {
      */
     public JPanel getPnlMainMenu() {
         return pnlMainMenu;
+    }
+
+    /**
+     * Returns pnlButtons
+     * @return pnlButtons
+     */
+    public JPanel getPnlButtons() {
+        return pnlButtons;
+    }
+
+    /**
+     * Returns pnlProfiles
+     * @return pnlProfiles
+     */
+    public ProfilesPanel getPnlProfiles() {
+        return pnlProfiles;
+    }
+
+    /**
+     * Returns pnlDiff
+     * @return pnlDiff
+     */
+    public DifficultiesPanel getPnlDiff() {
+        return pnlDiff;
     }
 }
