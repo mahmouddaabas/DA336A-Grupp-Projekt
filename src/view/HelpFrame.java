@@ -12,7 +12,6 @@ import java.awt.*;
 public class HelpFrame {
 
     private JFrame helpFrame;
-
     private JLabel helpHealth;
     private JLabel helpGold;
     private JLabel helpEnemy;
@@ -179,6 +178,10 @@ public class HelpFrame {
         return bgIcon;
     }
 
+    /**
+     * Returns the help frame for use outside of the class.
+     * @return helpFrame
+     */
     public JFrame getHelpFrame() {
         return helpFrame;
     }
