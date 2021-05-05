@@ -55,7 +55,9 @@ public class ShopItems {
         if(controller.getPlayer().getGold() > 2 && limit == 0) {
             controller.getWindow().getBtnDamagePotion().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold()-3);
-            controller.getWindow().getTextArea().setText("You purchased a damage potion for 3 gold.");
+            controller.getWindow().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
+                    "You can activate it on the bottom right of the screen. \n" +
+                    "The potion will only remain active for 1 level, use it wisely!");
             limit = 1;
         }
         else if(limit == 1) {
