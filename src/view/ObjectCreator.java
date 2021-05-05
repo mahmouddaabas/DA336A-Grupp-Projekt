@@ -111,7 +111,7 @@ public class ObjectCreator {
         JLabel lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
-        lblShopKeeper.setIcon(resize("resources/npc/shopkeeper/Oleg.png", 200, 350));
+        lblShopKeeper.setIcon(resize("resources/entities/Oleg.png", 200, 350));
         lblShopKeeper.setBounds(600, 80, 150, 400);
 
         lblShopKeeper.addMouseListener(new MouseListener() {
@@ -151,7 +151,7 @@ public class ObjectCreator {
      */
     public void createMonsterObjects() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/monsters/monsterImageLocation.txt")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/entities/monsterImageLocation.txt")));
             String str = br.readLine();
             JPopupMenu popupMenu = createMonsterMenu();
 
@@ -222,7 +222,7 @@ public class ObjectCreator {
      */
     public void setMonsterBounds() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/monsters/monsterBounds.txt")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/entities/monsterBounds.txt")));
             String str = br.readLine();
 
             while (str != null) {
