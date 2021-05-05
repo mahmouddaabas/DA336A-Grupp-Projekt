@@ -2,6 +2,7 @@ package view;
 
 import controller.GameLogic;
 import controller.LevelCreator;
+import view.Handlers.ActionHandler;
 
 import java.awt.*;
 import java.io.*;
@@ -128,11 +129,13 @@ public class SceneChanger {
         //Hides all the panels.
         controller.getWindow().getAnswerPanel().setVisible(false);
         controller.getWindow().getTextArea().setVisible(false);
+        controller.getWindow().getTextArea2().setVisible(false);
         controller.getHealthBar().getHealthPanel().setVisible(false);
         controller.getWindow().getLblLevel().setVisible(false);
         controller.getWindow().getLblTimer().setVisible(false);
         controller.getWindow().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getWindow().getLblCombatStatus().setVisible(false);
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
         controller.setLevelCreator(null);
@@ -160,6 +163,7 @@ public class SceneChanger {
 
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
+        controller.getWindow().getBtnGetHelp().setFocusable(true);
         controller.getPlayer().restoreHealth();
         controller.setOutOfCombat(true);
         controller.getCounter().setLevel(1);

@@ -178,4 +178,8 @@ public class HelpFrame {
         ImageIcon bgIcon = new ImageIcon(image);
         return bgIcon;
     }
+
+    public JFrame getHelpFrame() {
+        return helpFrame;
+    }
 }

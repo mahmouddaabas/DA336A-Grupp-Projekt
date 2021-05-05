@@ -18,6 +18,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private GameLogic controller;
     private JTextArea textArea;
+    private JTextArea textArea2;
     private JPanel backgroundPanel[] = new JPanel[10];
     private JLabel backgroundLabel[] = new JLabel[10];
 
@@ -87,6 +88,7 @@ public class MainFrame extends JFrame {
         createHelpQuestionMark();
         createPotionStatusLabel();
         createCombatStatusLabel();
+        createTextArea();
     }
 
     /**
@@ -294,6 +296,24 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * Creates the secondary text area that displays the math question.
+     */
+    public void createTextArea() {
+        textArea2 = new JTextArea();
+        textArea2.setBounds(100, 580, 900, 250);
+        textArea2.setBackground(Color.black);
+        textArea2.setForeground(Color.white);
+        textArea2.setOpaque(false);
+        textArea2.setEditable(false);
+        textArea2.setLineWrap(true);
+        textArea2.setFocusable(false);
+        textArea2.setWrapStyleWord(true);
+        textArea2.setVisible(false);
+        textArea2.setFont(new Font("Cambria", Font.PLAIN, 26));
+        add(textArea2);
+    }
+
+    /**
      * Method used to resize images and return them as an ImageIcon
      * @param path path of image file
      * @param width width of image
@@ -417,5 +437,13 @@ public class MainFrame extends JFrame {
      */
     public JButton getBtnGetHelp() {
         return btnGetHelp;
+    }
+
+    /**
+     * Returns textArea2 for use outside of the class.
+     * @return textArea2
+     */
+    public JTextArea getTextArea2() {
+        return textArea2;
     }
 }

@@ -155,6 +155,7 @@ public class GameLogic {
                     window.getLblPotionStatus().setVisible(false);
                     window.getLblCombatStatus().setVisible(false);
                     window.getBtnGetHelp().setFocusable(true);
+                    window.getTextArea2().setVisible(false);
                     combat = false;
 
                     timer.stopTimer();
@@ -237,6 +238,7 @@ public class GameLogic {
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
             getWindow().getTextArea().setBounds(100,550,900,100);
+            getWindow().getTextArea2().setBounds(100,580,900,100);
         }
     }
 
@@ -298,16 +300,22 @@ public class GameLogic {
 
     public void checkStatusAndGetQuestion() {
         if(status == "incorrect") {
+            window.getTextArea2().setVisible(true);
             window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
+            window.getTextArea2().setText(mathQuestion.getQuestion());
         }
         else if(status == "incorrectBoss") {
+            window.getTextArea2().setVisible(true);
             window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n" + getMathQuestion().getQuestion());
+            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
+            window.getTextArea2().setText(mathQuestion.getQuestion());
         }
         else if(status == "correct"){
+            window.getTextArea2().setVisible(true);
             window.getTextArea().setForeground(Color.GREEN);
-            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n" + getMathQuestion().getQuestion());
+            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
+            window.getTextArea2().setText(mathQuestion.getQuestion());
         }
         else {
             window.getTextArea().setText(getMathQuestion().getQuestion());
