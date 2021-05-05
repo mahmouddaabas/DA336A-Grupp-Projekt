@@ -178,7 +178,6 @@ public class GameLogic {
                     window.getAnswerPanel().setVisible(false);
                 }
             }
-            /*
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
                     player.wrong(2);
@@ -196,7 +195,6 @@ public class GameLogic {
                     healthBar.updateHealth();
                 }
             }
-             */
         }
     }
 
