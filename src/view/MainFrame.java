@@ -26,8 +26,8 @@ public class MainFrame extends JFrame {
     private HandleAnswers answers;
     private HandleShopKeeper shop;
 
-    //Game is over.
     private SceneCreator sceneCreator;
+    private ObjectCreator objectCreator;
 
     private MainMenu mainMenu;
 
@@ -69,6 +69,10 @@ public class MainFrame extends JFrame {
         sceneCreator = new SceneCreator(this, controller, action);
 
         sceneCreator.generateScenes();
+
+        objectCreator = new ObjectCreator(this, controller, action);
+
+        objectCreator.createObjects();
 
         //Creates the main window the game is displayed on.
         createMainWindow();
