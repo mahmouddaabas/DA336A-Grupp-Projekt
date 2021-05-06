@@ -277,7 +277,7 @@ public class MainFrame extends JFrame {
     public void createPotionStatusLabel() {
         ImageIcon statusIcon = resize("resources/misc/bicep.png", 50, 50);
         lblPotionStatus = new JLabel();
-        lblPotionStatus.setBounds(1230, 750, 50, 50);
+        lblPotionStatus.setBounds(1110, 750, 50, 50);
         lblPotionStatus.setOpaque(false);
         lblPotionStatus.setVisible(false);
         lblPotionStatus.setIcon(statusIcon);
