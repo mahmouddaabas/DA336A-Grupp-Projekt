@@ -2,7 +2,6 @@ package view;
 
 import controller.GameLogic;
 import controller.LevelCreator;
-import view.Handlers.ActionHandler;
 
 import java.awt.*;
 import java.io.*;
@@ -29,7 +28,7 @@ public class SceneChanger {
      * Shows the main menu when starting
      */
     public void showMainMenu() {
-        controller.getWindow().getMainMenu().getPnlMainMenu().setVisible(true);
+        controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(true);
     }
 
     /**
@@ -37,8 +36,8 @@ public class SceneChanger {
      * @param sceneNbr given scene number
      */
     public void showScene(int sceneNbr) {
-        if (controller.getWindow().getMainMenu().getPnlMainMenu().isVisible()) {
-            controller.getWindow().getMainMenu().getPnlMainMenu().setVisible(false);
+        if (controller.getMainFrame().getMainMenu().getPnlMainMenu().isVisible()) {
+            controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(false);
         }
 
         switch (sceneNbr) {
@@ -47,20 +46,20 @@ public class SceneChanger {
                 break;
             case 1:
                 controller.getHealthBar().createHealthBar();
-                controller.getWindow().getLblCoins().setVisible(true);
+                controller.getMainFrame().getLblCoins().setVisible(true);
                 controller.getCounter().setCurrentScene(2);
                 break;
             case 2:
-                controller.getWindow().getLblLevel().setVisible(true);
+                controller.getMainFrame().getLblLevel().setVisible(true);
                 break;
         }
 
         for (int i = 0; i < sceneNbr; i++) {
-            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+            controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
-        controller.getWindow().getSceneCreator().getBackgroundPanel(sceneNbr).setVisible(true);
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(sceneNbr).setVisible(true);
 
-        controller.getWindow().getTextArea().setText(sceneTexts.get(sceneNbr));
+        controller.getMainFrame().getTextArea().setText(sceneTexts.get(sceneNbr));
         controller.getCounter().setCurrentScene(sceneNbr+1);
     }
 
@@ -88,20 +87,20 @@ public class SceneChanger {
      */
     public void visitShop() {
         //Hide things when the shop is visited.
-        controller.getWindow().getSceneCreator().getBtnArrow().setVisible(true);
+        controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(true);
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
-        controller.getWindow().getAnswerPanel().setVisible(false);
-        controller.getWindow().getLblTimer().setVisible(false);
-        controller.getWindow().getLblLevel().setVisible(false);
+        controller.getMainFrame().getAnswerPanel().setVisible(false);
+        controller.getMainFrame().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLblLevel().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
 
         for (int i = 0; i <= 12; i++) {
-            controller.getWindow().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+            controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
 
-        controller.getWindow().getSceneCreator().getBackgroundPanel(22).setVisible(true);
-        controller.getCounter().setCurrentScene(22);
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
+        controller.getCounter().setCurrentScene(21);
         controller.getCounter().setLevel(controller.getCounter().getLevel());
     }
 
@@ -110,32 +109,32 @@ public class SceneChanger {
      * Returns certain things to visible.
      */
     public void exitShop() {
-        controller.getWindow().getSceneCreator().getBackgroundPanel(22).setVisible(false);
-        controller.getWindow().getLblLevel().setVisible(true);
-        controller.getWindow().getPnlShop().setVisible(false);
-        controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(false);
+        controller.getMainFrame().getLblLevel().setVisible(true);
+        controller.getMainFrame().getPnlShop().setVisible(false);
+        controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(false);
     }
 
     /**
      * Shows the game over screen
      */
     public void showGameOverScreen() {
-        controller.getWindow().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
         controller.getGameOver().getTitleLabel().setText("YOU DIED!");
         controller.getGameOver().getRestartButton().setVisible(true);
         controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
         //Hides all the panels.
-        controller.getWindow().getAnswerPanel().setVisible(false);
-        controller.getWindow().getTextArea().setVisible(false);
-        controller.getWindow().getTextArea2().setVisible(false);
+        controller.getMainFrame().getAnswerPanel().setVisible(false);
+        controller.getMainFrame().getTextArea().setVisible(false);
+        controller.getMainFrame().getTextArea2().setVisible(false);
         controller.getHealthBar().getHealthPanel().setVisible(false);
-        controller.getWindow().getLblLevel().setVisible(false);
-        controller.getWindow().getLblTimer().setVisible(false);
-        controller.getWindow().getLblCoins().setVisible(false);
+        controller.getMainFrame().getLblLevel().setVisible(false);
+        controller.getMainFrame().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
-        controller.getWindow().getLblCombatStatus().setVisible(false);
+        controller.getMainFrame().getLblCombatStatus().setVisible(false);
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
         controller.setLevelCreator(null);
@@ -146,7 +145,7 @@ public class SceneChanger {
 
         //Resets the limit and hides the potions.
         controller.getShopItems().setLimit(0);
-        controller.getWindow().getBtnDamagePotion().setVisible(false);
+        controller.getMainFrame().getBtnDamagePotion().setVisible(false);
 
         //Stops the timer and kills the counter thread
         controller.killCounter();
@@ -163,16 +162,25 @@ public class SceneChanger {
 
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
-        controller.getWindow().getBtnGetHelp().setFocusable(true);
+        controller.getMainFrame().getBtnGetHelp().setFocusable(true);
         controller.getPlayer().restoreHealth();
         controller.setOutOfCombat(true);
         controller.getCounter().setLevel(1);
 
         //Brings back all the panels.
-        controller.getWindow().getTextArea().setVisible(true);
+        controller.getMainFrame().getTextArea().setVisible(true);
+
+        //Sets all enemies to visible
+        for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
+            controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+        }
+        //Sets all level arrows to invisible
+        for (int j = 1; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++) {
+            controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+        }
 
         //Reset the status and set the text back to white.
-        controller.getWindow().getTextArea().setForeground(Color.WHITE);
+        controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
     }
 }

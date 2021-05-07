@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import controller.ImageResizer;
 import view.Handlers.ActionHandler;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.util.LinkedList;
 
 /**
  * @author Duy Nguyen
+ * @author Leith Ahmad
  * Class that creates all entities for the scenes
  */
 public class ObjectCreator {
@@ -111,14 +113,12 @@ public class ObjectCreator {
         JLabel lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
-        lblShopKeeper.setIcon(resize("resources/entities/Oleg.png", 200, 350));
+        lblShopKeeper.setIcon(ImageResizer.resize("resources/entities/Oleg.png", 200, 350));
         lblShopKeeper.setBounds(600, 80, 150, 400);
 
         lblShopKeeper.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
+            public void mouseClicked(MouseEvent e) {}
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
@@ -128,22 +128,15 @@ public class ObjectCreator {
                 }
             }
             @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
+            public void mouseReleased(MouseEvent e) {}
             @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
+            public void mouseEntered(MouseEvent e) {}
             @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
+            public void mouseExited(MouseEvent e) {}
         });
-
-        bgPanels.get(22).add(lblShopKeeper);
+        bgPanels.get(21).add(lblShopKeeper);
         mainFrame.populateShopPanel();
-        bgPanels.get(22).add(bgImages.get(22));
+        bgPanels.get(21).add(bgImages.get(21));
     }
 
     /**
@@ -159,13 +152,12 @@ public class ObjectCreator {
             while (str != null) {
                 JLabel lblMonster = new JLabel();
 
-                ImageIcon monsterIcon = resize(str, 150, 150);
+                ImageIcon monsterIcon = ImageResizer.resize(str, 150, 150);
                 lblMonster.setIcon(monsterIcon);
 
                 lblMonster.addMouseListener(new MouseListener() {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
-                    }
+                    public void mouseClicked(MouseEvent e) {}
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isRightMouseButton(e)) {
@@ -175,22 +167,16 @@ public class ObjectCreator {
                         }
                     }
                     @Override
-                    public void mouseReleased(MouseEvent e) {
-
-                    }
+                    public void mouseReleased(MouseEvent e) {}
                     @Override
-                    public void mouseEntered(MouseEvent e) {
-
-                    }
+                    public void mouseEntered(MouseEvent e) {}
                     @Override
-                    public void mouseExited(MouseEvent e) {
-
-                    }
+                    public void mouseExited(MouseEvent e) {}
                 });
                 monsters.add(lvlNbr, lblMonster);
-                bgPanels.get(lvlNbr+2).add(monsters.get(lvlNbr));
+                bgPanels.get(lvlNbr + 1).add(monsters.get(lvlNbr));
                 mainFrame.populateAnswerPanel();
-                bgPanels.get(lvlNbr+2).add(bgImages.get(lvlNbr+2));
+                bgPanels.get(lvlNbr + 1).add(bgImages.get(lvlNbr + 1));
 
                 lvlNbr++;
                 str = br.readLine();
@@ -201,20 +187,6 @@ public class ObjectCreator {
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Method used to resize pictures
-     * Then returns an ImageIcon
-     * @param path path to image file
-     * @param width width of image
-     * @param height height of image
-     * @return an ImageIcon
-     */
-    public ImageIcon resize(String path, int width, int height) {
-        ImageIcon backgroundPicture = new ImageIcon(path);
-        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        return new ImageIcon(image);
     }
 
     /**
@@ -243,5 +215,13 @@ public class ObjectCreator {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns monster list
+     * @return monsters
+     */
+    public LinkedList<JLabel> getMonsters() {
+        return monsters;
     }
 }

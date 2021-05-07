@@ -160,4 +160,8 @@ public class LevelCreator {
         }
         return null;
     }
+
+    public LinkedList<Level> getLevels() {
+        return levels;
+    }
 }

@@ -37,17 +37,6 @@ public class ActionHandler implements ActionListener, KeyListener {
         String yourChoice = e.getActionCommand();
 
         switch(yourChoice) {
-            //Scene 2
-            case "lookDoor":
-                controller.getEventEntrance().lookDoor();
-                break;
-            case "talkDoor":
-                controller.getEventEntrance().talkDoor();
-                break;
-            case "enterDoor":
-                controller.getEventEntrance().enterDoor();
-                break;
-
             //Scene 3
             case "lookAtEnemy":
                 controller.getEventMonsters().lookAtEnemy();
@@ -74,7 +63,6 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "goBackToTower":
                 controller.getScene().showScene(controller.getLevel()+1);
                 controller.getCounter().setLevel(controller.getLevel());
-                controller.getWindow().getSceneCreator().getBtnArrow().setVisible(false);
                 controller.getScene().exitShop();
                 break;
 
@@ -87,7 +75,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
 
-            case "goScene1":
+            case "continue":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 break;
 
@@ -96,13 +84,13 @@ public class ActionHandler implements ActionListener, KeyListener {
                     JOptionPane.showMessageDialog(null, "Please select a profile");
                 }
                 else {
-                    controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
-                    controller.getWindow().getMainMenu().getPnlDiff().setVisible(true);
+                    controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(false);
+                    controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
                 }
                 break;
             case "profiles":
-                controller.getWindow().getMainMenu().getPnlButtons().setVisible(false);
-                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(true);
+                controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(true);
                 break;
             case "exitGame":
                 System.exit(0);
@@ -121,15 +109,15 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "deleteProfile":
-                int i1 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                int i1 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 controller.deletePlayer(i1);
                 break;
             case "goMainMenu":
-                controller.getWindow().getMainMenu().getPnlProfiles().setVisible(false);
-                controller.getWindow().getMainMenu().getPnlButtons().setVisible(true);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
-                int i2 = controller.getWindow().getMainMenu().getPnlProfiles().getProfilesIndex();
+                int i2 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 controller.setPlayer(i2);
                 break;
 

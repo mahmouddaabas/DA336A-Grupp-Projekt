@@ -37,14 +37,14 @@ public class ShopItems {
             controller.getPlayer().setPlayerHealth(previousHealth);
             controller.getHealthBar().increaseHealth();
             controller.getPlayer().setGold(controller.getPlayer().getGold()-2);
-            controller.getWindow().getTextArea().setText("You purchased 1 HP for 2 gold.");
-            controller.getWindow().getLblPotionStatus().setVisible(false);
+            controller.getMainFrame().getTextArea().setText("You purchased 1 HP for 2 gold.");
+            controller.getMainFrame().getLblPotionStatus().setVisible(false);
         }
         else if (controller.getCounter().getCoins() < 2) {
-            controller.getWindow().getTextArea().setText("You don't have enough gold!");
+            controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
         }
         else {
-            controller.getWindow().getTextArea().setText("You already have full hp!");
+            controller.getMainFrame().getTextArea().setText("You already have full hp!");
         }
     }
 
@@ -53,19 +53,19 @@ public class ShopItems {
      */
     public void buyDamagePotion() {
         if(controller.getPlayer().getGold() > 2 && limit == 0) {
-            controller.getWindow().getBtnDamagePotion().setVisible(true);
+            controller.getMainFrame().getBtnDamagePotion().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold()-3);
-            controller.getWindow().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
+            controller.getMainFrame().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
                     "You can activate it on the bottom right of the screen. \n" +
                     "The potion will only remain active for 1 level, use it wisely!");
             limit = 1;
         }
         else if(limit == 1) {
-            controller.getWindow().getTextArea().setText("You already have a damage potion.\n" +
+            controller.getMainFrame().getTextArea().setText("You already have a damage potion.\n" +
                     "You need to consume it before buying a new one.");
         }
         else {
-            controller.getWindow().getTextArea().setText("You don't have enough gold!");
+            controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
         }
     }
 

@@ -56,13 +56,13 @@ public class Counter extends Thread {
                     controller.ifNotAnswered();
                 }
                 if(controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
-                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel() + " (Boss)");
+                    controller.getMainFrame().getLblLevel().setText("Current level: " + getLevel() + " (Boss)");
                 }
                 else {
-                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel());
+                    controller.getMainFrame().getLblLevel().setText("Current level: " + getLevel());
                 }
                 coins = controller.getPlayer().getGold();
-                controller.getWindow().getLblCoins().setText(" " + coins);
+                controller.getMainFrame().getLblCoins().setText(" " + coins);
                 Thread.sleep(delay);
             }
             catch(InterruptedException e) {

@@ -22,14 +22,14 @@ public class EventMonsters {
      * This method is called if the user selects the "Look" option in the GUI.
      */
     public void lookAtEnemy() {
-        controller.getWindow().getTextArea().setText(controller.getLookDialogue());
+        controller.getMainFrame().getTextArea().setText(controller.getLookDialogue());
     }
 
     /**
      * Same as lookAtEnemy(), but for "Talk" option.
      */
     public void talkToEnemy() {
-        controller.getWindow().getTextArea().setText(controller.getTalkDialogue());
+        controller.getMainFrame().getTextArea().setText(controller.getTalkDialogue());
     }
 
     /**

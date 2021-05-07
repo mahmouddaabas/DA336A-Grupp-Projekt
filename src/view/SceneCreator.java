@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import controller.ImageResizer;
 import view.Handlers.ActionHandler;
 import javax.swing.*;
 import java.awt.*;
@@ -20,27 +21,23 @@ import java.util.LinkedList;
 public class SceneCreator {
     private LinkedList<JPanel> bgPanels;
     private LinkedList<JLabel> bgImages;
-    private LinkedList<JLabel> doors;
+    private LinkedList<JButton> arrowButtons;
 
     private MainFrame mainFrame;
     private ActionHandler actionHandler;
-    private GameLogic controller;
-    private JButton btnArrow;
 
     /**
      * Constructor
      * @param mainFrame mainFrame object used to initialize own mainFrame object
-     * @param controller controller object used to initialize own controller object
      * @param actionHandler actionHandler object used to initialize own controller object
      */
-    public SceneCreator(MainFrame mainFrame, GameLogic controller, ActionHandler actionHandler) {
+    public SceneCreator(MainFrame mainFrame, ActionHandler actionHandler) {
         this.mainFrame = mainFrame;
-        this.controller = controller;
         this.actionHandler = actionHandler;
 
         bgPanels = new LinkedList<>();
         bgImages = new LinkedList<>();
-        doors = new LinkedList<>();
+        arrowButtons = new LinkedList<>();
     }
 
     /**
@@ -48,25 +45,13 @@ public class SceneCreator {
      */
     public void generateScenes() {
         createBackgrounds();
-        createDoorObjects();
     }
 
-    /**
-     * Creates and returns an arrow button that can be placed on the GUI.
-     * Assigns a command to the button which makes it connectable to the ActionHandler class.
-     * @param x x-position
-     * @param y y-position
-     * @param width width of button
-     * @param height height of button
-     * @param arrowFile image file for button
-     * @param cmd command for button
-     * @return the arrow button
-     */
-    public JButton arrowButton(int x, int y, int width, int height, String arrowFile, String cmd) {
-        ImageIcon arrowIcon = new ImageIcon(arrowFile);
+    public void addArrowButtons(int sceneNbr, String command) {
+        ImageIcon arrowIcon = new ImageIcon("resources/misc/upArrow.png");
 
-        btnArrow = new JButton();
-        btnArrow.setBounds(x, y, width, height);
+        JButton btnArrow = new JButton();
+        btnArrow.setBounds(550, 10, 50, 50);
         btnArrow.setBackground(null);
         btnArrow.setContentAreaFilled(false);
         btnArrow.setFocusPainted(false);
@@ -74,9 +59,9 @@ public class SceneCreator {
         btnArrow.setIcon(arrowIcon);
         btnArrow.setBorderPainted(false);
         btnArrow.addActionListener(actionHandler);
-        btnArrow.setActionCommand(cmd);
+        btnArrow.setActionCommand(command);
 
-        return btnArrow;
+        arrowButtons.add(sceneNbr, btnArrow);
     }
 
     /**
@@ -87,7 +72,7 @@ public class SceneCreator {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/backgrounds/backgroundImageLocation.txt")));
             String str = br.readLine();
 
-            int sceneNbr = 0; //Level 1 is scene 2
+            int sceneNbr = 0; //Level 1 is scene 1
             while (str != null) {
                 JPanel pnlBackground = new JPanel();
                 pnlBackground.setBounds(90, 100, 1150, 450);
@@ -96,19 +81,21 @@ public class SceneCreator {
 
                 JLabel lblBg = new JLabel();
                 lblBg.setBounds(0, 0, 1300, 500);
-                lblBg.setIcon(resize(str, 1300, 500));
+                lblBg.setIcon(ImageResizer.resize(str, 1300, 500));
 
                 bgPanels.add(sceneNbr, pnlBackground);
                 bgImages.add(sceneNbr, lblBg);
 
-                if (sceneNbr == 0) {
-                    bgPanels.get(sceneNbr).add(arrowButton(550, 10, 50, 50,
-                            "resources/misc/uparrow50x50.png", "goScene1"));
+                if (sceneNbr == 21) {
+                    addArrowButtons(sceneNbr, "goBackToTower");
                 }
+                else {
+                    addArrowButtons(sceneNbr, "continue");
+                }
+                bgPanels.get(sceneNbr).add(arrowButtons.get(sceneNbr));
 
-                if(sceneNbr == 22) {
-                    bgPanels.get(sceneNbr).add(arrowButton(550, 10, 50, 50,
-                            "resources/misc/uparrow50x50.png", "goBackToTower"));
+                if (sceneNbr != 0) {
+                    arrowButtons.get(sceneNbr).setVisible(false);
                 }
 
                 mainFrame.add(bgPanels.get(sceneNbr));
@@ -119,109 +106,6 @@ public class SceneCreator {
                 str = br.readLine();
             }
             br.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Creates all door objects
-     */
-    public void createDoorObjects() {
-        createDoorMenu();
-
-        for (int i = 0; i < 2; i++) {
-            JPopupMenu popupMenu = createDoorMenu();
-            JLabel lblDoor = new JLabel();
-            lblDoor.setIcon(new ImageIcon("resources/misc/UsedAsADoor.png"));
-
-            lblDoor.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (SwingUtilities.isRightMouseButton(e)) {
-                        if (controller.getOutOfCombat()) {
-                            popupMenu.show(lblDoor, e.getX(), e.getY());
-                        }
-                    }
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            });
-
-            doors.add(i, lblDoor);
-            bgPanels.get(1).add(doors.get(i));
-        }
-        setDoorBounds();
-    }
-
-    /**
-     * Creates a popup menu for all doors and returns it for use
-     * @return the popup menu
-     */
-    public JPopupMenu createDoorMenu() {
-        JPopupMenu doorMenu = new JPopupMenu();
-
-        JMenuItem[] menuItems = new JMenuItem[3];
-        menuItems[0] = new JMenuItem("Look");
-        menuItems[0].addActionListener(actionHandler);
-        menuItems[0].setActionCommand("lookDoor");
-
-        menuItems[1] = new JMenuItem("Talk");
-        menuItems[1].addActionListener(actionHandler);
-        menuItems[1].setActionCommand("talkDoor");
-
-        menuItems[2] = new JMenuItem("Go");
-        menuItems[2].addActionListener(actionHandler);
-        menuItems[2].setActionCommand("enterDoor");
-
-        for (JMenuItem mi : menuItems) {
-            doorMenu.add(mi);
-        }
-
-        return doorMenu;
-    }
-
-    /**
-     * Sets the bounds of the door by reading a file (includes dimensional values)
-     */
-    public void setDoorBounds() {
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/misc/doorBounds.txt")));
-            String str = br.readLine();
-
-            while (str != null) {
-                int scene = Integer.parseInt(str) - 1; //LinkedList starts at 0
-                str = br.readLine();
-                int x = Integer.parseInt(str);
-                str = br.readLine();
-                int y = Integer.parseInt(str);
-                str = br.readLine();
-                int width = Integer.parseInt(str);
-                str = br.readLine();
-                int height = Integer.parseInt(str);
-                str = br.readLine();
-
-                doors.get(scene).setBounds(x, y, width, height);
-            }
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -253,21 +137,6 @@ public class SceneCreator {
     }
 
     /**
-     * Method used to resize pictures
-     * Then returns an ImageIcon
-     * @param path path to image file
-     * @param width width of image
-     * @param height height of image
-     * @return an ImageIcon
-     */
-    public ImageIcon resize(String path, int width, int height) {
-        ImageIcon backgroundPicture = new ImageIcon(path);
-        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon bgIcon = new ImageIcon(image);
-        return bgIcon;
-    }
-
-    /**
      * Returns a background panel for use depending on scene number
      * @param sceneNbr given scene number
      * @return a background panel
@@ -277,18 +146,26 @@ public class SceneCreator {
     }
 
     /**
-     * Returns the arrow button for use outside of the class.
-     * @return
+     * Returns list of background panels
+     * @return bgPanels
      */
-    public JButton getBtnArrow() {
-        return btnArrow;
-    }
-
     public LinkedList<JPanel> getBgPanels() {
         return bgPanels;
     }
 
+    /**
+     * Returns list of background images
+     * @return bgImages
+     */
     public LinkedList<JLabel> getBgImages() {
         return bgImages;
+    }
+
+    /**
+     * Returns list of arrow buttons
+     * @return arrowButtons
+     */
+    public LinkedList<JButton> getArrowButtons() {
+        return arrowButtons;
     }
 }

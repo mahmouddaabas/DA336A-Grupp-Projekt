@@ -16,11 +16,8 @@ import java.awt.*;
  * It creates all objects, backgrounds and buttons and adds them to the window.
  */
 public class MainFrame extends JFrame {
-    private GameLogic controller;
     private JTextArea textArea;
     private JTextArea textArea2;
-    private JPanel backgroundPanel[] = new JPanel[10];
-    private JLabel backgroundLabel[] = new JLabel[10];
 
     //Handlers
     private ActionHandler action;
@@ -29,16 +26,18 @@ public class MainFrame extends JFrame {
 
     private SceneCreator sceneCreator;
     private ObjectCreator objectCreator;
+    private PortalCreator portalCreator;
 
     private MainMenu mainMenu;
+    private FinalScenePanel finalScenePanel;
 
     //Panel with buttons to answer.
     private JPanel answerPanel;
-    private JButton answerButton[];
+    private JButton[] answerButton;
 
     //Panel with buttons to interact with shop.
     private JPanel pnlShop;
-    private JButton shopButtons[];
+    private JButton[] shopButtons;
 
     //Level labels and coin label.
     private  JLabel lblLevel;
@@ -57,7 +56,6 @@ public class MainFrame extends JFrame {
      * Constructs the class and instantiates controller and the action listeners.
      */
     public MainFrame(GameLogic controller) {
-        this.controller = controller;
         action = new ActionHandler(controller);
         answers = new HandleAnswers(controller);
         shop = new HandleShopKeeper(controller);
@@ -67,13 +65,19 @@ public class MainFrame extends JFrame {
 
         mainMenu = new MainMenu(this, action);
 
-        sceneCreator = new SceneCreator(this, controller, action);
+        sceneCreator = new SceneCreator(this, action);
 
         sceneCreator.generateScenes();
 
         objectCreator = new ObjectCreator(this, controller, action);
 
         objectCreator.createObjects();
+
+        finalScenePanel = new FinalScenePanel(this, action);
+
+        portalCreator = new PortalCreator(this, controller, action);
+
+        portalCreator.createTP();
 
         //Creates the main window the game is displayed on.
         createMainWindow();
@@ -449,5 +453,13 @@ public class MainFrame extends JFrame {
      */
     public JTextArea getTextArea2() {
         return textArea2;
+    }
+
+    public FinalScenePanel getFinalScenePanel() {
+        return finalScenePanel;
+    }
+
+    public ObjectCreator getObjectCreator() {
+        return objectCreator;
     }
 }

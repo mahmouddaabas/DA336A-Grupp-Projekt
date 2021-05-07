@@ -1,5 +1,4 @@
 resources/backgrounds/Scene0TownEntrance.png
-resources/backgrounds/Scene1TowerEntrance.png
 resources/backgrounds/Lvl1BG.png
 resources/backgrounds/Lvl2BG.png
 resources/backgrounds/Lvl3BG.png

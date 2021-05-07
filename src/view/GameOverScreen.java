@@ -35,7 +35,7 @@ public class GameOverScreen {
         titleLabel.setForeground(Color.red);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 70));
         titleLabel.setVisible(false);
-        controller.getWindow().add(titleLabel);
+        controller.getMainFrame().add(titleLabel);
 
         restartButton = new JButton();
         restartButton.setBounds(600, 400, 200, 50);
@@ -46,7 +46,7 @@ public class GameOverScreen {
         restartButton.addActionListener(action);
         restartButton.setActionCommand("restart");
         restartButton.setVisible(false);
-        controller.getWindow().add(restartButton);
+        controller.getMainFrame().add(restartButton);
     }
 
     /**

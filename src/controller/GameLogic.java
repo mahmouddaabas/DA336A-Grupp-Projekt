@@ -14,6 +14,7 @@ import java.awt.*;
  * @author Mattias Bengtsson
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * @author Leith Ahmad
  * Controller class that handles the overall logic flow for the game.
  */
 public class GameLogic {
@@ -25,10 +26,10 @@ public class GameLogic {
     private int answerIndex;
     private boolean combat;
 
-    private String status;
+    private String status = "";
 
     //Used to access the main window and the scene changer.
-    private MainFrame window;
+    private MainFrame mainFrame;
     private SceneChanger scene;
     private EnemyHealthBar enemyHealthBar;
     private HealthBar healthBar;
@@ -39,7 +40,6 @@ public class GameLogic {
     private PlayerActions playerActions;
 
     //Events in the game.
-    private EventEntrance eventEntrance = new EventEntrance(this);
     private EventMonsters eventMonsters = new EventMonsters(this);
     private EventShop eventShop = new EventShop(this);
 
@@ -47,10 +47,9 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
-
         playerList = new PlayerList(10);
 
-        window = new MainFrame(this);
+        mainFrame = new MainFrame(this);
         scene = new SceneChanger(this);
 
         timer = new Timer(this);
@@ -61,8 +60,8 @@ public class GameLogic {
         counter = new Counter(this);
 
         //Player health bar and Enemy health bar.
-        healthBar = new HealthBar(this, window);
-        enemyHealthBar = new EnemyHealthBar(this, window);
+        healthBar = new HealthBar(this, mainFrame);
+        enemyHealthBar = new EnemyHealthBar(this, mainFrame);
 
         //Game over screen.
         gameOver = new GameOverScreen(this);
@@ -81,7 +80,7 @@ public class GameLogic {
      */
     public void addPlayer(String name) {
         playerList.addPlayer(name);
-        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+        mainFrame.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
     }
 
     /**
@@ -90,7 +89,7 @@ public class GameLogic {
      */
     public void deletePlayer(int index) {
         playerList.deletePlayer(index);
-        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+        mainFrame.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
     }
 
     /**
@@ -115,8 +114,8 @@ public class GameLogic {
         mathQuestion.generateNewQuestion();
         if (!combat) {
             enemyHealthBar.createEnemyHealthBar();
-            window.getLblCombatStatus().setVisible(true);
-            window.getBtnGetHelp().setFocusable(false);
+            mainFrame.getLblCombatStatus().setVisible(true);
+            mainFrame.getBtnGetHelp().setFocusable(false);
         }
         //Sets combat to true after if statement.
         combat = true;
@@ -148,20 +147,21 @@ public class GameLogic {
                     generateQuestionAndAnswers();
                 }
                 else {
+                    mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
 
                     //Hide or change this when the combat is over.
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
-                    window.getLblPotionStatus().setVisible(false);
-                    window.getLblCombatStatus().setVisible(false);
-                    window.getBtnGetHelp().setFocusable(true);
-                    window.getTextArea2().setVisible(false);
+                    mainFrame.getLblPotionStatus().setVisible(false);
+                    mainFrame.getLblCombatStatus().setVisible(false);
+                    mainFrame.getBtnGetHelp().setFocusable(true);
+                    mainFrame.getTextArea2().setVisible(false);
                     combat = false;
 
                     timer.stopTimer();
-                    getWindow().getTextArea().setForeground(Color.WHITE);
+                    getMainFrame().getTextArea().setForeground(Color.WHITE);
                     status = "";
-                    //Resets the damage dealt to 1 incase a damage potion was active before.
+                    //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
 
                     //Temporary solution to show the shop, will be changed later.
@@ -174,9 +174,13 @@ public class GameLogic {
                             scene.visitShop();
                         }
                     }
-                    scene.showScene(counter.getCurrentScene());
+                    if (counter.getLevel() < 20) {
+                        mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+                    }
+                    mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false); //LinkedList starts at 0. Level 1 -> index 0
+                    //scene.showScene(counter.getCurrentScene());
                     counter.setLevel(counter.getLevel()+1);
-                    window.getAnswerPanel().setVisible(false);
+                    mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
             else {
@@ -228,17 +232,17 @@ public class GameLogic {
             checkStatusAndGetQuestion();
 
             for (int i = 0; i < 4; i++) {
-                window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
+                mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
             }
-            getWindow().getAnswerPanel().setVisible(true);
+            getMainFrame().getAnswerPanel().setVisible(true);
 
             //Must request focus after panel is visible.
-            window.getAnswerButton()[0].requestFocus();
+            mainFrame.getAnswerButton()[0].requestFocus();
 
             //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
             //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
-            getWindow().getTextArea().setBounds(100,550,900,100);
-            getWindow().getTextArea2().setBounds(100,580,900,100);
+            getMainFrame().getTextArea().setBounds(100,550,900,100);
+            getMainFrame().getTextArea2().setBounds(100,580,900,100);
         }
     }
 
@@ -299,26 +303,23 @@ public class GameLogic {
     }
 
     public void checkStatusAndGetQuestion() {
-        if(status == "incorrect") {
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
-        }
-        else if(status == "incorrectBoss") {
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
-        }
-        else if(status == "correct"){
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.GREEN);
-            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
-        }
-        else {
-            window.getTextArea().setText(getMathQuestion().getQuestion());
+        switch (status) {
+            case "incorrect":
+            case "incorrectBoss":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.RED);
+                mainFrame.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() + " damage." + "\n");
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
+            case "correct":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.GREEN);
+                mainFrame.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
+            default:
+                mainFrame.getTextArea().setText(getMathQuestion().getQuestion());
+                break;
         }
     }
 
@@ -336,14 +337,6 @@ public class GameLogic {
      */
     public void setAnswerIndex(int answerIndex) {
         this.answerIndex = answerIndex;
-    }
-
-    /**
-     * Returns the eventEntrance object for use outside of class
-     * @return this class' eventEntrance object
-     */
-    public EventEntrance getEventEntrance() {
-        return eventEntrance;
     }
 
     /**
@@ -366,8 +359,8 @@ public class GameLogic {
      * Returns the window object for use outside of class
      * @return this class' window object
      */
-    public MainFrame getWindow() {
-        return window;
+    public MainFrame getMainFrame() {
+        return mainFrame;
     }
 
     /**
