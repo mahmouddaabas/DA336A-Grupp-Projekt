@@ -157,3 +157,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,intellij,java
+out/production/DA336A-GProjekt/view/MainFrame.class
