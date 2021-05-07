@@ -29,13 +29,13 @@ public class Timer implements Runnable {
                 Thread.sleep(1000);
                 if (time < 0) {
                     controller.ifNotAnswered();
+                    time = -1;
                 }
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        controller.getMainFrame().getLblTimer().setVisible(false);
     }
 
     /**
@@ -56,7 +56,6 @@ public class Timer implements Runnable {
         if (ticking && timer != null) {
             ticking = false;
             timer = null;
-            time = -1;
         }
     }
 

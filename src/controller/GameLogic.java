@@ -146,11 +146,13 @@ public class GameLogic {
                     generateQuestionAndAnswers();
                 }
                 else {
-                    mainFrame.getLblLevel().setVisible(false);
+                    timer.stopTimer();
                     mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
 
                     //Hide or change this when the combat is over.
+                    mainFrame.getLblTimer().setVisible(false);
+                    mainFrame.getLblLevel().setVisible(false);
                     enemyHealthBar.getEnemyHealthPanel().setVisible(false);
                     mainFrame.getLblPotionStatus().setVisible(false);
                     mainFrame.getLblCombatStatus().setVisible(false);
@@ -158,7 +160,6 @@ public class GameLogic {
                     mainFrame.getTextArea2().setVisible(false);
                     combat = false;
 
-                    timer.stopTimer();
                     getMainFrame().getTextArea().setForeground(Color.WHITE);
                     status = "";
                     //Resets the damage dealt to 1 in case a damage potion was active before.
@@ -222,29 +223,27 @@ public class GameLogic {
      * The generated questions and answers are then put into JButtons.
      */
     public void generateQuestionAndAnswers() {
-        if (getOutOfCombat()) {
-            setOutOfCombat(false);
-            startFight(getLevel());
+        setOutOfCombat(false);
+        startFight(getLevel());
 
-            //Starts the timer upon attacking the monster
-            startTimer();
+        //Starts the timer upon attacking the monster
+        startTimer();
 
-            //Checks damage taken/done then gets the random math questions.
-            checkStatusAndGetQuestion();
+        //Checks damage taken/done then gets the random math questions.
+        checkStatusAndGetQuestion();
 
-            for (int i = 0; i < 4; i++) {
-                mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
-            }
-            getMainFrame().getAnswerPanel().setVisible(true);
-
-            //Must request focus after panel is visible.
-            mainFrame.getAnswerButton()[0].requestFocus();
-
-            //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
-            //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
-            getMainFrame().getTextArea().setBounds(100,550,900,100);
-            getMainFrame().getTextArea2().setBounds(100,580,900,100);
+        for (int i = 0; i < 4; i++) {
+            mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
         }
+        getMainFrame().getAnswerPanel().setVisible(true);
+
+        //Must request focus after panel is visible.
+        mainFrame.getAnswerButton()[0].requestFocus();
+
+        //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
+        //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
+        getMainFrame().getTextArea().setBounds(100,550,900,100);
+        getMainFrame().getTextArea2().setBounds(100,580,900,100);
     }
 
     /**
@@ -271,7 +270,6 @@ public class GameLogic {
             player.wrong(1);
         }
         checkPlayerHealth();
-        setOutOfCombat(true);
         generateQuestionAndAnswers();
         healthBar.updateHealth();
         /*
