@@ -78,10 +78,10 @@ public class MQFinalBossRandom extends MathQuestions {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQAdditionManyFractions(-9, 9, -9, 9, 3);
+                randomQuestion = new MQAdditionManyFractions(-20, 20, -20, 20, 2);
                 break;
             case 1:
-                randomQuestion = new MQDivisionDecimal2Numbers(20, 400, 2, 10, 19, 2, 2);
+                randomQuestion = new MQDivisionDecimal2Numbers(20, 400, 1, 10, 19, 1, 2);
                 break;
             case 2:
                 randomQuestion = new MQAdditionManyNumbers(-20, 20, 1, 5);
@@ -90,10 +90,10 @@ public class MQFinalBossRandom extends MathQuestions {
                 randomQuestion = new MQMultiplicationManyNumbers(-9, 9, 1, 4);
                 break;
             case 4:
-                randomQuestion = new MQDerivationPolynomial(-9, 9, -9, 9, 5);
+                randomQuestion = new MQDerivationPolynomial(-20, 20, -9, 9, 1);
                 break;
             case 5:
-                randomQuestion = new MQIntegrationPolynomial(-9, 9, -9, 9, 5);
+                randomQuestion = new MQIntegrationPolynomial(-20, 20, -9, 9, 1);
                 break;
         }
     }

@@ -73,7 +73,7 @@ public class LevelCreator {
 
         Level level8 = new Level(8, new MQAdditionManyNumbers(-30, 30, 0, 3),
                 new RegularMonster(false, RegularMonsterType.SkeletonWarrior, 3, "The ancient warrior cackles menacingly.",
-                        "\"I have a bone to pick with you. GAHAHAHAHA!\""), 24);
+                        "\"I have a bone to pick with you. NYEEHEHEHEHE!\""), 24);
 
         Level level9 = new Level(9, new MQMultiplicationManyNumbers(-9, 9, 0, 3),
                 new RegularMonster(false, RegularMonsterType.RoyalGuard, 3, "The stalwart knight stands proudly.",
@@ -93,7 +93,7 @@ public class LevelCreator {
     private void create11To15() {
         Level level11 = new Level(11, new MQMultiplication2Numbers(-0.9, 0.9, 2, -0.9, 0.9, 2),
                 new RegularMonster(false, RegularMonsterType.SnakeMan, 3, "The viscous snake-man is poised to strike.",
-                        "\"HIIISSSSSSSSS!\""), 15);
+                        "*HIIISSSSSSSSS!*"), 15);
 
         Level level12 = new Level(12, new MQMultiplicationManyFractions(-15, 15, -15, 15, 2 ),
                 new RegularMonster(false, RegularMonsterType.WorkSmithDwarf, 3, "The dwarf has no intention of letting you pass without a fight,",
@@ -103,13 +103,13 @@ public class LevelCreator {
                 new RegularMonster(false, RegularMonsterType.SkeletonMage, 3, "The skeleton mage is far more powerful than any other undead you've met before.",
                         "\"Let us see if you have more of a spine than the previous fools who dared challenge me.\""), 20);
 
-        Level level14 = new Level(14, new MQDivision2Fractions(1, 45, 1, 45),
+        Level level14 = new Level(14, new MQDivision2Fractions(1, 20, 1, 20),
                 new RegularMonster(false, RegularMonsterType.BuddhaGuardian, 3, "You feel the ancient golem stare into your soul.",
                         "\"You possess great knowledge, young one. Come, let me help you nurture it.\""), 28);
 
-        Level boss3 = new Level(15, new MQAdditionManyFractions(1, 9, 1, 9, 3),
+        Level boss3 = new Level(15, new MQAdditionManyFractions(1, 5, 1, 5, 3),
                 new Boss(true, BossType.MageWarlord, 5, "The mighty mage looks down on you with contempt.",
-                        "Foolish adventurer! You are no match for my magical might!"), 30);
+                        "\"Foolish adventurer! You are no match for my magical might!\""), 30);
 
         levels.add(level11);
         levels.add(level12);
@@ -127,18 +127,18 @@ public class LevelCreator {
                 new RegularMonster(false, RegularMonsterType.RedGuardian, 3, "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask",
                         "\"You are strong, adventurer, but are you strong enough?\""), 20);
 
-        Level level18 = new Level(18, new MQDerivationPolynomial(-9, 9, -9, 9, 3),
+        Level level18 = new Level(18, new MQDerivationPolynomial(-9, 9, -9, -1, 1),
                 new RegularMonster(false, RegularMonsterType.SpearMaster, 3, "You gaze upon the once emperor and glimpse hell's true fury.",
                         "\"You braved the depths of hell to reach me, but the hand of man, which deals in false justice and forsaken love, can never hope to defeat the lord master of hell.\""),
                 25);
 
-        Level level19 = new Level(19, new MQIntegrationPolynomial(-9, 9, -9, 9, 3),
+        Level level19 = new Level(19, new MQIntegrationPolynomial(-9, 9, -9, -1, 1),
                 new RegularMonster(false, RegularMonsterType.MiniBoss, 3, "The gargantuan guardian towers above you.",
                         "\"Puny mortal! You are unworthy of meeting my master!\""), 25);
 
         Level boss4 = new Level(20, new MQFinalBossRandom(2),
                 new Boss(true, BossType.FinalBoss, 7, "Whoa! The breathtaking immortal stands before you.",
-                        "Excellent! People keep asking if I'm back, but yeah, I am the ONE!"), 30);
+                        "\"Excellent! People keep asking if I'm back, but yeah, I am the ONE!\""), 30);
 
         levels.add(level16);
         levels.add(level17);
