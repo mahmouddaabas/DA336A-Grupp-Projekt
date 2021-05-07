@@ -1,8 +1,6 @@
 package controller;
 
-import model.Counter;
-import model.Player;
-import model.PlayerList;
+import model.*;
 import model.Timer;
 import model.questions.*;
 import view.*;
@@ -14,6 +12,7 @@ import java.awt.*;
  * @author Mattias Bengtsson
  * @author Mahmoud Daabas
  * @author Duy Nguyen
+ * @author Leith Ahmad
  * Controller class that handles the overall logic flow for the game.
  */
 public class GameLogic {
@@ -25,10 +24,10 @@ public class GameLogic {
     private int answerIndex;
     private boolean combat;
 
-    private String status;
+    private String status = "";
 
     //Used to access the main window and the scene changer.
-    private MainFrame window;
+    private MainFrame mainFrame;
     private SceneChanger scene;
     private EnemyHealthBar enemyHealthBar;
     private HealthBar healthBar;
@@ -39,7 +38,6 @@ public class GameLogic {
     private PlayerActions playerActions;
 
     //Events in the game.
-    private EventEntrance eventEntrance = new EventEntrance(this);
     private EventMonsters eventMonsters = new EventMonsters(this);
     private EventShop eventShop = new EventShop(this);
 
@@ -47,10 +45,9 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
-
         playerList = new PlayerList(10);
 
-        window = new MainFrame(this);
+        mainFrame = new MainFrame(this);
         scene = new SceneChanger(this);
 
         timer = new Timer(this);
@@ -61,8 +58,8 @@ public class GameLogic {
         counter = new Counter(this);
 
         //Player health bar and Enemy health bar.
-        healthBar = new HealthBar(this, window);
-        enemyHealthBar = new EnemyHealthBar(this, window);
+        healthBar = new HealthBar(this, mainFrame);
+        enemyHealthBar = new EnemyHealthBar(this, mainFrame);
 
         //Game over screen.
         gameOver = new GameOverScreen(this);
@@ -81,7 +78,7 @@ public class GameLogic {
      */
     public void addPlayer(String name) {
         playerList.addPlayer(name);
-        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+        mainFrame.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
     }
 
     /**
@@ -90,17 +87,15 @@ public class GameLogic {
      */
     public void deletePlayer(int index) {
         playerList.deletePlayer(index);
-        window.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+        mainFrame.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
     }
 
     /**
      * Starts the game
      */
     public void startGame() {
-        counter.startCounter();
         counter.setLevel(1);
         counter.setCurrentScene(0);
-
         scene.showScene(counter.getCurrentScene());
     }
 
@@ -115,8 +110,8 @@ public class GameLogic {
         mathQuestion.generateNewQuestion();
         if (!combat) {
             enemyHealthBar.createEnemyHealthBar();
-            window.getLblCombatStatus().setVisible(true);
-            window.getBtnGetHelp().setFocusable(false);
+            mainFrame.getLblCombatStatus().setVisible(true);
+            mainFrame.getBtnGetHelp().setFocusable(false);
         }
         //Sets combat to true after if statement.
         combat = true;
@@ -140,33 +135,28 @@ public class GameLogic {
                 player.setOutOfCombat(true);
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
-                if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-player.getDamageDealt();
+                if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
+                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
                     status = "correct";
                     generateQuestionAndAnswers();
                 }
                 else {
+                    timer.stopTimer();
+                    mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
 
-                    //Hide or change this when the combat is over.
-                    enemyHealthBar.getEnemyHealthPanel().setVisible(false);
-                    window.getLblPotionStatus().setVisible(false);
-                    window.getLblCombatStatus().setVisible(false);
-                    window.getBtnGetHelp().setFocusable(true);
-                    window.getTextArea2().setVisible(false);
+                    hideComponents();
                     combat = false;
 
-                    timer.stopTimer();
-                    getWindow().getTextArea().setForeground(Color.WHITE);
-                    status = "";
-                    //Resets the damage dealt to 1 incase a damage potion was active before.
+                    mainFrame.getTextArea().setForeground(Color.WHITE);
+                    //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
-                    if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                    if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                             counter.getLevel() == 15) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
@@ -174,9 +164,12 @@ public class GameLogic {
                             scene.visitShop();
                         }
                     }
-                    scene.showScene(counter.getCurrentScene());
-                    counter.setLevel(counter.getLevel()+1);
-                    window.getAnswerPanel().setVisible(false);
+                    if (counter.getLevel() < 20) {
+                        mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+                    }
+                    mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false); //LinkedList starts at 0. Level 1 -> index 0
+                    counter.setLevel(counter.getLevel() + 1);
+                    mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
             else {
@@ -199,6 +192,17 @@ public class GameLogic {
         }
     }
 
+    public void hideComponents() {
+        //Hide or change this when the combat is over.
+        mainFrame.getLblTimer().setVisible(false);
+        mainFrame.getLblLevel().setVisible(false);
+        enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+        mainFrame.getLblPotionStatus().setVisible(false);
+        mainFrame.getLblCombatStatus().setVisible(false);
+        mainFrame.getBtnGetHelp().setFocusable(true);
+        mainFrame.getTextArea2().setVisible(false);
+    }
+
     /**
      * Method that adds gold to the player based on the type of enemy defeated.
      */
@@ -209,6 +213,7 @@ public class GameLogic {
         else {
             player.setGold(player.getGold() + 1);
         }
+        mainFrame.getLblCoins().setText(" " + player.getGold());
     }
 
     /**
@@ -217,29 +222,27 @@ public class GameLogic {
      * The generated questions and answers are then put into JButtons.
      */
     public void generateQuestionAndAnswers() {
-        if (getOutOfCombat()) {
-            setOutOfCombat(false);
-            startFight(getLevel());
+        setOutOfCombat(false);
+        startFight(counter.getLevel());
 
-            //Starts the timer upon attacking the monster
-            startTimer();
+        //Starts the timer upon attacking the monster
+        startTimer();
 
-            //Checks damage taken/done then gets the random math questions.
-            checkStatusAndGetQuestion();
+        //Checks damage taken/done then gets the random math questions.
+        checkStatusAndGetQuestion();
 
-            for (int i = 0; i < 4; i++) {
-                window.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
-            }
-            getWindow().getAnswerPanel().setVisible(true);
-
-            //Must request focus after panel is visible.
-            window.getAnswerButton()[0].requestFocus();
-
-            //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
-            //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
-            getWindow().getTextArea().setBounds(100,550,900,100);
-            getWindow().getTextArea2().setBounds(100,580,900,100);
+        for (int i = 0; i < 4; i++) {
+            mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
         }
+        getMainFrame().getAnswerPanel().setVisible(true);
+
+        //Must request focus after panel is visible.
+        mainFrame.getAnswerButton()[0].requestFocus();
+
+        //Need to change mathQuestion bounds or else you cant interact with the answerPanel. Set back to default if answer is correct.
+        //Default values =  mathQuestions.setBounds(100, 550, 900, 250);
+        getMainFrame().getTextArea().setBounds(100,550,900,100);
+        getMainFrame().getTextArea2().setBounds(100,580,900,100);
     }
 
     /**
@@ -257,68 +260,42 @@ public class GameLogic {
      * It will also generate new questions.
      */
     public void ifNotAnswered() {
-        if(timer.getTime() == 0) {
-            if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                status = "incorrectBoss";
-                player.wrong(2);
-            }
-            else {
-                status = "incorrect";
-                player.wrong(1);
-            }
-            checkPlayerHealth();
-            setOutOfCombat(true);
-            generateQuestionAndAnswers();
-            healthBar.updateHealth();
-            try {
-                eventMonsters.attackEnemy();
-            }
-            catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * Stops the counter thread and sets it to null.
-     */
-    public void killCounter() {
-        counter.stopCounter();
-        counter = null;
-    }
-
-    /**
-     * Checks if the counter thread is null.
-     * If null, it will create a new object of counter.
-     * It then starts the thread.
-     */
-    public void reviveCounter() {
-        if (counter == null){
-            counter = new Counter(this);
-        }
-    }
-
-    public void checkStatusAndGetQuestion() {
-        if(status == "incorrect") {
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
-        }
-        else if(status == "incorrectBoss") {
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.RED);
-            window.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() +  " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
-        }
-        else if(status == "correct"){
-            window.getTextArea2().setVisible(true);
-            window.getTextArea().setForeground(Color.GREEN);
-            window.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
-            window.getTextArea2().setText(mathQuestion.getQuestion());
+        if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+            status = "incorrectBoss";
+            player.wrong(2);
         }
         else {
-            window.getTextArea().setText(getMathQuestion().getQuestion());
+            status = "incorrect";
+            player.wrong(1);
+        }
+        checkPlayerHealth();
+        generateQuestionAndAnswers();
+        healthBar.updateHealth();
+    }
+
+    /**
+     * Checks status String and calls appropriate methods.
+     * "incorrect" and "incorrectBoss" makes the player take damage.
+     * "correct" makes the player deal damage to the enemy.
+     */
+    public void checkStatusAndGetQuestion() {
+        switch (status) {
+            case "incorrect":
+            case "incorrectBoss":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.RED);
+                mainFrame.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() + " damage." + "\n");
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
+            case "correct":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.GREEN);
+                mainFrame.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
+            default:
+                mainFrame.getTextArea().setText(getMathQuestion().getQuestion());
+                break;
         }
     }
 
@@ -336,14 +313,6 @@ public class GameLogic {
      */
     public void setAnswerIndex(int answerIndex) {
         this.answerIndex = answerIndex;
-    }
-
-    /**
-     * Returns the eventEntrance object for use outside of class
-     * @return this class' eventEntrance object
-     */
-    public EventEntrance getEventEntrance() {
-        return eventEntrance;
     }
 
     /**
@@ -366,8 +335,8 @@ public class GameLogic {
      * Returns the window object for use outside of class
      * @return this class' window object
      */
-    public MainFrame getWindow() {
-        return window;
+    public MainFrame getMainFrame() {
+        return mainFrame;
     }
 
     /**

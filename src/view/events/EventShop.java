@@ -22,14 +22,14 @@ public class EventShop {
      * Handles what happens when "Look" is pressed on the shopkeeper.
      */
     public void lookAtShopKeeper() {
-        controller.getWindow().getTextArea().setText("The shop keeper looks like a middle aged man.");
+        controller.getMainFrame().getTextArea().setText("The shop keeper looks like a middle aged man.");
     }
 
     /**
      * Handles what happens when "Talk" is pressed on the shopkeeper.
      */
     public void talkToShopKeeper() {
-        controller.getWindow().getTextArea().setText("I'm not much of at talker. Are you buying or not?");
+        controller.getMainFrame().getTextArea().setText("I'm not much of at talker. Are you buying or not?");
     }
 
     /**
@@ -38,10 +38,10 @@ public class EventShop {
      * The panel/buttons can be expanded from the MainFrame class.
      */
     public void buyFromShopKeeper() {
-        controller.getWindow().getShopButtons()[0].setText("Health (2 coins)");
-        controller.getWindow().getShopButtons()[1].setText("Damage Potion (3 coins)");
-        controller.getWindow().getShopButtons()[2].setText("To be added");
-        controller.getWindow().getShopButtons()[3].setText("To be added");
-        controller.getWindow().getPnlShop().setVisible(true);
+        controller.getMainFrame().getShopButtons()[0].setText("Health (2 coins)");
+        controller.getMainFrame().getShopButtons()[1].setText("Damage Potion (3 coins)");
+        controller.getMainFrame().getShopButtons()[2].setText("To be added");
+        controller.getMainFrame().getShopButtons()[3].setText("To be added");
+        controller.getMainFrame().getPnlShop().setVisible(true);
     }
 }

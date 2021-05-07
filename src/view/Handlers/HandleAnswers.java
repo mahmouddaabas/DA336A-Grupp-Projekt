@@ -35,23 +35,16 @@ public class HandleAnswers implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();
 
-        switch(yourChoice) {
-            //First button.
+        switch (yourChoice) {
             case "firstButton":
                 controller.setAnswerIndex(0);
                 break;
-
-            //Second button.
             case "secondButton":
                 controller.setAnswerIndex(1);
                 break;
-
-            //Third button.
             case "thirdButton":
                 controller.setAnswerIndex(2);
                 break;
-
-            //Fourth button.
             case "fourthButton":
                 controller.setAnswerIndex(3);
                 break;
@@ -63,37 +56,30 @@ public class HandleAnswers implements ActionListener, KeyListener {
      * This handles the KeyEvents during the game and sets the answer index accordingly.
      * Then calls the checkAnswer method from the controller to check given answer.
      */
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+        if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(0);
             controller.checkAnswer();
         }
-        else if(e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+        else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(1);
             controller.checkAnswer();
         }
-        else if(e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+        else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(2);
             controller.checkAnswer();
         }
-        else if(e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+        else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(3);
             controller.checkAnswer();
         }
-        else if(e.getKeyCode() == KeyEvent.VK_H) {
+        else if (e.getKeyCode() == KeyEvent.VK_H) {
             HelpFrame openHelp = new HelpFrame();
         }
     }
-
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }

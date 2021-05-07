@@ -27,21 +27,18 @@ public class HandleShopKeeper implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String choiceInShop = e.getActionCommand();
 
-        switch(choiceInShop) {
+        switch (choiceInShop) {
             case "firstButton":
                 controller.getShopItems().buyHealth();
                 break;
-
             case "secondButton":
                 controller.getShopItems().buyDamagePotion();
                 break;
-
             case "thirdButton":
-                controller.getWindow().getTextArea().setText("Not added yet..");
+                controller.getMainFrame().getTextArea().setText("Not added yet..");
                 break;
-
             case "fourthButton":
-                controller.getWindow().getTextArea().setText("Not added yet...");
+                controller.getMainFrame().getTextArea().setText("Not added yet...");
                 break;
         }
     }

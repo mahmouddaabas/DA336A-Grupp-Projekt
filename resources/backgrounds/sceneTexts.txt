@@ -1,6 +1,5 @@
 Welcome adventurer, your goal is to climb the tower and defeat the various entities in there. Click on the question mark in the lower right for help or click on the arrow to begin.
-You just entered the tower, have fun! (Right click on the door to interact with it.)
-You walk through the door and spot something. (Right click on the goblin to interact with it.)
+You enter the tower and spot something. (Right click on the goblin to interact with it.)
 You venture beyond the likes of a goblin but that is not the end.... A skeleton rises.
 You enter a dim dungeon. You spot a warden at the end of the hallway.
 You have finally found a way up. Something seems to lurk in the shadows.

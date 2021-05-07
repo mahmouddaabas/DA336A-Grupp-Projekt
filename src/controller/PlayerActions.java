@@ -17,12 +17,12 @@ public class PlayerActions {
      */
     public void drinkDamagePotion() {
         controller.getShopItems().getDmgPot().setPotionActive(true);
-        if(controller.getShopItems().getDmgPot().getPotionActive() == true) {
+        if (controller.getShopItems().getDmgPot().getPotionActive()) {
             controller.getPlayer().setDamageDealt(controller.getShopItems().getDmgPot().getDamageBoost());
             controller.getShopItems().setLimit(0);
             controller.getShopItems().getDmgPot().setPotionActive(false);
-            controller.getWindow().getBtnDamagePotion().setVisible(false);
-            controller.getWindow().getLblPotionStatus().setVisible(true);
+            controller.getMainFrame().getBtnDamagePotion().setVisible(false);
+            controller.getMainFrame().getLblPotionStatus().setVisible(true);
         }
     }
 }

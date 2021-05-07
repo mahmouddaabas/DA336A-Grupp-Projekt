@@ -9,13 +9,10 @@ import controller.GameLogic;
  * The class update the timer and the current level.
  * The class can also hold the latest information on current scene or current level.
  */
-public class Counter extends Thread {
+public class Counter {
     private GameLogic controller;
-    private boolean run;
-    private int delay = 250;
     private int level;
     private int currentScene;
-    private int coins;
 
     /**
      * Constructor that initializes the controller.
@@ -23,52 +20,6 @@ public class Counter extends Thread {
      */
     public Counter(GameLogic controller) {
         this.controller = controller;
-    }
-
-    /**
-     * This method is used to start the thread by setting the run boolean to true.
-     */
-    public void startCounter() {
-        if(!run) {
-            run = true;
-            start();
-        }
-    }
-
-    /**
-     * This method is used to stop the thread if needed by setting the run boolean to false.
-     */
-    public void stopCounter(){
-        if(run) {
-            run = false;
-        }
-    }
-
-    /**
-     * Runs when the thread is started.
-     * Updates the current level label on the GUI.
-     */
-    @Override
-    public void run() {
-        while(run) {
-            try {
-                if (controller.getTimer().getFighting()){
-                    controller.ifNotAnswered();
-                }
-                if(controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
-                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel() + " (Boss)");
-                }
-                else {
-                    controller.getWindow().getLblLevel().setText("Current level: " + getLevel());
-                }
-                coins = controller.getPlayer().getGold();
-                controller.getWindow().getLblCoins().setText(" " + coins);
-                Thread.sleep(delay);
-            }
-            catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     /**
@@ -99,11 +50,12 @@ public class Counter extends Thread {
         this.currentScene = currentScene;
     }
 
-    /**
-     *Returns the current coins.
-     * @return current coins
-     */
-    public int getCoins() {
-        return coins;
+    public void updateLblLevel() {
+        if (controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
+            controller.getMainFrame().getLblLevel().setText("Current level: " + level + " (Boss)");
+        }
+        else {
+            controller.getMainFrame().getLblLevel().setText("Current level: " + level);
+        }
     }
 }

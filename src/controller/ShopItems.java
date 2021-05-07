@@ -1,6 +1,6 @@
 package controller;
 
-import model.vendor.DamagePotion;
+import model.items.DamagePotion;
 
 /**
  * @Author Mahmoud Daabas
@@ -31,20 +31,20 @@ public class ShopItems {
      * Method that allows the user to purchase health.
      */
     public void buyHealth() {
-        if (controller.getPlayer().getPlayerHealth() < 10 && controller.getCounter().getCoins() > 1) {
+        if (controller.getPlayer().getPlayerHealth() < 10 && controller.getPlayer().getGold() > 1) {
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
             controller.getHealthBar().increaseHealth();
-            controller.getPlayer().setGold(controller.getPlayer().getGold()-2);
-            controller.getWindow().getTextArea().setText("You purchased 1 HP for 2 gold.");
-            controller.getWindow().getLblPotionStatus().setVisible(false);
+            controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
+            controller.getMainFrame().getTextArea().setText("You purchased 1 HP for 2 gold.");
+            controller.getMainFrame().getLblPotionStatus().setVisible(false);
         }
-        else if (controller.getCounter().getCoins() < 2) {
-            controller.getWindow().getTextArea().setText("You don't have enough gold!");
+        else if (controller.getPlayer().getGold() < 2) {
+            controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
         }
         else {
-            controller.getWindow().getTextArea().setText("You already have full hp!");
+            controller.getMainFrame().getTextArea().setText("You already have full hp!");
         }
     }
 
@@ -52,26 +52,26 @@ public class ShopItems {
      * Method that allows the user to purchase a damage potion.
      */
     public void buyDamagePotion() {
-        if(controller.getPlayer().getGold() > 2 && limit == 0) {
-            controller.getWindow().getBtnDamagePotion().setVisible(true);
-            controller.getPlayer().setGold(controller.getPlayer().getGold()-3);
-            controller.getWindow().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
+        if (controller.getPlayer().getGold() > 2 && limit == 0) {
+            controller.getMainFrame().getBtnDamagePotion().setVisible(true);
+            controller.getPlayer().setGold(controller.getPlayer().getGold() - 3);
+            controller.getMainFrame().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
                     "You can activate it on the bottom right of the screen. \n" +
                     "The potion will only remain active for 1 level, use it wisely!");
             limit = 1;
         }
-        else if(limit == 1) {
-            controller.getWindow().getTextArea().setText("You already have a damage potion.\n" +
+        else if (limit == 1) {
+            controller.getMainFrame().getTextArea().setText("You already have a damage potion.\n" +
                     "You need to consume it before buying a new one.");
         }
         else {
-            controller.getWindow().getTextArea().setText("You don't have enough gold!");
+            controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
         }
     }
 
     /**
      * Allows you to set the limit from outside of the class.
-     * @param  limit
+     * @param limit
      */
     public void setLimit(int limit) {
         this.limit = limit;
