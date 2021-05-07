@@ -1,4 +1,4 @@
-package view.Handlers;
+package view.handlers;
 
 import controller.GameLogic;
 import view.HelpFrame;
