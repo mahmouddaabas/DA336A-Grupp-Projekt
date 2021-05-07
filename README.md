@@ -13,7 +13,8 @@ the main menu.
 
 To start a new game, click on "New Game". Only the "Medium" difficulty can be selected. 
 Now, a new game has been started. Click the arrow at the top of the screen to meet the 
-first enemy. Each enemy asks you math questions of a specific type.
+first enemy. Each enemy asks you math questions of a specific type. If you want help
+during the game, then the question mark in the lower right brings up a help window.
 
 To start combat right-click on the enemy and select "Attack". You will see a question, 
 4 answers, and the timer will start ticking down. Select the correct answer to deal 1 
@@ -27,9 +28,6 @@ answer. The 20th level is the final boss level, who asks you random math questio
 
 After every boss, you will get prompted if you want to go to the shop. In the shop you
 can buy items to help you. You get coins from defeating enemies. Health will instantly
-restore your health by 1 heart. The damage potion will double your damage for 1 enemy.
-When you are finished, exit the shop by clicking the arrow at the top of the screen.
-
-
-
-
+restore your health by 1 heart. The damage potion will double your damage for 1 enemy 
+after you have clicked on it in the bottom right. When you are finished, exit the shop 
+by clicking the arrow at the top of the screen.
