@@ -23,7 +23,7 @@ public class Timer implements Runnable {
     public void run() {
         while (ticking) {
             try {
-                controller.getMainFrame().getLblTimer().setText("Time Left: " + controller.getTimer().getTime());
+                controller.getMainFrame().getLblTimer().setText("Time Left: " + time);
                 controller.getMainFrame().getLblTimer().setVisible(true);
                 time--;
                 Thread.sleep(1000);
@@ -57,14 +57,6 @@ public class Timer implements Runnable {
             ticking = false;
             timer = null;
         }
-    }
-
-    /**
-     * Returns the time limit
-     * @return current time limit
-     */
-    public int getTime() {
-        return time;
     }
 
     /**
