@@ -1,7 +1,7 @@
 package view.handlers;
 
 import controller.GameLogic;
-import view.HelpFrame;
+import view.help.GameHelp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,7 +75,7 @@ public class HandleAnswers implements ActionListener, KeyListener {
             controller.checkAnswer();
         }
         else if (e.getKeyCode() == KeyEvent.VK_H) {
-            HelpFrame openHelp = new HelpFrame();
+            GameHelp openHelp = new GameHelp();
         }
     }
     @Override

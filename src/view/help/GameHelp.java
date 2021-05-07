@@ -1,4 +1,4 @@
-package view;
+package view.help;
 
 import controller.ImageResizer;
 
@@ -11,7 +11,7 @@ import java.awt.*;
  * This class manages the help frame that is shown when the question mark on the GUI is pressed.
  * It will give the player all the information they need.
  */
-public class HelpFrame {
+public class GameHelp {
     private JFrame helpFrame;
     private JLabel helpHealth;
     private JLabel helpGold;
@@ -25,7 +25,7 @@ public class HelpFrame {
     /**
      * Constructs the class
      */
-    public HelpFrame() {
+    public GameHelp() {
         helpFrame = new JFrame();
         initializeHelpFrame();
         createAllLabels();
@@ -54,7 +54,7 @@ public class HelpFrame {
         helpFrame.getContentPane().setBackground(Color.black);
         //Can place things on the window without any restrictions.
         helpFrame.setLayout(null);
-        helpFrame.setTitle("Climb the Tower - Instructions");
+        helpFrame.setTitle("Climb the Tower - Help");
         //Starts the window in the middle of the screen.
         helpFrame. setLocationRelativeTo(null);
         helpFrame.setResizable(false);
