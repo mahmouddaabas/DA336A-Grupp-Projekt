@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
  */
 public class ActionHandler implements ActionListener, KeyListener {
     private GameLogic controller;
+    private HelpFrame openHelp;
 
     /**
      * Constructor
@@ -156,9 +157,13 @@ public class ActionHandler implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
-
         if(keycode == KeyEvent.VK_H) {
-            HelpFrame openHelp = new HelpFrame();
+            if(openHelp == null) {
+                openHelp = new HelpFrame();
+            }
+            else{
+                openHelp.getHelpFrame().setVisible(true);
+            }
         }
         //Checks if the current scene is correct before allowing player to start combat with enter.
         else if(controller.getCounter().getCurrentScene() == controller.getCounter().getLevel()+2) {
