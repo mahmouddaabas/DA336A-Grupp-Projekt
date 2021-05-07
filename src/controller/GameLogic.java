@@ -143,6 +143,7 @@ public class GameLogic {
                     generateQuestionAndAnswers();
                 }
                 else {
+                    status = "";
                     timer.stopTimer();
                     mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
