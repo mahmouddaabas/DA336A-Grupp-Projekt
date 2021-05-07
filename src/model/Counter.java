@@ -51,7 +51,7 @@ public class Counter {
     }
 
     public void updateLblLevel() {
-        if(controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
+        if (controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
             controller.getMainFrame().getLblLevel().setText("Current level: " + level + " (Boss)");
         }
         else {

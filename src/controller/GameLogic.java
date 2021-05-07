@@ -1,8 +1,6 @@
 package controller;
 
-import model.Counter;
-import model.Player;
-import model.PlayerList;
+import model.*;
 import model.Timer;
 import model.questions.*;
 import view.*;
@@ -98,7 +96,6 @@ public class GameLogic {
     public void startGame() {
         counter.setLevel(1);
         counter.setCurrentScene(0);
-
         scene.showScene(counter.getCurrentScene());
     }
 
@@ -138,7 +135,7 @@ public class GameLogic {
                 player.setOutOfCombat(true);
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
-                if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
+                if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
                     int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
@@ -150,24 +147,16 @@ public class GameLogic {
                     mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
 
-                    //Hide or change this when the combat is over.
-                    mainFrame.getLblTimer().setVisible(false);
-                    mainFrame.getLblLevel().setVisible(false);
-                    enemyHealthBar.getEnemyHealthPanel().setVisible(false);
-                    mainFrame.getLblPotionStatus().setVisible(false);
-                    mainFrame.getLblCombatStatus().setVisible(false);
-                    mainFrame.getBtnGetHelp().setFocusable(true);
-                    mainFrame.getTextArea2().setVisible(false);
+                    hideComponents();
                     combat = false;
 
-                    getMainFrame().getTextArea().setForeground(Color.WHITE);
-                    status = "";
+                    mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
 
                     //Temporary solution to show the shop, will be changed later.
                     //Lvl 20 is final lvl?? If so remove the last statement.
-                    if(counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                    if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                             counter.getLevel() == 15) {
                         int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
                                 "Shop?", JOptionPane.YES_NO_OPTION);
@@ -179,12 +168,10 @@ public class GameLogic {
                         mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
                     }
                     mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false); //LinkedList starts at 0. Level 1 -> index 0
-                    //scene.showScene(counter.getCurrentScene());
                     counter.setLevel(counter.getLevel() + 1);
                     mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
-            /*
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
                     player.wrong(2);
@@ -202,9 +189,18 @@ public class GameLogic {
                     healthBar.updateHealth();
                 }
             }
-
-             */
         }
+    }
+
+    public void hideComponents() {
+        //Hide or change this when the combat is over.
+        mainFrame.getLblTimer().setVisible(false);
+        mainFrame.getLblLevel().setVisible(false);
+        enemyHealthBar.getEnemyHealthPanel().setVisible(false);
+        mainFrame.getLblPotionStatus().setVisible(false);
+        mainFrame.getLblCombatStatus().setVisible(false);
+        mainFrame.getBtnGetHelp().setFocusable(true);
+        mainFrame.getTextArea2().setVisible(false);
     }
 
     /**
@@ -227,7 +223,7 @@ public class GameLogic {
      */
     public void generateQuestionAndAnswers() {
         setOutOfCombat(false);
-        startFight(getLevel());
+        startFight(counter.getLevel());
 
         //Starts the timer upon attacking the monster
         startTimer();
@@ -264,7 +260,7 @@ public class GameLogic {
      * It will also generate new questions.
      */
     public void ifNotAnswered() {
-        if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+        if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             status = "incorrectBoss";
             player.wrong(2);
         }
@@ -275,17 +271,13 @@ public class GameLogic {
         checkPlayerHealth();
         generateQuestionAndAnswers();
         healthBar.updateHealth();
-        /*
-        try {
-            eventMonsters.attackEnemy();
-        }
-        catch (NullPointerException e){
-            e.printStackTrace();
-        }
-
-         */
     }
 
+    /**
+     * Checks status String and calls appropriate methods.
+     * "incorrect" and "incorrectBoss" makes the player take damage.
+     * "correct" makes the player deal damage to the enemy.
+     */
     public void checkStatusAndGetQuestion() {
         switch (status) {
             case "incorrect":

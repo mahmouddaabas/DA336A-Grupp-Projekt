@@ -1,5 +1,7 @@
 package view;
 
+import controller.ImageResizer;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +12,6 @@ import java.awt.*;
  * It will give the player all the information they need.
  */
 public class HelpFrame {
-
     private JFrame helpFrame;
     private JLabel helpHealth;
     private JLabel helpGold;
@@ -38,7 +39,7 @@ public class HelpFrame {
         createHelpGold();
         createHelpEnemy();
         createHelpBoss();
-        createhelpTimer();
+        createHelpTimer();
         createHelpPotion();
         createHelpPlay();
         createHelpStatus();
@@ -64,7 +65,7 @@ public class HelpFrame {
      * Creates the health information label.
      */
     public void createHealthHelpLabel() {
-        ImageIcon healthIcon = resize("resources/misc/helpPictures/helpHeart.png", 300, 140);
+        ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/helpHeart.png", 300, 140);
         helpHealth = new JLabel();
         helpHealth.setBounds(0, -30, 500, 200);
         helpHealth.setOpaque(false);
@@ -77,7 +78,7 @@ public class HelpFrame {
      * Creates the gold information label.
      */
     public void createHelpGold() {
-        ImageIcon goldIcon = resize("resources/misc/helpPictures/helpCoins.png", 300, 140);
+        ImageIcon goldIcon = ImageResizer.resize("resources/misc/helpPictures/helpCoins.png", 300, 140);
         helpGold = new JLabel();
         helpGold.setBounds(0, 115, 400, 200);
         helpGold.setOpaque(false);
@@ -90,7 +91,7 @@ public class HelpFrame {
      * Creates the enemy information label.
      */
     public void createHelpEnemy() {
-        ImageIcon enemyIcon = resize("resources/misc/helpPictures/helpEnemy.png", 300, 140);
+        ImageIcon enemyIcon = ImageResizer.resize("resources/misc/helpPictures/helpEnemy.png", 300, 140);
         helpEnemy = new JLabel();
         helpEnemy.setBounds(0, 260, 400, 200);
         helpEnemy.setOpaque(false);
@@ -103,7 +104,7 @@ public class HelpFrame {
      * Creates the boss information label.
      */
     public void createHelpBoss() {
-        ImageIcon bossIcon = resize("resources/misc/helpPictures/helpBoss.png", 300, 140);
+        ImageIcon bossIcon = ImageResizer.resize("resources/misc/helpPictures/helpBoss.png", 300, 140);
         helpBoss = new JLabel();
         helpBoss.setBounds(0, 410, 400, 200);
         helpBoss.setOpaque(false);
@@ -115,8 +116,8 @@ public class HelpFrame {
     /**
      * Creates the timer information label.
      */
-    public void createhelpTimer() {
-        ImageIcon timerIcon = resize("resources/misc/helpPictures/helpTimer.png", 300, 140);
+    public void createHelpTimer() {
+        ImageIcon timerIcon = ImageResizer.resize("resources/misc/helpPictures/helpTimer.png", 300, 140);
         helpTimer = new JLabel();
         helpTimer.setBounds(400, -30, 400, 200);
         helpTimer.setOpaque(false);
@@ -129,7 +130,7 @@ public class HelpFrame {
      * Creates the potion information label.
      */
     public void createHelpPotion() {
-        ImageIcon potionIcon = resize("resources/misc/helpPictures/helpPotion.png", 300, 140);
+        ImageIcon potionIcon = ImageResizer.resize("resources/misc/helpPictures/helpPotion.png", 300, 140);
         helpPotion = new JLabel();
         helpPotion.setBounds(400, 115, 400, 200);
         helpPotion.setOpaque(false);
@@ -142,7 +143,7 @@ public class HelpFrame {
      * Creates the play information label.
      */
     public void createHelpPlay() {
-        ImageIcon helpIcon = resize("resources/misc/helpPictures/helpPlay.png", 300, 140);
+        ImageIcon helpIcon = ImageResizer.resize("resources/misc/helpPictures/helpPlay.png", 300, 140);
         helpPlay = new JLabel();
         helpPlay.setBounds(400, 260, 400, 200);
         helpPlay.setOpaque(false);
@@ -155,27 +156,13 @@ public class HelpFrame {
      * Creates the status information label.
      */
     public void createHelpStatus() {
-        ImageIcon statusIcon = resize("resources/misc/helpPictures/helpStatus.png", 300, 140);
+        ImageIcon statusIcon = ImageResizer.resize("resources/misc/helpPictures/helpStatus.png", 300, 140);
         helpStatus = new JLabel();
         helpStatus.setBounds(400, 410, 400, 200);
         helpStatus.setOpaque(false);
         helpStatus.setVisible(true);
         helpStatus.setIcon(statusIcon);
         helpFrame.add(helpStatus);
-    }
-
-    /**
-     * Method used to resize images and return them as an ImageIcon
-     * @param path path of image file
-     * @param width width of image
-     * @param height height of image
-     * @return ImageIcon
-     */
-    public ImageIcon resize(String path, int width, int height) {
-        ImageIcon backgroundPicture = new ImageIcon(path);
-        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon bgIcon = new ImageIcon(image);
-        return bgIcon;
     }
 
     /**

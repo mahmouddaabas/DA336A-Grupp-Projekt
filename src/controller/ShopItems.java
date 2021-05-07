@@ -1,6 +1,6 @@
 package controller;
 
-import model.vendor.DamagePotion;
+import model.items.DamagePotion;
 
 /**
  * @Author Mahmoud Daabas
@@ -52,7 +52,7 @@ public class ShopItems {
      * Method that allows the user to purchase a damage potion.
      */
     public void buyDamagePotion() {
-        if(controller.getPlayer().getGold() > 2 && limit == 0) {
+        if (controller.getPlayer().getGold() > 2 && limit == 0) {
             controller.getMainFrame().getBtnDamagePotion().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 3);
             controller.getMainFrame().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
@@ -60,7 +60,7 @@ public class ShopItems {
                     "The potion will only remain active for 1 level, use it wisely!");
             limit = 1;
         }
-        else if(limit == 1) {
+        else if (limit == 1) {
             controller.getMainFrame().getTextArea().setText("You already have a damage potion.\n" +
                     "You need to consume it before buying a new one.");
         }

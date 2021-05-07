@@ -1,5 +1,6 @@
 package view;
 
+import controller.ImageResizer;
 import view.Handlers.ActionHandler;
 
 import javax.swing.*;
@@ -44,7 +45,7 @@ public class MainMenu {
         pnlMainMenu.setVisible(false);
 
         JLabel lblBg = new JLabel();
-        lblBg.setIcon(resize("resources/backgrounds/mainMenuBG.png", 1350, 850));
+        lblBg.setIcon(ImageResizer.resize("resources/backgrounds/mainMenuBG.png", 1350, 850));
         lblBg.setBounds(0, 0, 1350, 850);
 
         JLabel lblGameName = new JLabel("Climb The Tower", JLabel.CENTER);
@@ -130,20 +131,6 @@ public class MainMenu {
         btnNew.setActionCommand("newGame");
         btnProfiles.setActionCommand("profiles");
         btnExit.setActionCommand("exitGame");
-    }
-
-    /**
-     * Method used to resize images and return them as an ImageIcon
-     * @param path path of image file
-     * @param width width of image
-     * @param height height of image
-     * @return ImageIcon
-     */
-    public ImageIcon resize(String path, int width, int height) {
-        ImageIcon backgroundPicture = new ImageIcon(path);
-        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon bgIcon = new ImageIcon(image);
-        return bgIcon;
     }
 
     /**

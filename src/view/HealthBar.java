@@ -29,9 +29,9 @@ public class HealthBar {
      * Updates the healthBar by changing the heart icons to null thus removing them when player takes damage.
      */
     public void updateHealth() {
-            for(int i = 0; i < controller.getPlayer().getDamageTaken(); i++) {
+            for (int i = 0; i < controller.getPlayer().getDamageTaken(); i++) {
                 //Removes all hearts on the right side.
-                healthLabel[controller.getPlayer().getPlayerHealth()+i].setIcon(null);
+                healthLabel[controller.getPlayer().getPlayerHealth() + i].setIcon(null);
             }
             healthPanel.repaint();
             controller.getPlayer().setDamageTaken(0);
@@ -41,7 +41,7 @@ public class HealthBar {
      * Increases the healthBar by adding heartIcons.
      */
     public void increaseHealth() {
-        healthLabel[controller.getPlayer().getPlayerHealth()-1].setIcon(healthIcon);
+        healthLabel[controller.getPlayer().getPlayerHealth() - 1].setIcon(healthIcon);
         healthPanel.repaint();
     }
 
@@ -60,7 +60,7 @@ public class HealthBar {
         healthIcon = new ImageIcon(image);
 
         //Adds hearts in form of labels to the health panel.
-        for(int i = 0; i < healthLabel.length; i++) {
+        for (int i = 0; i < healthLabel.length; i++) {
             healthLabel[i] = new JLabel();
             healthLabel[i].setIcon(healthIcon);
             healthPanel.add(healthLabel[i]);

@@ -36,8 +36,7 @@ public class ActionHandler implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();
 
-        switch(yourChoice) {
-            //Scene 3
+        switch (yourChoice) {
             case "lookAtEnemy":
                 controller.getEventMonsters().lookAtEnemy();
                 break;
@@ -54,7 +53,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "talkToShopKeeper":
                 controller.getEventShop().talkToShopKeeper();
-                    break;
+                break;
             case "buyFromShopKeeper":
                 controller.getEventShop().buyFromShopKeeper();
                 break;
@@ -62,7 +61,6 @@ public class ActionHandler implements ActionListener, KeyListener {
                 //This is activated when the arrow in the shop is pressed.
             case "goBackToTower":
                 controller.getScene().showScene(controller.getLevel());
-                //controller.getCounter().setLevel(controller.getLevel());
                 controller.getScene().exitShop();
                 break;
 
@@ -133,11 +131,6 @@ public class ActionHandler implements ActionListener, KeyListener {
         }
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
     /**
      * KeyPressed method that activates when a button is pressed.
      * @param e
@@ -145,24 +138,23 @@ public class ActionHandler implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
-        if(keycode == KeyEvent.VK_H) {
-            if(openHelp == null) {
+        if (keycode == KeyEvent.VK_H) {
+            if (openHelp == null) {
                 openHelp = new HelpFrame();
             }
-            else{
+            else {
                 openHelp.getHelpFrame().setVisible(true);
             }
         }
         //Checks if the current scene is correct before allowing player to start combat with enter.
-        else if(controller.getCounter().getCurrentScene() == controller.getCounter().getLevel()+2) {
-            if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+        else if (controller.getCounter().getCurrentScene() == controller.getCounter().getLevel() + 1) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 controller.generateQuestionAndAnswers();
             }
         }
     }
-
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }

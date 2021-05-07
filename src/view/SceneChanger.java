@@ -1,7 +1,7 @@
 package view;
 
 import controller.GameLogic;
-import controller.LevelCreator;
+import model.LevelCreator;
 
 import java.awt.*;
 import java.io.*;
@@ -97,8 +97,6 @@ public class SceneChanger {
         }
 
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
-        //controller.getCounter().setCurrentScene(21);
-        //controller.getCounter().setLevel(controller.getCounter().getLevel());
     }
 
     /**

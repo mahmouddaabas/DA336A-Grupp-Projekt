@@ -31,10 +31,10 @@ public class EnemyHealthBar {
      * Uses the damage dealt in the player class to determine how many skulls to remove.
      */
     public void updateEnemyHealth() {
-        for(int i = 0; i < controller.getPlayer().getDamageDealt(); i++) {
+        for (int i = 0; i < controller.getPlayer().getDamageDealt(); i++) {
             //Removes all hearts on the right side.
             enemyHealthLabel[controller.getLevelCreator().getLevel(
-                    controller.getCounter().getLevel()).getEnemy().getHealth()+i].setIcon(null);
+                    controller.getCounter().getLevel()).getEnemy().getHealth() + i].setIcon(null);
         }
         enemyHealthPanel.repaint();
     }
@@ -55,7 +55,7 @@ public class EnemyHealthBar {
         enemyHealthIcon = new ImageIcon(image);
 
         //Adds skulls in form of labels to the enemyHealthPanel.
-        for(int i = 0; i < controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().getHealth(); i++) {
+        for (int i = 0; i < controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().getHealth(); i++) {
             enemyHealthLabel[i] = new JLabel();
             enemyHealthLabel[i].setIcon(enemyHealthIcon);
             enemyHealthPanel.add(enemyHealthLabel[i]);
@@ -66,8 +66,8 @@ public class EnemyHealthBar {
      * Method to check enemy type before creating health bar
      */
     public void checkEnemyType() {
-        String path = "";
-        if(controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().isBoss()) {
+        String path;
+        if (controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().isBoss()) {
            path = "resources/misc/skullRed.png";
         }
         else {

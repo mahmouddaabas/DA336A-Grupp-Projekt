@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import model.Level;
 import model.monsters.Boss;
@@ -161,6 +161,10 @@ public class LevelCreator {
         return null;
     }
 
+    /**
+     * Returns levels list
+     * @return levels
+     */
     public LinkedList<Level> getLevels() {
         return levels;
     }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameLogic;
+import controller.ImageResizer;
 import view.Handlers.ActionHandler;
 import view.Handlers.HandleAnswers;
 import view.Handlers.HandleShopKeeper;
@@ -40,7 +41,7 @@ public class MainFrame extends JFrame {
     private JButton[] shopButtons;
 
     //Level labels and coin label.
-    private  JLabel lblLevel;
+    private JLabel lblLevel;
     private JLabel lblTimer;
     private JLabel lblCoins;
 
@@ -113,7 +114,7 @@ public class MainFrame extends JFrame {
         String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
         //Initialize the array.
         answerButton = new JButton[4];
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             //Initialize the buttons.
             answerButton[i] = new JButton();
             String s = commandsForButtons[i];
@@ -141,7 +142,7 @@ public class MainFrame extends JFrame {
         String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
         //Initialize the array.
         shopButtons = new JButton[4];
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             //Initialize the buttons.
             shopButtons[i] = new JButton();
             String s = commandsForButtons[i];
@@ -214,7 +215,7 @@ public class MainFrame extends JFrame {
      * Creates the coin label that displays the users coins on the GUI.
      */
     public void createCoinLabel() {
-        ImageIcon coinIcon = resize("resources/misc/coin.png", 35, 35);
+        ImageIcon coinIcon = ImageResizer.resize("resources/misc/coin.png", 35, 35);
         lblCoins = new JLabel();
         lblCoins.setOpaque(false);
         lblCoins.setVisible(false);
@@ -231,7 +232,7 @@ public class MainFrame extends JFrame {
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createDamagePotion() {
-        ImageIcon damagePotionIcon = resize("resources/misc/DamagePotion.png", 50, 50);
+        ImageIcon damagePotionIcon = ImageResizer.resize("resources/misc/DamagePotion.png", 50, 50);
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
         btnDamagePotion.setVisible(false);
@@ -255,7 +256,7 @@ public class MainFrame extends JFrame {
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createHelpQuestionMark() {
-        ImageIcon getHelpIcon = resize("resources/misc/QuestionMark.png", 50, 50);
+        ImageIcon getHelpIcon = ImageResizer.resize("resources/misc/QuestionMark.png", 50, 50);
         btnGetHelp = new JButton();
         btnGetHelp.setOpaque(false);
         btnGetHelp.setVisible(true);
@@ -281,7 +282,7 @@ public class MainFrame extends JFrame {
      * Creates the potion status label.
      */
     public void createPotionStatusLabel() {
-        ImageIcon statusIcon = resize("resources/misc/bicep.png", 50, 50);
+        ImageIcon statusIcon = ImageResizer.resize("resources/misc/bicep.png", 50, 50);
         lblPotionStatus = new JLabel();
         lblPotionStatus.setBounds(1110, 750, 50, 50);
         lblPotionStatus.setOpaque(false);
@@ -294,7 +295,7 @@ public class MainFrame extends JFrame {
      * Creates the combat status label.
      */
     public void createCombatStatusLabel() {
-        ImageIcon statusIcon = resize("resources/misc/combat.png", 50, 50);
+        ImageIcon statusIcon = ImageResizer.resize("resources/misc/combat.png", 50, 50);
         lblCombatStatus = new JLabel();
         lblCombatStatus.setBounds(1170, 750, 50, 50);
         lblCombatStatus.setOpaque(false);
@@ -319,20 +320,6 @@ public class MainFrame extends JFrame {
         textArea2.setVisible(false);
         textArea2.setFont(new Font("Cambria", Font.PLAIN, 26));
         add(textArea2);
-    }
-
-    /**
-     * Method used to resize images and return them as an ImageIcon
-     * @param path path of image file
-     * @param width width of image
-     * @param height height of image
-     * @return ImageIcon
-     */
-    public ImageIcon resize(String path, int width, int height) {
-        ImageIcon backgroundPicture = new ImageIcon(path);
-        Image image = backgroundPicture.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon bgIcon = new ImageIcon(image);
-        return bgIcon;
     }
 
     /**

@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class ImageResizer {
     /**
-     * Method used to resize pictures
+     * Method used to resize pictures.
      * Then returns an ImageIcon
      * @param path path to image file
      * @param width width of image

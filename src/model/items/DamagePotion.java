@@ -1,4 +1,4 @@
-package model.vendor;
+package model.items;
 
 /**
  * @Author Mahmoud Daabas
