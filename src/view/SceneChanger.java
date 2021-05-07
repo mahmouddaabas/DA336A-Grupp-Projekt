@@ -40,18 +40,14 @@ public class SceneChanger {
             controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(false);
         }
 
-        switch (sceneNbr) {
-            case 0:
-                controller.getCounter().setCurrentScene(1);
-                break;
-            case 1:
-                controller.getHealthBar().createHealthBar();
-                controller.getMainFrame().getLblCoins().setVisible(true);
-                controller.getCounter().setCurrentScene(2);
-                break;
-            case 2:
-                controller.getMainFrame().getLblLevel().setVisible(true);
-                break;
+        if (sceneNbr == 1) {
+            controller.getHealthBar().createHealthBar();
+        }
+
+        if (sceneNbr > 0) {
+            controller.getMainFrame().getLblCoins().setVisible(true);
+            controller.getMainFrame().getLblLevel().setVisible(true);
+            controller.getCounter().updateLblLevel();
         }
 
         for (int i = 0; i < sceneNbr; i++) {
@@ -60,7 +56,7 @@ public class SceneChanger {
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(sceneNbr).setVisible(true);
 
         controller.getMainFrame().getTextArea().setText(sceneTexts.get(sceneNbr));
-        controller.getCounter().setCurrentScene(sceneNbr+1);
+        controller.getCounter().setCurrentScene(sceneNbr + 1);
     }
 
     /**
@@ -148,7 +144,6 @@ public class SceneChanger {
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
 
         //Stops the timer and kills the counter thread
-        controller.killCounter();
         controller.getTimer().stopTimer();
     }
 
@@ -157,7 +152,6 @@ public class SceneChanger {
      */
     public void exitGameOverScreen() {
         //Restarts the thread
-        controller.reviveCounter();
         controller.startGame();
 
         controller.getGameOver().getTitleLabel().setVisible(false);

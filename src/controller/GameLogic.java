@@ -96,7 +96,6 @@ public class GameLogic {
      * Starts the game
      */
     public void startGame() {
-        counter.startCounter();
         counter.setLevel(1);
         counter.setCurrentScene(0);
 
@@ -140,13 +139,14 @@ public class GameLogic {
 
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if(levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth()-player.getDamageDealt();
+                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
                     status = "correct";
                     generateQuestionAndAnswers();
                 }
                 else {
+                    mainFrame.getLblLevel().setVisible(false);
                     mainFrame.getTextArea().setText("Enemy defeated!"); //Unique death messages?
                     addGold();
 
@@ -179,7 +179,7 @@ public class GameLogic {
                     }
                     mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false); //LinkedList starts at 0. Level 1 -> index 0
                     //scene.showScene(counter.getCurrentScene());
-                    counter.setLevel(counter.getLevel()+1);
+                    counter.setLevel(counter.getLevel() + 1);
                     mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
@@ -213,6 +213,7 @@ public class GameLogic {
         else {
             player.setGold(player.getGold() + 1);
         }
+        mainFrame.getLblCoins().setText(" " + player.getGold());
     }
 
     /**
@@ -273,31 +274,15 @@ public class GameLogic {
         setOutOfCombat(true);
         generateQuestionAndAnswers();
         healthBar.updateHealth();
+        /*
         try {
             eventMonsters.attackEnemy();
         }
         catch (NullPointerException e){
             e.printStackTrace();
         }
-    }
 
-    /**
-     * Stops the counter thread and sets it to null.
-     */
-    public void killCounter() {
-        counter.stopCounter();
-        counter = null;
-    }
-
-    /**
-     * Checks if the counter thread is null.
-     * If null, it will create a new object of counter.
-     * It then starts the thread.
-     */
-    public void reviveCounter() {
-        if (counter == null){
-            counter = new Counter(this);
-        }
+         */
     }
 
     public void checkStatusAndGetQuestion() {
