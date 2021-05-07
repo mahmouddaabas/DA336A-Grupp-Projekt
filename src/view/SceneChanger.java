@@ -83,6 +83,7 @@ public class SceneChanger {
      */
     public void visitShop() {
         //Hide things when the shop is visited.
+        controller.getMainFrame().getTextArea().setText(sceneTexts.get(21));
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(true);
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
@@ -96,8 +97,8 @@ public class SceneChanger {
         }
 
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
-        controller.getCounter().setCurrentScene(21);
-        controller.getCounter().setLevel(controller.getCounter().getLevel());
+        //controller.getCounter().setCurrentScene(21);
+        //controller.getCounter().setLevel(controller.getCounter().getLevel());
     }
 
     /**

@@ -61,8 +61,8 @@ public class ActionHandler implements ActionListener, KeyListener {
 
                 //This is activated when the arrow in the shop is pressed.
             case "goBackToTower":
-                controller.getScene().showScene(controller.getLevel()+1);
-                controller.getCounter().setLevel(controller.getLevel());
+                controller.getScene().showScene(controller.getLevel());
+                //controller.getCounter().setLevel(controller.getLevel());
                 controller.getScene().exitShop();
                 break;
 
