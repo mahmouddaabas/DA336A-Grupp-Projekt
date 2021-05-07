@@ -13,14 +13,7 @@ import java.awt.*;
  */
 public class GameHelp {
     private JFrame helpFrame;
-    private JLabel helpHealth;
-    private JLabel helpGold;
-    private JLabel helpEnemy;
-    private JLabel helpBoss;
-    private JLabel helpTimer;
-    private JLabel helpPotion;
-    private JLabel helpPlay;
-    private JLabel helpStatus;
+    private JLabel lblGameHelp;
 
     /**
      * Constructs the class
@@ -35,14 +28,7 @@ public class GameHelp {
      * Creates all the labels that are shown on the GUI.
      */
     public void createAllLabels() {
-        createHealthHelpLabel();
-        createHelpGold();
-        createHelpEnemy();
-        createHelpBoss();
-        createHelpTimer();
-        createHelpPotion();
-        createHelpPlay();
-        createHelpStatus();
+        createGameHelpLabel();
     }
 
     /**
@@ -62,107 +48,16 @@ public class GameHelp {
     }
 
     /**
-     * Creates the health information label.
+     * Creates the game help label that contains all the information.
      */
-    public void createHealthHelpLabel() {
-        ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/helpHeart.png", 300, 140);
-        helpHealth = new JLabel();
-        helpHealth.setBounds(0, -30, 500, 200);
-        helpHealth.setOpaque(false);
-        helpHealth.setVisible(true);
-        helpHealth.setIcon(healthIcon);
-        helpFrame.add(helpHealth);
-    }
-
-    /**
-     * Creates the gold information label.
-     */
-    public void createHelpGold() {
-        ImageIcon goldIcon = ImageResizer.resize("resources/misc/helpPictures/helpCoins.png", 300, 140);
-        helpGold = new JLabel();
-        helpGold.setBounds(0, 115, 400, 200);
-        helpGold.setOpaque(false);
-        helpGold.setVisible(true);
-        helpGold.setIcon(goldIcon);
-        helpFrame.add(helpGold);
-    }
-
-    /**
-     * Creates the enemy information label.
-     */
-    public void createHelpEnemy() {
-        ImageIcon enemyIcon = ImageResizer.resize("resources/misc/helpPictures/helpEnemy.png", 300, 140);
-        helpEnemy = new JLabel();
-        helpEnemy.setBounds(0, 260, 400, 200);
-        helpEnemy.setOpaque(false);
-        helpEnemy.setVisible(true);
-        helpEnemy.setIcon(enemyIcon);
-        helpFrame.add(helpEnemy);
-    }
-
-    /**
-     * Creates the boss information label.
-     */
-    public void createHelpBoss() {
-        ImageIcon bossIcon = ImageResizer.resize("resources/misc/helpPictures/helpBoss.png", 300, 140);
-        helpBoss = new JLabel();
-        helpBoss.setBounds(0, 410, 400, 200);
-        helpBoss.setOpaque(false);
-        helpBoss.setVisible(true);
-        helpBoss.setIcon(bossIcon);
-        helpFrame.add(helpBoss);
-    }
-
-    /**
-     * Creates the timer information label.
-     */
-    public void createHelpTimer() {
-        ImageIcon timerIcon = ImageResizer.resize("resources/misc/helpPictures/helpTimer.png", 300, 140);
-        helpTimer = new JLabel();
-        helpTimer.setBounds(400, -30, 400, 200);
-        helpTimer.setOpaque(false);
-        helpTimer.setVisible(true);
-        helpTimer.setIcon(timerIcon);
-        helpFrame.add(helpTimer);
-    }
-
-    /**
-     * Creates the potion information label.
-     */
-    public void createHelpPotion() {
-        ImageIcon potionIcon = ImageResizer.resize("resources/misc/helpPictures/helpPotion.png", 300, 140);
-        helpPotion = new JLabel();
-        helpPotion.setBounds(400, 115, 400, 200);
-        helpPotion.setOpaque(false);
-        helpPotion.setVisible(true);
-        helpPotion.setIcon(potionIcon);
-        helpFrame.add(helpPotion);
-    }
-
-    /**
-     * Creates the play information label.
-     */
-    public void createHelpPlay() {
-        ImageIcon helpIcon = ImageResizer.resize("resources/misc/helpPictures/helpPlay.png", 300, 140);
-        helpPlay = new JLabel();
-        helpPlay.setBounds(400, 260, 400, 200);
-        helpPlay.setOpaque(false);
-        helpPlay.setVisible(true);
-        helpPlay.setIcon(helpIcon);
-        helpFrame.add(helpPlay);
-    }
-
-    /**
-     * Creates the status information label.
-     */
-    public void createHelpStatus() {
-        ImageIcon statusIcon = ImageResizer.resize("resources/misc/helpPictures/helpStatus.png", 300, 140);
-        helpStatus = new JLabel();
-        helpStatus.setBounds(400, 410, 400, 200);
-        helpStatus.setOpaque(false);
-        helpStatus.setVisible(true);
-        helpStatus.setIcon(statusIcon);
-        helpFrame.add(helpStatus);
+    public void createGameHelpLabel() {
+        ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/gameHelp.png", 780, 600);
+        lblGameHelp = new JLabel();
+        lblGameHelp.setBounds(0, 0, 780, 600);
+        lblGameHelp.setOpaque(false);
+        lblGameHelp.setVisible(true);
+        lblGameHelp.setIcon(healthIcon);
+        helpFrame.add(lblGameHelp);
     }
 
     /**
