@@ -172,11 +172,15 @@ public class SceneChanger {
 
         //Sets all enemies to visible
         for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
-            controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+            if (!controller.getMainFrame().getObjectCreator().getMonsters().get(i).isVisible()) {
+                controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+            }
         }
         //Sets all level arrows to invisible
         for (int j = 1; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++) {
-            controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+            if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
+                controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+            }
         }
 
         //Reset the status and set the text back to white.

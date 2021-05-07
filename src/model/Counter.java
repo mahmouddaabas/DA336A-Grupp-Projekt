@@ -52,9 +52,6 @@ public class Counter extends Thread {
     public void run() {
         while(run) {
             try {
-                if (controller.getTimer().getFighting()){
-                    controller.ifNotAnswered();
-                }
                 if(controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
                     controller.getMainFrame().getLblLevel().setText("Current level: " + getLevel() + " (Boss)");
                 }

@@ -11,7 +11,6 @@ public class Timer implements Runnable {
     private Thread timer = null;
     private boolean ticking = false;
     private int time;
-    private boolean fighting;
 
     public Timer(GameLogic controller) {
         this.controller = controller;
@@ -24,20 +23,18 @@ public class Timer implements Runnable {
     public void run() {
         while (ticking) {
             try {
-                fighting = true;
                 controller.getMainFrame().getLblTimer().setText("Time Left: " + controller.getTimer().getTime());
                 controller.getMainFrame().getLblTimer().setVisible(true);
                 time--;
                 Thread.sleep(1000);
-                if (time == 0) {
-                    stopTimer();
+                if (time < 0) {
+                    controller.ifNotAnswered();
                 }
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        fighting = false;
         controller.getMainFrame().getLblTimer().setVisible(false);
     }
 
@@ -77,13 +74,5 @@ public class Timer implements Runnable {
      */
     public void setTime(int time) {
         this.time = time;
-    }
-
-    /**
-     * Returns the fighting boolean
-     * @return fighting status
-     */
-    public boolean getFighting(){
-        return fighting;
     }
 }

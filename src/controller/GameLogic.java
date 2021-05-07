@@ -261,25 +261,23 @@ public class GameLogic {
      * It will also generate new questions.
      */
     public void ifNotAnswered() {
-        if(timer.getTime() == 0) {
-            if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                status = "incorrectBoss";
-                player.wrong(2);
-            }
-            else {
-                status = "incorrect";
-                player.wrong(1);
-            }
-            checkPlayerHealth();
-            setOutOfCombat(true);
-            generateQuestionAndAnswers();
-            healthBar.updateHealth();
-            try {
-                eventMonsters.attackEnemy();
-            }
-            catch (NullPointerException e){
-                e.printStackTrace();
-            }
+        if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+            status = "incorrectBoss";
+            player.wrong(2);
+        }
+        else {
+            status = "incorrect";
+            player.wrong(1);
+        }
+        checkPlayerHealth();
+        setOutOfCombat(true);
+        generateQuestionAndAnswers();
+        healthBar.updateHealth();
+        try {
+            eventMonsters.attackEnemy();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
         }
     }
 
