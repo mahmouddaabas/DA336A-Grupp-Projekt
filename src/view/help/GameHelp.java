@@ -8,8 +8,7 @@ import java.awt.*;
 /**
  * @Author Mahmoud Daabas
  * @Author Annie Tran
- * This class manages the help frame that is shown when the question mark on the GUI is pressed.
- * It will give the player all the information they need.
+ * This class manages the frame that opens when "Game Help" is pressed in the Help Box.
  */
 public class GameHelp {
     private JFrame helpFrame;

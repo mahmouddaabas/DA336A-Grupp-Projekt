@@ -1,6 +1,7 @@
 package view.handlers;
 
 import controller.GameLogic;
+import view.help.ControlHelp;
 import view.help.GameHelp;
 import view.help.HelpBox;
 
@@ -21,6 +22,7 @@ public class ActionHandler implements ActionListener, KeyListener {
     private GameLogic controller;
     private HelpBox helpBox;
     private GameHelp gameHelp;
+    private ControlHelp controlHelp;
 
     /**
      * Constructor
@@ -106,6 +108,13 @@ public class ActionHandler implements ActionListener, KeyListener {
                  gameHelp = new GameHelp();
                 else {
                     gameHelp.getHelpFrame().setVisible(true);
+                }
+                break;
+            case "controlHelp":
+                if(controlHelp == null)
+                    controlHelp = new ControlHelp();
+                else {
+                    controlHelp.getControlFrame().setVisible(true);
                 }
                 break;
 

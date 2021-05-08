@@ -77,7 +77,7 @@ public class HelpBox {
 
         btnControlHelp = new JButton();
         btnControlHelp.addActionListener(actionHandler);
-        btnControlHelp.setActionCommand("To be added");
+        btnControlHelp.setActionCommand("controlHelp");
         btnControlHelp.setContentAreaFilled(false);
         btnControlHelp.setFocusPainted(false);
         btnControlHelp.setOpaque(true);
