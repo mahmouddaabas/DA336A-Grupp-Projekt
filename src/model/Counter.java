@@ -15,6 +15,25 @@ public class Counter {
     private int currentScene;
 
     /**
+     * This method updates the level label when called.
+     */
+    public void updateLblLevel() {
+        if (controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
+            controller.getMainFrame().getLblLevel().setText("Current level: " + level + " (Boss)");
+        }
+        else {
+            controller.getMainFrame().getLblLevel().setText("Current level: " + level);
+        }
+    }
+
+    /**
+     * This method updates the coin label when called.
+     */
+    public void updateCoinLabel() {
+        controller.getMainFrame().getLblCoins().setText(" " + controller.getPlayer().getGold());
+    }
+
+    /**
      * Constructor that initializes the controller.
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
@@ -48,14 +67,5 @@ public class Counter {
      */
     public void setCurrentScene(int currentScene) {
         this.currentScene = currentScene;
-    }
-
-    public void updateLblLevel() {
-        if (controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
-            controller.getMainFrame().getLblLevel().setText("Current level: " + level + " (Boss)");
-        }
-        else {
-            controller.getMainFrame().getLblLevel().setText("Current level: " + level);
-        }
     }
 }

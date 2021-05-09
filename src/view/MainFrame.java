@@ -189,8 +189,9 @@ public class MainFrame extends JFrame {
     public void createLevelLabel(){
         lblLevel = new JLabel();
         lblLevel.setVisible(false);
-        lblLevel.setBounds(600, 0, 300, 150);
+        lblLevel.setBounds(600, 0, 330, 150);
         lblLevel.setLayout(null);
+        lblLevel.setOpaque(false);
         lblLevel.setText("");
         lblLevel.setFont(new Font("Cambria", Font.PLAIN, 25));
         lblLevel.setForeground(Color.WHITE);
