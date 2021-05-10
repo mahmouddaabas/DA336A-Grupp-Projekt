@@ -36,6 +36,7 @@ public class GameLogic {
 
     private ShopItems shopItems;
     private PlayerActions playerActions;
+    private MusicPlayer musicPlayer;
 
     //Events in the game.
     private EventMonsters eventMonsters = new EventMonsters(this);
@@ -45,6 +46,8 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
+        musicPlayer = new MusicPlayer();
+
         playerList = new PlayerList(10);
 
         mainFrame = new MainFrame(this);
@@ -70,7 +73,7 @@ public class GameLogic {
 
         //Displays main menu
         scene.showMainMenu();
-        MusicPlayer musicPlayer = new MusicPlayer();
+
         musicPlayer.startMusic();
     }
 
@@ -332,6 +335,10 @@ public class GameLogic {
      */
     public SceneChanger getScene() {
         return scene;
+    }
+
+    public MusicPlayer getMusicPlayer() {
+        return musicPlayer;
     }
 
     /**
