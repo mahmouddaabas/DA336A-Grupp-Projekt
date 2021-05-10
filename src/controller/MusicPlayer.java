@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class MusicPlayer implements ActionListener { //behövs det en tråd?
+public class MusicPlayer implements ActionListener { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
     private Counter counter;
 
     private AudioInputStream audioInput;
@@ -23,7 +23,7 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     private boolean isMuted;
 
     public MusicPlayer() {
-        this("resources/music/Scene1.wav","","","","");
+        this("resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","","");
     }
 
     private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String pathWinner) {
@@ -37,7 +37,7 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     }
 
     public void startMusic() {
-        switch (counter.getCurrentScene()) {
+        switch (counter.getLevel()) {
             case 0:
             //startup screen
             playMusic(files.get(0));
@@ -66,11 +66,14 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     }
 
     public void playMusic(File fileToPlay) {
-        stopMusic();
+        if(isPlaying) {
+            stopMusic();
+        }
 
             try {
                 audioInput = AudioSystem.getAudioInputStream(fileToPlay);
                 clip = AudioSystem.getClip();
+                isPlaying = true;
             //    clip.
                 clip.open(audioInput);
                 clip.start(); //testa om det behövs både start och loop
