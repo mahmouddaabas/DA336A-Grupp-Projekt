@@ -37,6 +37,7 @@ public class ShopItems {
             controller.getPlayer().setPlayerHealth(previousHealth);
             controller.getHealthBar().increaseHealth();
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
+            controller.getCounter().updateCoinLabel();
             controller.getMainFrame().getTextArea().setText("You purchased 1 HP for 2 gold.");
             controller.getMainFrame().getLblPotionStatus().setVisible(false);
         }
@@ -55,6 +56,7 @@ public class ShopItems {
         if (controller.getPlayer().getGold() > 2 && limit == 0) {
             controller.getMainFrame().getBtnDamagePotion().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 3);
+            controller.getCounter().updateCoinLabel();
             controller.getMainFrame().getTextArea().setText("You purchased a damage potion for 3 gold. \n" +
                     "You can activate it on the bottom right of the screen. \n" +
                     "The potion will only remain active for 1 level, use it wisely!");

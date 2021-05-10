@@ -46,7 +46,7 @@ public class EnemyHealthBar {
         checkEnemyType();
         enemyHealthPanel = new JPanel();
         enemyHealthLabel = new JLabel[10];
-        enemyHealthPanel.setBounds(850, 48, 400, 50);
+        enemyHealthPanel.setBounds(940, 48, 280, 50);
         enemyHealthPanel.setBackground(Color.black);
         enemyHealthPanel.setLayout(new FlowLayout());
         frame.add(enemyHealthPanel);
