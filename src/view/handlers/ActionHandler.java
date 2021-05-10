@@ -1,7 +1,9 @@
-package view.Handlers;
+package view.handlers;
 
 import controller.GameLogic;
-import view.HelpFrame;
+import view.help.ControlHelp;
+import view.help.GameHelp;
+import view.help.HelpBox;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +20,9 @@ import java.awt.event.KeyListener;
  */
 public class ActionHandler implements ActionListener, KeyListener {
     private GameLogic controller;
-    private HelpFrame openHelp;
+    private HelpBox helpBox;
+    private GameHelp gameHelp;
+    private ControlHelp controlHelp;
 
     /**
      * Constructor
@@ -97,7 +101,21 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerActions().drinkDamagePotion();
                 break;
             case "requestHelp":
-                HelpFrame help = new HelpFrame();
+                HelpBox helpBox = new HelpBox(this);
+                break;
+            case "gameHelp":
+                if(gameHelp == null)
+                 gameHelp = new GameHelp();
+                else {
+                    gameHelp.getHelpFrame().setVisible(true);
+                }
+                break;
+            case "controlHelp":
+                if(controlHelp == null)
+                    controlHelp = new ControlHelp();
+                else {
+                    controlHelp.getControlFrame().setVisible(true);
+                }
                 break;
 
             case "addProfile":
@@ -139,11 +157,11 @@ public class ActionHandler implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
         if (keycode == KeyEvent.VK_H) {
-            if (openHelp == null) {
-                openHelp = new HelpFrame();
+            if (helpBox == null) {
+                helpBox = new HelpBox(this);
             }
             else {
-                openHelp.getHelpFrame().setVisible(true);
+                helpBox.getHelpBox().setVisible(true);
             }
         }
         //Checks if the current scene is correct before allowing player to start combat with enter.

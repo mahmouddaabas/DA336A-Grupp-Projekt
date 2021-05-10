@@ -2,9 +2,9 @@ package view;
 
 import controller.GameLogic;
 import controller.ImageResizer;
-import view.Handlers.ActionHandler;
-import view.Handlers.HandleAnswers;
-import view.Handlers.HandleShopKeeper;
+import view.handlers.ActionHandler;
+import view.handlers.HandleAnswers;
+import view.handlers.HandleShopKeeper;
 
 import javax.swing.*;
 import java.awt.*;
