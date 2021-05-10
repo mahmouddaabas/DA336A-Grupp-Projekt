@@ -180,23 +180,23 @@ public class GameLogic {
                     mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
-//            else {
-//                if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-//                    player.wrong(2);
-//                    checkPlayerHealth();
-//                    status = "incorrectBoss";
-//                }
-//                else {
-//                    player.wrong(1);
-//                    checkPlayerHealth();
-//                    status = "incorrect";
-//                }
-//                if (!player.isDead()) {
-//                    setOutOfCombat(true);
-//                    generateQuestionAndAnswers();
-//                    healthBar.updateHealth();
-//                }
-//            }
+            else {
+                if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+                    player.wrong(2);
+                    checkPlayerHealth();
+                    status = "incorrectBoss";
+                }
+                else {
+                    player.wrong(1);
+                    checkPlayerHealth();
+                    status = "incorrect";
+                }
+                if (!player.isDead()) {
+                    setOutOfCombat(true);
+                    generateQuestionAndAnswers();
+                    healthBar.updateHealth();
+                }
+            }
         }
     }
 
