@@ -100,6 +100,9 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "drinkDamagePotion":
                 controller.getPlayerActions().drinkDamagePotion();
                 break;
+            case "equipShield":
+                controller.getPlayerActions().equipShield();
+                break;
             case "requestHelp":
                 HelpBox helpBox = new HelpBox(this);
                 break;

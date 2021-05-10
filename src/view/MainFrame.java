@@ -50,6 +50,10 @@ public class MainFrame extends JFrame {
     private JLabel lblPotionStatus;
     private JLabel lblCombatStatus;
 
+    //Shield buttons.
+    private JButton btnShield;
+    private JLabel shieldStatus;
+
     //Help button
     private JButton btnGetHelp;
 
@@ -98,6 +102,8 @@ public class MainFrame extends JFrame {
         createPotionStatusLabel();
         createCombatStatusLabel();
         createTextArea();
+        createShield();
+        createShieldStatus();
     }
 
     /**
@@ -251,6 +257,43 @@ public class MainFrame extends JFrame {
 
         btnDamagePotion.setForeground(Color.WHITE);
         add(btnDamagePotion);
+    }
+
+    /**
+     * Creates the shield button that is shown on the GUI.
+     */
+    public void createShield() {
+        ImageIcon shieldIcon = ImageResizer.resize("resources/misc/RedShield.png", 50, 50);
+        btnShield = new JButton();
+        btnShield.setOpaque(false);
+        btnShield.setVisible(false);
+        btnShield.setBounds(1050, 750, 50, 50);
+        btnShield.setLayout(null);
+
+        btnShield.addActionListener(action);
+        btnShield.setActionCommand("equipShield");
+
+        btnShield.setIcon(shieldIcon);
+        btnShield.setContentAreaFilled(false);
+        btnShield.setFocusPainted(false);
+        btnShield.setBackground(null);
+        btnShield.setBorderPainted(false);
+
+        btnShield.setForeground(Color.WHITE);
+        add(btnShield);
+    }
+
+    /**
+     * Creates the shield status label.
+     */
+    public void createShieldStatus() {
+        ImageIcon statusIcon = ImageResizer.resize("resources/misc/GreenShield.png", 50, 50);
+        shieldStatus = new JLabel();
+        shieldStatus.setBounds(990, 750, 50, 50);
+        shieldStatus.setOpaque(false);
+        shieldStatus.setVisible(false);
+        shieldStatus.setIcon(statusIcon);
+        add(shieldStatus);
     }
 
     /**
@@ -449,5 +492,21 @@ public class MainFrame extends JFrame {
 
     public ObjectCreator getObjectCreator() {
         return objectCreator;
+    }
+
+    /**
+     * Returns the shield button for further use.
+     * @return btnShield
+     */
+    public JButton getBtnShield() {
+        return btnShield;
+    }
+
+    /**
+     * Returns the shield status label.
+     * @return shieldStatus
+     */
+    public JLabel getShieldStatus() {
+        return shieldStatus;
     }
 }
