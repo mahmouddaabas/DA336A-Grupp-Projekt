@@ -266,7 +266,7 @@ public class MainFrame extends JFrame {
         ImageIcon shieldIcon = ImageResizer.resize("resources/misc/RedShield.png", 50, 50);
         btnShield = new JButton();
         btnShield.setOpaque(false);
-        btnShield.setVisible(true);
+        btnShield.setVisible(false);
         btnShield.setBounds(1050, 750, 50, 50);
         btnShield.setLayout(null);
 
