@@ -97,6 +97,18 @@ public class Utilities {
     }
 
     /**
+     * Returns a positive fraction as addition and a negative fraction as subtraction.
+     * @param fraction the fraction that is added or subtracted.
+     * @return a positive fraction as addition and a negative fraction as subtraction.
+     */
+    protected static String additionOrSubtractionString(Fraction fraction) {
+        if (fraction.getNumerator() < 0) {
+            return "- " + (fraction.multiply(new Fraction(-1, 1)).toString());
+        } else
+            return "+ " + fraction;
+    }
+
+    /**
      * Checks if a number is a negative number and if so returns it with added parenthesis, otherwise returns the number
      * unchanged. Used to add correct mathematical syntax to the questions.
      * @param number the number to check.

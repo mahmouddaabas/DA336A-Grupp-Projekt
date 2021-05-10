@@ -39,7 +39,7 @@ public class MQAdditionManyFractions extends MathQuestions {
         StringBuilder question = new StringBuilder("What is " + fractions[0].toString());
 
         for (int i = 1; i < (fractions.length); i++) {
-            question.append(" + ").append(fractions[i].toString());
+            question.append(" ").append(Utilities.additionOrSubtractionString(fractions[i]));
         }
 
         question.append("?");

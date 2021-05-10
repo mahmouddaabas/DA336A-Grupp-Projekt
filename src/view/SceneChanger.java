@@ -132,8 +132,8 @@ public class SceneChanger {
         controller.getMainFrame().getLblCombatStatus().setVisible(false);
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
-        controller.setLevelCreator(null);
-        controller.setLevelCreator(new LevelCreator());
+//        controller.setLevelCreator(null);
+//        controller.setLevelCreator(new LevelCreator());
 
         //Resets the player gold.
         controller.getPlayer().setGold(0);

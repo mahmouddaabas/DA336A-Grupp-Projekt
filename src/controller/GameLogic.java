@@ -52,8 +52,6 @@ public class GameLogic {
 
         timer = new Timer(this);
 
-        levelCreator = new LevelCreator();
-
         //Creates a counter object.
         counter = new Counter(this);
 
@@ -91,9 +89,18 @@ public class GameLogic {
     }
 
     /**
+     * Creates a new LevelCreator with a specified difficulty.
+     * @param difficulty the difficulty of the questions.
+     */
+    public void createLevelCreator(Difficulty difficulty) {
+        levelCreator = new LevelCreator(difficulty);
+    }
+
+    /**
      * Starts the game
      */
     public void startGame() {
+        levelCreator.newLevels();
         counter.setLevel(1);
         counter.setCurrentScene(0);
         scene.showScene(counter.getCurrentScene());
@@ -173,23 +180,23 @@ public class GameLogic {
                     mainFrame.getAnswerPanel().setVisible(false);
                 }
             }
-            else {
-                if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    player.wrong(2);
-                    checkPlayerHealth();
-                    status = "incorrectBoss";
-                }
-                else {
-                    player.wrong(1);
-                    checkPlayerHealth();
-                    status = "incorrect";
-                }
-                if (!player.isDead()) {
-                    setOutOfCombat(true);
-                    generateQuestionAndAnswers();
-                    healthBar.updateHealth();
-                }
-            }
+//            else {
+//                if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+//                    player.wrong(2);
+//                    checkPlayerHealth();
+//                    status = "incorrectBoss";
+//                }
+//                else {
+//                    player.wrong(1);
+//                    checkPlayerHealth();
+//                    status = "incorrect";
+//                }
+//                if (!player.isDead()) {
+//                    setOutOfCombat(true);
+//                    generateQuestionAndAnswers();
+//                    healthBar.updateHealth();
+//                }
+//            }
         }
     }
 

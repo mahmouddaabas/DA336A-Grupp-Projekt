@@ -9,14 +9,13 @@ public class RegularMonster extends Monster {
 
     /**
      * Creates the RegularMonster object
-     * @param isBoss boolean if the monster is a boss
      * @param type type of monster
      * @param health amount of health
      * @param lookDialogue dialogue on "look" action
      * @param talkDialogue dialogue on "talk" action
      */
-    public RegularMonster(boolean isBoss, RegularMonsterType type, int health, String lookDialogue, String talkDialogue) {
-        super(isBoss,health,lookDialogue,talkDialogue);
+    public RegularMonster(RegularMonsterType type, int health, String lookDialogue, String talkDialogue) {
+        super(false, health, lookDialogue, talkDialogue);
         this.type = type;
     }
 

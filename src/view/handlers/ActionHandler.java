@@ -1,6 +1,7 @@
 package view.handlers;
 
 import controller.GameLogic;
+import model.Difficulty;
 import view.help.ControlHelp;
 import view.help.GameHelp;
 import view.help.HelpBox;
@@ -138,13 +139,16 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
 
             case "hard":
-                System.out.println("Hard difficulty");
+                controller.createLevelCreator(Difficulty.Hard);
+                controller.startGame();
                 break;
             case "medium":
+                controller.createLevelCreator(Difficulty.Medium);
                 controller.startGame();
                 break;
             case "easy":
-                System.out.println("Easy difficulty");
+                controller.createLevelCreator(Difficulty.Easy);
+                controller.startGame();
                 break;
         }
     }
