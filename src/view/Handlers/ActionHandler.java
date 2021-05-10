@@ -20,6 +20,7 @@ import java.awt.event.KeyListener;
 public class ActionHandler implements ActionListener, KeyListener {
     private GameLogic controller;
     private HelpFrame openHelp;
+    private MusicPlayer musicPlayer;
 
     /**
      * Constructor
@@ -27,6 +28,7 @@ public class ActionHandler implements ActionListener, KeyListener {
      */
     public ActionHandler(GameLogic controller) {
         this.controller = controller;
+        musicPlayer = controller.getMusicPlayer();
     }
 
     /**
@@ -76,6 +78,11 @@ public class ActionHandler implements ActionListener, KeyListener {
 
             case "continue":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                int currentLevel = controller.getLevel();
+                if(currentLevel == 1 || currentLevel == 5 || currentLevel == 6 || currentLevel == 10 ||
+                        currentLevel == 11 || currentLevel == 15 || currentLevel == 16 || currentLevel == 20) {
+                    musicPlayer.startMusic();
+                }
                 break;
 
             case "newGame":
@@ -101,7 +108,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 HelpFrame help = new HelpFrame();
                 break;
             case "audioOnOff":
-                MusicPlayer musicPlayer = new MusicPlayer();
+                musicPlayer = new MusicPlayer();
                 musicPlayer.audioOnOff();
                 break;
 
