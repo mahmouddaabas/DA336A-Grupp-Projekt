@@ -204,7 +204,6 @@ public class GameLogic {
         mainFrame.getLblCombatStatus().setVisible(false);
         mainFrame.getBtnGetHelp().setFocusable(true);
         mainFrame.getTextArea2().setVisible(false);
-        mainFrame.getShieldStatus().setVisible(false);
     }
 
     /**
