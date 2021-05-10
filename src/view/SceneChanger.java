@@ -156,6 +156,7 @@ public class SceneChanger {
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getMainFrame().getBtnGetHelp().setFocusable(true);
+        controller.getMainFrame().getBtnAudio().setVisible(false);
         controller.getPlayer().restoreHealth();
         controller.setOutOfCombat(true);
         controller.getCounter().setLevel(1);
