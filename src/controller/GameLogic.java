@@ -175,12 +175,12 @@ public class GameLogic {
             }
             else {
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-                    player.wrong(2);
+                    checkAndApplyDamage();
                     checkPlayerHealth();
                     status = "incorrectBoss";
                 }
                 else {
-                    player.wrong(1);
+                    checkAndApplyDamage();
                     checkPlayerHealth();
                     status = "incorrect";
                 }
@@ -193,8 +193,10 @@ public class GameLogic {
         }
     }
 
+    /**
+     * Hides or changes components when combat is over.
+     */
     public void hideComponents() {
-        //Hide or change this when the combat is over.
         mainFrame.getLblTimer().setVisible(false);
         mainFrame.getLblLevel().setVisible(false);
         enemyHealthBar.getEnemyHealthPanel().setVisible(false);
@@ -202,6 +204,7 @@ public class GameLogic {
         mainFrame.getLblCombatStatus().setVisible(false);
         mainFrame.getBtnGetHelp().setFocusable(true);
         mainFrame.getTextArea2().setVisible(false);
+        mainFrame.getShieldStatus().setVisible(false);
     }
 
     /**
@@ -263,11 +266,11 @@ public class GameLogic {
     public void ifNotAnswered() {
         if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             status = "incorrectBoss";
-            player.wrong(2);
+            checkAndApplyDamage();
         }
         else {
             status = "incorrect";
-            player.wrong(1);
+            checkAndApplyDamage();
         }
         checkPlayerHealth();
         generateQuestionAndAnswers();
@@ -297,6 +300,24 @@ public class GameLogic {
             default:
                 mainFrame.getTextArea().setText(getMathQuestion().getQuestion());
                 break;
+        }
+    }
+
+    /**
+     * Methods that checks statements before applying the appropriate damage.
+     */
+    public void checkAndApplyDamage() {
+        if(shopItems.getShield().getIsEquiped()) {
+            player.wrong(0);
+            //Sets the shield to false and hides it after successfully blocking a hit.
+            shopItems.getShield().setEquiped(false);
+            mainFrame.getShieldStatus().setVisible(false);
+        }
+        else if(levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
+            player.wrong(2);
+        }
+        else {
+            player.wrong(1);
         }
     }
 

@@ -139,7 +139,7 @@ public class SceneChanger {
         controller.getPlayer().setGold(0);
 
         //Resets the limit and hides the potions.
-        controller.getShopItems().setLimit(0);
+        controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
 
         //Stops the timer and kills the counter thread

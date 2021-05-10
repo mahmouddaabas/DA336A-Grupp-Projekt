@@ -35,7 +35,7 @@ public class HandleShopKeeper implements ActionListener {
                 controller.getShopItems().buyDamagePotion();
                 break;
             case "thirdButton":
-                controller.getMainFrame().getTextArea().setText("Not added yet..");
+                controller.getShopItems().buyShield();
                 break;
             case "fourthButton":
                 controller.getMainFrame().getTextArea().setText("Not added yet...");
