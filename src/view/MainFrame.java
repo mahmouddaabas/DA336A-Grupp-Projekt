@@ -44,6 +44,7 @@ public class MainFrame extends JFrame {
     private JLabel lblLevel;
     private JLabel lblTimer;
     private JLabel lblCoins;
+    private JButton btnAudio;
 
     //Potion buttons.
     private JButton btnDamagePotion;
@@ -94,6 +95,7 @@ public class MainFrame extends JFrame {
         createTimerLabel();
         createCoinLabel();
         createDamagePotion();
+        createAudioButton();
         createHelpQuestionMark();
         createPotionStatusLabel();
         createCombatStatusLabel();
@@ -226,6 +228,38 @@ public class MainFrame extends JFrame {
         lblCoins.setFont(new Font("Cambria", Font.PLAIN, 20));
         lblCoins.setForeground(Color.WHITE);
         add(lblCoins);
+    }
+
+    public void createAudioButton() {
+        ImageIcon audioIcon = ImageResizer.resize("resources/misc/audioIcons/audioIconOff.png", 50, 50);
+
+        btnAudio = new JButton();
+        btnAudio.setOpaque(false);
+        btnAudio.setVisible(true);
+        btnAudio.setBounds(1000, 750, 50, 50);
+        btnAudio.setLayout(null);
+
+        btnAudio.addActionListener(action);
+        btnAudio.setActionCommand("audioOnOff");
+      //  btnAudio.addKeyListener(action); //behövs denna?
+
+        btnAudio.setIcon(audioIcon);
+        btnAudio.setContentAreaFilled(false);
+        btnAudio.setFocusPainted(false);
+        btnAudio.setBackground(null);
+        btnAudio.setBorderPainted(false);
+
+        btnAudio.setFont(new Font("Cambria", Font.PLAIN, 20));
+        btnAudio.setForeground(Color.WHITE);
+        add(btnAudio);
+    }
+
+    public void setAudioIcon(boolean soundOn) {
+        if(soundOn) {
+            btnAudio.setIcon(ImageResizer.resize("resources/misc/audioIcons/audioButtonOn.png", 50, 50));
+        } else {
+            btnAudio.setIcon(ImageResizer.resize("resources/misc/audioIcons/audioButtonOff.png", 50, 50));
+        }
     }
 
     /**
@@ -432,6 +466,10 @@ public class MainFrame extends JFrame {
      */
     public JButton getBtnGetHelp() {
         return btnGetHelp;
+    }
+
+    public JButton getBtnAudio() {
+        return btnAudio;
     }
 
     /**
