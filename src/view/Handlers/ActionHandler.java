@@ -1,6 +1,7 @@
 package view.Handlers;
 
 import controller.GameLogic;
+import controller.MusicPlayer;
 import view.HelpFrame;
 
 import javax.swing.*;
@@ -98,6 +99,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "requestHelp":
                 HelpFrame help = new HelpFrame();
+                break;
+            case "audioOnOff":
+                MusicPlayer musicPlayer = new MusicPlayer();
+                musicPlayer.audioOnOff();
                 break;
 
             case "addProfile":
