@@ -70,6 +70,8 @@ public class GameLogic {
 
         //Displays main menu
         scene.showMainMenu();
+        MusicPlayer musicPlayer = new MusicPlayer();
+        musicPlayer.startMusic();
     }
 
     /**
