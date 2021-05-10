@@ -20,6 +20,7 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     private ArrayList<File> files;
 
     private boolean isPlaying;
+    private boolean isMuted;
 
     public MusicPlayer() {
         this("resources/music/Scene1.wav","","","","");
@@ -36,25 +37,47 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     }
 
     public void startMusic() {
-        if(currentTypeOfScene != counter.getCurrentScene()) {
-            stopMusic();
-            currentTypeOfScene = counter.getCurrentScene();
-        }
+        switch (counter.getCurrentScene()) {
+            case 0:
+            //startup screen
+            playMusic(files.get(0));
+            break;
 
-        for (File musicPath : files) { //går igenom alla filer i files
-            if (musicPath.getName().endsWith(currentTypeOfScene+".wav")) {
-                try {
-                    audioInput = AudioSystem.getAudioInputStream(musicPath);
-                    clip = AudioSystem.getClip();
-                    clip.open(audioInput);
-                    clip.start(); //testa om det behövs både start och loop
-                    clip.loop(clip.LOOP_CONTINUOUSLY);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            //reglevels
+            playMusic(files.get(1));
+            break;
+
+            case 5:
+            case 10:
+            case 15:
+            case 20:
+            //bosslevels
+            playMusic(files.get(2));
+            break;
+
+            default:
+            playMusic(files.get(3));
+            //shop
+        }
+    }
+
+    public void playMusic(File fileToPlay) {
+        stopMusic();
+
+            try {
+                audioInput = AudioSystem.getAudioInputStream(fileToPlay);
+                clip = AudioSystem.getClip();
+            //    clip.
+                clip.open(audioInput);
+                clip.start(); //testa om det behövs både start och loop
+                clip.loop(clip.LOOP_CONTINUOUSLY);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
-
 
    /*     if(thread == null) {
             thread = new Thread();
@@ -99,6 +122,15 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd?
     public void stopMusic() {
             clip.setMicrosecondPosition(0);
             isPlaying = false;
+    }
+
+    public void audioOnOff() {
+        if(isMuted) { //om muted så sätts ljudet på
+
+        } else { //annars mutas ljudet
+
+        }
+        isMuted = !isMuted;
     }
 
     //ska endast anropas när användaren trycker på "pause/resume" på GUI:t
