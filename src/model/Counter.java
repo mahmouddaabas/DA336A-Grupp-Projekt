@@ -22,6 +22,8 @@ public class Counter {
         this.controller = controller;
     }
 
+    public Counter() {}
+
     /**
      * Returns the current level.
      */
