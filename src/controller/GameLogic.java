@@ -56,6 +56,9 @@ public class GameLogic {
         playerList = new PlayerList(10);
 
         mainFrame = new MainFrame(this);
+
+        musicPlayer.setMainFrame(mainFrame);
+
         scene = new SceneChanger(this);
 
         timer = new Timer(this);
@@ -170,6 +173,8 @@ public class GameLogic {
                                 "Shop?", JOptionPane.YES_NO_OPTION);
                         if (reply == JOptionPane.YES_OPTION) {
                             scene.visitShop();
+                            musicPlayer.setShopActive(true);
+                            musicPlayer.startMusic();
                         }
                     }
                     if (counter.getLevel() < 20) {
