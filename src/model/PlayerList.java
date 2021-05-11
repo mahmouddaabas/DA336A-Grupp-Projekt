@@ -17,7 +17,7 @@ public class PlayerList {
 
     /**
      * Constructor
-     * @param controller
+     * @param controller GameLogic-object to set own variable
      */
     public PlayerList(GameLogic controller) {
         players = new Player[MAX_PLAYERS];
@@ -60,7 +60,7 @@ public class PlayerList {
     }
     /**
      * Saves the player into a text file.
-     * @param name
+     * @param name name of player
      */
     public void savePlayerToTxt(String name) {
         try {
@@ -73,8 +73,8 @@ public class PlayerList {
     }
 
     /**
-     * Delets a player from the text file.
-     * @param name
+     * Deletes a player from the text file.
+     * @param name name of player
      */
     public void deletePlayerFromTxt(String name) {
         try {
@@ -84,8 +84,8 @@ public class PlayerList {
         String data = br.readLine();
         LinkedList<String> players = new LinkedList<>();
 
-        while(data != null) {
-            if(!data.equals(name)) {
+        while (data != null) {
+            if (!data.equals(name)) {
                 players.add(data);
             }
             data = br.readLine();
@@ -95,8 +95,8 @@ public class PlayerList {
         PrintWriter write = new PrintWriter(new FileWriter("resources/saves/players.txt"));
         BufferedWriter bw = new BufferedWriter(write);
 
-        for(int i = 0; i < players.size(); i++) {
-            bw.write(players.get(i) + "\n");
+        for (String player : players) {
+            bw.write(player + "\n");
         }
         bw.close();
         }
@@ -107,7 +107,6 @@ public class PlayerList {
 
     /**
      * Loads all the players into the text file to the profile list.
-     * @throws
      */
     public void loadProfileList() {
         try {
@@ -115,7 +114,7 @@ public class PlayerList {
             BufferedReader br = new BufferedReader(reader);
 
             String data = br.readLine();
-            while(data != null) {
+            while (data != null) {
                 addPlayer(data);
                 data = br.readLine();
             }

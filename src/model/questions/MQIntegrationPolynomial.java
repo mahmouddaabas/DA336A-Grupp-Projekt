@@ -1,12 +1,10 @@
 package model.questions;
 
-import java.util.Arrays;
-
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that integrates a chosen number of terms in a polynomial. All the coefficients have the same
  * bounds and so do the exponents. Need to call generateNewQuestion() to get a question to generate the numbers and
  * answers. Unlike most other classes, this one generates the answer first and then the question.
- * @author Mattias Bengtsson
  */
 public class MQIntegrationPolynomial extends MathQuestions {
     private Polynomial[] answers;

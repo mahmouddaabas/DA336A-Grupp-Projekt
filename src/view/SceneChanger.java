@@ -1,7 +1,6 @@
 package view;
 
 import controller.GameLogic;
-import model.LevelCreator;
 
 import java.awt.*;
 import java.io.*;
@@ -82,7 +81,6 @@ public class SceneChanger {
      * Hides certain things.
      */
     public void visitShop() {
-        //Hide things when the shop is visited.
         controller.getMainFrame().getTextArea().setText(sceneTexts.get(21));
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(true);
         controller.getTimer().stopTimer();
@@ -114,6 +112,7 @@ public class SceneChanger {
      * Shows the game over screen
      */
     public void showGameOverScreen() {
+        controller.getTimer().stopTimer();
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
         controller.getGameOver().getTitleLabel().setVisible(true);
         controller.getGameOver().getTitleLabel().setText("YOU DIED!");
@@ -131,26 +130,21 @@ public class SceneChanger {
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
         controller.getMainFrame().getLblCombatStatus().setVisible(false);
 
+        //Why is this commented out?
         //Sets the level creator to null then creates a new instance of the object to reset the game.
 //        controller.setLevelCreator(null);
 //        controller.setLevelCreator(new LevelCreator());
 
-        //Resets the player gold.
         controller.getPlayer().setGold(0);
 
-        //Resets the limit and hides the potions.
         controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
-
-        //Stops the timer and kills the counter thread
-        controller.getTimer().stopTimer();
     }
 
     /**
      * Code that executes when exiting the game over screen
      */
     public void exitGameOverScreen() {
-        //Restarts the thread
         controller.startGame();
 
         controller.getGameOver().getTitleLabel().setVisible(false);
@@ -160,7 +154,6 @@ public class SceneChanger {
         controller.setOutOfCombat(true);
         controller.getCounter().setLevel(1);
 
-        //Brings back all the panels.
         controller.getMainFrame().getTextArea().setVisible(true);
 
         //Sets all enemies to visible
@@ -176,7 +169,6 @@ public class SceneChanger {
             }
         }
 
-        //Reset the status and set the text back to white.
         controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
     }

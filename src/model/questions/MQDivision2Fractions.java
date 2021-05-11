@@ -1,9 +1,9 @@
 package model.questions;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that divides two integer fractions. Both numerators have the same bounds and so do the
  * denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
- * @author Mattias Bengtsson
  */
 public class MQDivision2Fractions extends MathQuestions {
     private Fraction[] answers;

@@ -8,6 +8,10 @@ package controller;
 public class PlayerActions {
     private GameLogic controller;
 
+    /**
+     * Constructor setting own GameLogic-object
+     * @param controller GameLogic-object used to set own variable
+     */
     public PlayerActions(GameLogic controller){
         this.controller = controller;
     }
@@ -30,8 +34,8 @@ public class PlayerActions {
      * Method that allows the user to equip their shield.
      */
     public void equipShield() {
-        controller.getShopItems().getShield().setEquiped(true);
-        if(controller.getShopItems().getShield().getIsEquiped()) {
+        controller.getShopItems().getShield().setEquipped(true);
+        if (controller.getShopItems().getShield().getIsEquipped()) {
             controller.getShopItems().setShieldLimit(0);
             controller.getMainFrame().getBtnShield().setVisible(false);
             controller.getMainFrame().getShieldStatus().setVisible(true);

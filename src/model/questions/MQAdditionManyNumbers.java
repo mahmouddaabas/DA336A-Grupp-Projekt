@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that adds a chosen number of decimal numbers. Negative numbers become subtraction. All
  * numbers have the same bounds. If using just 2 numbers, please use MQAddition2Numbers or MQSubtraction2Numbers instead.
  * Need to call generateNewQuestion() to get a question to generate the numbers and answers. BigDecimal is used instead
  * of double to aid with the precision and rounding.
- * @author Mattias Bengtsson
  */
 public class MQAdditionManyNumbers extends MathQuestions {
     private BigDecimal[] answers;

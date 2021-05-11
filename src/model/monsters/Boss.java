@@ -18,20 +18,4 @@ public class Boss extends Monster {
         super(true ,health, lookDialogue, talkDialogue);
         this.type = type;
     }
-
-    /**
-     * Returns the boss' type
-     * @return type of boss
-     */
-    public BossType getType() {
-        return type;
-    }
-
-    /**
-     * Sets the type of boss
-     * @param type new type of boss
-     */
-    public void setType(BossType type) {
-        this.type = type;
-    }
 }

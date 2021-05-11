@@ -5,7 +5,6 @@ import controller.ImageResizer;
 import view.handlers.ActionHandler;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -122,7 +121,7 @@ public class ObjectCreator {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    if (controller.getOutOfCombat()) {
+                    if (controller.getPlayer().isOutOfCombat()) {
                         popupMenu.show(lblShopKeeper, e.getX(), e.getY());
                     }
                 }
@@ -161,7 +160,7 @@ public class ObjectCreator {
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isRightMouseButton(e)) {
-                            if (controller.getOutOfCombat()) {
+                            if (controller.getPlayer().isOutOfCombat()) {
                                 popupMenu.show(lblMonster, e.getX(), e.getY());
                             }
                         }

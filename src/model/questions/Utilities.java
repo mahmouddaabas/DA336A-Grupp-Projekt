@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * A collection of static methods used by the MathQuestions classes for number and string generation.
  * @author Mattias Bengtsson
+ * A collection of static methods used by the MathQuestions classes for number and string generation.
  */
 public class Utilities {
     private static Random rand = new Random();

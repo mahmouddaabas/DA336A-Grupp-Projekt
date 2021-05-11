@@ -12,6 +12,10 @@ public class Timer implements Runnable {
     private boolean ticking = false;
     private int time;
 
+    /**
+     * Constructor setting GameLogic-object
+     * @param controller GameLogic-object used to set own variable
+     */
     public Timer(GameLogic controller) {
         this.controller = controller;
     }

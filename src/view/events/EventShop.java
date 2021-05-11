@@ -3,8 +3,8 @@ package view.events;
 import controller.GameLogic;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class handles the event that occur when the player visits the shop.
  */
 public class EventShop {

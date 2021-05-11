@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class manages the frame that opens when "Game Help" is pressed in the Help Box.
  */
 public class GameHelp {
@@ -37,10 +37,8 @@ public class GameHelp {
         helpFrame.setSize(800, 700);
         helpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         helpFrame.getContentPane().setBackground(Color.black);
-        //Can place things on the window without any restrictions.
         helpFrame.setLayout(null);
         helpFrame.setTitle("Climb the Tower - Help");
-        //Starts the window in the middle of the screen.
         helpFrame. setLocationRelativeTo(null);
         helpFrame.setResizable(false);
         helpFrame.setVisible(true);

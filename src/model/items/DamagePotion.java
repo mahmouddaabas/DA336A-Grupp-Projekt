@@ -5,14 +5,13 @@ package model.items;
  * This class represents a damage potion.
  */
 public class DamagePotion {
-
     private int damageBoost;
     private boolean potionActive;
 
     /**
      * Constructs the class.
-     * @param damageBoost
-     * @param potionActive
+     * @param damageBoost amount of damage boost
+     * @param potionActive boolean flag
      */
     public DamagePotion(int damageBoost, boolean potionActive) {
         this.damageBoost = damageBoost;
@@ -37,10 +36,9 @@ public class DamagePotion {
 
     /**
      * Sets if the potion is active or not.
-     * @param potionActive
+     * @param potionActive new boolean flag
      */
     public void setPotionActive(boolean potionActive) {
         this.potionActive = potionActive;
     }
-
 }

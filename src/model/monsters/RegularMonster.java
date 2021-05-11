@@ -18,12 +18,4 @@ public class RegularMonster extends Monster {
         super(false, health, lookDialogue, talkDialogue);
         this.type = type;
     }
-
-    /**
-     * Returns the type of monster
-     * @return type of monster
-     */
-    public RegularMonsterType getType() {
-        return type;
-    }
 }

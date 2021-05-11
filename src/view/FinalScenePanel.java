@@ -118,12 +118,4 @@ public class FinalScenePanel {
     public JPanel getPnlFinalScene() {
         return pnlFinalScene;
     }
-
-    /**
-     * Returns pnlButtons
-     * @return pnlButtons
-     */
-    public JPanel getPnlButtons() {
-        return pnlButtons;
-    }
 }

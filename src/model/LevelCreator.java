@@ -113,6 +113,10 @@ public class LevelCreator {
         return bossTypes;
     }
 
+    /**
+     * Creates the math questions associated with "Easy" difficulty
+     * @return math questions array
+     */
     private MathQuestions[] createEasyMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
@@ -143,6 +147,10 @@ public class LevelCreator {
         return mathQuestions;
     }
 
+    /**
+     * Creates the math questions associated with "Medium" difficulty
+     * @return math questions array
+     */
     private MathQuestions[] createMediumMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
@@ -173,6 +181,10 @@ public class LevelCreator {
         return mathQuestions;
     }
 
+    /**
+     * Creates the math questions associated with "Hard" difficulty
+     * @return math questions array
+     */
     private MathQuestions[] createHardMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 

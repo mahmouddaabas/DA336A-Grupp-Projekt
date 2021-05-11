@@ -5,7 +5,7 @@ import controller.GameLogic;
 /**
  * @author Mahmoud Daabas
  * @author Duy Nguyen
- * Event02 will handle all the different mob interactions in the game.
+ * EventMonsters will handle all the different mob interactions in the game.
  */
 public class EventMonsters {
     private GameLogic controller;
@@ -22,14 +22,18 @@ public class EventMonsters {
      * This method is called if the user selects the "Look" option in the GUI.
      */
     public void lookAtEnemy() {
-        controller.getMainFrame().getTextArea().setText(controller.getLookDialogue());
+        int currLevel = controller.getCounter().getLevel();
+        String lookDialogue = controller.getLevelCreator().getLevel(currLevel).getEnemy().getLookDialogue();
+        controller.getMainFrame().getTextArea().setText(lookDialogue);
     }
 
     /**
      * Same as lookAtEnemy(), but for "Talk" option.
      */
     public void talkToEnemy() {
-        controller.getMainFrame().getTextArea().setText(controller.getTalkDialogue());
+        int currLevel = controller.getCounter().getLevel();
+        String talkDialogue = controller.getLevelCreator().getLevel(currLevel).getEnemy().getTalkDialogue();
+        controller.getMainFrame().getTextArea().setText(talkDialogue);
     }
 
     /**
