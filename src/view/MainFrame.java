@@ -45,7 +45,8 @@ public class MainFrame extends JFrame {
     private JLabel lblLevel;
     private JLabel lblTimer;
     private JLabel lblCoins;
-    private JButton btnAudio;
+    private JButton btnAudioOn;
+    private JButton btnAudioOff;
 
     //Potion buttons.
     private JButton btnDamagePotion;
@@ -232,34 +233,57 @@ public class MainFrame extends JFrame {
     }
 
     public void createAudioButton() {
-        ImageIcon audioIcon = ImageResizer.resize("resources/misc/audioIcons/audioIconOff.png", 50, 50);
+        ImageIcon audioIcon = ImageResizer.resize("resources/misc/audioIcons/audioIconOn.png", 50, 50);
 
-        btnAudio = new JButton();
-        btnAudio.setOpaque(false);
-        btnAudio.setVisible(true);
-        btnAudio.setBounds(1000, 750, 50, 50);
-        btnAudio.setLayout(null);
+        btnAudioOn = new JButton();
+        btnAudioOn.setOpaque(false);
+        btnAudioOn.setVisible(true);
+        btnAudioOn.setBounds(1000, 750, 50, 50);
+        btnAudioOn.setLayout(null);
 
-        btnAudio.addActionListener(action);
-        btnAudio.setActionCommand("audioOnOff");
+        btnAudioOn.addActionListener(action);
+        btnAudioOn.setActionCommand("audioOnOff");
       //  btnAudio.addKeyListener(action); //behövs denna?
 
-        btnAudio.setIcon(audioIcon);
-        btnAudio.setContentAreaFilled(false);
-        btnAudio.setFocusPainted(false);
-        btnAudio.setBackground(null);
-        btnAudio.setBorderPainted(false);
+        btnAudioOn.setIcon(audioIcon);
+        btnAudioOn.setContentAreaFilled(false);
+        btnAudioOn.setFocusPainted(false);
+        btnAudioOn.setBackground(null);
+        btnAudioOn.setBorderPainted(false);
 
-        btnAudio.setFont(new Font("Cambria", Font.PLAIN, 20));
-        btnAudio.setForeground(Color.WHITE);
-        add(btnAudio);
+
+        add(btnAudioOn);
+
+
+        ImageIcon audioIconOff = ImageResizer.resize("resources/misc/audioIcons/audioIconOff.png", 50, 50);
+
+        btnAudioOff = new JButton();
+        btnAudioOff.setOpaque(false);
+        btnAudioOff.setVisible(false);
+        btnAudioOff.setBounds(1000, 750, 50, 50);
+        btnAudioOff.setLayout(null);
+
+        btnAudioOff.addActionListener(action);
+        btnAudioOff.setActionCommand("audioOnOff");
+        //  btnAudio.addKeyListener(action); //behövs denna?
+
+        btnAudioOff.setIcon(audioIconOff);
+        btnAudioOff.setContentAreaFilled(false);
+        btnAudioOff.setFocusPainted(false);
+        btnAudioOff.setBackground(null);
+        btnAudioOff.setBorderPainted(false);
+
+
+        add(btnAudioOff);
     }
 
     public void setAudioIcon(boolean soundOn) {
         if(soundOn) {
-            btnAudio.setIcon(ImageResizer.resize("resources/misc/audioIcons/audioButtonOn.png", 50, 50));
+            btnAudioOff.setVisible(false);
+            btnAudioOn.setVisible(true);
         } else {
-            btnAudio.setIcon(ImageResizer.resize("resources/misc/audioIcons/audioButtonOff.png", 50, 50));
+            btnAudioOn.setVisible(false);
+            btnAudioOff.setVisible(true);
         }
     }
 
@@ -469,8 +493,8 @@ public class MainFrame extends JFrame {
         return btnGetHelp;
     }
 
-    public JButton getBtnAudio() {
-        return btnAudio;
+    public JButton getBtnAudioOn() {
+        return btnAudioOn;
     }
 
     /**
