@@ -10,24 +10,28 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class MusicPlayer implements ActionListener { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
+/**
+ * @author Vilgot Mattsson
+ */
+
+public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
     private Counter counter;
 
     private AudioInputStream audioInput;
     private Clip clip;
 
-    private int currentTypeOfScene; //för startmetoden
     private ArrayList<File> files;
 
     private boolean isPlaying;
     private boolean isMuted;
+    private boolean isShop;
 
-    public MusicPlayer() {
+    public MusicPlayer(Counter counter) {
         this("resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","","");
+        this.counter = counter;
     }
 
     private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String pathWinner) {
-        this.counter = new Counter();
         files = new ArrayList<>();
         files.add(0, new File(pathMainMenu));
         files.add(1, new File(pathRegularLvl));
@@ -37,31 +41,31 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd? //B
     }
 
     public void startMusic() {
-        switch (counter.getLevel()) {
-            case 0:
-            //startup screen
-            playMusic(files.get(0));
-            break;
-
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            //reglevels
-            playMusic(files.get(1));
-            break;
-
-            case 5:
-            case 10:
-            case 15:
-            case 20:
-            //bosslevels
-            playMusic(files.get(2));
-            break;
-
-            default:
+        if(isShop) {
             playMusic(files.get(3));
-            //shop
+        } else {
+            switch (counter.getLevel()) {
+                case 0:
+                    //startup screen
+                    playMusic(files.get(0));
+                    break;
+
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    //reglevels
+                    playMusic(files.get(1));
+                    break;
+
+                case 5:
+                case 10:
+                case 15:
+                case 20:
+                    //bosslevels
+                    playMusic(files.get(2));
+                    break;
+            }
         }
     }
 
@@ -74,9 +78,8 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd? //B
                 audioInput = AudioSystem.getAudioInputStream(fileToPlay);
                 clip = AudioSystem.getClip();
                 isPlaying = true;
-            //    clip.
                 clip.open(audioInput);
-                clip.start(); //testa om det behövs både start och loop
+              //  clip.start(); //testa om det behövs både start och loop
                 clip.loop(clip.LOOP_CONTINUOUSLY);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -124,6 +127,7 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd? //B
     // ska endast anropas när GUI:t skiftar scen och möjligtvis endast av startMusic() och då ifall scene inte korrelerar med activeScene
     public void stopMusic() {
             clip.setMicrosecondPosition(0);
+            clip.stop(); //om denna bara används 
             isPlaying = false;
     }
 
@@ -134,6 +138,11 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd? //B
 
         }
         isMuted = !isMuted;
+    }
+
+    //anropas när spelaren går in i shopen
+    public void setShopActive(boolean shopActive) {
+        isShop = shopActive;
     }
 
     //ska endast anropas när användaren trycker på "pause/resume" på GUI:t
@@ -148,19 +157,5 @@ public class MusicPlayer implements ActionListener { //behövs det en tråd? //B
             //gui.setIconLabelToResume
         }
         isPlaying = !isPlaying;
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-
-            case "pause/resume":
-                pauseResumeMusic();
-                break;
-
-            default:
-                System.out.println("Music-Button Action-command not corresponding");
-        }
     }
 }
