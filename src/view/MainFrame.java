@@ -497,6 +497,10 @@ public class MainFrame extends JFrame {
         return btnAudioOn;
     }
 
+    public JButton getBtnAudioOff() {
+        return btnAudioOff;
+    }
+
     /**
      * Returns textArea2 for use outside of the class.
      * @return textArea2
