@@ -13,6 +13,7 @@ import java.awt.*;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * Controller class that handles the overall logic flow for the game.
  */
 public class GameLogic {
@@ -46,7 +47,11 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
-        musicPlayer = new MusicPlayer();
+        //Creates a counter object.
+        counter = new Counter(this);
+
+        //Creates a MusicPlayer object
+        musicPlayer = new MusicPlayer(counter);
 
         playerList = new PlayerList(10);
 
@@ -56,9 +61,6 @@ public class GameLogic {
         timer = new Timer(this);
 
         levelCreator = new LevelCreator();
-
-        //Creates a counter object.
-        counter = new Counter(this);
 
         //Player health bar and Enemy health bar.
         healthBar = new HealthBar(this, mainFrame);
