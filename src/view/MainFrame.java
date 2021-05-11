@@ -267,7 +267,7 @@ public class MainFrame extends JFrame {
         btnShield = new JButton();
         btnShield.setOpaque(false);
         btnShield.setVisible(false);
-        btnShield.setBounds(1050, 750, 50, 50);
+        btnShield.setBounds(1175, 750, 50, 50);
         btnShield.setLayout(null);
 
         btnShield.addActionListener(action);
@@ -289,7 +289,7 @@ public class MainFrame extends JFrame {
     public void createShieldStatus() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/GreenShield.png", 50, 50);
         shieldStatus = new JLabel();
-        shieldStatus.setBounds(990, 750, 50, 50);
+        shieldStatus.setBounds(20, 750, 50, 50);
         shieldStatus.setOpaque(false);
         shieldStatus.setVisible(false);
         shieldStatus.setIcon(statusIcon);
@@ -328,7 +328,7 @@ public class MainFrame extends JFrame {
     public void createPotionStatusLabel() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/bicep.png", 50, 50);
         lblPotionStatus = new JLabel();
-        lblPotionStatus.setBounds(1110, 750, 50, 50);
+        lblPotionStatus.setBounds(70, 750, 50, 50);
         lblPotionStatus.setOpaque(false);
         lblPotionStatus.setVisible(false);
         lblPotionStatus.setIcon(statusIcon);
@@ -341,7 +341,7 @@ public class MainFrame extends JFrame {
     public void createCombatStatusLabel() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/combat.png", 50, 50);
         lblCombatStatus = new JLabel();
-        lblCombatStatus.setBounds(1170, 750, 50, 50);
+        lblCombatStatus.setBounds(130, 750, 50, 50);
         lblCombatStatus.setOpaque(false);
         lblCombatStatus.setVisible(false);
         lblCombatStatus.setIcon(statusIcon);
