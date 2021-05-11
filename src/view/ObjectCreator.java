@@ -5,6 +5,7 @@ import controller.ImageResizer;
 import view.handlers.ActionHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
