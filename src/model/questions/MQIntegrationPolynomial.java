@@ -125,10 +125,10 @@ public class MQIntegrationPolynomial extends MathQuestions {
     private void generateAnswerStringsPolynomial() {
         if (answers != null) {
             String[] answerStr = new String[4];
-            answerStr[0] = "A. " + answers[0].toString() + " + C";
-            answerStr[1] = "B. " + answers[1] + " + C";
-            answerStr[2] = "C. " + answers[2] + " + C";
-            answerStr[3] = "D. " + answers[3] + " + C";
+            answerStr[0] = "1. " + answers[0].toString() + " + C";
+            answerStr[1] = "2. " + answers[1] + " + C";
+            answerStr[2] = "3. " + answers[2] + " + C";
+            answerStr[3] = "4. " + answers[3] + " + C";
             setAnswerStr(answerStr);
         }
     }
