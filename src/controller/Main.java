@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 /**
  * Class that starts the whole program by creating an object of GameLogic.
  */

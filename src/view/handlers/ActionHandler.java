@@ -130,7 +130,9 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "deleteProfile":
                 int i1 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
+                String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
                 controller.deletePlayer(i1);
+                controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
                 break;
             case "goMainMenu":
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);

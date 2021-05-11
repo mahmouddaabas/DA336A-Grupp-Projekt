@@ -1,20 +1,28 @@
 package model;
 
+import controller.GameLogic;
+import java.io.*;
+import java.util.LinkedList;
+
 /**
  * @author Duy Nguyen
+ * @author Mahmoud Daabas
  * Class that functions as a "list" for all players
  */
 public class PlayerList {
     private Player[] players;
     private int nbrOfPlayers;
+    private final int MAX_PLAYERS = 10;
+    private GameLogic controller;
 
     /**
      * Constructor
-     * @param maxPlayers max size of the player list
+     * @param controller
      */
-    public PlayerList(int maxPlayers) {
-        players = new Player[maxPlayers];
+    public PlayerList(GameLogic controller) {
+        players = new Player[MAX_PLAYERS];
         nbrOfPlayers = 0;
+        this.controller = controller;
     }
 
     /**
@@ -48,6 +56,75 @@ public class PlayerList {
         for (int pos = index + 1; pos < players.length; pos++) {
             players[pos - 1] = players[pos];
             players[pos] = null;
+        }
+    }
+    /**
+     * Saves the player into a text file.
+     * @param name
+     */
+    public void savePlayerToTxt(String name) {
+        try {
+            FileWriter writer = new FileWriter("resources/saves/players.txt", true);
+            writer.append(name).append("\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Delets a player from the text file.
+     * @param name
+     */
+    public void deletePlayerFromTxt(String name) {
+        try {
+        FileReader reader = new FileReader("resources/saves/players.txt");
+        BufferedReader br = new BufferedReader(reader);
+
+        String data = br.readLine();
+        LinkedList<String> players = new LinkedList<>();
+
+        while(data != null) {
+            if(!data.equals(name)) {
+                players.add(data);
+            }
+            data = br.readLine();
+        }
+
+        br.close();
+        PrintWriter write = new PrintWriter(new FileWriter("resources/saves/players.txt"));
+        BufferedWriter bw = new BufferedWriter(write);
+
+        for(int i = 0; i < players.size(); i++) {
+            bw.write(players.get(i) + "\n");
+        }
+        bw.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads all the players into the text file to the profile list.
+     * @throws
+     */
+    public void loadProfileList() {
+        try {
+            FileReader reader = new FileReader("resources/saves/players.txt");
+            BufferedReader br = new BufferedReader(reader);
+
+            String data = br.readLine();
+            while(data != null) {
+                addPlayer(data);
+                data = br.readLine();
+            }
+            br.close();
+
+            controller.getMainFrame().getMainMenu().getPnlProfiles().updatePlayerNames(getPlayerNames());
+        }
+        catch(IOException e) {
+            e.printStackTrace();
         }
     }
 

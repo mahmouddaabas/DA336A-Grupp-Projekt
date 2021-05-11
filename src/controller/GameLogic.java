@@ -7,6 +7,8 @@ import view.*;
 import view.events.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.LinkedList;
 
 /**
  * @author Mattias Bengtsson
@@ -45,7 +47,7 @@ public class GameLogic {
      * Constructor for GameLogic that shows the first scene.
      */
     public GameLogic() {
-        playerList = new PlayerList(10);
+        playerList = new PlayerList(this);
 
         mainFrame = new MainFrame(this);
         scene = new SceneChanger(this);
@@ -68,6 +70,7 @@ public class GameLogic {
 
         //Displays main menu
         scene.showMainMenu();
+        playerList.loadProfileList();
     }
 
     /**
@@ -77,6 +80,7 @@ public class GameLogic {
     public void addPlayer(String name) {
         playerList.addPlayer(name);
         mainFrame.getMainMenu().getPnlProfiles().updatePlayerNames(playerList.getPlayerNames());
+        playerList.savePlayerToTxt(name);
     }
 
     /**
@@ -509,5 +513,13 @@ public class GameLogic {
             player = playerList.getPlayer(index);
             JOptionPane.showMessageDialog(null, player.toString() + " Selected!");
         }
+    }
+
+    /**
+     * Returns the player list.
+     * @return playerList
+     */
+    public PlayerList getPlayerList() {
+        return playerList;
     }
 }
