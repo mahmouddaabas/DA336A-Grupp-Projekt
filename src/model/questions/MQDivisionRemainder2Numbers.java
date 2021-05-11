@@ -3,11 +3,11 @@ package model.questions;
 import java.lang.Math;
 
 /**
- * Creates a math question that divides two integer numbers and gives a fraction answer. Need to call
+ * Creates a math question that divides two integer numbers and gives a remainder answer. Need to call
  * generateNewQuestion() to get a question to generate the numbers and answers.
  * @author Mattias Bengtsson
  */
-public class MQDivisionFraction2Numbers extends MathQuestions {
+public class MQDivisionRemainder2Numbers extends MathQuestions {
     private int[][] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -23,8 +23,8 @@ public class MQDivisionFraction2Numbers extends MathQuestions {
      * @param denominatorLowerBound the lowest value the denominator can have.
      * @param denominatorUpperBound the highest value the denominator can have.
      */
-    public MQDivisionFraction2Numbers(int numeratorLowerBound, int numeratorUpperBound,
-                                      int denominatorLowerBound, int denominatorUpperBound) {
+    public MQDivisionRemainder2Numbers(int numeratorLowerBound, int numeratorUpperBound,
+                                       int denominatorLowerBound, int denominatorUpperBound) {
         super();
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
@@ -105,19 +105,19 @@ public class MQDivisionFraction2Numbers extends MathQuestions {
 
         answerStr[0] = "A. " + answers[0][0];
         if (answers[0][1] != 0) {
-            answerStr[0] += " + (" + answers[0][1] + "/" + denominator + ")";
+            answerStr[0] += " R " + answers[0][1];
         }
         answerStr[1] = "B. " + answers[1][0];
         if (answers[1][1] != 0) {
-            answerStr[1] += " + (" + answers[1][1] + "/" + denominator + ")";
+            answerStr[1] += " R " + answers[1][1];
         }
         answerStr[2] = "C. " + answers[2][0];
         if (answers[2][1] != 0) {
-            answerStr[2] += " + (" + answers[2][1] + "/" + denominator + ")";
+            answerStr[2] += " R " + answers[2][1];
         }
         answerStr[3] = "D. " + answers[3][0];
         if (answers[3][1] != 0) {
-            answerStr[3] += " + (" + answers[3][1] + "/" + denominator + ")";
+            answerStr[3] += " R " + answers[3][1];
         }
 
         setAnswerStr(answerStr);

@@ -46,12 +46,16 @@ public class Fraction {
 
     /**
      * Compares this Fraction to the specified Fraction and returns true if the numerators and the denominators are
-     * equal.
+     * equal. Ignores the denominator if the numerator is 0.
      * @param fraction the Fraction that this Fraction is to be compared to.
      * @return true if the numerators and the denominators of the two Fractions have equal values.
      */
     public boolean equals(Fraction fraction) {
-        return (numerator == fraction.getNumerator()) && (denominator == fraction.getDenominator());
+        if (numerator == 0 && fraction.getNumerator() == 0) {
+            return true;
+        } else {
+            return (numerator == fraction.getNumerator()) && (denominator == fraction.getDenominator());
+        }
     }
 
     /**

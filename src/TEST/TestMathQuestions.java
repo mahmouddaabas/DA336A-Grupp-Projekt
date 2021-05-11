@@ -32,7 +32,7 @@ public class TestMathQuestions {
 //        mathQuestion = new MQMultiplication2Numbers(1, 9, 2, 1, 9, 1);
 //        mathQuestion = new MQSubtraction2Numbers(1, 9, 0, 1, 9, 0, false);
 //        mathQuestion = new MQAdditionManyNumbers(1, 9, 2, 3);
-//        mathQuestion = new MQDivisionFraction2Numbers(10, 100, 2, 10);
+//        mathQuestion = new MQDivisionRemainder2Numbers(10, 100, 2, 10);
 //        mathQuestion = new MQDivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
 //        mathQuestion = new MQAdditionManyFractions(-10, 10, -10, 10, 3);
 //        mathQuestion = new MQMultiplicationManyFractions(-10, 10, -10, 10, 3);

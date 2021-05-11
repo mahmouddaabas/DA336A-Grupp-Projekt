@@ -1,18 +1,20 @@
 package model.questions;
 
+import model.Difficulty;
+
 /**
  * Generates random questions for the final boss depending on the difficulty chosen. Need to call generateNewQuestion()
  * to get a question to generate the question and answers.
  */
 public class MQFinalBossRandom extends MathQuestions {
-    private int difficulty;
+    private Difficulty difficulty;
     private MathQuestions randomQuestion;
 
     /**
      * Initializes the difficulty of the questions.
-     * @param difficulty the difficulty that the user is on. 1 for easy, 2 for medium, and 3 for hard.
+     * @param difficulty the difficulty that the user is on.
      */
-    public MQFinalBossRandom(int difficulty) {
+    public MQFinalBossRandom(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -55,8 +57,16 @@ public class MQFinalBossRandom extends MathQuestions {
      */
     @Override
     public void generateNewQuestion() {
-        if (difficulty == 2) {
-            generateMediumDifficultyQuestions();
+        switch (difficulty) {
+            case Easy:
+                generateEasyDifficultyQuestions();
+                break;
+            case Medium:
+                generateMediumDifficultyQuestions();
+                break;
+            case  Hard:
+                generateHardDifficultyQuestions();
+                break;
         }
         randomQuestion.generateNewQuestion();
     }
@@ -67,7 +77,24 @@ public class MQFinalBossRandom extends MathQuestions {
     private void generateEasyDifficultyQuestions() {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
-            // Will be implemented later
+            case 0:
+                randomQuestion = new MQAdditionManyFractions(1, 20, 1, 20, 2);
+                break;
+            case 1:
+                randomQuestion = new MQDivisionDecimal2Numbers(20, 100, 1, 3, 10, 1, 2);
+                break;
+            case 2:
+                randomQuestion = new MQAdditionManyNumbers(1, 9, 1, 4);
+                break;
+            case 3:
+                randomQuestion = new MQMultiplicationManyNumbers(-9, 9, 1, 3);
+                break;
+            case 4:
+                randomQuestion = new MQDerivationPolynomial(-20, 20, -9, 9, 1);
+                break;
+            case 5:
+                randomQuestion = new MQIntegrationPolynomial(-20, 20, -9, 9, 1);
+                break;
         }
     }
 
@@ -81,19 +108,19 @@ public class MQFinalBossRandom extends MathQuestions {
                 randomQuestion = new MQAdditionManyFractions(-20, 20, -20, 20, 2);
                 break;
             case 1:
-                randomQuestion = new MQDivisionDecimal2Numbers(20, 400, 1, 10, 19, 1, 2);
+                randomQuestion = new MQDivisionDecimal2Numbers(20, 400, 1, 3, 10, 1, 2);
                 break;
             case 2:
-                randomQuestion = new MQAdditionManyNumbers(-20, 20, 1, 5);
+                randomQuestion = new MQAdditionManyNumbers(-9, 9, 1, 4);
                 break;
             case 3:
-                randomQuestion = new MQMultiplicationManyNumbers(-9, 9, 1, 4);
+                randomQuestion = new MQMultiplicationManyNumbers(-5, 5, 1, 4);
                 break;
             case 4:
-                randomQuestion = new MQDerivationPolynomial(-20, 20, -9, 9, 1);
+                randomQuestion = new MQDerivationPolynomial(-20, 20, -9, 9, 2);
                 break;
             case 5:
-                randomQuestion = new MQIntegrationPolynomial(-20, 20, -9, 9, 1);
+                randomQuestion = new MQIntegrationPolynomial(-20, 20, -9, 9, 2);
                 break;
         }
     }
@@ -104,7 +131,24 @@ public class MQFinalBossRandom extends MathQuestions {
     private void generateHardDifficultyQuestions() {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
-            // Will be implemented later
+            case 0:
+                randomQuestion = new MQAdditionManyFractions(-20, 20, -20, 20, 2);
+                break;
+            case 1:
+                randomQuestion = new MQDivisionDecimal2Numbers(20, 400, 1, 10, 19, 1, 2);
+                break;
+            case 2:
+                randomQuestion = new MQAdditionManyNumbers(-20, 20, 1, 5);
+                break;
+            case 3:
+                randomQuestion = new MQMultiplicationManyNumbers(-15, 15, 1, 4);
+                break;
+            case 4:
+                randomQuestion = new MQDerivationPolynomial(-10, 10, -30, 30, 2);
+                break;
+            case 5:
+                randomQuestion = new MQIntegrationPolynomial(-10, 10, -30, 30, 2);
+                break;
         }
     }
 }
