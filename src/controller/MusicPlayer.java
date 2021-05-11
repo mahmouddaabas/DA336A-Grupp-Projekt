@@ -1,24 +1,28 @@
 package controller;
 
 import model.Counter;
+import view.MainFrame;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.sound.sampled.FloatControl;
 import java.io.*;
 import java.util.ArrayList;
 
 /**
  * @author Vilgot Mattsson
+ * This class provides the game with backgroundmusic which change depending on the scene that is currently displaying.
  */
 
-public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
+public class MusicPlayer { //behövs det en tråd?
     private Counter counter;
+    private MainFrame mainFrame;
 
     private AudioInputStream audioInput;
     private Clip clip;
+
+    private FloatControl volume;
 
     private ArrayList<File> files;
 
@@ -27,7 +31,7 @@ public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
     private boolean isShop;
 
     public MusicPlayer(Counter counter) {
-        this("resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","","");
+        this("resources/soundTracks/Scene1.wav","resources/soundTracks/soundCars.wav","resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","");
         this.counter = counter;
     }
 
@@ -38,6 +42,9 @@ public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
         files.add(2, new File(pathBossLvl));
         files.add(3, new File(pathShop));
         files.add(4, new File(pathWinner));
+    }
+    public void setMainFrame (MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
     public void startMusic() {
@@ -54,6 +61,18 @@ public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
                 case 2:
                 case 3:
                 case 4:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
                     //reglevels
                     playMusic(files.get(1));
                     break;
@@ -79,83 +98,45 @@ public class MusicPlayer { //behövs det en tråd? //BEHÖVS NOG EN TRÅD
                 clip = AudioSystem.getClip();
                 isPlaying = true;
                 clip.open(audioInput);
-              //  clip.start(); //testa om det behövs både start och loop
                 clip.loop(clip.LOOP_CONTINUOUSLY);
+
+                if(isMuted) {
+                    setPreferredVolume(-50000f);
+                } else {
+                    setPreferredVolume(-30f);
+                }
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-   /*     if(thread == null) {
-            thread = new Thread();
-            this.start();
-        }  else {
-            notifyAll();
-        }*/
     }
-
- /*   @Override
-    public void run() {
-        while (true) {
-            if (isPlaying) { //om inte musiken har stoppats
-                for (File musicPath : files) { //går igenom alla filer i files
-                    if (musicPath.getName().endsWith(currentTypeOfScene+".wav")) {
-                        try {
-                         //   bis = new BufferedInputStream(fis = new FileInputStream(musicPath)); //resources/+activeScene+"";
-                            audioInput = AudioSystem.getAudioInputStream(musicPath);
-                            clip = AudioSystem.getClip();
-                            clip.open(audioInput);
-                            clip.start();
-                            clip.loop(Clip.LOOP_CONTINUOUSLY);
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            } else {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }*/
 
     // ska endast anropas när GUI:t skiftar scen och möjligtvis endast av startMusic() och då ifall scene inte korrelerar med activeScene
     public void stopMusic() {
-            clip.setMicrosecondPosition(0);
-            clip.stop(); //om denna bara används 
+        if(isPlaying) {
+            clip.stop();
             isPlaying = false;
+        }
+    }
+
+    private void setPreferredVolume(float preferredVolume) {
+        volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        volume.setValue(preferredVolume);
     }
 
     public void audioOnOff() {
         if(isMuted) { //om muted så sätts ljudet på
-
+            setPreferredVolume(-30f);
         } else { //annars mutas ljudet
-
+            setPreferredVolume(-50000f);
         }
+        mainFrame.setAudioIcon(isMuted);
         isMuted = !isMuted;
     }
 
     //anropas när spelaren går in i shopen
     public void setShopActive(boolean shopActive) {
         isShop = shopActive;
-    }
-
-    //ska endast anropas när användaren trycker på "pause/resume" på GUI:t
-    public void pauseResumeMusic() {
-        if(isPlaying) {
-            clip.stop();
-            //gui.setIconLabelToResume
-        } else {
-            long clipTimePosition = clip.getMicrosecondPosition();
-            clip.setMicrosecondPosition(clipTimePosition);
-            clip.loop(clip.LOOP_CONTINUOUSLY);
-            //gui.setIconLabelToResume
-        }
-        isPlaying = !isPlaying;
     }
 }
