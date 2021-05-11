@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
 public class SceneChanger {
