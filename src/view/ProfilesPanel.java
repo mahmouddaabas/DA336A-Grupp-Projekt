@@ -140,4 +140,12 @@ public class ProfilesPanel extends JPanel {
     public int getProfilesIndex() {
         return profiles.getSelectedIndex();
     }
+
+    /**
+     * Returns teh selected name in the list.
+     * @return the name
+     */
+    public String getSelectedName() {
+        return profiles.getSelectedValue();
+    }
 }
