@@ -13,6 +13,7 @@ import java.awt.*;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * This class is the main window of the program.
  * It creates all objects, backgrounds and buttons and adds them to the window.
  */
