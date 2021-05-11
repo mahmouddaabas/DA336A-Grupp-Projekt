@@ -66,6 +66,8 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "goBackToTower":
                 controller.getScene().showScene(controller.getLevel());
                 controller.getScene().exitShop();
+                musicPlayer.setShopActive(false);
+                musicPlayer.startMusic();
                 break;
 
             //Others
@@ -109,8 +111,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 HelpFrame help = new HelpFrame();
                 break;
             case "audioOnOff":
-                musicPlayer.stopMusic();
-             //   musicPlayer.audioOnOff();
+                musicPlayer.audioOnOff();
                 break;
 
             case "addProfile":
