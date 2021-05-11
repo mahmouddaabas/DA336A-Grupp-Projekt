@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * This class handles the actions that gets pressed on the GUI by sending an action command.
  * It then calls the appropriate method from the event class to determine what to do.
  */
@@ -108,8 +109,8 @@ public class ActionHandler implements ActionListener, KeyListener {
                 HelpFrame help = new HelpFrame();
                 break;
             case "audioOnOff":
-                musicPlayer = new MusicPlayer();
-                musicPlayer.audioOnOff();
+                musicPlayer.stopMusic();
+             //   musicPlayer.audioOnOff();
                 break;
 
             case "addProfile":
