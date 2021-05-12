@@ -31,7 +31,7 @@ public class MusicPlayer { //behövs det en tråd?
     private boolean isShop;
 
     public MusicPlayer(Counter counter) {
-        this("resources/soundTracks/Scene1.wav","resources/soundTracks/soundCars.wav","resources/soundTracks/Scene1.wav","resources/soundTracks/Scene1.wav","");
+        this("resources/soundTracks/soundMissile.wav","resources/soundTracks/soundCars.wav","resources/soundTracks/soundMissile.wav","resources/soundTracks/soundMissile.wav","");
         this.counter = counter;
     }
 
