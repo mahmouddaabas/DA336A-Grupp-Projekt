@@ -57,6 +57,7 @@ public class GameLogic {
 
         mainFrame = new MainFrame(this);
 
+        //provides MusicPlayer with this class' MainFrame object
         musicPlayer.setMainFrame(mainFrame);
 
         scene = new SceneChanger(this);
@@ -72,13 +73,14 @@ public class GameLogic {
         //Game over screen.
         gameOver = new GameOverScreen(this);
 
-        //The shop items.
+        //Creates the shop items.
         shopItems = new ShopItems(this);
         playerActions = new PlayerActions(this);
 
         //Displays main menu
         scene.showMainMenu();
 
+        //Starts the musicPlayer
         musicPlayer.startMusic();
     }
 
@@ -205,8 +207,10 @@ public class GameLogic {
         }
     }
 
+    /**
+     * Method that hides labels and buttons when the combat is inactive.
+     */
     public void hideComponents() {
-        //Hide or change this when the combat is over.
         mainFrame.getLblTimer().setVisible(false);
         mainFrame.getLblLevel().setVisible(false);
         enemyHealthBar.getEnemyHealthPanel().setVisible(false);
@@ -344,6 +348,10 @@ public class GameLogic {
         return scene;
     }
 
+    /**
+     * Method that return the MusicPlayer object
+     * @return this class' MusicPlayer object
+     */
     public MusicPlayer getMusicPlayer() {
         return musicPlayer;
     }
