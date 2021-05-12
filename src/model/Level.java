@@ -1,6 +1,5 @@
 package model;
 
-import model.monsters.Monster;
 import model.questions.MathQuestions;
 
 /**

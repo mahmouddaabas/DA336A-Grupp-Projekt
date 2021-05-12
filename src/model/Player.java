@@ -121,11 +121,10 @@ public class Player {
     }
 
     /**
-     * To-String method that returns the player name
+     * Returns player name
      * @return player name
      */
-    @Override
-    public String toString() {
+    public String getName() {
         return name;
     }
 }

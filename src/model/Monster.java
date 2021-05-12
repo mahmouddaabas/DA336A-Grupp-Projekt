@@ -1,10 +1,10 @@
-package model.monsters;
+package model;
 
 /**
  * @author Duy Nguyen
- * Super class for the monsters
+ * Class template for all monsters and bosses
  */
-public abstract class Monster {
+public class Monster {
     private int health;
     private String lookDialogue;
     private String talkDialogue;

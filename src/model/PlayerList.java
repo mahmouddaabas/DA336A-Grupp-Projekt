@@ -15,6 +15,8 @@ public class PlayerList {
     private final int MAX_PLAYERS = 10;
     private GameLogic controller;
 
+    private String playersPath = "resources/saves/players.txt";
+
     /**
      * Constructor
      * @param controller GameLogic-object to set own variable
@@ -64,7 +66,7 @@ public class PlayerList {
      */
     public void savePlayerToTxt(String name) {
         try {
-            FileWriter writer = new FileWriter("resources/saves/players.txt", true);
+            FileWriter writer = new FileWriter(playersPath, true);
             writer.append(name).append("\n");
             writer.close();
         } catch (IOException e) {
@@ -78,7 +80,7 @@ public class PlayerList {
      */
     public void deletePlayerFromTxt(String name) {
         try {
-        FileReader reader = new FileReader("resources/saves/players.txt");
+        FileReader reader = new FileReader(playersPath);
         BufferedReader br = new BufferedReader(reader);
 
         String data = br.readLine();
@@ -92,7 +94,7 @@ public class PlayerList {
         }
 
         br.close();
-        PrintWriter write = new PrintWriter(new FileWriter("resources/saves/players.txt"));
+        PrintWriter write = new PrintWriter(new FileWriter(playersPath));
         BufferedWriter bw = new BufferedWriter(write);
 
         for (String player : players) {
@@ -110,7 +112,7 @@ public class PlayerList {
      */
     public void loadProfileList() {
         try {
-            FileReader reader = new FileReader("resources/saves/players.txt");
+            FileReader reader = new FileReader(playersPath);
             BufferedReader br = new BufferedReader(reader);
 
             String data = br.readLine();
@@ -134,7 +136,7 @@ public class PlayerList {
     public String[] getPlayerNames() {
         String[] playerNames = new String[nbrOfPlayers];
         for (int i = 0; i < playerNames.length; i++) {
-            playerNames[i] = players[i].toString();
+            playerNames[i] = players[i].getName();
         }
         return playerNames;
     }
