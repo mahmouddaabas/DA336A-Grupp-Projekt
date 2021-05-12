@@ -97,6 +97,7 @@ public class SceneChanger {
         }
 
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
+        controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 
     /**
@@ -179,5 +180,6 @@ public class SceneChanger {
         //Reset the status and set the text back to white.
         controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
+        controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 }

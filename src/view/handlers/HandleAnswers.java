@@ -2,6 +2,7 @@ package view.handlers;
 
 import controller.GameLogic;
 import view.help.GameHelp;
+import view.help.HelpBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ import java.awt.event.KeyListener;
  */
 public class HandleAnswers implements ActionListener, KeyListener {
     private GameLogic controller;
+    private ActionHandler ah;
 
     /**
      * Constructs the class.
@@ -24,6 +26,7 @@ public class HandleAnswers implements ActionListener, KeyListener {
      */
     public HandleAnswers(GameLogic controller) {
         this.controller = controller;
+        ah = new ActionHandler(controller);
     }
 
     /**
@@ -75,7 +78,7 @@ public class HandleAnswers implements ActionListener, KeyListener {
             controller.checkAnswer();
         }
         else if (e.getKeyCode() == KeyEvent.VK_H) {
-            GameHelp openHelp = new GameHelp();
+            HelpBox openHelp = new HelpBox(ah);
         }
     }
     @Override
