@@ -165,15 +165,7 @@ public class GameLogic {
                 }
             }
             else {
-                checkAndApplyDamage();
-                if (!player.isDead()) {
-                    setOutOfCombat(true);
-                    generateQuestionAndAnswers();
-                    healthBar.updateHealth();
-                }
-                else {
-                    sceneChanger.showGameOverScreen();
-                }
+                ifNotAnswered();
             }
         }
     }
@@ -227,12 +219,18 @@ public class GameLogic {
     }
 
     /**
-     * This method gets called by timer if the time reaches 0.
+     * If the player does not answer in time or
+     * if the player picks the wrong answer.
      */
     public void ifNotAnswered() {
-        checkAndApplyDamage();
-        generateQuestionAndAnswers();
-        healthBar.updateHealth();
+        if (player.isDead()) {
+            sceneChanger.showGameOverScreen();
+        }
+        else {
+            setOutOfCombat(true);
+            checkAndApplyDamage();
+            generateQuestionAndAnswers();
+        }
     }
 
     /**
@@ -256,7 +254,7 @@ public class GameLogic {
                 mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
                 break;
             default:
-                mainFrame.getTextArea().setText(getMathQuestion().getQuestion());
+                mainFrame.getTextArea().setText(mathQuestion.getQuestion());
                 break;
         }
     }
@@ -279,6 +277,7 @@ public class GameLogic {
             player.wrong(1);
             status = "incorrect";
         }
+        healthBar.updateHealth();
         checkStatusAndGetQuestion();
     }
 

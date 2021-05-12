@@ -104,10 +104,11 @@ public class ProfilesPanel extends JPanel {
         btnBack.setOpaque(true);
         btnSelect.setOpaque(true);
 
-        btnAdd.setFont(new Font("Oswald", Font.BOLD, 15));
-        btnDel.setFont(new Font("Oswald", Font.BOLD, 15));
-        btnBack.setFont(new Font("Oswald", Font.BOLD, 15));
-        btnSelect.setFont(new Font("Oswald", Font.BOLD, 15));
+        Font buttonFont = new Font("Oswald", Font.BOLD, 15);
+        btnAdd.setFont(buttonFont);
+        btnDel.setFont(buttonFont);
+        btnBack.setFont(buttonFont);
+        btnSelect.setFont(buttonFont);
     }
 
     /**

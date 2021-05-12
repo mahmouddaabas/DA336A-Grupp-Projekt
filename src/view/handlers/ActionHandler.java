@@ -130,12 +130,19 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
                 break;
             case "goMainMenu":
-                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                if (controller.getMainFrame().getMainMenu().getPnlProfiles().isVisible()) {
+                    controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                }
+                else if (controller.getMainFrame().getMainMenu().getPnlDiff().isVisible()) {
+                    controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
+                }
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
                 int i2 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 controller.setPlayer(i2);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
                 break;
 
             case "hard":

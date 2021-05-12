@@ -56,7 +56,7 @@ public class Player {
      * @return true if dead
      */
     public boolean isDead() {
-        return this.playerHealth <= 0;
+        return this.playerHealth <= 1; //Hearts array starts at 0
     }
 
     /**

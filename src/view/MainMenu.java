@@ -59,7 +59,7 @@ public class MainMenu {
         pnlProfiles.setBounds(100, 250, 200, 350);
 
         pnlDiff = new DifficultiesPanel(actionHandler);
-        pnlDiff.setBounds(100, 250, 200, 300);
+        pnlDiff.setBounds(100, 250, 200, 360);
 
         pnlMainMenu.add(pnlProfiles, BorderLayout.CENTER);
         pnlMainMenu.add(pnlDiff, BorderLayout.CENTER);
@@ -115,9 +115,10 @@ public class MainMenu {
         btnProfiles.setOpaque(true);
         btnExit.setOpaque(true);
 
-        btnNew.setFont(new Font("Oswald", Font.BOLD, 20));
-        btnProfiles.setFont(new Font("Oswald", Font.BOLD, 20));
-        btnExit.setFont(new Font("Oswald", Font.BOLD, 20));
+        Font buttonFont = new Font("Oswald", Font.BOLD, 20);
+        btnNew.setFont(buttonFont);
+        btnProfiles.setFont(buttonFont);
+        btnExit.setFont(buttonFont);
     }
 
     /**

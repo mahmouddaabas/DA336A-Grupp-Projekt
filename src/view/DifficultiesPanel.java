@@ -15,6 +15,7 @@ public class DifficultiesPanel extends JPanel {
     private JButton btnHard;
     private JButton btnMedium;
     private JButton btnEasy;
+    private JButton btnBack;
 
     /**
      * Constructor
@@ -23,7 +24,7 @@ public class DifficultiesPanel extends JPanel {
     public DifficultiesPanel(ActionHandler actionHandler) {
         this.actionHandler = actionHandler;
 
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(4, 1));
         createButtons();
 
         setVisible(false);
@@ -36,10 +37,12 @@ public class DifficultiesPanel extends JPanel {
         btnHard = new JButton("Hard");
         btnMedium = new JButton("Medium");
         btnEasy = new JButton("Easy");
+        btnBack = new JButton("Back");
 
-        btnHard.setBounds(0, 0, 200, 100);
-        btnMedium.setBounds(0, 0, 200, 100);
-        btnEasy.setBounds(0, 0, 200, 100);
+        btnHard.setBounds(0, 0, 200, 90);
+        btnMedium.setBounds(0, 0, 200, 90);
+        btnEasy.setBounds(0, 0, 200, 90);
+        btnBack.setBounds(0, 0, 200, 90);
 
         changeButtonAttributes();
         addActionListener();
@@ -47,6 +50,7 @@ public class DifficultiesPanel extends JPanel {
         add(btnHard);
         add(btnMedium);
         add(btnEasy);
+        add(btnBack);
     }
 
     /**
@@ -56,22 +60,28 @@ public class DifficultiesPanel extends JPanel {
         btnHard.setContentAreaFilled(false);
         btnMedium.setContentAreaFilled(false);
         btnEasy.setContentAreaFilled(false);
+        btnBack.setContentAreaFilled(false);
 
         btnHard.setFocusPainted(false);
         btnMedium.setFocusPainted(false);
         btnEasy.setFocusPainted(false);
+        btnBack.setFocusPainted(false);
 
         btnHard.setBackground(Color.GRAY);
         btnMedium.setBackground(Color.GRAY);
         btnEasy.setBackground(Color.GRAY);
+        btnBack.setBackground(Color.GRAY);
 
         btnHard.setOpaque(true);
         btnMedium.setOpaque(true);
         btnEasy.setOpaque(true);
+        btnBack.setOpaque(true);
 
-        btnHard.setFont(new Font("Oswald", Font.BOLD, 20));
-        btnMedium.setFont(new Font("Oswald", Font.BOLD, 20));
-        btnEasy.setFont(new Font("Oswald", Font.BOLD, 20));
+        Font buttonFont = new Font("Oswald", Font.BOLD, 20);
+        btnHard.setFont(buttonFont);
+        btnMedium.setFont(buttonFont);
+        btnEasy.setFont(buttonFont);
+        btnBack.setFont(buttonFont);
     }
 
     /**
@@ -81,9 +91,11 @@ public class DifficultiesPanel extends JPanel {
         btnHard.addActionListener(actionHandler);
         btnMedium.addActionListener(actionHandler);
         btnEasy.addActionListener(actionHandler);
+        btnBack.addActionListener(actionHandler);
 
         btnHard.setActionCommand("hard");
         btnMedium.setActionCommand("medium");
         btnEasy.setActionCommand("easy");
+        btnBack.setActionCommand("goMainMenu");
     }
 }
