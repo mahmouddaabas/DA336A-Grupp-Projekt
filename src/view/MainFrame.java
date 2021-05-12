@@ -45,6 +45,8 @@ public class MainFrame extends JFrame {
     private JLabel lblLevel;
     private JLabel lblTimer;
     private JLabel lblCoins;
+
+    //Two audio-buttons - on and off
     private JButton btnAudioOn;
     private JButton btnAudioOff;
 
@@ -97,7 +99,7 @@ public class MainFrame extends JFrame {
         createTimerLabel();
         createCoinLabel();
         createDamagePotion();
-        createAudioButton();
+        createAudioButtons();
         createHelpQuestionMark();
         createPotionStatusLabel();
         createCombatStatusLabel();
@@ -232,8 +234,12 @@ public class MainFrame extends JFrame {
         add(lblCoins);
     }
 
-    public void createAudioButton() {
-        ImageIcon audioIcon = ImageResizer.resize("resources/misc/audioIcons/audioIconOn.png", 50, 50);
+    /**
+     * Creates two different types of buttons which is used to mute and un-mute sound displaying,
+     * with different ImageIcons but with same functionality
+     */
+    public void createAudioButtons() {
+        ImageIcon audioIconOn = ImageResizer.resize("resources/misc/audioIcons/audioIconOn.png", 50, 50);
 
         btnAudioOn = new JButton();
         btnAudioOn.setOpaque(false);
@@ -243,14 +249,12 @@ public class MainFrame extends JFrame {
 
         btnAudioOn.addActionListener(action);
         btnAudioOn.setActionCommand("audioOnOff");
-      //  btnAudio.addKeyListener(action); //behövs denna?
 
-        btnAudioOn.setIcon(audioIcon);
+        btnAudioOn.setIcon(audioIconOn);
         btnAudioOn.setContentAreaFilled(false);
         btnAudioOn.setFocusPainted(false);
         btnAudioOn.setBackground(null);
         btnAudioOn.setBorderPainted(false);
-
 
         add(btnAudioOn);
 
@@ -265,7 +269,6 @@ public class MainFrame extends JFrame {
 
         btnAudioOff.addActionListener(action);
         btnAudioOff.setActionCommand("audioOnOff");
-        //  btnAudio.addKeyListener(action); //behövs denna?
 
         btnAudioOff.setIcon(audioIconOff);
         btnAudioOff.setContentAreaFilled(false);
@@ -273,17 +276,20 @@ public class MainFrame extends JFrame {
         btnAudioOff.setBackground(null);
         btnAudioOff.setBorderPainted(false);
 
-
         add(btnAudioOff);
     }
 
-    public void setAudioIcon(boolean soundOn) {
-        if(soundOn) {
-            btnAudioOff.setVisible(false);
-            btnAudioOn.setVisible(true);
-        } else {
-            btnAudioOn.setVisible(false);
+    /**
+     * Sets one of the two audioButtons to visible to visualize the state of sound in the program and hides the other
+     * @param soundOff a boolean value to determine which button that should be shown
+     */
+    public void setAudioIcon(boolean soundOff) {
+        if(soundOff) {
             btnAudioOff.setVisible(true);
+            btnAudioOn.setVisible(false);
+        } else {
+            btnAudioOn.setVisible(true);
+            btnAudioOff.setVisible(false);
         }
     }
 
@@ -493,10 +499,18 @@ public class MainFrame extends JFrame {
         return btnGetHelp;
     }
 
+    /**
+     * Returns the audioOn-button
+     * @return btnAudioOn
+     */
     public JButton getBtnAudioOn() {
         return btnAudioOn;
     }
 
+    /**
+     * Returns the audioOff-button
+     * @return btnAudioOff
+     */
     public JButton getBtnAudioOff() {
         return btnAudioOff;
     }
