@@ -63,7 +63,8 @@ public class SceneChanger {
      */
     public void readSceneTexts() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/backgrounds/sceneTexts.txt")));
+            String path = "resources/backgrounds/sceneTexts.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String str = br.readLine();
 
             while (str != null) {
@@ -113,11 +114,6 @@ public class SceneChanger {
      */
     public void showGameOverScreen() {
         controller.getTimer().stopTimer();
-        controller.getMainFrame().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
-        controller.getGameOver().getTitleLabel().setVisible(true);
-        controller.getGameOver().getTitleLabel().setText("YOU DIED!");
-        controller.getGameOver().getRestartButton().setVisible(true);
-        controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
         //Hides all the panels.
         controller.getMainFrame().getAnswerPanel().setVisible(false);
@@ -128,12 +124,15 @@ public class SceneChanger {
         controller.getMainFrame().getLblTimer().setVisible(false);
         controller.getMainFrame().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getEnemyHealthBar().setEnemyHealthPanel(null);
         controller.getMainFrame().getLblCombatStatus().setVisible(false);
 
-        //Why is this commented out?
-        //Sets the level creator to null then creates a new instance of the object to reset the game.
-//        controller.setLevelCreator(null);
-//        controller.setLevelCreator(new LevelCreator());
+        int currScene = controller.getCounter().getCurrentScene();
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(currScene - 1).setVisible(false);
+        controller.getGameOver().getTitleLabel().setVisible(true);
+        controller.getGameOver().getTitleLabel().setText("YOU DIED!");
+        controller.getGameOver().getRestartButton().setVisible(true);
+        controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
         controller.getPlayer().setGold(0);
 
@@ -151,7 +150,7 @@ public class SceneChanger {
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getMainFrame().getBtnGetHelp().setFocusable(true);
         controller.getPlayer().restoreHealth();
-        controller.setOutOfCombat(true);
+        controller.getPlayer().setOutOfCombat(true);
         controller.getCounter().setLevel(1);
 
         controller.getMainFrame().getTextArea().setVisible(true);

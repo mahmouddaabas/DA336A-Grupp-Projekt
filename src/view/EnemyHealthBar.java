@@ -82,4 +82,12 @@ public class EnemyHealthBar {
     public JPanel getEnemyHealthPanel() {
         return enemyHealthPanel;
     }
+
+    /**
+     * Sets enemyHealthPanel
+     * @param enemyHealthPanel new panel
+     */
+    public void setEnemyHealthPanel(JPanel enemyHealthPanel) {
+        this.enemyHealthPanel = enemyHealthPanel;
+    }
 }

@@ -28,15 +28,6 @@ public class Player {
     }
 
     /**
-     * Method for the wrong answers applied by user
-     * @param damage amount of damage taken
-     */
-    public void wrong(int damage) {
-        playerHealth -= damage;
-        damageTaken = damage;
-    }
-
-    /**
      * Method that returns the players health
      * @return player health
      */
@@ -49,14 +40,6 @@ public class Player {
      */
     public void restoreHealth() {
         playerHealth = 10;
-    }
-
-    /**
-     * Method for when the player is dead
-     * @return true if dead
-     */
-    public boolean isDead() {
-        return this.playerHealth <= 1; //Hearts array starts at 0
     }
 
     /**

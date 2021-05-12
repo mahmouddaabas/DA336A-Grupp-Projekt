@@ -4,8 +4,8 @@ import model.items.DamagePotion;
 import model.items.Shield;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class has the items that are available for purchase in the shop.
  */
 public class ShopItems {

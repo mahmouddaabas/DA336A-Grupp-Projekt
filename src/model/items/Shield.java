@@ -1,7 +1,7 @@
 package model.items;
 
 /**
- * @Author Mahmoud Daabas
+ * @author Mahmoud Daabas
  * This class represents a shield.
  */
 public class Shield {

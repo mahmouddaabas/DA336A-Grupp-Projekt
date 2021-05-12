@@ -34,7 +34,6 @@ public class HealthBar {
                 healthLabel[controller.getPlayer().getPlayerHealth() + i].setIcon(null);
             }
             healthPanel.repaint();
-            controller.getPlayer().setDamageTaken(0);
     }
 
     /**

@@ -40,6 +40,6 @@ public class EventMonsters {
      * Same as lookAtEnemy(), but for "Attack" option.
      */
     public void attackEnemy() {
-        controller.generateQuestionAndAnswers();
+        controller.startFight(controller.getCounter().getLevel());
     }
 }

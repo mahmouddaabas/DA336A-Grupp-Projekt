@@ -22,7 +22,6 @@ public class GameLogic {
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
-    private boolean combat;
 
     private String status = "";
 
@@ -63,7 +62,7 @@ public class GameLogic {
     }
 
     /**
-     * Adds a player to the profiles list
+     * Adds a player to the player list
      * @param name player name
      */
     public void addPlayer(String name) {
@@ -73,7 +72,7 @@ public class GameLogic {
     }
 
     /**
-     * Deletes a player from the profiles list
+     * Deletes a player from the player list
      * @param index index of player
      */
     public void deletePlayer(int index) {
@@ -108,12 +107,25 @@ public class GameLogic {
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
-        if (!combat) {
+        checkStatusAndGetQuestion();
+
+        if (enemyHealthBar.getEnemyHealthPanel() == null) {
             enemyHealthBar.createEnemyHealthBar();
-            mainFrame.getLblCombatStatus().setVisible(true);
-            mainFrame.getBtnGetHelp().setFocusable(false);
         }
-        combat = true;
+        mainFrame.getLblCombatStatus().setVisible(true);
+        mainFrame.getBtnGetHelp().setFocusable(false);
+        player.setOutOfCombat(false);
+        timer.startTimer();
+
+        for (int i = 0; i < 4; i++) {
+            mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
+        }
+        mainFrame.getAnswerPanel().setVisible(true);
+
+        //Must request focus after panel is visible.
+        mainFrame.getAnswerButton()[0].requestFocus();
+        mainFrame.getTextArea().setBounds(100,550,900,100);
+        mainFrame.getTextArea2().setBounds(100,580,900,100);
     }
 
     /**
@@ -124,34 +136,32 @@ public class GameLogic {
     public void checkAnswer() {
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
-                player.setOutOfCombat(true);
-
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    int newHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() - player.getDamageDealt();
+                    int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
+                    int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     enemyHealthBar.updateEnemyHealth();
                     status = "correct";
-                    generateQuestionAndAnswers();
+                    startFight(counter.getLevel());
                 }
                 else {
+                    player.setOutOfCombat(true);
                     status = "";
                     timer.stopTimer();
                     mainFrame.getTextArea().setText("Enemy defeated!");
                     addGold();
 
                     hideComponents();
-                    combat = false;
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
 
                     //Temporary solution to show the shop, will be changed later.
-                    //Lvl 20 is final lvl?? If so remove the last statement.
-                    if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
-                            counter.getLevel() == 15) {
-                        int reply = JOptionPane.showConfirmDialog(null, "Would you like to visit the shop?",
+                    if (counter.getLevel() == 5 || counter.getLevel() == 10 || counter.getLevel() == 15) {
+                        String question = "Would you like to visit the shop?";
+                        int reply = JOptionPane.showConfirmDialog(null, question,
                                 "Shop?", JOptionPane.YES_NO_OPTION);
                         if (reply == JOptionPane.YES_OPTION) {
                             sceneChanger.visitShop();
@@ -160,7 +170,9 @@ public class GameLogic {
                     if (counter.getLevel() < 20) {
                         mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
                     }
-                    mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false); //LinkedList starts at 0. Level 1 -> index 0
+                    //LinkedList starts at 0. Level 1 -> index 0
+                    mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
+                    enemyHealthBar.setEnemyHealthPanel(null);
                     counter.setLevel(counter.getLevel() + 1);
                 }
             }
@@ -198,59 +210,42 @@ public class GameLogic {
     }
 
     /**
-     * Generates a new math question with random answers by starting a new fight.
-     * The generated questions and answers are then put into JButtons.
-     */
-    public void generateQuestionAndAnswers() {
-        player.setOutOfCombat(false);
-        startFight(counter.getLevel());
-        timer.startTimer();
-        checkStatusAndGetQuestion();
-
-        for (int i = 0; i < 4; i++) {
-            mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
-        }
-        mainFrame.getAnswerPanel().setVisible(true);
-
-        //Must request focus after panel is visible.
-        mainFrame.getAnswerButton()[0].requestFocus();
-        mainFrame.getTextArea().setBounds(100,550,900,100);
-        mainFrame.getTextArea2().setBounds(100,580,900,100);
-    }
-
-    /**
      * If the player does not answer in time or
      * if the player picks the wrong answer.
      */
     public void ifNotAnswered() {
-        if (player.isDead()) {
+        if (player.getPlayerHealth() <= 1) { //Regulars
+            sceneChanger.showGameOverScreen();
+        }
+        else if (player.getPlayerHealth() <= 0) { //Boss
             sceneChanger.showGameOverScreen();
         }
         else {
-            setOutOfCombat(true);
+            player.setOutOfCombat(true);
             checkAndApplyDamage();
-            generateQuestionAndAnswers();
+            startFight(counter.getLevel());
         }
     }
 
     /**
      * Checks status String and calls appropriate methods.
-     * "incorrect" and "incorrectBoss" makes the player take damage.
+     * "incorrect" makes the player take damage.
      * "correct" makes the player deal damage to the enemy.
      */
     public void checkStatusAndGetQuestion() {
         switch (status) {
             case "incorrect":
-            case "incorrectBoss":
                 mainFrame.getTextArea2().setVisible(true);
                 mainFrame.getTextArea().setForeground(Color.RED);
-                mainFrame.getTextArea().setText("Incorrect answer, you take " + player.getDamageTaken() + " damage." + "\n");
+                String taken = "Incorrect answer, you take " + player.getDamageTaken() + " damage." + "\n";
+                mainFrame.getTextArea().setText(taken);
                 mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
                 break;
             case "correct":
                 mainFrame.getTextArea2().setVisible(true);
                 mainFrame.getTextArea().setForeground(Color.GREEN);
-                mainFrame.getTextArea().setText("Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n");
+                String dealt = "Correct answer, you deal " + player.getDamageDealt() + " damage." + "\n";
+                mainFrame.getTextArea().setText(dealt);
                 mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
                 break;
             default:
@@ -264,21 +259,23 @@ public class GameLogic {
      */
     public void checkAndApplyDamage() {
         if (shopItems.getShield().getIsEquipped()) {
-            player.wrong(0);
+            player.setDamageTaken(0);
             //Sets the shield to false and hides it after successfully blocking a hit.
             shopItems.getShield().setEquipped(false);
             mainFrame.getShieldStatus().setVisible(false);
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
-            player.wrong(2);
-            status = "incorrectBoss";
-        }
-        else {
-            player.wrong(1);
+            player.setDamageTaken(2);
+            player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
             status = "incorrect";
         }
-        healthBar.updateHealth();
+        else {
+            player.setDamageTaken(1);
+            player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
+            status = "incorrect";
+        }
         checkStatusAndGetQuestion();
+        healthBar.updateHealth();
     }
 
     /**
@@ -426,13 +423,5 @@ public class GameLogic {
      */
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    /**
-     * Sets player object's outOfCombat flag
-     * @param outOfCombat new boolean value
-     */
-    public void setOutOfCombat(boolean outOfCombat) {
-        player.setOutOfCombat(outOfCombat);
     }
 }

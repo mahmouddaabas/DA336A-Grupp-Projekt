@@ -178,7 +178,7 @@ public class ActionHandler implements ActionListener, KeyListener {
         //Checks if the current scene is correct before allowing player to start combat with enter.
         else if (controller.getCounter().getCurrentScene() == controller.getCounter().getLevel() + 1) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                controller.generateQuestionAndAnswers();
+                controller.startFight(controller.getCounter().getLevel());
             }
         }
     }

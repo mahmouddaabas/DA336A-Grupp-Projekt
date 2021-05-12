@@ -1,8 +1,8 @@
 package controller;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class handles the actions by the player.
  */
 public class PlayerActions {
