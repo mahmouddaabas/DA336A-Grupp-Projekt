@@ -62,13 +62,23 @@ public class Polynomial {
 
     /**
      * Compares this Polynomial to the specified Polynomial and returns true if all the coefficients and all the
-     * exponents are equal.
+     * exponents are equal. Polynomials of unequal lengths are always false.
      * @param polynomial the Polynomial that this Polynomial is to be compared to.
      * @return true if all the coefficients and all the exponents of the two Polynomials have equal values.
      */
     public boolean equals(Polynomial polynomial) {
-        return Arrays.equals(coefficients, polynomial.getCoefficients())
-                && Arrays.equals(exponents, polynomial.getExponents());
+        if (coefficients.length == polynomial.getCoefficients().length) {
+            for (int i = 0; i < coefficients.length; i++) {
+                if (coefficients[i] == 0 && polynomial.getCoefficients()[i] == 0) {
+                    return true;
+                }
+            }
+            return Arrays.equals(coefficients, polynomial.getCoefficients())
+                    && Arrays.equals(exponents, polynomial.getExponents());
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -116,47 +126,69 @@ public class Polynomial {
      */
     @Override
     public String toString() {
+        int zeroCount = 0;
+        for (int coefficient : coefficients) {
+            if (coefficient == 0) {
+                zeroCount++;
+            }
+        }
+        if (zeroCount == coefficients.length) {
+            return "0";
+        }
+
         StringBuilder polynomialStr = new StringBuilder();
         polynomialStr.append(termToString(0, false));
         for (int i = 1; i < coefficients.length; i++) {
-            if (coefficients[i] >= 0) {
-                polynomialStr.append(" + ");
-            } else {
-                polynomialStr.append(" - ");
+            if (coefficients[i] != 0) {
+                if (coefficients[i] > 0) {
+                    polynomialStr.append(" + ");
+                } else {
+                    polynomialStr.append(" - ");
+                }
+                polynomialStr.append(termToString(i, true));
             }
-            polynomialStr.append(termToString(i, true));
         }
         return polynomialStr.toString();
     }
 
     /**
      * Writes a polynomial term as a string in the form of axⁿ with a being the coefficient and n being the exponent.
+     * Does not write coefficients of 1 unless the exponent is 0 or negative. A term with a coefficient of 0 is not
+     * written.
      * @param index the index of the term in the polynomial to write.
      * @param convertNegative flag that gives if negative coefficients should be changed to positive. Used by toString()
      *                        when changing negative coefficients to subtraction.
      * @return the polynomial term as a string.
      */
-    public String termToString(int index, boolean convertNegative) {
+    private String termToString(int index, boolean convertNegative) {
+        if (coefficients[index] == 0) {
+            return "";
+        }
+
         StringBuilder termStr = new StringBuilder();
-        if (coefficients[index] != 0) {
-            if ((coefficients[index] >= 0) || !convertNegative) {
-                termStr.append(coefficients[index]);
-            } else {
-                termStr.append(-coefficients[index]);
-            }
-            if (exponents[index] > 0) {
-                termStr.append("x");
-                if (exponents[index] != 1) {
-                    termStr.append(Utilities.toSuperscriptNumbers(exponents[index]));
-                }
-            } else if (exponents[index] < 0) {
-                termStr.append("/x");
-                if (exponents[index] != -1) {
-                    termStr.append(Utilities.toSuperscriptNumbers(-exponents[index]));
-                }
+
+        if (convertNegative) {
+            if (!(Math.abs(coefficients[index]) == 1 && (exponents[index] > 0))) {
+                termStr.append(Math.abs(coefficients[index]));
             }
         } else {
-            termStr.append("0");
+            if (coefficients[index] == -1 && exponents[index] > 0) {
+                termStr.append("-");
+            } else if (!(coefficients[index] == 1 && exponents[index] != 0)) {
+                termStr.append(coefficients[index]);
+            }
+        }
+
+        if (exponents[index] > 0) {
+            termStr.append("x");
+            if (exponents[index] != 1) {
+                termStr.append(Utilities.toSuperscriptNumbers(exponents[index]));
+            }
+        } else if (exponents[index] < 0) {
+            termStr.append("/x");
+            if (exponents[index] != -1) {
+                termStr.append(Utilities.toSuperscriptNumbers(-exponents[index]));
+            }
         }
         return termStr.toString();
     }

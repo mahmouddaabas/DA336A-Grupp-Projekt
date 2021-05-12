@@ -98,7 +98,7 @@ public class MQDivisionRemainder2Numbers extends MathQuestions {
     }
 
     /**
-     * Makes the possible int + fraction answers into strings.
+     * Makes the possible int + remainder answers into strings.
      */
     private void generateAnswerStrings() {
         String[] answerStr = new String[4];

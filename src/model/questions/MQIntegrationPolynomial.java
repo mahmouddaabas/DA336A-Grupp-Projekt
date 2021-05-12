@@ -85,15 +85,11 @@ public class MQIntegrationPolynomial extends MathQuestions {
             done = false;
             while (!done) {
                 done = true;
-                exponents[i] = Utilities.randomIntNotZero(exponentLowerBound, exponentUpperBound);
-                if (exponents[i] == -1) {
-                    done = false;
-                } else {
-                    for (int j = 0; j < i; j++) {
-                        if (exponents[i] == exponents[j]) {
-                            done = false;
-                            break;
-                        }
+                exponents[i] = Utilities.randomIntNotZeroOrOne(exponentLowerBound, exponentUpperBound);
+                for (int j = 0; j < i; j++) {
+                    if (exponents[i] == exponents[j]) {
+                        done = false;
+                        break;
                     }
                 }
             }

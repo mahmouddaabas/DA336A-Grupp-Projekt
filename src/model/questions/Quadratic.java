@@ -1,10 +1,11 @@
 package model.questions;
 
 /**
+ * @author Mattias Bengtsson
  * A representation of a quadratic expression in the form of (x - r1)(x - r2) = 0, where r1 and r2 are the roots.
- * The expanded form is (x + b1/a1)(x + b2/a2) = (a1x + b1)(a2x + b2) = a1a2x² + (a1b2 + a2b1)x + b1b2 = 0, with
- * r1 = -b1/a1 and r2 = -b2/a2 or in other words the numerators of the roots are b and the denominators of the roots
- * are a. No root can be imaginary.
+ * The different forms are (x + b1/a1)(x + b2/a2) = (a1x + b1)(a2x + b2) = a1a2x² + (a1b2 + a2b1)x + b1b2 = 0, with
+ * r1 = -b1/a1 and r2 = -b2/a2, or in other words, the numerators of the roots are b and the denominators of the roots
+ * are a. No root can be imaginary for simplicity.
  */
 public class Quadratic {
     private Fraction root1;
@@ -69,36 +70,55 @@ public class Quadratic {
     }
 
     /**
-     * Returns the roots of the quadratic as a String.
-     * @return the roots of the quadratic as a String.
+     * Returns the roots of the quadratic as a string.
+     * @return the roots of the quadratic as a string.
      */
     public String toStringRoots() {
-        return "x" + Utilities.toSubscriptNumbers(1) + " = " + root1.toString() + " and " +
-                "x" + Utilities.toSubscriptNumbers(2) + " = " + root2.toString();
+        if (root1.equals(root2)) {
+            return "x" + Utilities.toSubscriptNumbers(1) + " = x"  + Utilities.toSubscriptNumbers(2) + " = " +
+                    root1.toString();
+        } else {
+            return "x" + Utilities.toSubscriptNumbers(1) + " = " + root1.toString() + " and " +
+                    "x" + Utilities.toSubscriptNumbers(2) + " = " + root2.toString();
+        }
     }
 
     /**
      * Converts the roots into a quadratic polynomial and returns it as a String.
      * The expanded quadratic expression is (a1x + b1)(a2x + b2) = a1a2x² + (a1b2 + a2b1)x + b1b2, with root1 = -b1/a1
      * and root2 = -b2/a2.
-     * @return the expanded quadratic expression as a String.
+     * @return the expanded quadratic expression as a string.
      */
     public String toStringExpanded() {
         int[] exponents = {2, 1, 0};
         int[] coefficients = new int[3];
         coefficients[0] = root1.getDenominator() * root2.getDenominator();
         coefficients[1] = -(root1.getDenominator() * root2.getNumerator() + root1.getNumerator() * root2.getDenominator());
-        coefficients[2] = root1.getNumerator() + root2.getNumerator();
+        coefficients[2] = root1.getNumerator() * root2.getNumerator();
         return new Polynomial(coefficients, exponents).toString();
     }
 
     /**
      * Returns the simplified quadratic expression in the form of (a1x + b1)(a2x + b2), with root1 = -b1/a1 and
      * root2 = -b2/a2.
-     * @return the simplified quadratic expression
+     * @return the simplified quadratic expression as a string.
      */
     public String toStringSimplified() {
-        return "(" + root1.getDenominator() + "x " + Utilities.additionOrSubtractionString(-root1.getNumerator()) + ")(" +
-                "(" + root2.getDenominator() + "x " + Utilities.additionOrSubtractionString(-root2.getNumerator()) + ")";
+        StringBuilder quadStr = new StringBuilder();
+        quadStr.append("(");
+        if (root1.getDenominator() != 1) {
+            quadStr.append(root1.getDenominator());
+        }
+        quadStr.append("x ").append(Utilities.additionOrSubtractionString(-root1.getNumerator())).append(")");
+        if (root1.equals(root2)) {
+            quadStr.append(Utilities.toSuperscriptNumbers(2));
+        } else {
+            quadStr.append("(");
+            if (root2.getDenominator() != 1) {
+                quadStr.append(root2.getDenominator());
+            }
+            quadStr.append("x ").append(Utilities.additionOrSubtractionString(-root2.getNumerator())).append(")");
+        }
+        return quadStr.toString();
     }
 }

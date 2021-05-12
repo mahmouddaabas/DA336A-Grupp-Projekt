@@ -47,7 +47,7 @@ public class MQDerivationPolynomial extends MathQuestions {
      */
     public void generateNewQuestion() {
         newCorrectAnswerIndex();
-        generatePolynomial();
+        polynomial = generatePolynomial();
         generateAnswers();
         generateAnswerStringsPolynomial();
     }
@@ -56,7 +56,7 @@ public class MQDerivationPolynomial extends MathQuestions {
      * Generates the random terms of the polynomial for the question from the given bounds. The exponents cannot be
      * equal. The coefficients cannot be 0.
      */
-    private void generatePolynomial() {
+    private Polynomial generatePolynomial() {
         int[] coefficients = new int[polynomial.getSize()];
         int[] exponents = new int[coefficients.length];
         boolean done;
@@ -74,7 +74,7 @@ public class MQDerivationPolynomial extends MathQuestions {
             }
             coefficients[i] = Utilities.randomIntNotZero(coefficientLowerBound, coefficientUpperBound);
         }
-        polynomial = new Polynomial(coefficients, exponents);
+        return new Polynomial(coefficients, exponents);
     }
 
     /**
@@ -98,26 +98,9 @@ public class MQDerivationPolynomial extends MathQuestions {
      */
     private Polynomial createFakeAnswer() {
         Polynomial fakeAnswer;
-        int[] coefficients = new int[polynomial.getSize()];
-        int[] exponents = new int[coefficients.length];
 
         while (true) {
-            boolean done;
-            for (int i = 0; i < coefficients.length; i++) {
-                done = false;
-                while (!done) {
-                    done = true;
-                    exponents[i] = Utilities.randomInt(exponentLowerBound - 1, exponentUpperBound - 1);
-                    for (int j = 0; j < i; j++) {
-                        if (exponents[i] == exponents[j]) {
-                            done = false;
-                            break;
-                        }
-                    }
-                }
-                coefficients[i] = Utilities.randomInt(coefficientLowerBound, coefficientUpperBound) * (exponents[i] + 1);
-            }
-            fakeAnswer = new Polynomial(coefficients, exponents);
+            fakeAnswer = generatePolynomial().derive();
 
             if (!fakeAnswer.equals(answers[0]) && !fakeAnswer.equals(answers[1]) && !fakeAnswer.equals(answers[2])
                     && !fakeAnswer.equals(answers[3])) {

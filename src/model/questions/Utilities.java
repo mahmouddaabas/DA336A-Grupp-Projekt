@@ -41,6 +41,23 @@ public class Utilities {
     }
 
     /**
+     * Generates a random non-zero integer between the two bounds. Used to avoid divide-by-zero issues and other similar
+     * issues.
+     * @param lowerBound the lowest value the random integer can have.
+     * @param upperBound the highest value the random integer can have.
+     * @return the random non-zero integer between the bounds.
+     */
+    protected static int randomIntNotZeroOrOne(int lowerBound, int upperBound) {
+        int randNum;
+        while (true) {
+            randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
+            if (randNum != 0 && randNum != 1) {
+                return randNum;
+            }
+        }
+    }
+
+    /**
      * Generates a random BigDecimal between the two bounds.
      * @param lowerBound the lowest value the random double can have.
      * @param upperBound the highest value the random double can have.
@@ -234,6 +251,18 @@ public class Utilities {
         Polynomial[] answers = new Polynomial[NUM_OF_ANSWERS];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = new Polynomial(1);
+        }
+        return answers;
+    }
+
+    /**
+     * Creates an array of Quadratics with all the elements set to default values.
+     * @return the answer array.
+     */
+    protected static Quadratic[] createQuadraticAnswerArray() {
+        Quadratic[] answers = new Quadratic[NUM_OF_ANSWERS];
+        for (int i = 0; i < answers.length; i++) {
+            answers[i] = new Quadratic();
         }
         return answers;
     }
