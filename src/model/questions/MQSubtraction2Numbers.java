@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that subtracts two BigDecimal numbers. Need to call generateNewQuestion() to get a question
  * to generate the numbers and answers. If chosen to not display a negative answer, then the upper bound for the first
  * number needs to be greater than for the second number. BigDecimal is used instead of double to aid with the precision
  * and rounding.
- * @author Mattias Bengtsson
  */
 public class MQSubtraction2Numbers extends MathQuestions {
     private BigDecimal[] answers;

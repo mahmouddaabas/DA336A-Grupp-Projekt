@@ -72,7 +72,7 @@ public class PortalCreator {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    if (controller.getOutOfCombat()) {
+                    if (controller.getPlayer().isOutOfCombat()) {
                         popupMenu.show(lblPortal, e.getX(), e.getY());
                     }
                 }
@@ -85,13 +85,5 @@ public class PortalCreator {
             public void mouseExited(MouseEvent e) {}
         });
         mainFrame.getFinalScenePanel().getPnlFinalScene().add(lblPortal);
-    }
-
-    /**
-     * Returns lblPortal
-     * @return lblPortal
-     */
-    public JLabel getLblPortal() {
-        return lblPortal;
     }
 }

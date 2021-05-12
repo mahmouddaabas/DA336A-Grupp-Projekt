@@ -3,8 +3,8 @@ package model;
 import controller.GameLogic;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This is a counter class that will always run.
  * The class update the timer and the current level.
  * The class can also hold the latest information on current scene or current level.

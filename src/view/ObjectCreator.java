@@ -5,7 +5,6 @@ import controller.ImageResizer;
 import view.handlers.ActionHandler;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -122,7 +121,7 @@ public class ObjectCreator {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
-                    if (controller.getOutOfCombat()) {
+                    if (controller.getPlayer().isOutOfCombat()) {
                         popupMenu.show(lblShopKeeper, e.getX(), e.getY());
                     }
                 }
@@ -144,7 +143,8 @@ public class ObjectCreator {
      */
     public void createMonsterObjects() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/entities/monsterImageLocation.txt")));
+            String path = "resources/entities/monsterImageLocation.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String str = br.readLine();
             JPopupMenu popupMenu = createMonsterMenu();
 
@@ -161,7 +161,7 @@ public class ObjectCreator {
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isRightMouseButton(e)) {
-                            if (controller.getOutOfCombat()) {
+                            if (controller.getPlayer().isOutOfCombat()) {
                                 popupMenu.show(lblMonster, e.getX(), e.getY());
                             }
                         }
@@ -194,7 +194,8 @@ public class ObjectCreator {
      */
     public void setMonsterBounds() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/entities/monsterBounds.txt")));
+            String path = "resources/entities/monsterBounds.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String str = br.readLine();
 
             while (str != null) {

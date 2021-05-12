@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @Author Mahmoud Daabas
+ * @author Mahmoud Daabas
  * This class creates the help box that helps the user navigate to specific help that is needed.
  */
 public class HelpBox {
@@ -41,10 +41,8 @@ public class HelpBox {
         helpBox.setSize(400, 600);
         helpBox.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         helpBox.getContentPane().setBackground(Color.black);
-        //Can place things on the window without any restrictions.
         helpBox.setLayout(null);
         helpBox.setTitle("Climb the Tower - Help");
-        //Starts the window in the middle of the screen.
         helpBox. setLocationRelativeTo(null);
         helpBox.setResizable(false);
         helpBox.setVisible(true);
@@ -96,7 +94,7 @@ public class HelpBox {
         bgPanel = new JPanel();
         bgPanel.setLayout(null);
         bgPanel.setBounds(0, 0, 400, 600);
-        String path = "resources/helpBG.png";
+        String path = "resources/backgrounds/helpBG.png";
         bgLabel = new JLabel();
         bgLabel.setBounds(0, 0, 400, 600);
         bgLabel.setIcon(ImageResizer.resize(path, 400, 600));

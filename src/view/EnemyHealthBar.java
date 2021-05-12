@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @Author Mahmoud Daabas
+ * @author Mahmoud Daabas
  * This class creates the enemy health bar.
  * The class also manages the removal of the skulls if the player damages the enemy.
  */
@@ -54,7 +54,6 @@ public class EnemyHealthBar {
         Image image = enemyHealthIcon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
         enemyHealthIcon = new ImageIcon(image);
 
-        //Adds skulls in form of labels to the enemyHealthPanel.
         for (int i = 0; i < controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().getHealth(); i++) {
             enemyHealthLabel[i] = new JLabel();
             enemyHealthLabel[i].setIcon(enemyHealthIcon);
@@ -82,5 +81,13 @@ public class EnemyHealthBar {
      */
     public JPanel getEnemyHealthPanel() {
         return enemyHealthPanel;
+    }
+
+    /**
+     * Sets enemyHealthPanel
+     * @param enemyHealthPanel new panel
+     */
+    public void setEnemyHealthPanel(JPanel enemyHealthPanel) {
+        this.enemyHealthPanel = enemyHealthPanel;
     }
 }

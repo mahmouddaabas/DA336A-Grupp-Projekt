@@ -3,8 +3,8 @@ package model.questions;
 import java.util.Arrays;
 
 /**
- * A representation of a polynomial with a given number of terms with a coefficient and an exponent.
  * @author Mattias Bengtsson
+ * A representation of a polynomial with a given number of terms with a coefficient and an exponent.
  */
 public class Polynomial {
     private int[] coefficients;

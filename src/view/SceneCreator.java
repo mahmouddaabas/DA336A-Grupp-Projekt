@@ -65,7 +65,8 @@ public class SceneCreator {
      */
     public void createBackgrounds() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/backgrounds/backgroundImageLocation.txt")));
+            String path = "resources/backgrounds/backgroundImageLocation.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String str = br.readLine();
 
             int sceneNbr = 0; //Level 1 is scene 1

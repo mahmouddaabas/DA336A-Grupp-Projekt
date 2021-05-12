@@ -1,34 +1,33 @@
 package model.items;
 
 /**
- * @Author Mahmoud Daabas
+ * @author Mahmoud Daabas
  * This class represents a shield.
  */
 public class Shield {
-
-    private boolean isEquiped;
+    private boolean isEquipped;
 
     /**
      * Constructs the class.
-     * @param isEquiped
+     * @param isEquipped boolean value to set own variable
      */
-    public Shield(boolean isEquiped) {
-        this.isEquiped = isEquiped;
+    public Shield(boolean isEquipped) {
+        this.isEquipped = isEquipped;
     }
 
     /**
-     * Returns the isEquiped boolean for further use.
-     * @return isEquiped
+     * Returns the isEquipped boolean for further use.
+     * @return isEquipped
      */
-    public boolean getIsEquiped() {
-        return isEquiped;
+    public boolean getIsEquipped() {
+        return isEquipped;
     }
 
     /**
-     * Sets the isEquiped boolean from outside the class.
-     * @param equiped
+     * Sets the isEquipped boolean from outside the class.
+     * @param equipped new boolean value
      */
-    public void setEquiped(boolean equiped) {
-        isEquiped = equiped;
+    public void setEquipped(boolean equipped) {
+        isEquipped = equipped;
     }
 }
