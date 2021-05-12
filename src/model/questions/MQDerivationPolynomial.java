@@ -1,12 +1,10 @@
 package model.questions;
 
-import java.util.Arrays;
-
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that derives a chosen number of terms in a polynomial. All the coefficients have the same
  * bounds and so do the exponents. Need to call generateNewQuestion() to get a question to generate the numbers and
  * answers.
- * @author Mattias Bengtsson
  */
 public class MQDerivationPolynomial extends MathQuestions {
     private Polynomial[] answers;

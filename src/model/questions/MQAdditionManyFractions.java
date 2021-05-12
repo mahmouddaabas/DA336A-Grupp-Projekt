@@ -1,9 +1,9 @@
 package model.questions;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that adds a chosen number of integer fractions. All the numerators have the same bounds and
  * so do the denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
- * @author Mattias Bengtsson
  */
 public class MQAdditionManyFractions extends MathQuestions {
     private Fraction[] answers;

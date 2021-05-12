@@ -1,7 +1,6 @@
 package view;
 
 import controller.GameLogic;
-import model.LevelCreator;
 
 import java.awt.*;
 import java.io.*;
@@ -64,7 +63,8 @@ public class SceneChanger {
      */
     public void readSceneTexts() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/backgrounds/sceneTexts.txt")));
+            String path = "resources/backgrounds/sceneTexts.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String str = br.readLine();
 
             while (str != null) {
@@ -82,7 +82,6 @@ public class SceneChanger {
      * Hides certain things.
      */
     public void visitShop() {
-        //Hide things when the shop is visited.
         controller.getMainFrame().getTextArea().setText(sceneTexts.get(21));
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(true);
         controller.getTimer().stopTimer();
@@ -98,6 +97,7 @@ public class SceneChanger {
         }
 
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
+        controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 
     /**
@@ -115,11 +115,7 @@ public class SceneChanger {
      * Shows the game over screen
      */
     public void showGameOverScreen() {
-        controller.getMainFrame().getSceneCreator().getBackgroundPanel(controller.getCounter().getCurrentScene()-1).setVisible(false);
-        controller.getGameOver().getTitleLabel().setVisible(true);
-        controller.getGameOver().getTitleLabel().setText("YOU DIED!");
-        controller.getGameOver().getRestartButton().setVisible(true);
-        controller.getGameOver().getRestartButton().setText("Click here to start over.");
+        controller.getTimer().stopTimer();
 
         //Hides all the panels.
         controller.getMainFrame().getAnswerPanel().setVisible(false);
@@ -130,38 +126,35 @@ public class SceneChanger {
         controller.getMainFrame().getLblTimer().setVisible(false);
         controller.getMainFrame().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getEnemyHealthBar().setEnemyHealthPanel(null);
         controller.getMainFrame().getLblCombatStatus().setVisible(false);
 
-        //Sets the level creator to null then creates a new instance of the object to reset the game.
-//        controller.setLevelCreator(null);
-//        controller.setLevelCreator(new LevelCreator());
+        int currScene = controller.getCounter().getCurrentScene();
+        controller.getMainFrame().getSceneCreator().getBackgroundPanel(currScene - 1).setVisible(false);
+        controller.getGameOver().getTitleLabel().setVisible(true);
+        controller.getGameOver().getTitleLabel().setText("YOU DIED!");
+        controller.getGameOver().getRestartButton().setVisible(true);
+        controller.getGameOver().getRestartButton().setText("Click here to start over.");
 
-        //Resets the player gold.
         controller.getPlayer().setGold(0);
 
-        //Resets the limit and hides the potions.
         controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
-
-        //Stops the timer and kills the counter thread
-        controller.getTimer().stopTimer();
     }
 
     /**
      * Code that executes when exiting the game over screen
      */
     public void exitGameOverScreen() {
-        //Restarts the thread
         controller.startGame();
 
         controller.getGameOver().getTitleLabel().setVisible(false);
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getMainFrame().getBtnGetHelp().setFocusable(true);
         controller.getPlayer().restoreHealth();
-        controller.setOutOfCombat(true);
+        controller.getPlayer().setOutOfCombat(true);
         controller.getCounter().setLevel(1);
 
-        //Brings back all the panels.
         controller.getMainFrame().getTextArea().setVisible(true);
 
         //Sets all enemies to visible
@@ -177,8 +170,8 @@ public class SceneChanger {
             }
         }
 
-        //Reset the status and set the text back to white.
         controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
+        controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 }

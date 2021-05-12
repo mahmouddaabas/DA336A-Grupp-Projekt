@@ -3,9 +3,9 @@ package model.questions;
 import java.lang.Math;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that divides two integer numbers and gives a remainder answer. Need to call
  * generateNewQuestion() to get a question to generate the numbers and answers.
- * @author Mattias Bengtsson
  */
 public class MQDivisionRemainder2Numbers extends MathQuestions {
     private int[][] answers;

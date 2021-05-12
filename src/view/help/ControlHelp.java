@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class manages the frame that opens when "Control Help" is pressed in the Help Box.
  */
 public class ControlHelp {
@@ -36,10 +36,8 @@ public class ControlHelp {
         controlFrame.setSize(800, 700);
         controlFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         controlFrame.getContentPane().setBackground(Color.black);
-        //Can place things on the window without any restrictions.
         controlFrame.setLayout(null);
         controlFrame.setTitle("Climb the Tower - Control Help");
-        //Starts the window in the middle of the screen.
         controlFrame. setLocationRelativeTo(null);
         controlFrame.setResizable(false);
         controlFrame.setVisible(true);
@@ -66,4 +64,3 @@ public class ControlHelp {
         return controlFrame;
     }
 }
-

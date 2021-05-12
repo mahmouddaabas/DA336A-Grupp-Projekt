@@ -1,13 +1,12 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
+ * @author Mattias Bengtsson
  * Creates a math question that divides two BigDecimal numbers. Need to call generateNewQuestion() to get a question to
  * generate the numbers and answers. BigDecimal is used instead of double to aid with the precision and rounding.
- * @author Mattias Bengtsson
  */
 public class MQDivisionDecimal2Numbers extends MathQuestions {
     private BigDecimal[] answers;

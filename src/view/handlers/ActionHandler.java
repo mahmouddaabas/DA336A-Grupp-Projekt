@@ -35,7 +35,7 @@ public class ActionHandler implements ActionListener, KeyListener {
 
     /**
      * ActionPerformed method that selects a switch case based on action commands.
-     * @param e
+     * @param e ActionEvent
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,7 +52,13 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getEventMonsters().attackEnemy();
                 break;
 
-                //Shop options
+            case "drinkDamagePotion":
+                controller.getPlayerActions().drinkDamagePotion();
+                break;
+            case "equipShield":
+                controller.getPlayerActions().equipShield();
+                break;
+
             case "lookAtShopKeeper":
                 controller.getEventShop().lookAtShopKeeper();
                 break;
@@ -62,22 +68,16 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "buyFromShopKeeper":
                 controller.getEventShop().buyFromShopKeeper();
                 break;
-
-                //This is activated when the arrow in the shop is pressed.
             case "goBackToTower":
-                controller.getScene().showScene(controller.getLevel());
-                controller.getScene().exitShop();
+                controller.getSceneChanger().showScene(controller.getCounter().getLevel());
+                controller.getSceneChanger().exitShop();
                 break;
 
-            //Others
-            //Shows the first scene again if player hits the restart button after losing.
-            //Also resets the players health back to 10.
             case "restart":
-                controller.getScene().exitGameOverScreen();
+                controller.getSceneChanger().exitGameOverScreen();
                 controller.getCounter().setCurrentScene(0);
-                controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 break;
-
             case "continue":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
                 controller.getMainFrame().getPnlShopPrompt().setVisible(false);
@@ -99,12 +99,7 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "exitGame":
                 System.exit(0);
                 break;
-            case "drinkDamagePotion":
-                controller.getPlayerActions().drinkDamagePotion();
-                break;
-            case "equipShield":
-                controller.getPlayerActions().equipShield();
-                break;
+
             case "requestHelp":
                 HelpBox helpBox = new HelpBox(this);
                 break;
@@ -136,12 +131,19 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
                 break;
             case "goMainMenu":
-                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                if (controller.getMainFrame().getMainMenu().getPnlProfiles().isVisible()) {
+                    controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                }
+                else if (controller.getMainFrame().getMainMenu().getPnlDiff().isVisible()) {
+                    controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
+                }
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
                 int i2 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 controller.setPlayer(i2);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
                 break;
 
             case "hard":
@@ -164,7 +166,7 @@ public class ActionHandler implements ActionListener, KeyListener {
 
     /**
      * KeyPressed method that activates when a button is pressed.
-     * @param e
+     * @param e KeyEvent
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -180,7 +182,7 @@ public class ActionHandler implements ActionListener, KeyListener {
         //Checks if the current scene is correct before allowing player to start combat with enter.
         else if (controller.getCounter().getCurrentScene() == controller.getCounter().getLevel() + 1) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                controller.generateQuestionAndAnswers();
+                controller.startFight(controller.getCounter().getLevel());
             }
         }
     }

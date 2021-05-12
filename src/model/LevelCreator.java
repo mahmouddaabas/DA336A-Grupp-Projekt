@@ -1,9 +1,5 @@
 package model;
 
-import model.monsters.Boss;
-import model.monsters.BossType;
-import model.monsters.RegularMonster;
-import model.monsters.RegularMonsterType;
 import model.questions.*;
 
 import java.util.LinkedList;
@@ -31,8 +27,6 @@ public class LevelCreator {
      */
     public void newLevels() {
         levels = new LinkedList<>();
-        RegularMonsterType[] regularMonsterTypes = createRegularMonsterTypes();
-        BossType[] bossTypes = createBossTypes();
         int[] healths = createHealths();
         String[] lookDialogues = createLookDialogues();
         String[] talkDialogues = createTalkDialogues();
@@ -54,14 +48,12 @@ public class LevelCreator {
         }
 
         Level level;
-        int j = 0; // counter for boss
         for (int i = 0; i < NUM_OF_LEVELS; i++) {
             if ((i+1) % 5 == 0) {
-                level = new Level(i + 1, mathQuestions[i], new Boss(bossTypes[j], healths[i],
+                level = new Level(i + 1, mathQuestions[i], new Monster(true, healths[i],
                         lookDialogues[i], talkDialogues[i]), times[i]);
-                j++;
             } else {
-                level = new Level(i + 1, mathQuestions[i], new RegularMonster(regularMonsterTypes[i], healths[i],
+                level = new Level(i + 1, mathQuestions[i], new Monster(false, healths[i],
                         lookDialogues[i], talkDialogues[i]), times[i]);
             }
             levels.add(level);
@@ -69,50 +61,9 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the RegularMonsterTypes for the regular monsters. Every fifth is null as those are for the boss levels.
-     * @return the RegularMonsterTypes for the regular monsters.
+     * Creates the math questions associated with "Easy" difficulty
+     * @return math questions array
      */
-    private RegularMonsterType[] createRegularMonsterTypes() {
-        RegularMonsterType[] regularMonsterTypes = new RegularMonsterType[NUM_OF_LEVELS];
-
-        regularMonsterTypes[0] = RegularMonsterType.Goblin;
-        regularMonsterTypes[1] = RegularMonsterType.Skeleton;
-        regularMonsterTypes[2] = RegularMonsterType.Warden;
-        regularMonsterTypes[3] = RegularMonsterType.Hobgoblin;
-
-        regularMonsterTypes[5] = RegularMonsterType.Dwarf;
-        regularMonsterTypes[6] = RegularMonsterType.Gargoyle;
-        regularMonsterTypes[7] = RegularMonsterType.SkeletonWarrior;
-        regularMonsterTypes[8] = RegularMonsterType.RoyalGuard;
-
-        regularMonsterTypes[10] = RegularMonsterType.SnakeMan;
-        regularMonsterTypes[11] = RegularMonsterType.WorkSmithDwarf;
-        regularMonsterTypes[12] = RegularMonsterType.SkeletonMage;
-        regularMonsterTypes[13] = RegularMonsterType.BuddhaGuardian;
-
-        regularMonsterTypes[15] = RegularMonsterType.Ghost;
-        regularMonsterTypes[16] = RegularMonsterType.RedGuardian;
-        regularMonsterTypes[17] = RegularMonsterType.SpearMaster;
-        regularMonsterTypes[18] = RegularMonsterType.MiniBoss;
-
-        return regularMonsterTypes;
-    }
-
-    /**
-     * Creates the BossTypes for the bosses.
-     * @return the BossTypes for the bosses.
-     */
-    private BossType[] createBossTypes() {
-        BossType[] bossTypes = new BossType[NUM_OF_LEVELS / 5];
-
-        bossTypes[0] = BossType.Orc;
-        bossTypes[1] = BossType.Paladin;
-        bossTypes[2] = BossType.MageWarlord;
-        bossTypes[3] = BossType.FinalBoss;
-
-        return bossTypes;
-    }
-
     private MathQuestions[] createEasyMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
@@ -135,7 +86,7 @@ public class LevelCreator {
         mathQuestions[14] = new MQAdditionManyFractions(1, 4, 1, 4, 3);
 
         mathQuestions[15] = new MQDerivationPolynomial(1, 10, 0, 5, 1);
-        mathQuestions[16] = new MQIntegrationPolynomial(1, 10, 0, 4, 1);;
+        mathQuestions[16] = new MQIntegrationPolynomial(1, 10, 0, 4, 1);
         mathQuestions[17] = new MQDerivationPolynomial(-9, 9, -4, -2, 1);
         mathQuestions[18] = new MQIntegrationPolynomial(-9, 9, -5, -2, 1);
         mathQuestions[19] = new MQFinalBossRandom(difficulty);
@@ -143,6 +94,10 @@ public class LevelCreator {
         return mathQuestions;
     }
 
+    /**
+     * Creates the math questions associated with "Medium" difficulty
+     * @return math questions array
+     */
     private MathQuestions[] createMediumMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
@@ -173,6 +128,10 @@ public class LevelCreator {
         return mathQuestions;
     }
 
+    /**
+     * Creates the math questions associated with "Hard" difficulty
+     * @return math questions array
+     */
     private MathQuestions[] createHardMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 

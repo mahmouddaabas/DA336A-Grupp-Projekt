@@ -4,17 +4,15 @@ import model.items.DamagePotion;
 import model.items.Shield;
 
 /**
- * @Author Mahmoud Daabas
- * @Author Annie Tran
+ * @author Mahmoud Daabas
+ * @author Annie Tran
  * This class has the items that are available for purchase in the shop.
  */
 public class ShopItems {
     private GameLogic controller;
 
-    //Potions
     private DamagePotion dmgPot;
 
-    //Shields
     private Shield shield;
 
     //Used to limit the purchase of items.
@@ -28,10 +26,8 @@ public class ShopItems {
     public ShopItems(GameLogic controller) {
         this.controller = controller;
 
-        //Create potion objects.
         dmgPot = new DamagePotion(2, false);
 
-        //Create the shield object.
         shield = new Shield(false);
     }
 
@@ -83,7 +79,7 @@ public class ShopItems {
      * Method that allows the user to purchase a shield.
      */
     public void buyShield() {
-        if(controller.getPlayer().getGold() > 1 && shieldLimit == 0) {
+        if (controller.getPlayer().getGold() > 1 && shieldLimit == 0) {
             controller.getMainFrame().getBtnShield().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
             controller.getCounter().updateCoinLabel();
@@ -103,26 +99,30 @@ public class ShopItems {
 
     /**
      * Allows you to set the Damage Potion limit from outside of the class.
-     * @param damagePotionLimit
+     * @param damagePotionLimit new limit
      */
     public void setDamagePotionLimit(int damagePotionLimit) {
         this.damagePotionLimit = damagePotionLimit;
     }
 
+    /**
+     * Returns DamagePotion-object
+     * @return dmgPot
+     */
     public DamagePotion getDmgPot() {
         return dmgPot;
     }
 
     /**
      * Allows you to set the shield limit from outside the class.
-     * @return
+     * @param shieldLimit new shield limit
      */
     public void setShieldLimit(int shieldLimit) {
         this.shieldLimit = shieldLimit;
     }
 
     /**
-     * Returns the shield for futher use.
+     * Returns the shield for outside use.
      * @return shield
      */
     public Shield getShield() {

@@ -1,8 +1,8 @@
 package model.questions;
 
 /**
- * A representation of a fraction with a numerator and a denominator.
  * @author Mattias Bengtsson
+ * A representation of a fraction with a numerator and a denominator.
  */
 public class Fraction {
     private int numerator;

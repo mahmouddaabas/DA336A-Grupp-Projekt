@@ -34,7 +34,6 @@ public class HealthBar {
                 healthLabel[controller.getPlayer().getPlayerHealth() + i].setIcon(null);
             }
             healthPanel.repaint();
-            controller.getPlayer().setDamageTaken(0);
     }
 
     /**
@@ -59,7 +58,6 @@ public class HealthBar {
         Image image = healthIcon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
         healthIcon = new ImageIcon(image);
 
-        //Adds hearts in form of labels to the health panel.
         for (int i = 0; i < healthLabel.length; i++) {
             healthLabel[i] = new JLabel();
             healthLabel[i].setIcon(healthIcon);

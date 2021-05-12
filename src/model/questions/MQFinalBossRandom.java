@@ -3,6 +3,7 @@ package model.questions;
 import model.Difficulty;
 
 /**
+ * @author Mattias Bengtsson
  * Generates random questions for the final boss depending on the difficulty chosen. Need to call generateNewQuestion()
  * to get a question to generate the question and answers.
  */

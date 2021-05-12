@@ -5,6 +5,7 @@ import java.awt.*;
 
 /**
  * @author Leith Ahmad
+ * Image resizer used by classes which uses images.
  */
 public class ImageResizer {
     /**

@@ -20,7 +20,6 @@ public class MainFrame extends JFrame {
     private JTextArea textArea;
     private JTextArea textArea2;
 
-    //Handlers
     private ActionHandler action;
     private HandleAnswers answers;
     private HandleShopKeeper shop;
@@ -32,31 +31,25 @@ public class MainFrame extends JFrame {
     private MainMenu mainMenu;
     private FinalScenePanel finalScenePanel;
 
-    //Panel with buttons to answer.
     private JPanel answerPanel;
     private JButton[] answerButton;
 
-    //Panel with buttons to interact with shop.
     private JPanel pnlShop;
     private JButton[] shopButtons;
     private JPanel pnlShopPrompt;
     private JButton[] btnShopPrompt;
 
-    //Level labels and coin label.
     private JLabel lblLevel;
     private JLabel lblTimer;
     private JLabel lblCoins;
 
-    //Potion buttons.
     private JButton btnDamagePotion;
     private JLabel lblPotionStatus;
     private JLabel lblCombatStatus;
 
-    //Shield buttons.
     private JButton btnShield;
     private JLabel shieldStatus;
 
-    //Help button
     private JButton btnGetHelp;
 
     /**
@@ -67,7 +60,7 @@ public class MainFrame extends JFrame {
         answers = new HandleAnswers(controller);
         shop = new HandleShopKeeper(controller);
 
-        //Create all necessary labels.
+        //Create all necessary components.
         createAllComponents();
 
         mainMenu = new MainMenu(this, action);
@@ -86,9 +79,7 @@ public class MainFrame extends JFrame {
 
         portalCreator.createTP();
 
-        //Creates the main window the game is displayed on.
         createMainWindow();
-        //Makes the window visible.
         setVisible(true);
     }
 
@@ -121,19 +112,15 @@ public class MainFrame extends JFrame {
         answerPanel.setOpaque(false);
 
         String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
-        //Initialize the array.
         answerButton = new JButton[4];
         for (int i = 0; i < 4; i++) {
-            //Initialize the buttons.
             answerButton[i] = new JButton();
             String s = commandsForButtons[i];
             answerButton[i].addActionListener(answers);
             answerButton[i].addKeyListener(answers);
             answerButton[i].setActionCommand(s);
-            //Adds the buttons to the panel.
             answerPanel.add(answerButton[i]);
         }
-        //Adds answerPanel to the background.
         answerPanel.setVisible(false);
         add(answerPanel);
     }
@@ -149,18 +136,14 @@ public class MainFrame extends JFrame {
         pnlShop.setOpaque(false);
 
         String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
-        //Initialize the array.
         shopButtons = new JButton[4];
         for (int i = 0; i < 4; i++) {
-            //Initialize the buttons.
             shopButtons[i] = new JButton();
             String s = commandsForButtons[i];
             shopButtons[i].addActionListener(shop);
             shopButtons[i].setActionCommand(s);
-            //Adds the buttons to the panel.
             pnlShop.add(shopButtons[i]);
         }
-        //Adds answerPanel to the background.
         pnlShop.setVisible(false);
         add(pnlShop);
     }
@@ -168,17 +151,15 @@ public class MainFrame extends JFrame {
     /**
      * Creates the main JFrame of the game.
      */
-    //Creates the main window for the program.
     public void createMainWindow() {
         setSize(1350, 850);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
-        //Can place things on the window without any restrictions.
         setLayout(null);
         setTitle("Climb the Tower");
-        //Starts the window in the middle of the screen.
         setLocationRelativeTo(null);
         setResizable(false);
+
         textArea = new JTextArea();
         textArea.setBounds(100, 550, 900, 250);
         textArea.setBackground(Color.black);

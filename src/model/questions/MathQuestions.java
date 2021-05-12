@@ -1,13 +1,10 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.Random;
 
 /**
- * Abstract superclass for the math questions.
  * @author Mattias Bengtsson
+ * Abstract superclass for the math questions.
  */
 public abstract class MathQuestions {
     private String[] answerStr;
@@ -26,6 +23,7 @@ public abstract class MathQuestions {
     }
 
     /**
+     * -Unused method-
      * Makes the possible int answers into strings.
      * @param answers the array with the int answers.
      */
