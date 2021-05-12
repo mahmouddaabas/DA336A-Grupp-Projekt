@@ -105,6 +105,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerActions().equipShield();
                 break;
             case "requestHelp":
+                controller.getMainFrame().getAnswerButton()[controller.getMathQuestion().getCorrectAnswerIndex()+1].setEnabled(false);
                 HelpBox helpBox = new HelpBox(this);
                 break;
             case "gameHelp":
