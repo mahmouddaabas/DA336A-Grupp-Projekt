@@ -39,6 +39,8 @@ public class MainFrame extends JFrame {
     //Panel with buttons to interact with shop.
     private JPanel pnlShop;
     private JButton[] shopButtons;
+    private JPanel pnlShopPrompt;
+    private JButton[] btnShopPrompt;
 
     //Level labels and coin label.
     private JLabel lblLevel;
@@ -66,7 +68,7 @@ public class MainFrame extends JFrame {
         shop = new HandleShopKeeper(controller);
 
         //Create all necessary labels.
-        createAllLabels();
+        createAllComponents();
 
         mainMenu = new MainMenu(this, action);
 
@@ -91,9 +93,9 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Creates all labels.
+     * Creates all the components.
      */
-    public void createAllLabels() {
+    public void createAllComponents() {
         createLevelLabel();
         createTimerLabel();
         createCoinLabel();
@@ -104,6 +106,7 @@ public class MainFrame extends JFrame {
         createTextArea();
         createShield();
         createShieldStatus();
+        createShopPrompt();
     }
 
     /**
@@ -367,6 +370,35 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * Creates the panel with the yes/no buttons asking if user wants to visit the shop.
+     */
+    public void createShopPrompt() {
+        pnlShopPrompt = new JPanel();
+        pnlShopPrompt.setBounds(580, 670, 300, 80);
+        pnlShopPrompt.setBackground(Color.BLUE);
+        pnlShopPrompt.setLayout(new GridLayout(1, 2));
+        pnlShopPrompt.setOpaque(false);
+
+        String[] commandsForButtons = {"yesShop", "continue"};
+        //Initialize the array.
+        btnShopPrompt = new JButton[2];
+        for (int i = 0; i < 2; i++) {
+            //Initialize the buttons.
+            btnShopPrompt[i] = new JButton();
+            String s = commandsForButtons[i];
+            btnShopPrompt[i].addActionListener(action);
+            btnShopPrompt[i].setActionCommand(s);
+            //Adds the buttons to the panel.
+            pnlShopPrompt.add(btnShopPrompt[i]);
+        }
+        btnShopPrompt[0].setText("Yes");
+        btnShopPrompt[1].setText("No");
+        //Adds answerPanel to the background.
+        pnlShopPrompt.setVisible(false);
+        add(pnlShopPrompt);
+    }
+
+    /**
      * Returns answerPanel
      * @return answerPanel
      */
@@ -508,5 +540,13 @@ public class MainFrame extends JFrame {
      */
     public JLabel getShieldStatus() {
         return shieldStatus;
+    }
+
+    /**
+     * Returns the shop prompt panel.
+     * @return pnlShopPrompt
+     */
+    public JPanel getPnlShopPrompt() {
+        return pnlShopPrompt;
     }
 }

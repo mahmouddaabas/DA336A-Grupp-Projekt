@@ -80,6 +80,7 @@ public class ActionHandler implements ActionListener, KeyListener {
 
             case "continue":
                 controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                controller.getMainFrame().getPnlShopPrompt().setVisible(false);
                 break;
 
             case "newGame":
@@ -154,6 +155,9 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "easy":
                 controller.createLevelCreator(Difficulty.Easy);
                 controller.startGame();
+                break;
+            case "yesShop":
+                controller.getScene().visitShop();
                 break;
         }
     }
