@@ -131,6 +131,9 @@ public class SceneChanger {
         controller.getMainFrame().getLblCoins().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
         controller.getMainFrame().getLblCombatStatus().setVisible(false);
+        controller.getMusicPlayer().stopMusic();
+        controller.getMainFrame().getBtnAudioOn().setVisible(false);
+        controller.getMainFrame().getBtnAudioOff().setVisible(false);
 
         //Sets the level creator to null then creates a new instance of the object to reset the game.
         controller.setLevelCreator(null);
@@ -158,7 +161,7 @@ public class SceneChanger {
         controller.getGameOver().getRestartButton().setVisible(false);
         controller.getMainFrame().getBtnGetHelp().setFocusable(true);
         controller.getMainFrame().getBtnAudioOn().setVisible(false);
-        controller.getMainFrame().getBtnAudioOff().setVisible(true);
+        controller.getMainFrame().getBtnAudioOff().setVisible(false);
         controller.getPlayer().restoreHealth();
         controller.setOutOfCombat(true);
         controller.getCounter().setLevel(1);
