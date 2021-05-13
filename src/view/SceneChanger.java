@@ -90,6 +90,7 @@ public class SceneChanger {
         controller.getMainFrame().getLblTimer().setVisible(false);
         controller.getMainFrame().getLblLevel().setVisible(false);
         controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getMainFrame().getPnlShopPrompt().setVisible(false);
 
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);

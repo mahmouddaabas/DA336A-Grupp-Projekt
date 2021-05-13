@@ -158,15 +158,8 @@ public class GameLogic {
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
 
-                    //Temporary solution to show the shop, will be changed later.
-                    if (counter.getLevel() == 5 || counter.getLevel() == 10 || counter.getLevel() == 15) {
-                        String question = "Would you like to visit the shop?";
-                        int reply = JOptionPane.showConfirmDialog(null, question,
-                                "Shop?", JOptionPane.YES_NO_OPTION);
-                        if (reply == JOptionPane.YES_OPTION) {
-                            sceneChanger.visitShop();
-                        }
-                    }
+                    showShopPrompt();
+                  
                     if (counter.getLevel() < 20) {
                         mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
                     }
@@ -276,6 +269,17 @@ public class GameLogic {
         }
         checkStatusAndGetQuestion();
         healthBar.updateHealth();
+    }
+
+    /**
+     * Shows the shop prompt after a boss level.
+     */
+    public void showShopPrompt() {
+        if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
+                counter.getLevel() == 15) {
+            mainFrame.getTextArea().setText("Would you like to visit the shop?");
+            mainFrame.getPnlShopPrompt().setVisible(true);
+        }
     }
 
     /**
