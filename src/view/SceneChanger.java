@@ -89,7 +89,7 @@ public class SceneChanger {
         controller.getMainFrame().getAnswerPanel().setVisible(false);
         controller.getMainFrame().getLblTimer().setVisible(false);
         controller.getMainFrame().getLblLevel().setVisible(false);
-        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+//        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false); // nullPointer exception
         controller.getMainFrame().getPnlShopPrompt().setVisible(false);
 
         for (int i = 0; i < 21; i++) {
