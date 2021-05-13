@@ -6,11 +6,11 @@ import java.math.RoundingMode;
 /**
  * @author Mattias Bengtsson
  * Creates a math question that adds a chosen number of decimal numbers. Negative numbers become subtraction. All
- * numbers have the same bounds. If using just 2 numbers, please use MQAddition2Numbers or MQSubtraction2Numbers instead.
+ * numbers have the same bounds. If using just 2 numbers, please use MQ2NumbersAddition or MQ2NumbersSubtraction instead.
  * Need to call generateNewQuestion() to get a question to generate the numbers and answers. BigDecimal is used instead
  * of double to aid with the precision and rounding.
  */
-public class MQAdditionManyNumbers extends MathQuestions {
+public class MQManyNumbersAddition extends MathQuestions {
     private BigDecimal[] answers;
     private double numberLowerBound;
     private double numberUpperBound;
@@ -25,7 +25,7 @@ public class MQAdditionManyNumbers extends MathQuestions {
      * @param numOfDecimals the number of decimal places for the numbers.
      * @param numOfNumbers the amount of numbers to add.
      */
-    public MQAdditionManyNumbers(double numberLowerBound, double numberUpperBound, int numOfDecimals,
+    public MQManyNumbersAddition(double numberLowerBound, double numberUpperBound, int numOfDecimals,
                                  int numOfNumbers) {
         this.numberLowerBound = numberLowerBound;
         this.numberUpperBound = numberUpperBound;

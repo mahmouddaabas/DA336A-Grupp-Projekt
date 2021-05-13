@@ -4,7 +4,7 @@ package model.questions;
  * @author Mattias Bengtsson
  * Abstract superclass for the math questions about quadratic expressions.
  */
-public abstract class QuadraticQuestion extends MathQuestions {
+public abstract class QuadraticQuestions extends MathQuestions {
     private Quadratic[] answers;
     private int rootNumeratorLowerBound;
     private int rootNumeratorUpperBound;
@@ -19,8 +19,8 @@ public abstract class QuadraticQuestion extends MathQuestions {
      * @param rootDenominatorLowerBound the lowest value the denominators of the roots can have.
      * @param rootDenominatorUpperBound the highest value the denominators of the roots can have.
      */
-    public QuadraticQuestion(int rootNumeratorLowerBound, int rootNumeratorUpperBound,
-                             int rootDenominatorLowerBound, int rootDenominatorUpperBound) {
+    public QuadraticQuestions(int rootNumeratorLowerBound, int rootNumeratorUpperBound,
+                              int rootDenominatorLowerBound, int rootDenominatorUpperBound) {
         this.rootNumeratorLowerBound = rootNumeratorLowerBound;
         this.rootNumeratorUpperBound = rootNumeratorUpperBound;
         this.rootDenominatorLowerBound = rootDenominatorLowerBound;

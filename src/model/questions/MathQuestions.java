@@ -16,32 +16,9 @@ public abstract class MathQuestions {
     public MathQuestions() {}
 
     /**
-     * Places the correct answer in a random element.
-     */
-    protected void newCorrectAnswerIndex() {
-        correctAnswerIndex = Utilities.randomInt(0, 3);
-    }
-
-    /**
-     * -Unused method-
-     * Makes the possible int answers into strings.
-     * @param answers the array with the int answers.
-     */
-    protected void generateAnswerStrings(int[] answers) {
-        if (answers != null) {
-            answerStr = new String[4];
-            answerStr[0] = "1. " + answers[0];
-            answerStr[1] = "2. " + answers[1];
-            answerStr[2] = "3. " + answers[2];
-            answerStr[3] = "4. " + answers[3];
-        }
-    }
-
-    /**
      * Makes the possible BigDecimal answers into strings.
-     * @param answers the array with the BigDecimal answers.
      */
-    protected void generateAnswerStrings(BigDecimal[] answers) {
+    protected void generateAnswerStringsBigDecimal(BigDecimal[] answers) {
         if (answers != null) {
             answerStr = new String[4];
             answerStr[0] = "1.  " + answers[0].toString();
@@ -109,5 +86,20 @@ public abstract class MathQuestions {
     /**
      * Generates a new question within the same bounds.
      */
-    public abstract void generateNewQuestion();
+    public void generateNewQuestion() {
+        newCorrectAnswerIndex();
+        generateAnswers();
+        generateAnswerStrings();
+    }
+
+    /**
+     * Places the correct answer in a random element.
+     */
+    protected void newCorrectAnswerIndex() {
+        correctAnswerIndex = Utilities.randomInt(0, 3);
+    }
+
+    protected abstract void generateAnswers();
+
+    protected abstract void generateAnswerStrings();
 }

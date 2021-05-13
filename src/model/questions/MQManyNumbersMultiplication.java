@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * generateNewQuestion() to get a question to generate the numbers and answers. BigDecimal is used instead of double to
  * aid with the precision and rounding.
  */
-public class MQMultiplicationManyNumbers extends MathQuestions {
+public class MQManyNumbersMultiplication extends MathQuestions {
     private BigDecimal[] answers;
     private double numberLowerBound;
     private double numberUpperBound;
@@ -25,7 +25,7 @@ public class MQMultiplicationManyNumbers extends MathQuestions {
      * @param numOfDecimals the number of decimal places for the numbers.
      * @param numOfNumbers the amount of numbers to add. 3 or greater.
      */
-    public MQMultiplicationManyNumbers(double numberLowerBound, double numberUpperBound, int numOfDecimals,
+    public MQManyNumbersMultiplication(double numberLowerBound, double numberUpperBound, int numOfDecimals,
                                        int numOfNumbers) {
         this.numberLowerBound = numberLowerBound;
         this.numberUpperBound = numberUpperBound;

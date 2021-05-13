@@ -2,10 +2,10 @@ package model.questions;
 
 /**
  * @author Mattias Bengtsson
- * Creates a math question that divides two integer fractions. Both numerators have the same bounds and so do the
- * denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
+ * Creates a math question that multiplies a chosen number of integer fractions. All the numerators have the same bounds
+ * and so do the denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
  */
-public class MQDivision2Fractions extends MathQuestions {
+public class MQFractionsMultiplication extends MathQuestions {
     private Fraction[] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -14,19 +14,21 @@ public class MQDivision2Fractions extends MathQuestions {
     private Fraction[] fractions;
 
     /**
-     * Constructor that initializes the instance variables for the bounds. All fractions share the same bounds.
+     * Constructor that initializes the instance variables for the bounds and the amount of fractions. All fractions
+     * share the same bounds.
      * @param numeratorLowerBound the lowest value the numerators can have.
      * @param numeratorUpperBound the highest value the numerators can have.
      * @param denominatorLowerBound the lowest value the denominators can have.
      * @param denominatorUpperBound the highest value the denominator can have.
+     * @param numOfFractions the amount of fractions to multiply. 2 or greater.
      */
-    public MQDivision2Fractions(int numeratorLowerBound, int numeratorUpperBound,
-                                         int denominatorLowerBound, int denominatorUpperBound) {
+    public MQFractionsMultiplication(int numeratorLowerBound, int numeratorUpperBound,
+                                     int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
         this.denominatorUpperBound = denominatorUpperBound;
-        fractions = new Fraction[2];
+        fractions = new Fraction[numOfFractions];
     }
 
     /**
@@ -34,7 +36,15 @@ public class MQDivision2Fractions extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + fractions[0] + " / " + fractions[1] + "?";
+        StringBuilder question = new StringBuilder("What is " + fractions[0].toString());
+
+        for (int i = 1; i < (fractions.length); i++) {
+            question.append(" * ").append(fractions[i].toString());
+        }
+
+        question.append("?");
+
+        return question.toString();
     }
 
     /**
@@ -48,15 +58,15 @@ public class MQDivision2Fractions extends MathQuestions {
     }
 
     /**
-     * Generates random fractions from the given bounds. The numbers cannot be 0. Also used to generate the fractions
-     * for the fake answers for more believable answers.
+     * Generates random fractions from the given bounds. The denominators cannot be 0. Also used to generate the
+     * fractions for the fake answers for more believable answers.
      */
     private Fraction[] generateFractions() {
         Fraction[] fractionArray = new Fraction[fractions.length];
         int numerator;
         int denominator;
         for (int i = 0; i < fractionArray.length; i++) {
-            numerator = Utilities.randomIntNotZero(numeratorLowerBound, numeratorUpperBound);
+            numerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
             denominator = Utilities.randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
             fractionArray[i] = new Fraction(numerator, denominator);
         }
@@ -80,11 +90,15 @@ public class MQDivision2Fractions extends MathQuestions {
     /**
      * Multiplies all the fractions into a single fraction that is then simplified by dividing common factors from the
      * numerator and denominator if able to do so.
-     * @param fractionArray the array of the fractions to add.
+     * @param fractionArray the array of the fractions to multiply.
      * @return the answer.
      */
     private Fraction newAnswer(Fraction[] fractionArray) {
-        return fractionArray[0].divide(fractionArray[1]);
+        Fraction answer = new Fraction(1, 1);
+        for (Fraction fraction : fractionArray) {
+            answer = answer.multiply(fraction);
+        }
+        return answer;
     }
 
     /**

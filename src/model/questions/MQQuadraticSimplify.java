@@ -6,7 +6,7 @@ package model.questions;
  * roots share the same bounds. Need to call generateNewQuestion() to get a question to generate the numbers and
  * answers.
  */
-public class MQQuadraticSimplify extends QuadraticQuestion {
+public class MQQuadraticSimplify extends QuadraticQuestions {
     /**
      * Constructor that initializes the instance variables for the bounds. All numerators and all denominators of the
      * roots share the same bounds.

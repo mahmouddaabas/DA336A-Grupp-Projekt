@@ -5,7 +5,7 @@ package model.questions;
  * Creates a math question that adds a chosen number of integer fractions. All the numerators have the same bounds and
  * so do the denominators. Need to call generateNewQuestion() to get a question to generate the numbers and answers.
  */
-public class MQAdditionManyFractions extends MathQuestions {
+public class MQFractionsAddition extends MathQuestions {
     private Fraction[] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -22,8 +22,8 @@ public class MQAdditionManyFractions extends MathQuestions {
      * @param denominatorUpperBound the highest value the denominator can have.
      * @param numOfFractions the amount of fractions to add. 2 or greater.
      */
-    public MQAdditionManyFractions(int numeratorLowerBound, int numeratorUpperBound,
-                                   int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
+    public MQFractionsAddition(int numeratorLowerBound, int numeratorUpperBound,
+                               int denominatorLowerBound, int denominatorUpperBound, int numOfFractions) {
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
         this.denominatorLowerBound = denominatorLowerBound;
