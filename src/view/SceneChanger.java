@@ -15,12 +15,15 @@ import java.util.LinkedList;
 public class SceneChanger {
     private GameLogic controller;
     private LinkedList<String> sceneTexts;
+    private LinkedList<String> enemyLines;
 
     public SceneChanger(GameLogic controller) {
         this.controller = controller;
         sceneTexts = new LinkedList<>();
+        enemyLines = new LinkedList<>();
 
         readSceneTexts();
+        readEnemyUniqueLines();
     }
 
     /**
@@ -69,6 +72,25 @@ public class SceneChanger {
 
             while (str != null) {
                 sceneTexts.add(str);
+                str = br.readLine();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reads a txt file with all the monsters unique lines and stores them in a list.
+     */
+    public void readEnemyUniqueLines() {
+        try {
+            String path = "resources/entities/enemyLines.txt";
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String str = br.readLine();
+
+            while (str != null) {
+                enemyLines.add(str);
                 str = br.readLine();
             }
         }
@@ -173,5 +195,13 @@ public class SceneChanger {
         controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
         controller.getMainFrame().getBtnGetHelp().requestFocus();
+    }
+
+    /**
+     * Returns the enemyLines list with the unique monster lines.
+     * @return enemyLines
+     */
+    public LinkedList<String> getEnemyLines() {
+        return enemyLines;
     }
 }

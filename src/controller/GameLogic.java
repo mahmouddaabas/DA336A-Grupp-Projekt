@@ -149,7 +149,7 @@ public class GameLogic {
                     player.setOutOfCombat(true);
                     status = "";
                     timer.stopTimer();
-                    mainFrame.getTextArea().setText("Enemy defeated!");
+                    mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel()-1));
                     addGold();
 
                     hideComponents();
@@ -277,7 +277,8 @@ public class GameLogic {
     public void showShopPrompt() {
         if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                 counter.getLevel() == 15) {
-            mainFrame.getTextArea().setText("Would you like to visit the shop?");
+            mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel()-1)
+                    + "\n" + "(Would you like to visit the shop?)");
             mainFrame.getPnlShopPrompt().setVisible(true);
         }
     }
@@ -409,7 +410,7 @@ public class GameLogic {
     public void setPlayer(int index) {
         if (index >= 0) {
             player = playerList.getPlayer(index);
-            JOptionPane.showMessageDialog(null, player.toString() + " Selected!");
+            JOptionPane.showMessageDialog(null, player.getName() + " Selected!");
         }
     }
 
