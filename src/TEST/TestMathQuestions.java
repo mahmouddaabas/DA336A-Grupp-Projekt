@@ -36,19 +36,22 @@ public class TestMathQuestions {
 //        mathQuestion = new MQDivisionDecimal2Numbers(10, 100, 0, 2, 10, 0, 2);
 //        mathQuestion = new MQAdditionManyFractions(-10, 10, -10, 10, 3);
 //        mathQuestion = new MQMultiplicationManyFractions(-10, 10, -10, 10, 3);
-//        mathQuestion = new MQDerivationPolynomial(-9, 9, -9, 9, 1);
+//        mathQuestion = new MQDerivationPolynomial(0, 4, -4, 0, 2);
 //        mathQuestion = new MQIntegrationPolynomial(-9, 9, -9, 9, 3);
 //        mathQuestion = new MQMultiplicationManyNumbers(-9, 9, 2, 4);
-        mathQuestion = new MQDivision2Fractions(-9, 9, -9, 9);
+//        mathQuestion = new MQDivision2Fractions(-9, 9, -9, 9);
 //        mathQuestion = new MQFinalBossRandom(2);
-
+//        mathQuestion = new MQQuadraticExpand(-4, 4, 1, 1);
+//        mathQuestion = new MQQuadraticRoots(-3, 3, 1, 1);
+        mathQuestion = new MQQuadraticSimplify(-3, 3, 1, 1);
+        
         while (true) {
             mathQuestion.generateNewQuestion();
 
             ui.printMessage(mathQuestion.getQuestion());
             ui.printArray(mathQuestion.getAnswerStr());
 
-            ui.printMessage("Write your answer (a, b, c, or d): ");
+            ui.printMessage("Write your answer (1, 2, 3, or 4): ");
             isAnswered = false;
             answerIndex = -1;
             while (!isAnswered) {
@@ -56,15 +59,19 @@ public class TestMathQuestions {
                 answerText = answerText.toLowerCase();
                 switch (answerText) {
                     case "a":
+                    case "1":
                         answerIndex = 0;
                         break;
                     case "b":
+                    case "2":
                         answerIndex = 1;
                         break;
                     case "c":
+                    case "3":
                         answerIndex = 2;
                         break;
                     case "d":
+                    case "4":
                         answerIndex = 3;
                         break;
                     default:

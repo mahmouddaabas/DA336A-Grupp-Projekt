@@ -83,15 +83,11 @@ public class MQIntegrationPolynomial extends MathQuestions {
             done = false;
             while (!done) {
                 done = true;
-                exponents[i] = Utilities.randomIntNotZero(exponentLowerBound, exponentUpperBound);
-                if (exponents[i] == -1) {
-                    done = false;
-                } else {
-                    for (int j = 0; j < i; j++) {
-                        if (exponents[i] == exponents[j]) {
-                            done = false;
-                            break;
-                        }
+                exponents[i] = Utilities.randomIntNotZeroOrOne(exponentLowerBound, exponentUpperBound);
+                for (int j = 0; j < i; j++) {
+                    if (exponents[i] == exponents[j]) {
+                        done = false;
+                        break;
                     }
                 }
             }
@@ -123,10 +119,10 @@ public class MQIntegrationPolynomial extends MathQuestions {
     private void generateAnswerStringsPolynomial() {
         if (answers != null) {
             String[] answerStr = new String[4];
-            answerStr[0] = "A. " + answers[0].toString() + " + C";
-            answerStr[1] = "B. " + answers[1] + " + C";
-            answerStr[2] = "C. " + answers[2] + " + C";
-            answerStr[3] = "D. " + answers[3] + " + C";
+            answerStr[0] = "1. " + answers[0].toString() + " + C";
+            answerStr[1] = "2. " + answers[1] + " + C";
+            answerStr[2] = "3. " + answers[2] + " + C";
+            answerStr[3] = "4. " + answers[3] + " + C";
             setAnswerStr(answerStr);
         }
     }
