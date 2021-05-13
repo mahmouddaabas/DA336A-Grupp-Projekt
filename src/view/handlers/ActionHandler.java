@@ -79,7 +79,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 break;
             case "continue":
-                controller.getScene().showScene(controller.getCounter().getCurrentScene());
+                controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMainFrame().getPnlShopPrompt().setVisible(false);
                 break;
 
@@ -159,7 +159,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.startGame();
                 break;
             case "yesShop":
-                controller.getScene().visitShop();
+                controller.getSceneChanger().visitShop();
                 break;
         }
     }
