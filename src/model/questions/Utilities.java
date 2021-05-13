@@ -11,7 +11,6 @@ import java.util.Random;
  */
 public class Utilities {
     private static Random rand = new Random();
-    private static final int NUM_OF_ANSWERS = 4;
 
     /**
      * Generates a random integer between the two bounds.
@@ -201,8 +200,8 @@ public class Utilities {
      * Creates an array with all elements set to the minimum integer value as a value that will not be used.
      * @return the answer array.
      */
-    protected static int[] createIntAnswerArray() {
-        int[] answers = new int[NUM_OF_ANSWERS];
+    protected static int[] createIntAnswerArray(int numOfAnswers) {
+        int[] answers = new int[numOfAnswers];
         Arrays.fill(answers, Integer.MIN_VALUE);
         return answers;
     }
@@ -212,8 +211,8 @@ public class Utilities {
      * used.
      * @return the answer array.
      */
-    protected static int[][] createIntAnswerArray(int numOfNumbers) {
-        int[][] answers = new int[NUM_OF_ANSWERS][numOfNumbers];
+    protected static int[][] createIntAnswerArray(int numOfAnswers, int numOfNumbers) {
+        int[][] answers = new int[numOfAnswers][numOfNumbers];
         for (int[] subArray : answers) {
             Arrays.fill(subArray, Integer.MIN_VALUE);
         }
@@ -225,8 +224,8 @@ public class Utilities {
      * be used.
      * @return the answer array.
      */
-    protected static BigDecimal[] createBigDecimalAnswerArray() {
-        BigDecimal[] answers = new BigDecimal[NUM_OF_ANSWERS];
+    protected static BigDecimal[] createBigDecimalAnswerArray(int numOfAnswers) {
+        BigDecimal[] answers = new BigDecimal[numOfAnswers];
         Arrays.fill(answers, new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP));
         return answers;
     }
@@ -235,8 +234,8 @@ public class Utilities {
      * Creates an array of Fractions with all the elements set to default values.
      * @return the answer array.
      */
-    protected static Fraction[] createFractionAnswerArray() {
-        Fraction[] answers = new Fraction[NUM_OF_ANSWERS];
+    protected static Fraction[] createFractionAnswerArray(int numOfAnswers) {
+        Fraction[] answers = new Fraction[numOfAnswers];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = new Fraction();
         }
@@ -247,8 +246,8 @@ public class Utilities {
      * Creates an array of Polynomials with all the elements set to default values.
      * @return the answer array.
      */
-    protected static Polynomial[] createPolynomialAnswerArray() {
-        Polynomial[] answers = new Polynomial[NUM_OF_ANSWERS];
+    protected static Polynomial[] createPolynomialAnswerArray(int numOfAnswers) {
+        Polynomial[] answers = new Polynomial[numOfAnswers];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = new Polynomial(1);
         }
@@ -259,8 +258,8 @@ public class Utilities {
      * Creates an array of Quadratics with all the elements set to default values.
      * @return the answer array.
      */
-    protected static Quadratic[] createQuadraticAnswerArray() {
-        Quadratic[] answers = new Quadratic[NUM_OF_ANSWERS];
+    protected static Quadratic[] createQuadraticAnswerArray(int numOfAnswers) {
+        Quadratic[] answers = new Quadratic[numOfAnswers];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = new Quadratic();
         }

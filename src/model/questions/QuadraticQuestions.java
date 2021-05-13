@@ -63,7 +63,7 @@ public abstract class QuadraticQuestions extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = Utilities.createQuadraticAnswerArray();
+        answers = Utilities.createQuadraticAnswerArray(getNUM_OF_ANSWERS());
         answers[getCorrectAnswerIndex()] = generateQuadratic();
         for (int i = 0; i < answers.length; i++) {
             if (i != getCorrectAnswerIndex()) {

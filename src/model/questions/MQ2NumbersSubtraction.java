@@ -1,7 +1,6 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * @author Mattias Bengtsson
@@ -35,6 +34,7 @@ public class MQ2NumbersSubtraction extends Arithmetic2NumberQuestions {
      * Generates the two random numbers from the given bounds. If the answer should not be negative, then the second
      * number cannot be greater than the first, so switches numbers 1 and 2 if that happens.
      */
+    @Override
     protected void generateNumbers() {
         super.generateNumbers();
         if (!allowNegativeAnswer) {
@@ -67,11 +67,10 @@ public class MQ2NumbersSubtraction extends Arithmetic2NumberQuestions {
             lowerBoundAnswer = 0.0;
         }
         BigDecimal fakeAnswer;
-        int numOfDecimalsAnswer = getAnswers()[getCorrectAnswerIndex()].scale();
+        int numOfDecimalsAnswer = getAnswerAt(getCorrectAnswerIndex()).scale();
         while (true) {
             fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
-            if (!fakeAnswer.equals(getAnswers()[0]) && !fakeAnswer.equals(getAnswers()[1]) &&
-                    !fakeAnswer.equals(getAnswers()[2]) && !fakeAnswer.equals(getAnswers()[3])) {
+            if (checkFakeAnswer(fakeAnswer)) {
                 return fakeAnswer;
             }
         }

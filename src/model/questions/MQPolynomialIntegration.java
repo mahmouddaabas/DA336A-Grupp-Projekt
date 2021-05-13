@@ -61,7 +61,7 @@ public class MQPolynomialIntegration extends MathQuestions {
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
     private void generateAnswers() {
-        answers = Utilities.createPolynomialAnswerArray();
+        answers = Utilities.createPolynomialAnswerArray(getNUM_OF_ANSWERS());
         answers[getCorrectAnswerIndex()] = createAnswer();
 
         for (int i = 0; i < answers.length; i++) {

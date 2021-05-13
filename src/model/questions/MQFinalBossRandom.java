@@ -23,6 +23,7 @@ public class MQFinalBossRandom extends MathQuestions {
      * Returns the answers from the random question as strings.
      * @return the array with the answers from the random question as strings.
      */
+    @Override
     public String[] getAnswerStr() {
         return randomQuestion.getAnswerStr();
     }
@@ -31,6 +32,7 @@ public class MQFinalBossRandom extends MathQuestions {
      * Returns the randomly generated index for the correct answer in the answer array from the random question.
      * @return the randomly generated index for the correct answer in the answer array from the random question.
      */
+    @Override
     public int getCorrectAnswerIndex() {
         return randomQuestion.getCorrectAnswerIndex();
     }
@@ -40,6 +42,7 @@ public class MQFinalBossRandom extends MathQuestions {
      * @param index the index of the user's answer in the answer array from the random question.
      * @return true if the user's answer is correct, false otherwise.
      */
+    @Override
     public boolean compareAnswer(int index) {
         return randomQuestion.compareAnswer(index);
     }

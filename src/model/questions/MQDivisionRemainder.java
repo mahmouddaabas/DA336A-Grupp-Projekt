@@ -64,8 +64,8 @@ public class MQDivisionRemainder extends MathQuestions {
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
-    private void generateAnswers() {
-        answers = Utilities.createIntAnswerArray(2);
+    protected void generateAnswers() {
+        answers = Utilities.createIntAnswerArray(getNUM_OF_ANSWERS(), 2);
         answers[getCorrectAnswerIndex()][0] = numerator / denominator;
         answers[getCorrectAnswerIndex()][1] = numerator % denominator;
 
@@ -100,7 +100,7 @@ public class MQDivisionRemainder extends MathQuestions {
     /**
      * Makes the possible int + remainder answers into strings.
      */
-    private void generateAnswerStrings() {
+    protected void generateAnswerStrings() {
         String[] answerStr = new String[4];
 
         answerStr[0] = "1. " + answers[0][0];

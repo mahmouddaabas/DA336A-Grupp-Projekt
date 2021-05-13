@@ -52,8 +52,7 @@ public class MQ2NumbersDivision extends Arithmetic2NumberQuestions {
 
         while (true) {
             fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
-            if (!fakeAnswer.equals(getAnswers()[0]) && !fakeAnswer.equals(getAnswers()[1]) &&
-                    !fakeAnswer.equals(getAnswers()[2]) && !fakeAnswer.equals(getAnswers()[3])) {
+            if (checkFakeAnswer(fakeAnswer)) {
                 return fakeAnswer;
             }
         }

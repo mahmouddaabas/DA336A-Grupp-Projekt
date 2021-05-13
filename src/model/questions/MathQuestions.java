@@ -4,42 +4,28 @@ import java.math.BigDecimal;
 
 /**
  * @author Mattias Bengtsson
- * Abstract superclass for the math questions.
+ * Abstract superclass for the math questions. generateNewQuestion() needs to be called for all question types whenever
+ * a new question is needed, even for the first question.
  */
 public abstract class MathQuestions {
+    private final int NUM_OF_ANSWERS = 4;
+
     private String[] answerStr;
     private int correctAnswerIndex;
 
     /**
-     * Default constructor for the MathQuestions class
+     * Default constructor for the MathQuestions class.
      */
-    public MathQuestions() {}
-
-    /**
-     * Makes the possible BigDecimal answers into strings.
-     */
-    protected void generateAnswerStringsBigDecimal(BigDecimal[] answers) {
-        if (answers != null) {
-            answerStr = new String[4];
-            answerStr[0] = "1.  " + answers[0].toString();
-            answerStr[1] = "2.  " + answers[1].toString();
-            answerStr[2] = "3.  " + answers[2].toString();
-            answerStr[3] = "4.  " + answers[3].toString();
-        }
+    public MathQuestions() {
+        answerStr = new String[NUM_OF_ANSWERS];
     }
 
     /**
-     * Makes the possible fraction int answers into strings.
-     * @param answers the array with the int fraction answers.
+     * Returns the number of answers constant.
+     * @return the number of answers constant.
      */
-    protected void generateAnswerStringsFractions(Fraction[] answers) {
-        if (answers != null) {
-            answerStr = new String[4];
-            answerStr[0] = "1. " + answers[0].toString();
-            answerStr[1] = "2. " + answers[1].toString();
-            answerStr[2] = "3. " + answers[2].toString();
-            answerStr[3] = "4. " + answers[3].toString();
-        }
+    public int getNUM_OF_ANSWERS() {
+        return NUM_OF_ANSWERS;
     }
 
     /**
@@ -47,7 +33,7 @@ public abstract class MathQuestions {
      * @param answerStr the string array that will become the answer strings.
      */
     protected void setAnswerStr(String[] answerStr) {
-        if (answerStr != null) {
+        if (answerStr != null && answerStr.length == NUM_OF_ANSWERS) {
             this.answerStr = answerStr;
         }
     }
@@ -66,6 +52,29 @@ public abstract class MathQuestions {
      */
     public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
+    }
+
+    /**
+     * Makes the possible BigDecimal answers into strings.
+     */
+    protected void generateAnswerStringsBigDecimal(BigDecimal[] answers) {
+        if (answers != null && answers.length == NUM_OF_ANSWERS) {
+            for (int i = 0; i < answerStr.length; i++) {
+                answerStr[i] = (i+1) + ".  " + answers[i].toString();
+            }
+        }
+    }
+
+    /**
+     * Makes the possible fraction int answers into strings.
+     * @param answers the array with the int fraction answers.
+     */
+    protected void generateAnswerStringsFractions(Fraction[] answers) {
+        if (answers != null && answers.length == NUM_OF_ANSWERS) {
+            for (int i = 0; i < answerStr.length; i++) {
+                answerStr[i] = (i+1) + ".  " + answers[i].toString();
+            }
+        }
     }
 
     /**
@@ -96,10 +105,16 @@ public abstract class MathQuestions {
      * Places the correct answer in a random element.
      */
     protected void newCorrectAnswerIndex() {
-        correctAnswerIndex = Utilities.randomInt(0, 3);
+        correctAnswerIndex = Utilities.randomInt(0, NUM_OF_ANSWERS - 1);
     }
 
+    /**
+     * Creates the correct answer and 3 unique incorrect answers.
+     */
     protected abstract void generateAnswers();
 
+    /**
+     * Converts the answer array into a string array for displaying in the GUI.
+     */
     protected abstract void generateAnswerStrings();
 }

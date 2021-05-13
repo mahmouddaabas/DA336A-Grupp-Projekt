@@ -1,7 +1,6 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * @author Mattias Bengtsson
@@ -39,12 +38,11 @@ public class MQ2NumbersAddition extends Arithmetic2NumberQuestions {
      */
     protected BigDecimal createFakeAnswer() {
         BigDecimal fakeAnswer;
-        int numOfDecimalsAnswer = getAnswers()[getCorrectAnswerIndex()].scale();
+        int numOfDecimalsAnswer = getAnswerAt(getCorrectAnswerIndex()).scale();
         while (true) {
             fakeAnswer = Utilities.randomBigDecimal(getNumber1LowerBound() + getNumber2LowerBound(),
                     getNumber1UpperBound() + getNumber1UpperBound(), numOfDecimalsAnswer);
-            if (!fakeAnswer.equals(getAnswers()[0]) && !fakeAnswer.equals(getAnswers()[1]) &&
-                    !fakeAnswer.equals(getAnswers()[2]) && !fakeAnswer.equals(getAnswers()[3])) {
+            if (checkFakeAnswer(fakeAnswer)) {
                 return fakeAnswer;
             }
         }

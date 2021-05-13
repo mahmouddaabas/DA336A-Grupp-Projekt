@@ -32,6 +32,7 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
     public Arithmetic2NumberQuestions(double number1LowerBound, double number1UpperBound, int numOfDecimalsNumber1,
                                       double number2LowerBound, double number2UpperBound, int numOfDecimalsNumber2,
                                       char operator) {
+        super();
         this.number1LowerBound = number1LowerBound;
         this.number1UpperBound = number1UpperBound;
         this.numOfDecimalsNumber1 = numOfDecimalsNumber1;
@@ -42,11 +43,11 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
     }
 
     /**
-     * Returns the answer array for the arithmetic 2 numbers questions.
-     * @return the answer array for the arithmetic 2 numbers questions.
+     * Returns the BigDecimal at the specified index in the answer array.
+     * @return the BigDecimal at the specified index in the answer array.
      */
-    protected BigDecimal[] getAnswers() {
-        return answers;
+    protected BigDecimal getAnswerAt(int index) {
+        return answers[index];
     }
 
     /**
@@ -82,16 +83,16 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
     }
 
     /**
-     * Returns the 1st number.
-     * @return the 1st number.
+     * Returns the 1st BigDecimal number.
+     * @return the 1st BigDecimal number.
      */
     protected BigDecimal getNumber1() {
         return number1;
     }
 
     /**
-     * Returns the 2nd number.
-     * @return the 2nd number.
+     * Returns the 2nd BigDecimal number.
+     * @return the 2nd BigDecimal number.
      */
     protected BigDecimal getNumber2() {
         return number2;
@@ -102,17 +103,22 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
      * @return the question as a string.
      */
     public String getQuestion() {
-        return "What is " + number1 + operator + Utilities.parenthesisIfNegativeString(number2) + "?";
+        return "What is " + number1 + " " + operator + " " + Utilities.parenthesisIfNegativeString(number2) + "?";
     }
 
     /**
-     * Generates a new question within the same bounds and the answers.
+     * Generates the two numbers and creates the correct answer from them, and creates 3 unique incorrect answers.
      */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
+    protected void generateAnswers() {
+        generateNumbers();
+        answers = Utilities.createBigDecimalAnswerArray(getNUM_OF_ANSWERS());
+        answers[getCorrectAnswerIndex()] = createCorrectAnswer();
 
-
-        generateAnswerStrings();
+        for (int i = 0; i < answers.length; i++) {
+            if (i != getCorrectAnswerIndex()) {
+                answers[i] = createFakeAnswer();
+            }
+        }
     }
 
     /**
@@ -133,25 +139,31 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
         number2 = temp;
     }
 
-    protected void generateAnswers() {
-        generateNumbers();
-        answers = Utilities.createBigDecimalAnswerArray();
-        answers[getCorrectAnswerIndex()] = createCorrectAnswer();
-
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i].equals(new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP))) {
-                answers[i] = createFakeAnswer();
-            }
-        }
-    }
-
     /**
      * Creates the answer from the two numbers.
      * @return the answer from the two numbers.
      */
     protected abstract BigDecimal createCorrectAnswer();
 
+    /**
+     * Creates an incorrect answer that is unique.
+     * @return an incorrect answer that is unique.
+     */
     protected abstract BigDecimal createFakeAnswer();
+
+    /**
+     * Checks the specified incorrect answer to see if it is not equal to another element in the answer array.
+     * @param fakeAnswer the incorrect answer to check.
+     * @return true if the incorrect answer is unique, false otherwise.
+     */
+    protected boolean checkFakeAnswer(BigDecimal fakeAnswer) {
+        for (BigDecimal answer : answers) {
+            if (fakeAnswer.equals(answer)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Makes the possible BigDecimal answers into strings.

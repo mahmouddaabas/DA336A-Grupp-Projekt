@@ -76,8 +76,8 @@ public class MQFractionsAddition extends MathQuestions {
     /**
      * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
-    private void generateAnswers() {
-        answers = Utilities.createFractionAnswerArray();
+    protected void generateAnswers() {
+        answers = Utilities.createFractionAnswerArray(getNUM_OF_ANSWERS());
         answers[getCorrectAnswerIndex()] = newAnswer(fractions);
 
         for (int i = 0; i < answers.length; i++) {
