@@ -373,7 +373,7 @@ public class MainFrame extends JFrame {
             pnlShopPrompt.add(btnShopPrompt[i]);
         }
         btnShopPrompt[0].setText("Yes");
-        btnShopPrompt[1].setText("No");
+        btnShopPrompt[1].setText("No (Continue)");
         //Adds answerPanel to the background.
         pnlShopPrompt.setVisible(false);
         add(pnlShopPrompt);

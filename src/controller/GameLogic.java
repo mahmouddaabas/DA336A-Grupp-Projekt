@@ -150,7 +150,7 @@ public class GameLogic {
                     player.setOutOfCombat(true);
                     status = "";
                     timer.stopTimer();
-                    mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel()-1));
+                    mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
                     addGold();
 
                     hideComponents();
@@ -161,7 +161,7 @@ public class GameLogic {
 
                     showShopPrompt();
                   
-                    if (counter.getLevel() < 21) {
+                    if (counter.getLevel() <= 20) {
                         mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
                         //LinkedList starts at 0. Level 1 -> index 0
                         mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
@@ -169,7 +169,7 @@ public class GameLogic {
                     }
                     counter.setLevel(counter.getLevel() + 1);
                     if (counter.getLevel() > 20) {
-                        mainFrame.getSceneCreator().getArrowButtons().get(0).setVisible(false);
+                        mainFrame.getSceneCreator().getArrowButtons().get(20).setVisible(false);
                         mainFrame.getSceneCreator().getBackgroundPanel(20).setVisible(true);
                         sceneChanger.showPortal();
                         mainFrame.getLblCoins().setVisible(false);
@@ -177,11 +177,9 @@ public class GameLogic {
                     }
                 }
             }
-            /*
             else {
                 ifNotAnswered();
             }
-             */
         }
     }
 
@@ -287,9 +285,12 @@ public class GameLogic {
     public void showShopPrompt() {
         if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                 counter.getLevel() == 15) {
-            mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel()-1)
+            mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1)
                     + "\n" + "(Would you like to visit the shop?)");
             mainFrame.getPnlShopPrompt().setVisible(true);
+            if (!mainFrame.getObjectCreator().getLblShopKeeper().isVisible()) {
+                mainFrame.getObjectCreator().getLblShopKeeper().setVisible(true);
+            }
         }
     }
 
@@ -411,6 +412,14 @@ public class GameLogic {
      */
     public PlayerList getPlayerList() {
         return playerList;
+    }
+
+    /**
+     * Returns eventPortal
+     * @return eventPortal
+     */
+    public EventPortal getEventPortal() {
+        return eventPortal;
     }
 
     /**

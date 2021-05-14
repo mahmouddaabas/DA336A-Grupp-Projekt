@@ -208,6 +208,39 @@ public class SceneChanger {
         controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 
+    public void exitFinalScene() {
+        controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(false);
+        controller.getMainFrame().getFinalScenePanel().getPnlFinalScene().setVisible(false);
+        controller.getMainFrame().getObjectCreator().getLblShopKeeper().setVisible(false);
+        controller.getMainFrame().getBtnGetHelp().setFocusable(true);
+        controller.getPlayer().setOutOfCombat(true);
+        controller.getCounter().setLevel(1);
+
+        //Sets all enemies to visible
+        for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
+            if (!controller.getMainFrame().getObjectCreator().getMonsters().get(i).isVisible()) {
+                controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+            }
+        }
+
+        //Sets all level arrows to invisible
+        for (int j = 1; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++) {
+            if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
+                controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+            }
+        }
+
+        //Sets all scenes and associated images to visible
+        for (int j = 0; j < controller.getMainFrame().getSceneCreator().getBgPanels().size(); j++) {
+            if (!controller.getMainFrame().getSceneCreator().getBgPanels().get(j).isVisible()) {
+                controller.getMainFrame().getSceneCreator().getBgPanels().get(j).setVisible(true);
+                if (!controller.getMainFrame().getSceneCreator().getBgImages().get(j).isVisible()) {
+                    controller.getMainFrame().getSceneCreator().getBgImages().get(j).setVisible(true);
+                }
+            }
+        }
+    }
+
     /**
      * Returns the enemyLines list with the unique monster lines.
      * @return enemyLines

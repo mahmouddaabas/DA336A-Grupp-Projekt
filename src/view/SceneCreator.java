@@ -89,15 +89,13 @@ public class SceneCreator {
                 else {
                     addArrowButtons(sceneNbr, "continue");
                 }
-                bgPanels.get(sceneNbr).add(arrowButtons.get(sceneNbr));
 
-                //SKIP ENEMIES
-                /*
+                bgPanels.get(sceneNbr).add(arrowButtons.get(sceneNbr));
+                bgPanels.get(sceneNbr).add(bgImages.get(sceneNbr));
+
                 if (sceneNbr != 0) {
                     arrowButtons.get(sceneNbr).setVisible(false);
                 }
-
-                 */
 
                 mainFrame.add(bgPanels.get(sceneNbr));
 

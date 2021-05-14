@@ -40,6 +40,7 @@ public class ActionHandler implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();
+        int playerIndex = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
 
         switch (yourChoice) {
                 //ENEMY ACTIONS
@@ -109,7 +110,11 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
 
                 //PORTAL
+            case "inspectPortal":
+                controller.getEventPortal().inspectPortal();
+                break;
             case "enterPortal":
+                controller.getMainFrame().getLblCoins().setVisible(false);
                 int scenes = controller.getMainFrame().getSceneCreator().getBgPanels().size();
                 for (int i = 0; i < scenes; i++) {
                     controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setOpaque(false);
@@ -117,7 +122,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setOpaque(false);
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
                 }
+                controller.getEventPortal().enterPortal();
+                break;
             case "returnMenu":
+                controller.getSceneChanger().exitFinalScene();
                 controller.getSceneChanger().showMainMenu();
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
@@ -127,18 +135,25 @@ public class ActionHandler implements ActionListener, KeyListener {
 
                 //HELP
             case "requestHelp":
-                HelpBox helpBox = new HelpBox(this);
+                if (helpBox == null) {
+                    helpBox = new HelpBox(this);
+                }
+                else {
+                    helpBox.getHelpBox().setVisible(true);
+                }
                 break;
             case "gameHelp":
-                if(gameHelp == null)
-                 gameHelp = new GameHelp();
+                if (gameHelp == null) {
+                    gameHelp = new GameHelp();
+                }
                 else {
                     gameHelp.getHelpFrame().setVisible(true);
                 }
                 break;
             case "controlHelp":
-                if(controlHelp == null)
+                if (controlHelp == null) {
                     controlHelp = new ControlHelp();
+                }
                 else {
                     controlHelp.getControlFrame().setVisible(true);
                 }
@@ -152,9 +167,8 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "deleteProfile":
-                int i1 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
-                controller.deletePlayer(i1);
+                controller.deletePlayer(playerIndex);
                 controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
                 break;
             case "goMainMenu":
@@ -167,8 +181,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
-                int i2 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
-                controller.setPlayer(i2);
+                controller.setPlayer(playerIndex);
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
                 break;

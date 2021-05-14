@@ -27,6 +27,8 @@ public class ObjectCreator {
     private ActionHandler actionHandler;
     private GameLogic controller;
 
+    private JLabel lblShopKeeper;
+
     /**
      * Constructor
      * @param mainFrame mainFrame object used to initialize own mainFrame object
@@ -109,7 +111,7 @@ public class ObjectCreator {
      * Creates the shopkeeper
      */
     public void createShopKeeper() {
-        JLabel lblShopKeeper = new JLabel();
+        lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
         lblShopKeeper.setIcon(ImageResizer.resize("resources/entities/Oleg.png", 200, 350));
@@ -224,5 +226,13 @@ public class ObjectCreator {
      */
     public LinkedList<JLabel> getMonsters() {
         return monsters;
+    }
+
+    /**
+     * Returns lblShopKeeper
+     * @return lblShopKeeper
+     */
+    public JLabel getLblShopKeeper() {
+        return lblShopKeeper;
     }
 }
