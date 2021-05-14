@@ -42,6 +42,7 @@ public class ActionHandler implements ActionListener, KeyListener {
         String yourChoice = e.getActionCommand();
 
         switch (yourChoice) {
+                //ENEMY ACTIONS
             case "lookAtEnemy":
                 controller.getEventMonsters().lookAtEnemy();
                 break;
@@ -52,6 +53,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getEventMonsters().attackEnemy();
                 break;
 
+                //PLAYER ACTIONS
             case "drinkDamagePotion":
                 controller.getPlayerActions().drinkDamagePotion();
                 break;
@@ -59,6 +61,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerActions().equipShield();
                 break;
 
+                //SHOP
+            case "yesShop":
+                controller.getSceneChanger().visitShop();
+                break;
             case "lookAtShopKeeper":
                 controller.getEventShop().lookAtShopKeeper();
                 break;
@@ -73,6 +79,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().exitShop();
                 break;
 
+                //GAME-OVER AND ARROWS
             case "restart":
                 controller.getSceneChanger().exitGameOverScreen();
                 controller.getCounter().setCurrentScene(0);
@@ -83,6 +90,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getPnlShopPrompt().setVisible(false);
                 break;
 
+                //MAIN MENU
             case "newGame":
                 if (controller.getPlayer() == null) {
                     JOptionPane.showMessageDialog(null, "Please select a profile");
@@ -100,6 +108,24 @@ public class ActionHandler implements ActionListener, KeyListener {
                 System.exit(0);
                 break;
 
+                //PORTAL
+            case "enterPortal":
+                int scenes = controller.getMainFrame().getSceneCreator().getBgPanels().size();
+                for (int i = 0; i < scenes; i++) {
+                    controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setOpaque(false);
+                    controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+                    controller.getMainFrame().getSceneCreator().getImageInPanel(i).setOpaque(false);
+                    controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
+                }
+            case "returnMenu":
+                controller.getSceneChanger().showMainMenu();
+                controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
+                controller.getMainFrame().getFinalScenePanel().getPnlButtons().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                break;
+
+                //HELP
             case "requestHelp":
                 HelpBox helpBox = new HelpBox(this);
                 break;
@@ -118,6 +144,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
 
+                //PROFILES
             case "addProfile":
                 String playerName = JOptionPane.showInputDialog("Enter player name");
                 if (playerName != null && !playerName.equals("")) {
@@ -157,9 +184,6 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "easy":
                 controller.createLevelCreator(Difficulty.Easy);
                 controller.startGame();
-                break;
-            case "yesShop":
-                controller.getSceneChanger().visitShop();
                 break;
         }
     }

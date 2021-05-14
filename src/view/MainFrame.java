@@ -530,4 +530,12 @@ public class MainFrame extends JFrame {
     public JPanel getPnlShopPrompt() {
         return pnlShopPrompt;
     }
+
+    /**
+     * Returns portalCreator
+     * @return portalCreator
+     */
+    public PortalCreator getPortalCreator() {
+        return portalCreator;
+    }
 }

@@ -91,13 +91,15 @@ public class SceneCreator {
                 }
                 bgPanels.get(sceneNbr).add(arrowButtons.get(sceneNbr));
 
+                //SKIP ENEMIES
+                /*
                 if (sceneNbr != 0) {
                     arrowButtons.get(sceneNbr).setVisible(false);
                 }
 
-                mainFrame.add(bgPanels.get(sceneNbr));
+                 */
 
-                generateQuestions(sceneNbr);
+                mainFrame.add(bgPanels.get(sceneNbr));
 
                 sceneNbr++;
                 str = br.readLine();
@@ -110,36 +112,21 @@ public class SceneCreator {
     }
 
     /**
-     * Populates the answerPanel with questions depending on scene number
-     * @param sceneNbr given scene number
-     */
-    public void generateQuestions(int sceneNbr) {
-        switch (sceneNbr) {
-            case 2:
-            case 4:
-            case 6:
-            case 8:
-            case 10:
-            case 12:
-            case 14:
-            case 16:
-            case 18:
-            case 20:
-                mainFrame.populateAnswerPanel();
-                break;
-            default:
-                bgPanels.get(sceneNbr).add(bgImages.get(sceneNbr));
-                break;
-        }
-    }
-
-    /**
      * Returns a background panel for use depending on scene number
      * @param sceneNbr given scene number
      * @return a background panel
      */
     public JPanel getBackgroundPanel(int sceneNbr) {
         return bgPanels.get(sceneNbr);
+    }
+
+    /**
+     * Returns image in a background panel depending on the scene number
+     * @param sceneNbr given scene number
+     * @return image (JLabel)
+     */
+    public JLabel getImageInPanel(int sceneNbr) {
+        return bgImages.get(sceneNbr);
     }
 
     /**

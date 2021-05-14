@@ -37,12 +37,12 @@ public class FinalScenePanel {
      */
     public void createFinalScene() {
         pnlFinalScene = new JPanel();
-        pnlFinalScene.setLayout(new BorderLayout());
+        pnlFinalScene.setLayout(null);
         pnlFinalScene.setBounds(0, 0, 1350, 850);
         pnlFinalScene.setVisible(false);
 
         JLabel lblBg = new JLabel();
-        lblBg.setIcon(ImageResizer.resize("resources/background/Win.png", 1350, 850));
+        lblBg.setIcon(ImageResizer.resize("resources/backgrounds/Win.png", 1350, 850));
         lblBg.setBounds(0, 0, 1350, 850);
 
         JLabel lblFinaleName = new JLabel("Climbed The Tower", JLabel.CENTER);
@@ -62,13 +62,13 @@ public class FinalScenePanel {
      * Creates buttons for the finale
      */
     public void createButtons() {
-        pnlButtons = new JPanel(new GridLayout(3, 1));
+        pnlButtons = new JPanel(new GridLayout(2, 1));
 
-        btnReturn = new JButton("Return to Main menu");
+        btnReturn = new JButton("Return to main menu");
         btnExit = new JButton("Exit game");
 
-        btnReturn.setBounds(0, 0, 200, 100);
-        btnReturn.setBounds(0,0, 200, 100);
+        btnReturn.setBounds(0, 0, 200, 150);
+        btnReturn.setBounds(0,0, 200, 150);
 
         changeButtonAttributes();
         addActionsListener();
@@ -96,8 +96,9 @@ public class FinalScenePanel {
         btnReturn.setOpaque(true);
         btnExit.setOpaque(true);
 
-        btnReturn.setFont(new Font("Oswald", Font.BOLD, 15));
-        btnExit.setFont(new Font("Oswald", Font.BOLD, 15));
+        Font buttonFont = new Font("Oswald", Font.BOLD, 15);
+        btnReturn.setFont(buttonFont);
+        btnExit.setFont(buttonFont);
     }
 
     /**
@@ -117,5 +118,13 @@ public class FinalScenePanel {
      */
     public JPanel getPnlFinalScene() {
         return pnlFinalScene;
+    }
+
+    /**
+     * Returns pnlButtons
+     * @return pnlButtons
+     */
+    public JPanel getPnlButtons() {
+        return pnlButtons;
     }
 }

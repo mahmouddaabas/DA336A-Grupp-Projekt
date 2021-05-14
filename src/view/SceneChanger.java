@@ -134,6 +134,17 @@ public class SceneChanger {
     }
 
     /**
+     * Shows the portal after defeating final boss
+     */
+    public void showPortal() {
+        controller.getTimer().stopTimer();
+        controller.getPlayer().setOutOfCombat(true);
+        controller.getMainFrame().getAnswerPanel().setVisible(false);
+        controller.getMainFrame().getLblLevel().setVisible(false);
+        controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(true);
+    }
+
+    /**
      * Shows the game over screen
      */
     public void showGameOverScreen() {

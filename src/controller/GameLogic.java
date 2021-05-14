@@ -37,6 +37,7 @@ public class GameLogic {
 
     private EventMonsters eventMonsters = new EventMonsters(this);
     private EventShop eventShop = new EventShop(this);
+    private EventPortal eventPortal = new EventPortal(this);
 
     /**
      * Constructor for GameLogic that shows the main menu.
@@ -160,18 +161,27 @@ public class GameLogic {
 
                     showShopPrompt();
                   
-                    if (counter.getLevel() < 20) {
+                    if (counter.getLevel() < 21) {
                         mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+                        //LinkedList starts at 0. Level 1 -> index 0
+                        mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
+                        enemyHealthBar.setEnemyHealthPanel(null);
                     }
-                    //LinkedList starts at 0. Level 1 -> index 0
-                    mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
-                    enemyHealthBar.setEnemyHealthPanel(null);
                     counter.setLevel(counter.getLevel() + 1);
+                    if (counter.getLevel() > 20) {
+                        mainFrame.getSceneCreator().getArrowButtons().get(0).setVisible(false);
+                        mainFrame.getSceneCreator().getBackgroundPanel(20).setVisible(true);
+                        sceneChanger.showPortal();
+                        mainFrame.getLblCoins().setVisible(false);
+                        healthBar.getHealthPanel().setVisible(false);
+                    }
                 }
             }
+            /*
             else {
                 ifNotAnswered();
             }
+             */
         }
     }
 
