@@ -154,7 +154,7 @@ public class ObjectCreator {
             while (str != null) {
                 JLabel lblMonster = new JLabel();
 
-                ImageIcon monsterIcon = ImageResizer.resize(str, 150, 150);
+                ImageIcon monsterIcon = ImageResizer.resize(str, 150, 200);
                 lblMonster.setIcon(monsterIcon);
 
                 lblMonster.addMouseListener(new MouseListener() {

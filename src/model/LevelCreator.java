@@ -203,9 +203,9 @@ public class LevelCreator {
                 "\nThe monster appears to like Addition!";
         lookDialogues[6] = "The stone-like gargoyle advances towards you." +
                 "\nThe monster appears to like Subtraction!";
-        lookDialogues[7] = "The ancient warrior cackles menacingly." +
+        lookDialogues[7] = "The ancient warrior stares at you menacingly." +
                 "\nThe monster appears to like Addition!";
-        lookDialogues[8] = "The stalwart knight stands proudly." +
+        lookDialogues[8] = "The knight without a face stands proudly." +
                 "\nThe monster appears to like Multiplication!";
         lookDialogues[9] = "The paladin's armor shines brightly." +
                 "\nThe boss appears to like Division!";
@@ -225,7 +225,7 @@ public class LevelCreator {
                 "\nThe monster appears to like Derivation!";
         lookDialogues[16] = "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask" +
                 "\nThe monster appears to like Integration!";
-        lookDialogues[17] = "You gaze upon the once emperor and glimpse hell's true fury." +
+        lookDialogues[17] = "You gaze upon a GOD." +
                 "\nThe monster appears to like Derivation!";
         lookDialogues[18] = "The gargantuan guardian towers above you." +
                 "\nThe monster appears to like Integration!";
@@ -251,7 +251,7 @@ public class LevelCreator {
         talkDialogues[5] = "\"My blades thirst for your blood!\"";
         talkDialogues[6] = "\"Trespasser!\"";
         talkDialogues[7] = "\"I have a bone to pick with you. NYEEHEHEHEHE!\"";
-        talkDialogues[8] = "\"Turn back adventurer. The royal guards will deal with this situation!\"";
+        talkDialogues[8] = "\".........\"";
         talkDialogues[9] = "\"Forgive me adventurer for what I must do...\"";
 
         talkDialogues[10] = "*HIIISSSSSSSSS!*";
@@ -263,7 +263,7 @@ public class LevelCreator {
         talkDialogues[15] = "*moooaaaannn*";
         talkDialogues[16] = "\"You are strong, adventurer, but are you strong enough?\"";
         talkDialogues[17] = "\"You braved the depths of hell to reach me, but the hand of man, which deals in false justice and forsaken love, can never hope to defeat the lord master of hell.\"";
-        talkDialogues[18] = "\"Puny mortal! You are unworthy of meeting my master!\"";
+        talkDialogues[18] = "\"Puny mortal! You are unworthy of meeting my precious underlings!\"";
         talkDialogues[19] = "\"Excellent! People keep asking if I'm back, but yeah, I am the ONE!\"";
 
         return talkDialogues;

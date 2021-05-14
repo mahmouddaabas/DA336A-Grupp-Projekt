@@ -177,9 +177,11 @@ public class GameLogic {
                     }
                 }
             }
-            else {
+            /*else {
                 ifNotAnswered();
             }
+
+             */
         }
     }
 
