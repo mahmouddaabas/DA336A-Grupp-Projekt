@@ -6,14 +6,16 @@ package model.questions;
  * roots share the same bounds. Need to call generateNewQuestion() to get a question to generate the numbers and
  * answers.
  */
-public class MQQuadraticExpand extends QuadraticQuestion {
+public class MQQuadraticExpand extends QuadraticQuestions {
     /**
      * Constructor that initializes the instance variables for the bounds. All numerators and all denominators of the
      * roots share the same bounds.
      * @param rootNumeratorLowerBound the lowest value the numerators of the roots can have.
      * @param rootNumeratorUpperBound the highest value the numerators of the roots can have.
-     * @param rootDenominatorLowerBound the lowest value the denominators of the roots can have.
-     * @param rootDenominatorUpperBound the highest value the denominators of the roots can have.
+     * @param rootDenominatorLowerBound the lowest value the denominators of the roots can have. Should be a positive
+     *                                  number.
+     * @param rootDenominatorUpperBound the highest value the denominators of the roots can have. Should be a positive
+     *                                  number.
      */
     public MQQuadraticExpand(int rootNumeratorLowerBound, int rootNumeratorUpperBound,
                              int rootDenominatorLowerBound, int rootDenominatorUpperBound) {
@@ -21,24 +23,19 @@ public class MQQuadraticExpand extends QuadraticQuestion {
     }
 
     /**
-     * Returns the math question.
-     * @return the question as a string.
+     * Returns the quadratic question.
+     * @return the quadratic question.
      */
-    public String getQuestion() {
-        return "What is the expansion of f(x) = " + getAnswers()[getCorrectAnswerIndex()].toStringSimplified() + "?";
+    protected String getQuadraticQuestion(Quadratic questionQuadratic) {
+        return "What is the expansion of f(x) = " + questionQuadratic.toStringSimplified() + "?";
     }
 
     /**
-     * Makes the possible expanded quadratic answers into strings.
+     * Returns the answer string for an expanded quadratic answer.
+     * @param quadratic the Quadratic to convert to a string.
+     * @return the answer string for an expanded quadratic answer.
      */
-    protected void generateAnswerStrings() {
-        if (getAnswers() != null) {
-            String[] answerStr = new String[4];
-            answerStr[0] = "1. " + getAnswers()[0].toStringExpanded();
-            answerStr[1] = "2. " + getAnswers()[1].toStringExpanded();
-            answerStr[2] = "3. " + getAnswers()[2].toStringExpanded();
-            answerStr[3] = "4. " + getAnswers()[3].toStringExpanded();
-            setAnswerStr(answerStr);
-        }
+    protected String answerStringQuadratic(Quadratic quadratic) {
+        return quadratic.toStringExpanded();
     }
 }

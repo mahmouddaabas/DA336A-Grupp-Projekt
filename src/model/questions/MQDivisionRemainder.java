@@ -1,13 +1,14 @@
 package model.questions;
 
 import java.lang.Math;
+import java.util.Arrays;
 
 /**
  * @author Mattias Bengtsson
  * Creates a math question that divides two integer numbers and gives a remainder answer. Need to call
  * generateNewQuestion() to get a question to generate the numbers and answers.
  */
-public class MQDivisionRemainder2Numbers extends MathQuestions {
+public class MQDivisionRemainder extends MathQuestions {
     private int[][] answers;
     private int numeratorLowerBound;
     private int numeratorUpperBound;
@@ -18,13 +19,13 @@ public class MQDivisionRemainder2Numbers extends MathQuestions {
 
     /**
      * Constructor that initializes the instance variables for the bounds.
-     * @param numeratorLowerBound the lowest value the numerator can have.
+     * @param numeratorLowerBound the lowest value the numerator can have. Should be greater than denominatorUpperBound.
      * @param numeratorUpperBound the highest value the numerator can have.
      * @param denominatorLowerBound the lowest value the denominator can have.
      * @param denominatorUpperBound the highest value the denominator can have.
      */
-    public MQDivisionRemainder2Numbers(int numeratorLowerBound, int numeratorUpperBound,
-                                       int denominatorLowerBound, int denominatorUpperBound) {
+    public MQDivisionRemainder(int numeratorLowerBound, int numeratorUpperBound,
+                               int denominatorLowerBound, int denominatorUpperBound) {
         super();
         this.numeratorLowerBound = numeratorLowerBound;
         this.numeratorUpperBound = numeratorUpperBound;
@@ -43,13 +44,30 @@ public class MQDivisionRemainder2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates a new question within the same bounds and the answers.
+     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
      */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
+    protected void generateAnswers() {
         generateNumbers();
-        generateAnswers();
-        generateAnswerStrings();
+        createNewAnswerArray();
+        answers[getCorrectAnswerIndex()][0] = numerator / denominator;
+        answers[getCorrectAnswerIndex()][1] = numerator % denominator;
+
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i][0] == Integer.MIN_VALUE) {
+                answers[i] = createFakeAnswer();
+            }
+        }
+    }
+
+    /**
+     * Creates a two-dimensional array with all elements set to the minimum integer value as a value that will not be
+     * used.
+     */
+    private void createNewAnswerArray() {
+        answers = new int[getNUM_OF_ANSWERS()][2];
+        for (int[] subArray : answers) {
+            Arrays.fill(subArray, Integer.MIN_VALUE);
+        }
     }
 
     /**
@@ -62,21 +80,6 @@ public class MQDivisionRemainder2Numbers extends MathQuestions {
     }
 
     /**
-     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
-     */
-    private void generateAnswers() {
-        answers = Utilities.createIntAnswerArray(2);
-        answers[getCorrectAnswerIndex()][0] = numerator / denominator;
-        answers[getCorrectAnswerIndex()][1] = numerator % denominator;
-
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i][0] == Integer.MIN_VALUE) {
-                answers[i] = createFakeAnswer();
-            }
-        }
-    }
-
-    /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
      * values in the answer array.
      * @return a fake answer.
@@ -85,41 +88,40 @@ public class MQDivisionRemainder2Numbers extends MathQuestions {
         int[] fakeAnswer = new int[2];
         int fakeNumerator;
         while (true) {
-            fakeNumerator = Utilities.randomInt(numeratorLowerBound, numeratorUpperBound);
+            fakeNumerator = Utilities.randomIntNotZero(Math.max(numeratorLowerBound, denominator), numeratorUpperBound);
             fakeAnswer[0] = fakeNumerator / denominator;
             fakeAnswer[1] = fakeNumerator % denominator;
-            if (!(fakeAnswer[0] == answers[0][0] && fakeAnswer[1] == answers[0][1]) &&
-                    !(fakeAnswer[0] == answers[1][0] && fakeAnswer[1] == answers[1][1]) &&
-                    !(fakeAnswer[0] == answers[2][0] && fakeAnswer[1] == answers[2][1]) &&
-                    !(fakeAnswer[0] == answers[3][0] && fakeAnswer[1] == answers[3][1])) {
+            if (checkFakeAnswer(fakeAnswer)) {
                 return fakeAnswer;
             }
         }
     }
 
     /**
+     * Checks the specified incorrect answer to see if it is not equal to another element in the answer array.
+     * @param fakeAnswer the incorrect answer to check.
+     * @return true if the incorrect answer is unique, false otherwise.
+     */
+    protected boolean checkFakeAnswer(int[] fakeAnswer) {
+        for (int[] answer : answers) {
+            if (fakeAnswer[0] == answer[0] && fakeAnswer[1] == answer[1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Makes the possible int + remainder answers into strings.
      */
-    private void generateAnswerStrings() {
-        String[] answerStr = new String[4];
-
-        answerStr[0] = "1. " + answers[0][0];
-        if (answers[0][1] != 0) {
-            answerStr[0] += " R " + answers[0][1];
+    protected void generateAnswerStrings() {
+        String[] answerStr = new String[getNUM_OF_ANSWERS()];
+        for (int i = 0; i < getNUM_OF_ANSWERS(); i++) {
+            answerStr[i] = (i+1) + ".  " + answers[i][0];
+            if (answers[i][1] != 0) {
+                answerStr[i] += " R " + answers[i][1];
+            }
         }
-        answerStr[1] = "2. " + answers[1][0];
-        if (answers[1][1] != 0) {
-            answerStr[1] += " R " + answers[1][1];
-        }
-        answerStr[2] = "3. " + answers[2][0];
-        if (answers[2][1] != 0) {
-            answerStr[2] += " R " + answers[2][1];
-        }
-        answerStr[3] = "4. " + answers[3][0];
-        if (answers[3][1] != 0) {
-            answerStr[3] += " R " + answers[3][1];
-        }
-
         setAnswerStr(answerStr);
     }
 }

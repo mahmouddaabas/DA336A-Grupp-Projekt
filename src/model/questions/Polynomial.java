@@ -174,7 +174,7 @@ public class Polynomial {
         } else {
             if (coefficients[index] == -1 && exponents[index] > 0) {
                 termStr.append("-");
-            } else if (!(coefficients[index] == 1 && exponents[index] != 0)) {
+            } else if (!(coefficients[index] == 1 && exponents[index] > 0)) {
                 termStr.append(coefficients[index]);
             }
         }

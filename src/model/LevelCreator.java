@@ -67,28 +67,28 @@ public class LevelCreator {
     private MathQuestions[] createEasyMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
-        mathQuestions[0] = new MQAddition2Numbers(1, 5, 0, 1, 5, 0);
-        mathQuestions[1] = new MQSubtraction2Numbers(1, 9,0, 1, 9,0, false);
-        mathQuestions[2] = new MQMultiplication2Numbers(1, 6, 0, 1, 6, 0);
-        mathQuestions[3] = new MQAdditionManyNumbers(1, 5, 0, 3);
-        mathQuestions[4] = new MQDivisionRemainder2Numbers(10, 30, 1, 5);
+        mathQuestions[0] = new MQ2NumbersAddition(1, 5, 0, 1, 5, 0);
+        mathQuestions[1] = new MQ2NumbersSubtraction(1, 9,0, 1, 9,0, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(1, 6, 0, 1, 6, 0);
+        mathQuestions[3] = new MQManyNumbersAddition(1, 5, 0, 3);
+        mathQuestions[4] = new MQDivisionRemainder(10, 30, 1, 5);
 
-        mathQuestions[5] = new MQAddition2Numbers(1, 10, 0, -10, -1, 0);
-        mathQuestions[6] = new MQSubtraction2Numbers(1, 10, 0, -10, -1, 0, true);
-        mathQuestions[7] = new MQAdditionManyNumbers(-10, 10, 0, 3);
-        mathQuestions[8] = new MQMultiplicationManyNumbers(1, 5, 0, 3);
-        mathQuestions[9] = new MQDivisionDecimal2Numbers(-100, 100, 0, 1, 5, 0, 2);
+        mathQuestions[5] = new MQ2NumbersAddition(1, 10, 0, -10, -1, 0);
+        mathQuestions[6] = new MQ2NumbersSubtraction(1, 10, 0, -10, -1, 0, true);
+        mathQuestions[7] = new MQManyNumbersAddition(-10, 10, 0, 3);
+        mathQuestions[8] = new MQManyNumbersMultiplication(1, 5, 0, 3);
+        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, 1, 5, 0, 2);
 
-        mathQuestions[10] = new MQMultiplication2Numbers(-0.9, 0.9, 1, -0.9, 0.9, 1);
-        mathQuestions[11] = new MQMultiplicationManyFractions(-5, 5, -5, 5, 2);
-        mathQuestions[12] = new MQAdditionManyFractions(1, 8, 1, 4, 2);
-        mathQuestions[13] = new MQDivision2Fractions(1, 5, 1, 5);
-        mathQuestions[14] = new MQAdditionManyFractions(1, 4, 1, 4, 3);
+        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 1);
+        mathQuestions[11] = new MQFractionsMultiplication(-5, 5, -5, 5, 2);
+        mathQuestions[12] = new MQFractionsAddition(1, 8, 1, 4, 2);
+        mathQuestions[13] = new MQFractionsDivision(1, 5, 1, 5, 2);
+        mathQuestions[14] = new MQFractionsAddition(1, 4, 1, 4, 3);
 
-        mathQuestions[15] = new MQDerivationPolynomial(1, 10, 0, 5, 1);
-        mathQuestions[16] = new MQIntegrationPolynomial(1, 10, 0, 4, 1);
-        mathQuestions[17] = new MQDerivationPolynomial(-9, 9, -4, -2, 1);
-        mathQuestions[18] = new MQIntegrationPolynomial(-9, 9, -5, -2, 1);
+        mathQuestions[15] = new MQPolynomialDerivation(1, 10, 0, 5, 1);
+        mathQuestions[16] = new MQPolynomialIntegration(1, 10, 0, 4, 1);
+        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -4, -2, 1);
+        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -5, -2, 1);
         mathQuestions[19] = new MQFinalBossRandom(difficulty);
 
         return mathQuestions;
@@ -101,28 +101,28 @@ public class LevelCreator {
     private MathQuestions[] createMediumMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
-        mathQuestions[0] = new MQAddition2Numbers(1, 9, 0, 1, 9, 0);
-        mathQuestions[1] = new MQSubtraction2Numbers(1, 18,0, 1, 18,0, false);
-        mathQuestions[2] = new MQMultiplication2Numbers(2, 10, 0, 2, 10, 0);
-        mathQuestions[3] = new MQAdditionManyNumbers(1, 9, 0, 3);
-        mathQuestions[4] = new MQDivisionRemainder2Numbers(10, 100, 3, 10);
+        mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0, 1, 9, 0);
+        mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 18,0, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(2, 10, 0, 2, 10, 0);
+        mathQuestions[3] = new MQManyNumbersAddition(1, 9, 0, 3);
+        mathQuestions[4] = new MQDivisionRemainder(10, 100, 3, 10);
 
-        mathQuestions[5] = new MQAddition2Numbers(-10, 15, 0, -15, 10, 0);
-        mathQuestions[6] = new MQSubtraction2Numbers(-18, 27, 0, -27, 18, 0, true);
-        mathQuestions[7] = new MQAdditionManyNumbers(-30, 30, 0, 3);
-        mathQuestions[8] = new MQMultiplicationManyNumbers(-5, 5, 0, 3);
-        mathQuestions[9] = new MQDivisionDecimal2Numbers(-100, 100, 0, -10, 10, 0, 2);
+        mathQuestions[5] = new MQ2NumbersAddition(-10, 15, 0, -15, 10, 0);
+        mathQuestions[6] = new MQ2NumbersSubtraction(-18, 27, 0, -27, 18, 0, true);
+        mathQuestions[7] = new MQManyNumbersAddition(-30, 30, 0, 3);
+        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 3);
+        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, -10, 10, 0, 2);
 
-        mathQuestions[10] = new MQMultiplication2Numbers(-0.9, 0.9, 2, -0.9, 0.9, 2);
-        mathQuestions[11] = new MQMultiplicationManyFractions(-10, 10, -10, 10, 2);
-        mathQuestions[12] = new MQAdditionManyFractions(-10, 10, -10, 10, 2);
-        mathQuestions[13] = new MQDivision2Fractions(-10, 10, 1, 10);
-        mathQuestions[14] = new MQAdditionManyFractions(-5, 5, -5, 5, 3);
+        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 2, -0.9, 0.9, 2);
+        mathQuestions[11] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
+        mathQuestions[12] = new MQFractionsAddition(-10, 10, -10, 10, 2);
+        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10, 2);
+        mathQuestions[14] = new MQFractionsAddition(-5, 5, -5, 5, 3);
 
-        mathQuestions[15] = new MQDerivationPolynomial(1, 20, 0, 9, 1);
-        mathQuestions[16] = new MQIntegrationPolynomial(1, 20, 0, 8, 1);
-        mathQuestions[17] = new MQDerivationPolynomial(-9, 9, -8, -2, 1);
-        mathQuestions[18] = new MQIntegrationPolynomial(-9, 9, -9, -2, 1);
+        mathQuestions[15] = new MQPolynomialDerivation(1, 20, 0, 9, 1);
+        mathQuestions[16] = new MQPolynomialIntegration(1, 20, 0, 8, 1);
+        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -8, -2, 1);
+        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -9, -2, 1);
         mathQuestions[19] = new MQFinalBossRandom(difficulty);
 
         return mathQuestions;
@@ -135,28 +135,28 @@ public class LevelCreator {
     private MathQuestions[] createHardMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
-        mathQuestions[0] = new MQAddition2Numbers(1.0, 9.0, 1, 1.0, 9.0, 1);
-        mathQuestions[1] = new MQSubtraction2Numbers(0.1, 18.0,1, 0.1, 18.0,1, false);
-        mathQuestions[2] = new MQMultiplication2Numbers(11, 20, 0, 1.0, 2.0, 2);
-        mathQuestions[3] = new MQAdditionManyNumbers(1.0, 9.0, 1, 3);
-        mathQuestions[4] = new MQDivisionRemainder2Numbers(12, 120, 6, 12);
+        mathQuestions[0] = new MQ2NumbersAddition(1.0, 9.0, 1, 1.0, 9.0, 1);
+        mathQuestions[1] = new MQ2NumbersSubtraction(0.1, 18.0,1, 0.1, 18.0,1, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(11, 20, 0, 1.0, 2.0, 2);
+        mathQuestions[3] = new MQManyNumbersAddition(1.0, 9.0, 1, 3);
+        mathQuestions[4] = new MQDivisionRemainder(12, 120, 6, 12);
 
-        mathQuestions[5] = new MQAddition2Numbers(-99, 99, 0, -99, 99, 0);
-        mathQuestions[6] = new MQSubtraction2Numbers(-99, 99, 0, -99, 99, 0, true);
-        mathQuestions[7] = new MQAdditionManyNumbers(-10.0, 10.0, 2, 4);
-        mathQuestions[8] = new MQMultiplicationManyNumbers(-5, 5, 0, 4);
-        mathQuestions[9] = new MQDivisionDecimal2Numbers(-100, 100, 1, -10, 10, 1, 2);
+        mathQuestions[5] = new MQ2NumbersAddition(-99, 99, 0, -99, 99, 0);
+        mathQuestions[6] = new MQ2NumbersSubtraction(-99, 99, 0, -99, 99, 0, true);
+        mathQuestions[7] = new MQManyNumbersAddition(-10.0, 10.0, 2, 4);
+        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 4);
+        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 1, -10, 10, 1, 2);
 
-        mathQuestions[10] = new MQMultiplication2Numbers(-0.9, 0.9, 1, -0.9, 0.9, 3);
-        mathQuestions[11] = new MQMultiplicationManyFractions(-6, 6, -6, 6, 3);
-        mathQuestions[12] = new MQAdditionManyFractions(5, 30, 3, 10, 2);
-        mathQuestions[13] = new MQDivision2Fractions(-20, 20, -20, 20);
-        mathQuestions[14] = new MQAdditionManyFractions(-10, 10, -10, 10, 3);
+        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 3);
+        mathQuestions[11] = new MQFractionsMultiplication(-6, 6, -6, 6, 3);
+        mathQuestions[12] = new MQFractionsAddition(5, 30, 3, 10, 2);
+        mathQuestions[13] = new MQFractionsDivision(-20, 20, -20, 20, 2);
+        mathQuestions[14] = new MQFractionsAddition(-10, 10, -10, 10, 3);
 
-        mathQuestions[15] = new MQDerivationPolynomial(5, 30, 0, 20, 1);
-        mathQuestions[16] = new MQIntegrationPolynomial(5, 30, 0, 19, 1);
-        mathQuestions[17] = new MQDerivationPolynomial(-20, 20, -19, -2, 1);
-        mathQuestions[18] = new MQIntegrationPolynomial(-20, 20, -20, -2, 1);
+        mathQuestions[15] = new MQPolynomialDerivation(5, 30, 0, 20, 1);
+        mathQuestions[16] = new MQPolynomialIntegration(5, 30, 0, 19, 1);
+        mathQuestions[17] = new MQPolynomialDerivation(-20, 20, -19, -2, 1);
+        mathQuestions[18] = new MQPolynomialIntegration(-20, 20, -20, -2, 1);
         mathQuestions[19] = new MQFinalBossRandom(difficulty);
 
         return mathQuestions;

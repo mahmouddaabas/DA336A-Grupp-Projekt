@@ -2,7 +2,6 @@ package model.questions;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -11,7 +10,6 @@ import java.util.Random;
  */
 public class Utilities {
     private static Random rand = new Random();
-    private static final int NUM_OF_ANSWERS = 4;
 
     /**
      * Generates a random integer between the two bounds.
@@ -35,23 +33,6 @@ public class Utilities {
         while (true) {
             randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
             if (randNum != 0) {
-                return randNum;
-            }
-        }
-    }
-
-    /**
-     * Generates a random non-zero integer between the two bounds. Used to avoid divide-by-zero issues and other similar
-     * issues.
-     * @param lowerBound the lowest value the random integer can have.
-     * @param upperBound the highest value the random integer can have.
-     * @return the random non-zero integer between the bounds.
-     */
-    protected static int randomIntNotZeroOrOne(int lowerBound, int upperBound) {
-        int randNum;
-        while (true) {
-            randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
-            if (randNum != 0 && randNum != 1) {
                 return randNum;
             }
         }
@@ -131,20 +112,6 @@ public class Utilities {
      * @param number the number to check.
      * @return the number enclosed in parenthesis if negative, unchanged otherwise.
      */
-    protected static String parenthesisIfNegativeString(int number) {
-        if (number < 0) {
-            return "(" + number + ")";
-        } else {
-            return Integer.toString(number);
-        }
-    }
-
-    /**
-     * Checks if a number is a negative number and if so returns it with added parenthesis, otherwise returns the number
-     * unchanged. Used to add correct mathematical syntax to the questions.
-     * @param number the number to check.
-     * @return the number enclosed in parenthesis if negative, unchanged otherwise.
-     */
     protected static String parenthesisIfNegativeString(BigDecimal number) {
         if (number.compareTo(new BigDecimal(0)) < 0) {
             return "(" + number.toString() + ")";
@@ -195,75 +162,5 @@ public class Utilities {
         numberStr = numberStr.replaceAll("-", "₋");
 
         return numberStr;
-    }
-
-    /**
-     * Creates an array with all elements set to the minimum integer value as a value that will not be used.
-     * @return the answer array.
-     */
-    protected static int[] createIntAnswerArray() {
-        int[] answers = new int[NUM_OF_ANSWERS];
-        Arrays.fill(answers, Integer.MIN_VALUE);
-        return answers;
-    }
-
-    /**
-     * Creates a two-dimensional array with all elements set to the minimum integer value as a value that will not be
-     * used.
-     * @return the answer array.
-     */
-    protected static int[][] createIntAnswerArray(int numOfNumbers) {
-        int[][] answers = new int[NUM_OF_ANSWERS][numOfNumbers];
-        for (int[] subArray : answers) {
-            Arrays.fill(subArray, Integer.MIN_VALUE);
-        }
-        return answers;
-    }
-
-    /**
-     * Creates an array with all elements set to the minimum integer value with a scale of 0 as a value that will not
-     * be used.
-     * @return the answer array.
-     */
-    protected static BigDecimal[] createBigDecimalAnswerArray() {
-        BigDecimal[] answers = new BigDecimal[NUM_OF_ANSWERS];
-        Arrays.fill(answers, new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP));
-        return answers;
-    }
-
-    /**
-     * Creates an array of Fractions with all the elements set to default values.
-     * @return the answer array.
-     */
-    protected static Fraction[] createFractionAnswerArray() {
-        Fraction[] answers = new Fraction[NUM_OF_ANSWERS];
-        for (int i = 0; i < answers.length; i++) {
-            answers[i] = new Fraction();
-        }
-        return answers;
-    }
-
-    /**
-     * Creates an array of Polynomials with all the elements set to default values.
-     * @return the answer array.
-     */
-    protected static Polynomial[] createPolynomialAnswerArray() {
-        Polynomial[] answers = new Polynomial[NUM_OF_ANSWERS];
-        for (int i = 0; i < answers.length; i++) {
-            answers[i] = new Polynomial(1);
-        }
-        return answers;
-    }
-
-    /**
-     * Creates an array of Quadratics with all the elements set to default values.
-     * @return the answer array.
-     */
-    protected static Quadratic[] createQuadraticAnswerArray() {
-        Quadratic[] answers = new Quadratic[NUM_OF_ANSWERS];
-        for (int i = 0; i < answers.length; i++) {
-            answers[i] = new Quadratic();
-        }
-        return answers;
     }
 }
