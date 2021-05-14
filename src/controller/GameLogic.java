@@ -156,7 +156,7 @@ public class GameLogic {
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
-                    player.setDamageDealt(1);
+                    resetDamage();
 
                     showShopPrompt();
                   
@@ -256,6 +256,7 @@ public class GameLogic {
             //Sets the shield to false and hides it after successfully blocking a hit.
             shopItems.getShield().setEquipped(false);
             mainFrame.getShieldStatus().setVisible(false);
+            playerActions.setUsedShield(false);
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             player.setDamageTaken(2);
@@ -281,6 +282,14 @@ public class GameLogic {
                     + "\n" + "(Would you like to visit the shop?)");
             mainFrame.getPnlShopPrompt().setVisible(true);
         }
+    }
+
+    /**
+     * Resets the damage and potion usability.
+     */
+    public void resetDamage() {
+        player.setDamageDealt(1);
+        playerActions.setUsedPotion(false);
     }
 
     /**
