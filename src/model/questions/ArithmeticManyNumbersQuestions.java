@@ -1,6 +1,8 @@
 package model.questions;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
  * @author Mattias Bengtsson
@@ -96,8 +98,8 @@ public abstract class ArithmeticManyNumbersQuestions extends MathQuestions {
      * Generates the two numbers and creates the correct answer from them, and creates 3 unique incorrect answers.
      */
     protected void generateAnswers() {
+        createNewAnswerArray();
         generateNumbers();
-        answers = Utilities.createBigDecimalAnswerArray(getNUM_OF_ANSWERS());
         answers[getCorrectAnswerIndex()] = createCorrectAnswer();
 
         for (int i = 0; i < answers.length; i++) {
@@ -105,6 +107,15 @@ public abstract class ArithmeticManyNumbersQuestions extends MathQuestions {
                 answers[i] = createFakeAnswer();
             }
         }
+    }
+
+    /**
+     * Creates an array with all elements set to the minimum integer value with a scale of 0 as a value that will not
+     * be used.
+     */
+    private void createNewAnswerArray() {
+        answers = new BigDecimal[getNUM_OF_ANSWERS()];
+        Arrays.fill(answers, new BigDecimal(Integer.MIN_VALUE).setScale(0, RoundingMode.HALF_UP));
     }
 
     /**
@@ -146,6 +157,10 @@ public abstract class ArithmeticManyNumbersQuestions extends MathQuestions {
      * Makes the possible BigDecimal answers into strings.
      */
     protected void generateAnswerStrings() {
-        generateAnswerStringsBigDecimal(answers);
+        String[] answerStr = new String[getNUM_OF_ANSWERS()];
+        for (int i = 0; i < answerStr.length; i++) {
+            answerStr[i] = (i+1) + ".  " + answers[i].toString();
+        }
+        setAnswerStr(answerStr);
     }
 }

@@ -1,7 +1,6 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * @author Mattias Bengtsson
@@ -11,8 +10,6 @@ import java.math.RoundingMode;
  * aid with the precision and rounding.
  */
 public class MQManyNumbersMultiplication extends ArithmeticManyNumbersQuestions {
-    private BigDecimal[] answers;
-
     /**
      * Constructor that initializes the instance variables for the bounds, the number of decimal places and the amount
      * of numbers. All numbers share the same bounds.
@@ -23,7 +20,7 @@ public class MQManyNumbersMultiplication extends ArithmeticManyNumbersQuestions 
      */
     public MQManyNumbersMultiplication(double numberLowerBound, double numberUpperBound, int numOfDecimals,
                                        int numOfNumbers) {
-        super(numberLowerBound, numberUpperBound, numOfDecimals, numOfNumbers, '-');
+        super(numberLowerBound, numberUpperBound, numOfDecimals, numOfNumbers, '*');
     }
 
     /**
@@ -40,26 +37,41 @@ public class MQManyNumbersMultiplication extends ArithmeticManyNumbersQuestions 
 
     /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
-     * values in the answer array.
+     * values in the answer array. Answers that would technically not be possible from multiplication of the possible
+     * numbers can be created.
      * @return a fake answer.
      */
     protected BigDecimal createFakeAnswer() {
         BigDecimal fakeAnswer;
-        double bound1 = 1.0;
-        double bound2 = 1.0;
-        for (int i = 0; i < getNumOfNumbers(); i++) {
-            bound1 *= getNumberLowerBound();
-            bound2 *= getNumberUpperBound();
-        }
-        double lowerBoundAnswer = Math.min(bound1, bound2);
-        double upperBoundAnswer = Math.max(bound1, bound2);
+        double[] bounds = calculateFakeBounds();
+        double lowerBoundAnswer = bounds[0];
+        double upperBoundAnswer = bounds[1];
         int numOfDecimalsAnswer = getAnswerAt(getCorrectAnswerIndex()).scale();
         while (true) {
-            fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer,
-                    upperBoundAnswer, numOfDecimalsAnswer);
+            fakeAnswer = Utilities.randomBigDecimal(lowerBoundAnswer, upperBoundAnswer, numOfDecimalsAnswer);
             if (checkFakeAnswer(fakeAnswer)) {
                 return fakeAnswer;
             }
         }
+    }
+
+    /**
+     * Calculates and returns the possible lower and upper bounds for the fake answers.
+     * @return the possible lower and upper bounds for the fake answers.
+     */
+    private double[] calculateFakeBounds() {
+        double potentialBound = Math.pow(getNumberLowerBound(), getNumOfNumbers());
+        double lowerBound = potentialBound;
+        double upperBound = potentialBound;
+        for (int i = 1; i < getNumOfNumbers(); i++) {
+            potentialBound = Math.pow(getNumberLowerBound(), getNumOfNumbers() - i) * Math.pow(getNumberUpperBound(), i);
+            if (potentialBound < lowerBound) {
+                lowerBound = potentialBound;
+            }
+            if (potentialBound > upperBound) {
+                upperBound = potentialBound;
+            }
+        }
+        return new double[]{lowerBound, upperBound};
     }
 }

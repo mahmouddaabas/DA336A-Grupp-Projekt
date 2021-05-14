@@ -1,7 +1,5 @@
 package model.questions;
 
-import java.math.BigDecimal;
-
 /**
  * @author Mattias Bengtsson
  * Abstract superclass for the math questions. generateNewQuestion() needs to be called for all question types whenever
@@ -52,29 +50,6 @@ public abstract class MathQuestions {
      */
     public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
-    }
-
-    /**
-     * Makes the possible BigDecimal answers into strings.
-     */
-    protected void generateAnswerStringsBigDecimal(BigDecimal[] answers) {
-        if (answers != null && answers.length == NUM_OF_ANSWERS) {
-            for (int i = 0; i < answerStr.length; i++) {
-                answerStr[i] = (i+1) + ".  " + answers[i].toString();
-            }
-        }
-    }
-
-    /**
-     * Makes the possible fraction int answers into strings.
-     * @param answers the array with the int fraction answers.
-     */
-    protected void generateAnswerStringsFractions(Fraction[] answers) {
-        if (answers != null && answers.length == NUM_OF_ANSWERS) {
-            for (int i = 0; i < answerStr.length; i++) {
-                answerStr[i] = (i+1) + ".  " + answers[i].toString();
-            }
-        }
     }
 
     /**

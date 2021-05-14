@@ -28,20 +28,40 @@ public abstract class QuadraticQuestions extends MathQuestions {
     }
 
     /**
-     * Returns the answer array of Quadratics.
-     * @return the answer array of Quadratics.
+     * Returns the math question.
+     * @return the question as a string.
      */
-    protected Quadratic[] getAnswers() {
-        return answers;
+    public String getQuestion() {
+        return getQuadraticQuestion(answers[getCorrectAnswerIndex()]);
     }
 
     /**
-     * Generates a new question within the same bounds and the answers.
+     * Returns the quadratic question.
+     * @return the quadratic question.
      */
-    public void generateNewQuestion() {
-        newCorrectAnswerIndex();
-        generateAnswers();
-        generateAnswerStrings();
+    protected abstract String getQuadraticQuestion(Quadratic questionQuadratic);
+
+    /**
+     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
+     */
+    protected void generateAnswers() {
+        createNewAnswerArray();
+        answers[getCorrectAnswerIndex()] = generateQuadratic();
+        for (int i = 0; i < answers.length; i++) {
+            if (i != getCorrectAnswerIndex()) {
+                answers[i] = createFakeAnswer();
+            }
+        }
+    }
+
+    /**
+     * Creates an array of Quadratics with all the elements set to default values.
+     */
+    private void createNewAnswerArray() {
+        answers = new Quadratic[getNUM_OF_ANSWERS()];
+        for (int i = 0; i < answers.length; i++) {
+            answers[i] = new Quadratic();
+        }
     }
 
     /**
@@ -57,19 +77,6 @@ public abstract class QuadraticQuestions extends MathQuestions {
         Fraction root2 = new Fraction(numerator2, denominator2);
 
         return new Quadratic(root1, root2);
-    }
-
-    /**
-     * Generates the correct answer and 3 fake answers in the answer array. The answers are all unique.
-     */
-    private void generateAnswers() {
-        answers = Utilities.createQuadraticAnswerArray(getNUM_OF_ANSWERS());
-        answers[getCorrectAnswerIndex()] = generateQuadratic();
-        for (int i = 0; i < answers.length; i++) {
-            if (i != getCorrectAnswerIndex()) {
-                answers[i] = createFakeAnswer();
-            }
-        }
     }
 
     /**
@@ -91,5 +98,18 @@ public abstract class QuadraticQuestions extends MathQuestions {
     /**
      * Makes the possible Quadratic answers into strings.
      */
-    protected abstract void generateAnswerStrings();
+    protected void generateAnswerStrings() {
+        String[] answerStr = new String[getNUM_OF_ANSWERS()];
+        for (int i = 0; i < answerStr.length; i++) {
+            answerStr[i] = (i+1) + ".  " + answerStringQuadratic(answers[i]);
+        }
+        setAnswerStr(answerStr);
+    }
+
+    /**
+     * Returns the answer string of the quadratic question type.
+     * @param quadratic the Quadratic to convert to a string.
+     * @return the answer string of the quadratic question type.
+     */
+    protected abstract String answerStringQuadratic(Quadratic quadratic);
 }

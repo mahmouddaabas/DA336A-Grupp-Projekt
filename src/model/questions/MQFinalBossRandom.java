@@ -51,7 +51,6 @@ public class MQFinalBossRandom extends MathQuestions {
      * Returns the question from the random question.
      * @return the question from the random question.
      */
-    @Override
     public String getQuestion() {
         return randomQuestion.getQuestion();
     }
@@ -154,5 +153,19 @@ public class MQFinalBossRandom extends MathQuestions {
                 randomQuestion = new MQPolynomialIntegration(-10, 10, -30, 30, 2);
                 break;
         }
+    }
+
+    /**
+     * Generates the answers for the random question.
+     */
+    protected void generateAnswers() {
+        randomQuestion.generateAnswers();
+    }
+
+    /**
+     * Generates the answer strings for the random question.
+     */
+    protected void generateAnswerStrings() {
+        randomQuestion.generateAnswerStrings();
     }
 }

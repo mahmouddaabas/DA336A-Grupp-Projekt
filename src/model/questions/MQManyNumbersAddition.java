@@ -1,7 +1,6 @@
 package model.questions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * @author Mattias Bengtsson
@@ -11,8 +10,6 @@ import java.math.RoundingMode;
  * of double to aid with the precision and rounding.
  */
 public class MQManyNumbersAddition extends ArithmeticManyNumbersQuestions {
-    private BigDecimal[] answers;
-
     /**
      * Constructor that initializes the instance variables for the bounds, the number of decimal places and the amount
      * of numbers. All numbers share the same bounds.

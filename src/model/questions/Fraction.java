@@ -20,6 +20,14 @@ public class Fraction {
     }
 
     /**
+     * Initializes the instance variables by copying them from another Fraction object.
+     * @param fraction the Fraction to copy.
+     */
+    public Fraction(Fraction fraction) {
+        this(fraction.getNumerator(), fraction.getDenominator());
+    }
+
+    /**
      * Initializes the instance variables with values of 0. This constructor is used to generate a fraction representing
      * an unassigned value as a fraction with both the numerator and the denominator as 0 will not be used in the
      * questions.

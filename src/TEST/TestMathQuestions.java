@@ -1,5 +1,6 @@
 package TEST;
 
+import model.Difficulty;
 import model.questions.*;
 
 /**
@@ -28,22 +29,22 @@ public class TestMathQuestions {
         boolean isAnswered;
 
         // choose which type of question
-        mathQuestion = new MQ2NumbersAddition(0.1, 9.9, 0, 0, 7, 0);
+//        mathQuestion = new MQ2NumbersAddition(0.1, 9.9, 1, 0, 7, 1);
 //        mathQuestion = new MQ2NumbersMultiplication(1, 9, 2, 1, 9, 1);
-//        mathQuestion = new MQ2NumbersSubtraction(1, 9, 0, 1, 9, 0, false);
-//        mathQuestion = new MQManyNumbersAddition(1, 9, 2, 3);
-//        mathQuestion = new MQDivisionRemainder(10, 100, 2, 10);
+//        mathQuestion = new MQ2NumbersSubtraction(1, 9, 0, 1, 9, 0, true);
 //        mathQuestion = new MQ2NumbersDivision(10, 100, 0, 2, 10, 0, 2);
-//        mathQuestion = new MQFractionsAddition(-10, 10, -10, 10, 3);
+//        mathQuestion = new MQManyNumbersAddition(1, 9, 2, 4);
+//        mathQuestion = new MQManyNumbersMultiplication(-9, 9, 0, 3);
+//        mathQuestion = new MQDivisionRemainder(10, 50, 2, 10);
+//        mathQuestion = new MQFractionsAddition(-10, 10, 1, 3, 3);
 //        mathQuestion = new MQFractionsMultiplication(-10, 10, -10, 10, 3);
-//        mathQuestion = new MQPolynomialDerivation(0, 4, -4, 0, 2);
-//        mathQuestion = new MQPolynomialIntegration(-9, 9, -9, 9, 3);
-//        mathQuestion = new MQManyNumbersMultiplication(-9, 9, 2, 4);
-//        mathQuestion = new MQFractionsDivision(-9, 9, -9, 9);
-//        mathQuestion = new MQFinalBossRandom(2);
-//        mathQuestion = new MQQuadraticExpand(-4, 4, 1, 1);
+//        mathQuestion = new MQFractionsDivision(-9, 9, -9, 9, 3);
+//        mathQuestion = new MQPolynomialDerivation(-4, 4, -4, 4, 2);
+//        mathQuestion = new MQPolynomialIntegration(-4, 4, -4, 0, 3);
+//        mathQuestion = new MQQuadraticExpand(-4, 4, 1, 4);
 //        mathQuestion = new MQQuadraticRoots(-3, 3, 1, 1);
-//        mathQuestion = new MQQuadraticSimplify(-3, 3, 1, 1);
+//        mathQuestion = new MQQuadraticSimplify(-3, 3, -3, 3);
+        mathQuestion = new MQFinalBossRandom(Difficulty.Easy);
         
         while (true) {
             mathQuestion.generateNewQuestion();

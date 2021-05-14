@@ -82,7 +82,7 @@ public class LevelCreator {
         mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 1);
         mathQuestions[11] = new MQFractionsMultiplication(-5, 5, -5, 5, 2);
         mathQuestions[12] = new MQFractionsAddition(1, 8, 1, 4, 2);
-        mathQuestions[13] = new MQFractionsDivision(1, 5, 1, 5);
+        mathQuestions[13] = new MQFractionsDivision(1, 5, 1, 5, 2);
         mathQuestions[14] = new MQFractionsAddition(1, 4, 1, 4, 3);
 
         mathQuestions[15] = new MQPolynomialDerivation(1, 10, 0, 5, 1);
@@ -116,7 +116,7 @@ public class LevelCreator {
         mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 2, -0.9, 0.9, 2);
         mathQuestions[11] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
         mathQuestions[12] = new MQFractionsAddition(-10, 10, -10, 10, 2);
-        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10);
+        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10, 2);
         mathQuestions[14] = new MQFractionsAddition(-5, 5, -5, 5, 3);
 
         mathQuestions[15] = new MQPolynomialDerivation(1, 20, 0, 9, 1);
@@ -150,7 +150,7 @@ public class LevelCreator {
         mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 3);
         mathQuestions[11] = new MQFractionsMultiplication(-6, 6, -6, 6, 3);
         mathQuestions[12] = new MQFractionsAddition(5, 30, 3, 10, 2);
-        mathQuestions[13] = new MQFractionsDivision(-20, 20, -20, 20);
+        mathQuestions[13] = new MQFractionsDivision(-20, 20, -20, 20, 2);
         mathQuestions[14] = new MQFractionsAddition(-10, 10, -10, 10, 3);
 
         mathQuestions[15] = new MQPolynomialDerivation(5, 30, 0, 20, 1);

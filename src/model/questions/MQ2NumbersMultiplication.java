@@ -33,7 +33,8 @@ public class MQ2NumbersMultiplication extends Arithmetic2NumberQuestions {
 
     /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
-     * values in the answer array. Answers that would technically not be possible from multiplication of
+     * values in the answer array. Answers that would technically not be possible from multiplication of the possible
+     * numbers can be created.
      * @return a fake answer.
      */
     protected BigDecimal createFakeAnswer() {

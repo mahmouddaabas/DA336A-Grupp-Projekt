@@ -19,6 +19,7 @@ public class MQ2NumbersDivision extends Arithmetic2NumberQuestions {
      * @param number2LowerBound the lowest value the second number can have.
      * @param number2UpperBound the highest value the second number can have.
      * @param numOfDecimalsNumber2 the number of decimal places for the second number.
+     * @param numOfDecimalsAnswer the number of decimal places for the answer.
      */
     public MQ2NumbersDivision(double number1LowerBound, double number1UpperBound, int numOfDecimalsNumber1,
                               double number2LowerBound, double number2UpperBound, int numOfDecimalsNumber2,
@@ -38,7 +39,8 @@ public class MQ2NumbersDivision extends Arithmetic2NumberQuestions {
 
     /**
      * Returns a fake answer that would be possible from the bounds of the inputs that is not equal to any of the other
-     * values in the answer array.
+     * values in the answer array. Answers that would technically not be possible from divison of the possible
+     * numbers can be created.
      * @return a fake answer.
      */
     protected BigDecimal createFakeAnswer() {
