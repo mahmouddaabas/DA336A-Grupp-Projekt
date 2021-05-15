@@ -43,12 +43,12 @@ public class SceneChanger {
         }
 
         if (sceneNbr == 1) {
-            controller.getHealthBar().createHealthBar();
+            controller.getMainFrame().getHealthBar().createHealthBar();
         }
 
         if (sceneNbr > 0) {
-            controller.getMainFrame().getLblCoins().setVisible(true);
-            controller.getMainFrame().getLblLevel().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(true);
             controller.getCounter().updateLblLevel();
         }
 
@@ -109,10 +109,9 @@ public class SceneChanger {
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
         controller.getMainFrame().getAnswerPanel().setVisible(false);
-        controller.getMainFrame().getLblTimer().setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(false);
-//        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false); // nullPointer exception
-        controller.getMainFrame().getPnlShopPrompt().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
+        controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
 
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
@@ -128,8 +127,8 @@ public class SceneChanger {
      */
     public void exitShop() {
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(true);
-        controller.getMainFrame().getPnlShop().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(true);
+        controller.getMainFrame().getShopPanels().getPnlShop().setVisible(false);
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(false);
     }
 
@@ -140,7 +139,7 @@ public class SceneChanger {
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
         controller.getMainFrame().getAnswerPanel().setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(true);
     }
 
@@ -154,13 +153,13 @@ public class SceneChanger {
         controller.getMainFrame().getAnswerPanel().setVisible(false);
         controller.getMainFrame().getTextArea().setVisible(false);
         controller.getMainFrame().getTextArea2().setVisible(false);
-        controller.getHealthBar().getHealthPanel().setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(false);
-        controller.getMainFrame().getLblTimer().setVisible(false);
-        controller.getMainFrame().getLblCoins().setVisible(false);
-        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
-        controller.getEnemyHealthBar().setEnemyHealthPanel(null);
-        controller.getMainFrame().getLblCombatStatus().setVisible(false);
+        controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
+        controller.getMainFrame().getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getMainFrame().getEnemyHealthBar().setEnemyHealthPanel(null);
+        controller.getMainFrame().getLabelsAndStatus().getLblCombatStatus().setVisible(false);
 
         int currScene = controller.getCounter().getCurrentScene();
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(currScene - 1).setVisible(false);

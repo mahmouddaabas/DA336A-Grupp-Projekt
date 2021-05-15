@@ -1,7 +1,7 @@
 package view;
 
 import controller.GameLogic;
-import view.handlers.ActionHandler;
+import controller.handlers.ActionHandler;
 import javax.swing.*;
 import java.awt.*;
 

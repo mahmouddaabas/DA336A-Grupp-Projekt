@@ -1,7 +1,7 @@
 package view.help;
 
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import controller.handlers.ActionHandler;
 
 import javax.swing.*;
 import java.awt.*;

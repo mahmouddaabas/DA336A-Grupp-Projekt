@@ -1,7 +1,8 @@
-package view;
+package view.creators;
 
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import view.MainFrame;
+import controller.handlers.ActionHandler;
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -1,7 +1,9 @@
 package view;
 
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import controller.handlers.ActionHandler;
+import view.panels.DifficultiesPanel;
+import view.panels.ProfilesPanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -26,7 +26,7 @@ public class PlayerActions {
             controller.getShopItems().setDamagePotionLimit(0);
             controller.getShopItems().getDmgPot().setPotionActive(false);
             controller.getMainFrame().getBtnDamagePotion().setVisible(false);
-            controller.getMainFrame().getLblPotionStatus().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblPotionStatus().setVisible(true);
         }
     }
 
@@ -38,7 +38,7 @@ public class PlayerActions {
         if (controller.getShopItems().getShield().getIsEquipped()) {
             controller.getShopItems().setShieldLimit(0);
             controller.getMainFrame().getBtnShield().setVisible(false);
-            controller.getMainFrame().getShieldStatus().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getShieldStatus().setVisible(true);
         }
     }
 }

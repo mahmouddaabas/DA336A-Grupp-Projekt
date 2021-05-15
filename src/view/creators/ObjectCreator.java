@@ -1,8 +1,9 @@
-package view;
+package view.creators;
 
 import controller.GameLogic;
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import view.MainFrame;
+import controller.handlers.ActionHandler;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -136,7 +137,6 @@ public class ObjectCreator {
             public void mouseExited(MouseEvent e) {}
         });
         bgPanels.get(21).add(lblShopKeeper);
-        mainFrame.populateShopPanel();
         bgPanels.get(21).add(bgImages.get(21));
     }
 

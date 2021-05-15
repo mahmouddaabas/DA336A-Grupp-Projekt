@@ -27,8 +27,6 @@ public class GameLogic {
 
     private MainFrame mainFrame;
     private SceneChanger sceneChanger;
-    private EnemyHealthBar enemyHealthBar;
-    private HealthBar healthBar;
     private GameOverScreen gameOver;
     private Counter counter;
 
@@ -50,9 +48,6 @@ public class GameLogic {
 
         timer = new Timer(this);
         counter = new Counter(this);
-
-        healthBar = new HealthBar(this, mainFrame);
-        enemyHealthBar = new EnemyHealthBar(this, mainFrame);
 
         gameOver = new GameOverScreen(this);
         shopItems = new ShopItems(this);
@@ -110,10 +105,10 @@ public class GameLogic {
         mathQuestion.generateNewQuestion();
         checkStatusAndGetQuestion();
 
-        if (enemyHealthBar.getEnemyHealthPanel() == null) {
-            enemyHealthBar.createEnemyHealthBar();
+        if (mainFrame.getEnemyHealthBar().getEnemyHealthPanel() == null) {
+            mainFrame.getEnemyHealthBar().createEnemyHealthBar();
         }
-        mainFrame.getLblCombatStatus().setVisible(true);
+        mainFrame.getLabelsAndStatus().getLblCombatStatus().setVisible(true);
         mainFrame.getBtnGetHelp().setFocusable(false);
         player.setOutOfCombat(false);
         timer.startTimer();
@@ -142,7 +137,7 @@ public class GameLogic {
                     int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
-                    enemyHealthBar.updateEnemyHealth();
+                    mainFrame.getEnemyHealthBar().updateEnemyHealth();
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -160,23 +155,7 @@ public class GameLogic {
                     player.setDamageDealt(1);
 
                     showShopPrompt();
-                  
-                    if (counter.getLevel() <= 20) {
-                        if (counter.getLevel() != 5 && counter.getLevel() != 10 && counter.getLevel() != 15) {
-                            mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
-                        }
-                        //LinkedList starts at 0. Level 1 -> index 0
-                        mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
-                        enemyHealthBar.setEnemyHealthPanel(null);
-                    }
-                    counter.setLevel(counter.getLevel() + 1);
-                    if (counter.getLevel() > 20) {
-                        mainFrame.getSceneCreator().getArrowButtons().get(20).setVisible(false);
-                        mainFrame.getSceneCreator().getBackgroundPanel(20).setVisible(true);
-                        sceneChanger.showPortal();
-                        mainFrame.getLblCoins().setVisible(false);
-                        healthBar.getHealthPanel().setVisible(false);
-                    }
+                    advance();
                 }
             }
             else {
@@ -189,14 +168,37 @@ public class GameLogic {
      * Hides or changes components when combat is over.
      */
     public void hideComponents() {
-        mainFrame.getLblTimer().setVisible(false);
-        mainFrame.getLblLevel().setVisible(false);
-        enemyHealthBar.getEnemyHealthPanel().setVisible(false);
-        mainFrame.getLblPotionStatus().setVisible(false);
-        mainFrame.getLblCombatStatus().setVisible(false);
+        mainFrame.getLabelsAndStatus().getLblTimer().setVisible(false);
+        mainFrame.getLabelsAndStatus().getLblLevel().setVisible(false);
+        mainFrame.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        mainFrame.getLabelsAndStatus().getLblPotionStatus().setVisible(false);
+        mainFrame.getLabelsAndStatus().getLblCombatStatus().setVisible(false);
         mainFrame.getBtnGetHelp().setFocusable(true);
         mainFrame.getTextArea2().setVisible(false);
         mainFrame.getAnswerPanel().setVisible(false);
+    }
+
+    /**
+     * Advances the player's progression (level), hides the monster after defeating it and sets an arrow button
+     * to visible. Shows a portal on the last level instead of an arrow.
+     */
+    public void advance() {
+        if (counter.getLevel() <= 20) {
+            if (counter.getLevel() != 5 && counter.getLevel() != 10 && counter.getLevel() != 15) {
+                mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+            }
+            //LinkedList starts at 0. Level 1 -> index 0
+            mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
+            mainFrame.getEnemyHealthBar().setEnemyHealthPanel(null);
+        }
+        counter.setLevel(counter.getLevel() + 1);
+        if (counter.getLevel() > 20) {
+            mainFrame.getSceneCreator().getArrowButtons().get(20).setVisible(false);
+            mainFrame.getSceneCreator().getBackgroundPanel(20).setVisible(true);
+            sceneChanger.showPortal();
+            mainFrame.getLabelsAndStatus().getLblCoins().setVisible(false);
+            mainFrame.getHealthBar().getHealthPanel().setVisible(false);
+        }
     }
 
     /**
@@ -209,7 +211,7 @@ public class GameLogic {
         else {
             player.setGold(player.getGold() + 1);
         }
-        mainFrame.getLblCoins().setText(" " + player.getGold());
+        mainFrame.getLabelsAndStatus().getLblCoins().setText(" " + player.getGold());
     }
 
     /**
@@ -265,7 +267,7 @@ public class GameLogic {
             player.setDamageTaken(0);
             //Sets the shield to false and hides it after successfully blocking a hit.
             shopItems.getShield().setEquipped(false);
-            mainFrame.getShieldStatus().setVisible(false);
+            mainFrame.getLabelsAndStatus().getShieldStatus().setVisible(false);
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             player.setDamageTaken(2);
@@ -278,7 +280,7 @@ public class GameLogic {
             status = "incorrect";
         }
         checkStatusAndGetQuestion();
-        healthBar.updateHealth();
+        mainFrame.getHealthBar().updateHealth();
     }
 
     /**
@@ -289,7 +291,7 @@ public class GameLogic {
                 counter.getLevel() == 15) {
             mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1)
                     + "\n" + "(Would you like to visit the shop?)");
-            mainFrame.getPnlShopPrompt().setVisible(true);
+            mainFrame.getShopPanels().getPnlShopPrompt().setVisible(true);
             if (!mainFrame.getObjectCreator().getLblShopKeeper().isVisible()) {
                 mainFrame.getObjectCreator().getLblShopKeeper().setVisible(true);
             }
@@ -345,14 +347,6 @@ public class GameLogic {
     }
 
     /**
-     * Returns healthBar object
-     * @return healthBar object
-     */
-    public HealthBar getHealthBar() {
-        return healthBar;
-    }
-
-    /**
      * Returns the counter object.
      * @return counter
      */
@@ -390,14 +384,6 @@ public class GameLogic {
      */
     public LevelCreator getLevelCreator() {
         return levelCreator;
-    }
-
-    /**
-     * Returns an object of enemyHealthBar.
-     * @return enemyHealthBar
-     */
-    public EnemyHealthBar getEnemyHealthBar() {
-        return enemyHealthBar;
     }
 
     /**

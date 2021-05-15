@@ -1,4 +1,4 @@
-package view.handlers;
+package controller.handlers;
 
 import controller.GameLogic;
 import model.Difficulty;
@@ -88,7 +88,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
-                controller.getMainFrame().getPnlShopPrompt().setVisible(false);
+                controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
                 break;
 
                 //MAIN MENU
@@ -114,7 +114,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getEventPortal().inspectPortal();
                 break;
             case "enterPortal":
-                controller.getMainFrame().getLblCoins().setVisible(false);
+                controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
                 int scenes = controller.getMainFrame().getSceneCreator().getBgPanels().size();
                 for (int i = 0; i < scenes; i++) {
                     controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setOpaque(false);

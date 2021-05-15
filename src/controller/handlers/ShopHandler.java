@@ -1,4 +1,4 @@
-package view.handlers;
+package controller.handlers;
 
 import controller.GameLogic;
 import java.awt.event.ActionEvent;
@@ -8,14 +8,14 @@ import java.awt.event.ActionListener;
  * @author Mahmoud Daabas
  * Handles the button choices in the shop by calling appropriate methods.
  */
-public class HandleShopKeeper implements ActionListener {
+public class ShopHandler implements ActionListener {
     private GameLogic controller;
 
     /**
      * Constructor
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
-    public HandleShopKeeper(GameLogic controller) {
+    public ShopHandler(GameLogic controller) {
         this.controller = controller;
     }
 

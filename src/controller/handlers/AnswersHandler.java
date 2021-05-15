@@ -1,7 +1,6 @@
-package view.handlers;
+package controller.handlers;
 
 import controller.GameLogic;
-import view.help.GameHelp;
 import view.help.HelpBox;
 
 import java.awt.event.ActionEvent;
@@ -16,17 +15,15 @@ import java.awt.event.KeyListener;
  * It sets the answer index in the controller class which helps determine what answer was selected.
  * Then calls the checkAnswer method from the controller to check if selected answer was correct.
  */
-public class HandleAnswers implements ActionListener, KeyListener {
+public class AnswersHandler implements ActionListener, KeyListener {
     private GameLogic controller;
-    private ActionHandler ah;
 
     /**
      * Constructs the class.
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
-    public HandleAnswers(GameLogic controller) {
+    public AnswersHandler(GameLogic controller) {
         this.controller = controller;
-        ah = new ActionHandler(controller);
     }
 
     /**
@@ -76,9 +73,6 @@ public class HandleAnswers implements ActionListener, KeyListener {
         else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(3);
             controller.checkAnswer();
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_H) {
-            HelpBox openHelp = new HelpBox(ah);
         }
     }
     @Override
