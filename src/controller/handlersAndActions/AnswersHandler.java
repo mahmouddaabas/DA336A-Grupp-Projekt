@@ -1,7 +1,6 @@
-package controller.handlers;
+package controller.handlersAndActions;
 
 import controller.GameLogic;
-import view.help.HelpBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

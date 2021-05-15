@@ -2,7 +2,7 @@ package view.panels;
 
 import controller.ImageResizer;
 import view.MainFrame;
-import controller.handlers.ActionHandler;
+import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
 import java.awt.*;

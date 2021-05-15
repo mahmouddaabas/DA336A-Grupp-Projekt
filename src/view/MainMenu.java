@@ -1,7 +1,7 @@
 package view;
 
 import controller.ImageResizer;
-import controller.handlers.ActionHandler;
+import controller.handlersAndActions.ActionHandler;
 import view.panels.DifficultiesPanel;
 import view.panels.ProfilesPanel;
 

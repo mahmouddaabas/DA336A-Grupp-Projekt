@@ -2,8 +2,8 @@ package view.panels;
 
 import controller.GameLogic;
 import view.MainFrame;
-import controller.handlers.ActionHandler;
-import controller.handlers.ShopHandler;
+import controller.handlersAndActions.ActionHandler;
+import controller.handlersAndActions.ShopHandler;
 
 import javax.swing.*;
 import java.awt.*;

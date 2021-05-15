@@ -1,5 +1,6 @@
-package controller;
+package controller.handlersAndActions;
 
+import controller.GameLogic;
 import model.items.DamagePotion;
 import model.items.Shield;
 

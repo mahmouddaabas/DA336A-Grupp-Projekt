@@ -1,4 +1,4 @@
-package controller.handlers;
+package controller.handlersAndActions;
 
 import controller.GameLogic;
 import java.awt.event.ActionEvent;

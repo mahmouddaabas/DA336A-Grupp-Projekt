@@ -1,5 +1,7 @@
 package controller;
 
+import controller.handlersAndActions.PlayerActions;
+import controller.handlersAndActions.ShopItems;
 import model.*;
 import model.Timer;
 import model.questions.*;
@@ -153,6 +155,7 @@ public class GameLogic {
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
+                    playerActions.setUsedPotion(false);
 
                     showShopPrompt();
                     advance();
@@ -268,6 +271,7 @@ public class GameLogic {
             //Sets the shield to false and hides it after successfully blocking a hit.
             shopItems.getShield().setEquipped(false);
             mainFrame.getLabelsAndStatus().getShieldStatus().setVisible(false);
+            playerActions.setUsedShield(false);
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             player.setDamageTaken(2);

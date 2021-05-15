@@ -5,8 +5,8 @@ import controller.ImageResizer;
 import view.creators.ObjectCreator;
 import view.creators.PortalCreator;
 import view.creators.SceneCreator;
-import controller.handlers.ActionHandler;
-import controller.handlers.AnswersHandler;
+import controller.handlersAndActions.ActionHandler;
+import controller.handlersAndActions.AnswersHandler;
 import view.panels.FinalScenePanel;
 import view.panels.ShopPanels;
 
