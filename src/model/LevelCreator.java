@@ -189,48 +189,48 @@ public class LevelCreator {
         String[] lookDialogues = new String[NUM_OF_LEVELS];
 
         lookDialogues[0] = "You see a goblin standing right in front of you, it doesn't seem that strong." +
-                "\nThe monster appears to like Addition!";
+                "\nThis monster appears to like Addition!";
         lookDialogues[1] = "A skeleton stands in the way, defeat it!" +
-                "\nThe monster appears to like Subtraction!";
+                "\nThis monster appears to like Subtraction!";
         lookDialogues[2] = "You see a rather short warden upfront. Should you get any closer?" +
-                "\nThe monster appears to like Multiplication!";
-        lookDialogues[3] = "The goblin in front of you seem stronger than the previous one. Though, he does seem talkative." +
-                "\nThe monster appears to like Addition!";
+                "\nThis monster appears to like Multiplication!";
+        lookDialogues[3] = "The goblin in front of you seem stronger than the previous one. Though, he does not seem talkative." +
+                "\nThis monster appears to like Addition!";
         lookDialogues[4] = "You spot the biggest greenskin ever! Should you turn back?" +
-                "\nThe boss appears to like Division!";
+                "\nThis boss appears to like Division!";
 
         lookDialogues[5] = "The mad dwarf stares at you intently." +
-                "\nThe monster appears to like Addition!";
+                "\nThis monster appears to like Addition!";
         lookDialogues[6] = "The stone-like gargoyle advances towards you." +
-                "\nThe monster appears to like Subtraction!";
-        lookDialogues[7] = "The ancient warrior stares at you menacingly." +
-                "\nThe monster appears to like Addition!";
-        lookDialogues[8] = "The knight without a face stands proudly." +
-                "\nThe monster appears to like Multiplication!";
+                "\nThis monster appears to like Subtraction!";
+        lookDialogues[7] = "The mace-wielding fighter stares at you menacingly." +
+                "\nThis monster appears to like Addition!";
+        lookDialogues[8] = "The knight without a face stands proudly. Does it talk?" +
+                "\nThis monster appears to like Multiplication!";
         lookDialogues[9] = "The paladin's armor shines brightly." +
-                "\nThe boss appears to like Division!";
+                "\nThis boss appears to like Division!";
 
         lookDialogues[10] = "The viscous snake-man is poised to strike." +
-                "\nThe monster appears to like Multiplication!";
+                "\nThis monster appears to like Multiplication!";
         lookDialogues[11] = "The steadfast dwarf has no intention of letting you pass without a fight." +
-                "\nThe monster appears to like Multiplication!";
+                "\nThis monster appears to like Multiplication!";
         lookDialogues[12] = "The skeleton mage is far more powerful than any other undead you've met before." +
-                "\nThe monster appears to like Addition!";
+                "\nThis monster appears to like Addition!";
         lookDialogues[13] = "You feel the ancient golem stare into your soul." +
-                "\nThe monster appears to like Division!";
+                "\nThis monster appears to like Division!";
         lookDialogues[14] = "The mighty mage looks down on you with contempt." +
-                "\nThe boss appears to like Addition!";
+                "\nThis boss appears to like Addition!";
 
         lookDialogues[15] = "Can you truly kill that which has no life?" +
-                "\nThe monster appears to like Derivation!";
+                "\nThis monster appears to like Derivation!";
         lookDialogues[16] = "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask" +
-                "\nThe monster appears to like Integration!";
+                "\nThis monster appears to like Integration!";
         lookDialogues[17] = "You gaze upon a GOD." +
-                "\nThe monster appears to like Derivation!";
+                "\nThis monster appears to like Derivation!";
         lookDialogues[18] = "The gargantuan guardian towers above you." +
-                "\nThe monster appears to like Integration!";
+                "\nThis monster appears to like Integration!";
         lookDialogues[19] = "Whoa! The breathtaking immortal stands before you." +
-                "\nThe boss appears to like everything!";
+                "\nThis boss appears to like everything!";
 
         return lookDialogues;
     }
@@ -243,15 +243,15 @@ public class LevelCreator {
         String[] talkDialogues = new String[NUM_OF_LEVELS];
 
         talkDialogues[0] = "\"Prepare to die human!\"";
-        talkDialogues[1] = "*bone cracks*";
+        talkDialogues[1] = "\"I have a bone to pick with you. NYEEHEHEHEHE!\"";
         talkDialogues[2] = "\"Halt! Who goes there?\"";
         talkDialogues[3] = "\"...\"";
         talkDialogues[4] = "\"I'z da meanest and greenest 'dere iz, 'ooman! WAAAGGGHHH!\"";
 
         talkDialogues[5] = "\"My blades thirst for your blood!\"";
         talkDialogues[6] = "\"Trespasser!\"";
-        talkDialogues[7] = "\"I have a bone to pick with you. NYEEHEHEHEHE!\"";
-        talkDialogues[8] = "\".........\"";
+        talkDialogues[7] = "\"I'll take your head as a trophy!\"";
+        talkDialogues[8] = "Having no face, the knight does not talk.";
         talkDialogues[9] = "\"Forgive me adventurer for what I must do...\"";
 
         talkDialogues[10] = "*HIIISSSSSSSSS!*";

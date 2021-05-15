@@ -9,12 +9,12 @@ resources/entities/Lvl8ColiseumFighter.png
 resources/entities/Lvl9NoFace.png
 resources/entities/Lvl10Paladin.png
 resources/entities/Lvl11SnakeMan.png
-resources/entities/Lvl12WorkSmithDwarf.png
+resources/entities/Lvl12WarriorDwarf.png
 resources/entities/Lvl13SkeletonMage.png
 resources/entities/Lvl14BuddhaGuardian.png
 resources/entities/Lvl15MageWarlord.png
 resources/entities/Lvl16Ghost.png
-resources/entities/Lvl17RedGuardian.png
+resources/entities/Lvl17RiftGuardian.png
 resources/entities/Lvl18EgyptianGod.png
 resources/entities/Lvl19MiniBoss.png
 resources/entities/Lvl20FinalBoss.png

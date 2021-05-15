@@ -162,7 +162,9 @@ public class GameLogic {
                     showShopPrompt();
                   
                     if (counter.getLevel() <= 20) {
-                        mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+                        if (counter.getLevel() != 5 && counter.getLevel() != 10 && counter.getLevel() != 15) {
+                            mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
+                        }
                         //LinkedList starts at 0. Level 1 -> index 0
                         mainFrame.getObjectCreator().getMonsters().get(counter.getLevel() - 1).setVisible(false);
                         enemyHealthBar.setEnemyHealthPanel(null);
@@ -177,11 +179,9 @@ public class GameLogic {
                     }
                 }
             }
-            /*else {
+            else {
                 ifNotAnswered();
             }
-
-             */
         }
     }
 
