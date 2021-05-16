@@ -205,9 +205,7 @@ public class GameLogic {
         }
     }
 
-    /**
-     * Method that hides labels and buttons when the combat is inactive.
-     */
+
     public void hideComponents() {
         mainFrame.getLblTimer().setVisible(false);
         mainFrame.getLblLevel().setVisible(false);
