@@ -175,8 +175,6 @@ public class GameLogic {
                                 "Shop?", JOptionPane.YES_NO_OPTION);
                         if (reply == JOptionPane.YES_OPTION) {
                             scene.visitShop();
-                            musicPlayer.setShopActive(true);
-                            musicPlayer.startMusic();
                         }
                     }
                     if (counter.getLevel() < 20) {
