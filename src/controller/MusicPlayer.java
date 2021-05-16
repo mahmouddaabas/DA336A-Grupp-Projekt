@@ -44,7 +44,7 @@ public class MusicPlayer {
      * @param pathMainMenu filepath to the audio to be played on the MainMenu-screen/Startup-screen
      * @param pathRegularLvl filepath to the audio to be played on all of the levels with regular monsters
      * @param pathBossLvl filepath to the audio to be played on all of the levels with bosses
-     * @param pathShop filepath to the audio to be played on the
+     * @param pathShop filepath to the audio to be played while player is at the shop
      * @param pathWinner filepath to the audio to be played when player reaches the winner-screen
      */
     private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String pathWinner) {
@@ -162,9 +162,9 @@ public class MusicPlayer {
      * and then notifies the MainFrame about the change of state
      */
     public void audioOnOff() {
-        if(isMuted) { //om muted så sätts ljudet på
+        if(isMuted) {
             setPreferredVolume(-30f);
-        } else { //annars mutas ljudet
+        } else {
             setPreferredVolume(-50000f);
         }
         isMuted = !isMuted;
