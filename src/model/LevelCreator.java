@@ -8,6 +8,7 @@ import java.util.LinkedList;
  * @author Duy Nguyen
  * @author Leith Ahmad
  * @author Mattias Bengtsson
+ * @author Vilgot Mattsson
  * Class that creates the levels (including questions and enemies) for the game.
  */
 public class LevelCreator {
