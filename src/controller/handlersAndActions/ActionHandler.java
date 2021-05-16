@@ -1,4 +1,4 @@
-package view.handlers;
+package controller.handlersAndActions;
 
 import controller.GameLogic;
 import model.Difficulty;
@@ -40,8 +40,10 @@ public class ActionHandler implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();
+        int playerIndex = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
 
         switch (yourChoice) {
+                //ENEMY ACTIONS
             case "lookAtEnemy":
                 controller.getEventMonsters().lookAtEnemy();
                 break;
@@ -52,6 +54,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getEventMonsters().attackEnemy();
                 break;
 
+                //PLAYER ACTIONS
             case "drinkDamagePotion":
                 controller.getPlayerActions().drinkDamagePotion();
                 break;
@@ -59,6 +62,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerActions().equipShield();
                 break;
 
+                //SHOP
+            case "yesShop":
+                controller.getSceneChanger().visitShop();
+                break;
             case "lookAtShopKeeper":
                 controller.getEventShop().lookAtShopKeeper();
                 break;
@@ -73,6 +80,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().exitShop();
                 break;
 
+                //GAME-OVER AND ARROWS
             case "restart":
                 controller.getSceneChanger().exitGameOverScreen();
                 controller.getCounter().setCurrentScene(0);
@@ -80,9 +88,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
-                controller.getMainFrame().getPnlShopPrompt().setVisible(false);
+                controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
                 break;
 
+                //MAIN MENU
             case "newGame":
                 if (controller.getPlayer() == null) {
                     JOptionPane.showMessageDialog(null, "Please select a profile");
@@ -100,24 +109,57 @@ public class ActionHandler implements ActionListener, KeyListener {
                 System.exit(0);
                 break;
 
+                //PORTAL
+            case "inspectPortal":
+                controller.getEventPortal().inspectPortal();
+                break;
+            case "enterPortal":
+                controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
+                int scenes = controller.getMainFrame().getSceneCreator().getBgPanels().size();
+                for (int i = 0; i < scenes; i++) {
+                    controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setOpaque(false);
+                    controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+                    controller.getMainFrame().getSceneCreator().getImageInPanel(i).setOpaque(false);
+                    controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
+                }
+                controller.getEventPortal().enterPortal();
+                break;
+            case "returnMenu":
+                controller.getSceneChanger().exitFinalScene();
+                controller.getSceneChanger().showMainMenu();
+                controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
+                controller.getMainFrame().getFinalScenePanel().getPnlButtons().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                break;
+
+                //HELP
             case "requestHelp":
-                HelpBox helpBox = new HelpBox(this);
+                if (helpBox == null) {
+                    helpBox = new HelpBox(this);
+                }
+                else {
+                    helpBox.getHelpBox().setVisible(true);
+                }
                 break;
             case "gameHelp":
-                if(gameHelp == null)
-                 gameHelp = new GameHelp();
+                if (gameHelp == null) {
+                    gameHelp = new GameHelp();
+                }
                 else {
                     gameHelp.getHelpFrame().setVisible(true);
                 }
                 break;
             case "controlHelp":
-                if(controlHelp == null)
+                if (controlHelp == null) {
                     controlHelp = new ControlHelp();
+                }
                 else {
                     controlHelp.getControlFrame().setVisible(true);
                 }
                 break;
 
+                //PROFILES
             case "addProfile":
                 String playerName = JOptionPane.showInputDialog("Enter player name");
                 if (playerName != null && !playerName.equals("")) {
@@ -125,9 +167,8 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "deleteProfile":
-                int i1 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
                 String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
-                controller.deletePlayer(i1);
+                controller.deletePlayer(playerIndex);
                 controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
                 break;
             case "goMainMenu":
@@ -140,8 +181,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
-                int i2 = controller.getMainFrame().getMainMenu().getPnlProfiles().getProfilesIndex();
-                controller.setPlayer(i2);
+                controller.setPlayer(playerIndex);
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
                 break;
@@ -157,9 +197,6 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "easy":
                 controller.createLevelCreator(Difficulty.Easy);
                 controller.startGame();
-                break;
-            case "yesShop":
-                controller.getSceneChanger().visitShop();
                 break;
         }
     }

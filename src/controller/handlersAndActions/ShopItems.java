@@ -1,5 +1,6 @@
-package controller;
+package controller.handlersAndActions;
 
+import controller.GameLogic;
 import model.items.DamagePotion;
 import model.items.Shield;
 
@@ -39,11 +40,11 @@ public class ShopItems {
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
-            controller.getHealthBar().increaseHealth();
+            controller.getMainFrame().getHealthBar().increaseHealth();
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
             controller.getCounter().updateCoinLabel();
             controller.getMainFrame().getTextArea().setText("You purchased 1 HP for 2 gold.");
-            controller.getMainFrame().getLblPotionStatus().setVisible(false);
+            controller.getMainFrame().getLabelsAndStatus().getLblPotionStatus().setVisible(false);
         }
         else if (controller.getPlayer().getGold() < 2) {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");

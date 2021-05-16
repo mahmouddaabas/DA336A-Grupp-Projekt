@@ -1,4 +1,6 @@
-package controller;
+package controller.handlersAndActions;
+
+import controller.GameLogic;
 
 /**
  * @author Mahmoud Daabas
@@ -7,6 +9,8 @@ package controller;
  */
 public class PlayerActions {
     private GameLogic controller;
+    private boolean usedPotion;
+    private boolean usedShield;
 
     /**
      * Constructor setting own GameLogic-object
@@ -21,12 +25,13 @@ public class PlayerActions {
      */
     public void drinkDamagePotion() {
         controller.getShopItems().getDmgPot().setPotionActive(true);
-        if (controller.getShopItems().getDmgPot().getPotionActive()) {
+        if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion) {
             controller.getPlayer().setDamageDealt(controller.getShopItems().getDmgPot().getDamageBoost());
             controller.getShopItems().setDamagePotionLimit(0);
+            usedPotion = true;
             controller.getShopItems().getDmgPot().setPotionActive(false);
             controller.getMainFrame().getBtnDamagePotion().setVisible(false);
-            controller.getMainFrame().getLblPotionStatus().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblPotionStatus().setVisible(true);
         }
     }
 
@@ -35,10 +40,27 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped()) {
+        if (controller.getShopItems().getShield().getIsEquipped() &&usedShield) {
             controller.getShopItems().setShieldLimit(0);
+            usedShield = true;
             controller.getMainFrame().getBtnShield().setVisible(false);
-            controller.getMainFrame().getShieldStatus().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getShieldStatus().setVisible(true);
         }
+    }
+
+    /**
+     * Sets the used potion boolean
+     * @param usedPotion new boolean value
+     */
+    public void setUsedPotion(boolean usedPotion) {
+        this.usedPotion = usedPotion;
+    }
+
+    /**
+     * Sets the used shield boolean
+     * @param usedShield new boolean value
+     */
+    public void setUsedShield(boolean usedShield) {
+        this.usedShield = usedShield;
     }
 }

@@ -19,10 +19,10 @@ public class Counter {
      */
     public void updateLblLevel() {
         if (controller.getLevelCreator().getLevel(level).getEnemy().isBoss()) {
-            controller.getMainFrame().getLblLevel().setText("Current level: " + level + " (Boss)");
+            controller.getMainFrame().getLabelsAndStatus().getLblLevel().setText("Current level: " + level + " (Boss)");
         }
         else {
-            controller.getMainFrame().getLblLevel().setText("Current level: " + level);
+            controller.getMainFrame().getLabelsAndStatus().getLblLevel().setText("Current level: " + level);
         }
     }
 
@@ -30,7 +30,7 @@ public class Counter {
      * This method updates the coin label when called.
      */
     public void updateCoinLabel() {
-        controller.getMainFrame().getLblCoins().setText(" " + controller.getPlayer().getGold());
+        controller.getMainFrame().getLabelsAndStatus().getLblCoins().setText(" " + controller.getPlayer().getGold());
     }
 
     /**

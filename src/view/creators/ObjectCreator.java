@@ -1,8 +1,9 @@
-package view;
+package view.creators;
 
 import controller.GameLogic;
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import view.MainFrame;
+import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -26,6 +27,8 @@ public class ObjectCreator {
     private MainFrame mainFrame;
     private ActionHandler actionHandler;
     private GameLogic controller;
+
+    private JLabel lblShopKeeper;
 
     /**
      * Constructor
@@ -109,7 +112,7 @@ public class ObjectCreator {
      * Creates the shopkeeper
      */
     public void createShopKeeper() {
-        JLabel lblShopKeeper = new JLabel();
+        lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
         lblShopKeeper.setIcon(ImageResizer.resize("resources/entities/Oleg.png", 200, 350));
@@ -134,7 +137,6 @@ public class ObjectCreator {
             public void mouseExited(MouseEvent e) {}
         });
         bgPanels.get(21).add(lblShopKeeper);
-        mainFrame.populateShopPanel();
         bgPanels.get(21).add(bgImages.get(21));
     }
 
@@ -152,7 +154,7 @@ public class ObjectCreator {
             while (str != null) {
                 JLabel lblMonster = new JLabel();
 
-                ImageIcon monsterIcon = ImageResizer.resize(str, 150, 150);
+                ImageIcon monsterIcon = ImageResizer.resize(str, 150, 200);
                 lblMonster.setIcon(monsterIcon);
 
                 lblMonster.addMouseListener(new MouseListener() {
@@ -224,5 +226,13 @@ public class ObjectCreator {
      */
     public LinkedList<JLabel> getMonsters() {
         return monsters;
+    }
+
+    /**
+     * Returns lblShopKeeper
+     * @return lblShopKeeper
+     */
+    public JLabel getLblShopKeeper() {
+        return lblShopKeeper;
     }
 }

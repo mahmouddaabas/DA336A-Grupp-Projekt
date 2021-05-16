@@ -1,12 +1,14 @@
-package view;
+package view.creators;
 
 import controller.GameLogic;
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
+import view.MainFrame;
+import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.LinkedList;
 
 /**
  * @author Leith Ahmad
@@ -14,8 +16,9 @@ import java.awt.event.MouseListener;
  */
 public class PortalCreator {
     private JLabel lblPortal;
+    private LinkedList<JPanel> bgPanels;
+    private LinkedList<JLabel> bgImages;
 
-    private MainFrame mainFrame;
     private ActionHandler actionHandler;
     private GameLogic controller;
 
@@ -26,9 +29,11 @@ public class PortalCreator {
      * @param actionHandler actionHandler object used to initialize own controller object
      */
     public PortalCreator(MainFrame mainFrame, GameLogic controller, ActionHandler actionHandler) {
-        this.mainFrame = mainFrame;
         this.controller = controller;
         this.actionHandler = actionHandler;
+
+        bgPanels = mainFrame.getSceneCreator().getBgPanels();
+        bgImages = mainFrame.getSceneCreator().getBgImages();
     }
 
     /**
@@ -45,10 +50,14 @@ public class PortalCreator {
     public JPopupMenu createPortalMenu() {
         JPopupMenu portalMenu = new JPopupMenu();
 
-        JMenuItem[] menuItems = new JMenuItem[1];
+        JMenuItem[] menuItems = new JMenuItem[2];
         menuItems[0] = new JMenuItem("Inspect");
         menuItems[0].addActionListener(actionHandler);
-        menuItems[0].setActionCommand("enterPortal");
+        menuItems[0].setActionCommand("inspectPortal");
+
+        menuItems[1] = new JMenuItem("Enter");
+        menuItems[1].addActionListener(actionHandler);
+        menuItems[1].setActionCommand("enterPortal");
 
         for (JMenuItem mi : menuItems) {
             portalMenu.add(mi);
@@ -57,7 +66,7 @@ public class PortalCreator {
     }
 
     /**
-     * Creates the portal objects
+     * Creates the portal object
      */
     public void createPortal() {
         lblPortal = new JLabel();
@@ -84,6 +93,16 @@ public class PortalCreator {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
-        mainFrame.getFinalScenePanel().getPnlFinalScene().add(lblPortal);
+        lblPortal.setVisible(false);
+        bgPanels.get(20).add(lblPortal);
+        bgPanels.get(20).add(bgImages.get(20));
+    }
+
+    /**
+     * Returns lblPortal
+     * @return lblPortal
+     */
+    public JLabel getLblPortal() {
+        return lblPortal;
     }
 }

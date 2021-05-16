@@ -27,8 +27,8 @@ public class Timer implements Runnable {
     public void run() {
         while (ticking) {
             try {
-                controller.getMainFrame().getLblTimer().setText("Time Left: " + time);
-                controller.getMainFrame().getLblTimer().setVisible(true);
+                controller.getMainFrame().getLabelsAndStatus().getLblTimer().setText("Time Left: " + time);
+                controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(true);
                 time--;
                 Thread.sleep(1000);
                 if (time < 0) {

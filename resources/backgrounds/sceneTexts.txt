@@ -6,8 +6,8 @@ You have finally found a way up. Something seems to lurk in the shadows.
 You have reached the top of the dungeon. What kind of creature is that?
 You advance upwards past the savage orc, but a short figure blocks your path.
 On your way onwards you jump as a statue comes to life!
-After the statue, it is the dead's turn to come to life before you.
-On the next floor you find a knight blocking your path.
+Progressing past the statue, you seem to spot a bloody coliseum fighter.
+On the next floor you find a faceless knight blocking your path.
 The knight's commander awaits you at the tower's midpoint.
 You have climbed half the tower, but you have no time to rest!
 Your progress forward is halted by an old warrior.
@@ -16,7 +16,7 @@ The air on the next floor feels serene and peaceful, contrasting the rest of the
 The way forward is guarded by your greatest foe yet.
 You have entered the final section of the tower. Do not lose hope!
 Toxic fumes permeate the air on this level.
-As you enter the next floor, you barely manage to step out of the way of a fiendish trap!
+As you enter the rift, you seem to stumble upon the gates of a great palace!
 You only have this guardian left before the final battle.
 The final battle awaits. This is your moment of triumph! All your skills will be put to the test right now!
 You find yourself in a magical shop seemingly out of place for the tower. (Right click on the shopkeeper to interact or click the arrow to continue.)

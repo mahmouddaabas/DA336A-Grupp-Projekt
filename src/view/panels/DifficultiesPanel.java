@@ -1,6 +1,6 @@
-package view;
+package view.panels;
 
-import view.handlers.ActionHandler;
+import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,9 +2,13 @@ package view;
 
 import controller.GameLogic;
 import controller.ImageResizer;
-import view.handlers.ActionHandler;
-import view.handlers.HandleAnswers;
-import view.handlers.HandleShopKeeper;
+import view.creators.ObjectCreator;
+import view.creators.PortalCreator;
+import view.creators.SceneCreator;
+import controller.handlersAndActions.ActionHandler;
+import controller.handlersAndActions.AnswersHandler;
+import view.panels.FinalScenePanel;
+import view.panels.ShopPanels;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +23,13 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private JTextArea textArea;
     private JTextArea textArea2;
+    private LabelsAndStatus labelsAndStatus;
+
+    private HealthBar healthBar;
+    private EnemyHealthBar enemyHealthBar;
 
     private ActionHandler action;
-    private HandleAnswers answers;
-    private HandleShopKeeper shop;
+    private AnswersHandler answers;
 
     private SceneCreator sceneCreator;
     private ObjectCreator objectCreator;
@@ -30,26 +37,12 @@ public class MainFrame extends JFrame {
 
     private MainMenu mainMenu;
     private FinalScenePanel finalScenePanel;
+    private ShopPanels shopPanels;
 
     private JPanel answerPanel;
     private JButton[] answerButton;
-
-    private JPanel pnlShop;
-    private JButton[] shopButtons;
-    private JPanel pnlShopPrompt;
-    private JButton[] btnShopPrompt;
-
-    private JLabel lblLevel;
-    private JLabel lblTimer;
-    private JLabel lblCoins;
-
     private JButton btnDamagePotion;
-    private JLabel lblPotionStatus;
-    private JLabel lblCombatStatus;
-
     private JButton btnShield;
-    private JLabel shieldStatus;
-
     private JButton btnGetHelp;
 
     /**
@@ -57,26 +50,26 @@ public class MainFrame extends JFrame {
      */
     public MainFrame(GameLogic controller) {
         action = new ActionHandler(controller);
-        answers = new HandleAnswers(controller);
-        shop = new HandleShopKeeper(controller);
+        answers = new AnswersHandler(controller);
 
-        //Create all necessary components.
         createAllComponents();
 
         mainMenu = new MainMenu(this, action);
 
         sceneCreator = new SceneCreator(this, action);
-
         sceneCreator.generateScenes();
 
-        objectCreator = new ObjectCreator(this, controller, action);
+        labelsAndStatus = new LabelsAndStatus(this);
+        healthBar = new HealthBar(controller, this);
+        enemyHealthBar = new EnemyHealthBar(controller, this);
 
+        objectCreator = new ObjectCreator(this, controller, action);
         objectCreator.createObjects();
 
+        shopPanels = new ShopPanels(controller, this, action);
         finalScenePanel = new FinalScenePanel(this, action);
 
         portalCreator = new PortalCreator(this, controller, action);
-
         portalCreator.createTP();
 
         createMainWindow();
@@ -87,17 +80,10 @@ public class MainFrame extends JFrame {
      * Creates all the components.
      */
     public void createAllComponents() {
-        createLevelLabel();
-        createTimerLabel();
-        createCoinLabel();
         createDamagePotion();
         createHelpQuestionMark();
-        createPotionStatusLabel();
-        createCombatStatusLabel();
         createTextArea();
         createShield();
-        createShieldStatus();
-        createShopPrompt();
     }
 
     /**
@@ -126,29 +112,6 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Creates the button that are displayed when the shop is visited.
-     */
-    public void populateShopPanel() {
-        pnlShop = new JPanel();
-        pnlShop.setBounds(580, 670, 350, 100);
-        pnlShop.setBackground(Color.BLUE);
-        pnlShop.setLayout(new GridLayout(2, 2));
-        pnlShop.setOpaque(false);
-
-        String[] commandsForButtons = {"firstButton", "secondButton", "thirdButton", "fourthButton"};
-        shopButtons = new JButton[4];
-        for (int i = 0; i < 4; i++) {
-            shopButtons[i] = new JButton();
-            String s = commandsForButtons[i];
-            shopButtons[i].addActionListener(shop);
-            shopButtons[i].setActionCommand(s);
-            pnlShop.add(shopButtons[i]);
-        }
-        pnlShop.setVisible(false);
-        add(pnlShop);
-    }
-
-    /**
      * Creates the main JFrame of the game.
      */
     public void createMainWindow() {
@@ -171,52 +134,6 @@ public class MainFrame extends JFrame {
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("Cambria", Font.PLAIN, 26));
         add(textArea);
-    }
-
-    /**
-     * Creates the label that displays the current level on the GUI.
-     */
-    public void createLevelLabel(){
-        lblLevel = new JLabel();
-        lblLevel.setVisible(false);
-        lblLevel.setBounds(600, 0, 330, 150);
-        lblLevel.setLayout(null);
-        lblLevel.setOpaque(false);
-        lblLevel.setText("");
-        lblLevel.setFont(new Font("Cambria", Font.PLAIN, 25));
-        lblLevel.setForeground(Color.WHITE);
-        add(lblLevel);
-    }
-
-    /**
-     * Creates the label that displays the timer on the GUI.
-     */
-    public void createTimerLabel(){
-        lblTimer = new JLabel();
-        lblTimer.setVisible(false);
-        lblTimer.setBounds(100, 650, 220, 150);
-        lblTimer.setLayout(null);
-        lblTimer.setText("");
-        lblTimer.setFont(new Font("Cambria", Font.PLAIN, 25));
-        lblTimer.setForeground(Color.WHITE);
-        add(lblTimer);
-    }
-
-    /**
-     * Creates the coin label that displays the users coins on the GUI.
-     */
-    public void createCoinLabel() {
-        ImageIcon coinIcon = ImageResizer.resize("resources/misc/coin.png", 35, 35);
-        lblCoins = new JLabel();
-        lblCoins.setOpaque(false);
-        lblCoins.setVisible(false);
-        lblCoins.setBounds(100, -45, 200, 150);
-        lblCoins.setLayout(null);
-        lblCoins.setIcon(coinIcon);
-        lblCoins.setText(" 0");
-        lblCoins.setFont(new Font("Cambria", Font.PLAIN, 20));
-        lblCoins.setForeground(Color.WHITE);
-        add(lblCoins);
     }
 
     /**
@@ -268,19 +185,6 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Creates the shield status label.
-     */
-    public void createShieldStatus() {
-        ImageIcon statusIcon = ImageResizer.resize("resources/misc/GreenShield.png", 50, 50);
-        shieldStatus = new JLabel();
-        shieldStatus.setBounds(20, 750, 50, 50);
-        shieldStatus.setOpaque(false);
-        shieldStatus.setVisible(false);
-        shieldStatus.setIcon(statusIcon);
-        add(shieldStatus);
-    }
-
-    /**
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createHelpQuestionMark() {
@@ -307,32 +211,6 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Creates the potion status label.
-     */
-    public void createPotionStatusLabel() {
-        ImageIcon statusIcon = ImageResizer.resize("resources/misc/bicep.png", 50, 50);
-        lblPotionStatus = new JLabel();
-        lblPotionStatus.setBounds(70, 750, 50, 50);
-        lblPotionStatus.setOpaque(false);
-        lblPotionStatus.setVisible(false);
-        lblPotionStatus.setIcon(statusIcon);
-        add(lblPotionStatus);
-    }
-
-    /**
-     * Creates the combat status label.
-     */
-    public void createCombatStatusLabel() {
-        ImageIcon statusIcon = ImageResizer.resize("resources/misc/combat.png", 50, 50);
-        lblCombatStatus = new JLabel();
-        lblCombatStatus.setBounds(130, 750, 50, 50);
-        lblCombatStatus.setOpaque(false);
-        lblCombatStatus.setVisible(false);
-        lblCombatStatus.setIcon(statusIcon);
-        add(lblCombatStatus);
-    }
-
-    /**
      * Creates the secondary text area that displays the math question.
      */
     public void createTextArea() {
@@ -348,35 +226,6 @@ public class MainFrame extends JFrame {
         textArea2.setVisible(false);
         textArea2.setFont(new Font("Cambria", Font.PLAIN, 26));
         add(textArea2);
-    }
-
-    /**
-     * Creates the panel with the yes/no buttons asking if user wants to visit the shop.
-     */
-    public void createShopPrompt() {
-        pnlShopPrompt = new JPanel();
-        pnlShopPrompt.setBounds(580, 670, 300, 80);
-        pnlShopPrompt.setBackground(Color.BLUE);
-        pnlShopPrompt.setLayout(new GridLayout(1, 2));
-        pnlShopPrompt.setOpaque(false);
-
-        String[] commandsForButtons = {"yesShop", "continue"};
-        //Initialize the array.
-        btnShopPrompt = new JButton[2];
-        for (int i = 0; i < 2; i++) {
-            //Initialize the buttons.
-            btnShopPrompt[i] = new JButton();
-            String s = commandsForButtons[i];
-            btnShopPrompt[i].addActionListener(action);
-            btnShopPrompt[i].setActionCommand(s);
-            //Adds the buttons to the panel.
-            pnlShopPrompt.add(btnShopPrompt[i]);
-        }
-        btnShopPrompt[0].setText("Yes");
-        btnShopPrompt[1].setText("No");
-        //Adds answerPanel to the background.
-        pnlShopPrompt.setVisible(false);
-        add(pnlShopPrompt);
     }
 
     /**
@@ -404,51 +253,11 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Returns lblLevel
-     * @return lblLevel
-     */
-    public JLabel getLblLevel() {
-        return lblLevel;
-    }
-
-    /**
-     * Returns lblTimer
-     * @return lblTimer
-     */
-    public JLabel getLblTimer(){
-        return lblTimer;
-    }
-
-    /**
      * Returns answerButton
      * @return answerButton
      */
     public JButton[] getAnswerButton() {
         return answerButton;
-    }
-
-    /**
-     * Returns shopButtons
-     * @return  shopButtons
-     */
-    public JButton[] getShopButtons() {
-        return shopButtons;
-    }
-
-    /**
-     * Returns pnlShop
-     * @return pnlShop
-     */
-    public JPanel getPnlShop() {
-        return pnlShop;
-    }
-
-    /**
-     * Returns lblCoins
-     * @return lblCoins
-     */
-    public JLabel getLblCoins() {
-        return lblCoins;
     }
 
     /**
@@ -468,22 +277,6 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Returns the Potion Status label.
-     * @return lblPotionStatus
-     */
-    public JLabel getLblPotionStatus() {
-        return lblPotionStatus;
-    }
-
-    /**
-     * Returns the combat label.
-     * @return lblCombatStatus
-     */
-    public JLabel getLblCombatStatus() {
-        return lblCombatStatus;
-    }
-
-    /**
      * Returns the BtnGetHelp button.
      * @return getBtnGetHelp
      */
@@ -499,10 +292,18 @@ public class MainFrame extends JFrame {
         return textArea2;
     }
 
+    /**
+     * Returns finalScenePanel
+     * @return finalScenePanel
+     */
     public FinalScenePanel getFinalScenePanel() {
         return finalScenePanel;
     }
 
+    /**
+     * Returns objectCreator
+     * @return objectCreator
+     */
     public ObjectCreator getObjectCreator() {
         return objectCreator;
     }
@@ -516,18 +317,42 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Returns the shield status label.
-     * @return shieldStatus
+     * Returns portalCreator
+     * @return portalCreator
      */
-    public JLabel getShieldStatus() {
-        return shieldStatus;
+    public PortalCreator getPortalCreator() {
+        return portalCreator;
     }
 
     /**
-     * Returns the shop prompt panel.
-     * @return pnlShopPrompt
+     * Returns shopPanels
+     * @return shopPanels
      */
-    public JPanel getPnlShopPrompt() {
-        return pnlShopPrompt;
+    public ShopPanels getShopPanels() {
+        return shopPanels;
+    }
+
+    /**
+     * Returns labelsAndStatus
+     * @return labelsAndStatus
+     */
+    public LabelsAndStatus getLabelsAndStatus() {
+        return labelsAndStatus;
+    }
+
+    /**
+     * Returns healthBar
+     * @return healthBar
+     */
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
+
+    /**
+     * Returns enemyHealthBar
+     * @return enemyHealthBar
+     */
+    public EnemyHealthBar getEnemyHealthBar() {
+        return enemyHealthBar;
     }
 }

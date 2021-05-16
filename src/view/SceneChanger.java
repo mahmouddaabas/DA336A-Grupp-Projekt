@@ -43,12 +43,12 @@ public class SceneChanger {
         }
 
         if (sceneNbr == 1) {
-            controller.getHealthBar().createHealthBar();
+            controller.getMainFrame().getHealthBar().createHealthBar();
         }
 
         if (sceneNbr > 0) {
-            controller.getMainFrame().getLblCoins().setVisible(true);
-            controller.getMainFrame().getLblLevel().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(true);
+            controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(true);
             controller.getCounter().updateLblLevel();
         }
 
@@ -109,10 +109,9 @@ public class SceneChanger {
         controller.getTimer().stopTimer();
         controller.getPlayer().setOutOfCombat(true);
         controller.getMainFrame().getAnswerPanel().setVisible(false);
-        controller.getMainFrame().getLblTimer().setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(false);
-//        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false); // nullPointer exception
-        controller.getMainFrame().getPnlShopPrompt().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
+        controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
 
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
@@ -128,9 +127,20 @@ public class SceneChanger {
      */
     public void exitShop() {
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(true);
-        controller.getMainFrame().getPnlShop().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(true);
+        controller.getMainFrame().getShopPanels().getPnlShop().setVisible(false);
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(false);
+    }
+
+    /**
+     * Shows the portal after defeating final boss
+     */
+    public void showPortal() {
+        controller.getTimer().stopTimer();
+        controller.getPlayer().setOutOfCombat(true);
+        controller.getMainFrame().getAnswerPanel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
+        controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(true);
     }
 
     /**
@@ -143,13 +153,13 @@ public class SceneChanger {
         controller.getMainFrame().getAnswerPanel().setVisible(false);
         controller.getMainFrame().getTextArea().setVisible(false);
         controller.getMainFrame().getTextArea2().setVisible(false);
-        controller.getHealthBar().getHealthPanel().setVisible(false);
-        controller.getMainFrame().getLblLevel().setVisible(false);
-        controller.getMainFrame().getLblTimer().setVisible(false);
-        controller.getMainFrame().getLblCoins().setVisible(false);
-        controller.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
-        controller.getEnemyHealthBar().setEnemyHealthPanel(null);
-        controller.getMainFrame().getLblCombatStatus().setVisible(false);
+        controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
+        controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
+        controller.getMainFrame().getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        controller.getMainFrame().getEnemyHealthBar().setEnemyHealthPanel(null);
+        controller.getMainFrame().getLabelsAndStatus().getLblCombatStatus().setVisible(false);
 
         int currScene = controller.getCounter().getCurrentScene();
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(currScene - 1).setVisible(false);
@@ -195,6 +205,39 @@ public class SceneChanger {
         controller.getMainFrame().getTextArea().setForeground(Color.WHITE);
         controller.setStatus("");
         controller.getMainFrame().getBtnGetHelp().requestFocus();
+    }
+
+    public void exitFinalScene() {
+        controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(false);
+        controller.getMainFrame().getFinalScenePanel().getPnlFinalScene().setVisible(false);
+        controller.getMainFrame().getObjectCreator().getLblShopKeeper().setVisible(false);
+        controller.getMainFrame().getBtnGetHelp().setFocusable(true);
+        controller.getPlayer().setOutOfCombat(true);
+        controller.getCounter().setLevel(1);
+
+        //Sets all enemies to visible
+        for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
+            if (!controller.getMainFrame().getObjectCreator().getMonsters().get(i).isVisible()) {
+                controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+            }
+        }
+
+        //Sets all level arrows to invisible
+        for (int j = 1; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++) {
+            if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
+                controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+            }
+        }
+
+        //Sets all scenes and associated images to visible
+        for (int j = 0; j < controller.getMainFrame().getSceneCreator().getBgPanels().size(); j++) {
+            if (!controller.getMainFrame().getSceneCreator().getBgPanels().get(j).isVisible()) {
+                controller.getMainFrame().getSceneCreator().getBgPanels().get(j).setVisible(true);
+                if (!controller.getMainFrame().getSceneCreator().getBgImages().get(j).isVisible()) {
+                    controller.getMainFrame().getSceneCreator().getBgImages().get(j).setVisible(true);
+                }
+            }
+        }
     }
 
     /**
