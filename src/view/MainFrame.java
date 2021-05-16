@@ -99,7 +99,6 @@ public class MainFrame extends JFrame {
         createTimerLabel();
         createCoinLabel();
         createDamagePotion();
-        createAudioButtons();
         createHelpQuestionMark();
         createPotionStatusLabel();
         createCombatStatusLabel();
