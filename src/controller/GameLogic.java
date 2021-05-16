@@ -15,6 +15,7 @@ import java.awt.*;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * Controller class that handles the overall logic flow for the game.
  */
 public class GameLogic {
@@ -31,6 +32,8 @@ public class GameLogic {
     private SceneChanger sceneChanger;
     private GameOverScreen gameOver;
     private Counter counter;
+
+    private MusicPlayer musicPlayer;
 
     private ShopItems shopItems;
     private PlayerActions playerActions;
@@ -51,12 +54,16 @@ public class GameLogic {
         timer = new Timer(this);
         counter = new Counter(this);
 
+        musicPlayer = new MusicPlayer(counter);
+        musicPlayer.setMainFrame(mainFrame);
+
         gameOver = new GameOverScreen(this);
         shopItems = new ShopItems(this);
         playerActions = new PlayerActions(this);
 
         sceneChanger.showMainMenu();
         playerList.loadProfileList();
+        musicPlayer.startMusic();
     }
 
     /**
@@ -94,6 +101,7 @@ public class GameLogic {
         counter.setLevel(1);
         counter.setCurrentScene(0);
         sceneChanger.showScene(counter.getCurrentScene());
+        musicPlayer.startMusic();
     }
 
     /**
@@ -332,6 +340,14 @@ public class GameLogic {
      */
     public MainFrame getMainFrame() {
         return mainFrame;
+    }
+
+    /**
+     * Returns the MusicPlayer object
+     * @return musicPlayer
+     */
+    public MusicPlayer getMusicPlayer() {
+        return musicPlayer;
     }
 
     /**
