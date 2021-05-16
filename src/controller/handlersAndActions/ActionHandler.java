@@ -1,6 +1,7 @@
 package controller.handlersAndActions;
 
 import controller.GameLogic;
+import controller.MusicPlayer;
 import model.Difficulty;
 import view.help.ControlHelp;
 import view.help.GameHelp;
@@ -62,6 +63,11 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getPlayerActions().equipShield();
                 break;
 
+                //MUSIC
+            case "audioOnOff":
+                controller.getMusicPlayer().audioOnOff();
+                break;
+
                 //SHOP
             case "yesShop":
                 controller.getSceneChanger().visitShop();
@@ -89,6 +95,12 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
+
+                int currLevel = controller.getCounter().getLevel();
+                if(currLevel == 5 || currLevel == 6 || currLevel == 10
+                        || currLevel == 11 || currLevel == 15 || currLevel == 16) {
+                    controller.getMusicPlayer().startMusic();
+                }
                 break;
 
                 //MAIN MENU
