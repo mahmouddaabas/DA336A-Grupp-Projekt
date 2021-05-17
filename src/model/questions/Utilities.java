@@ -17,7 +17,7 @@ public class Utilities {
      * @param upperBound the highest value the random integer can have.
      * @return the random integer between the bounds.
      */
-    protected static int randomInt(int lowerBound, int upperBound) {
+    public static int randomInt(int lowerBound, int upperBound) {
         return rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
     }
 
@@ -28,7 +28,7 @@ public class Utilities {
      * @param upperBound the highest value the random integer can have.
      * @return the random non-zero integer between the bounds.
      */
-    protected static int randomIntNotZero(int lowerBound, int upperBound) {
+    public static int randomIntNotZero(int lowerBound, int upperBound) {
         int randNum;
         while (true) {
             randNum = rand.nextInt(upperBound + 1 - lowerBound) + lowerBound;
@@ -45,7 +45,7 @@ public class Utilities {
      * @param numOfDecimals the number of decimal places of the number.
      * @return the random BigDecimal between the bounds.
      */
-    protected static BigDecimal randomBigDecimal(double lowerBound, double upperBound, int numOfDecimals) {
+    public static BigDecimal randomBigDecimal(double lowerBound, double upperBound, int numOfDecimals) {
         double randNum = rand.nextDouble() * (upperBound - lowerBound) + lowerBound;
         return new BigDecimal(randNum).setScale(numOfDecimals, RoundingMode.HALF_UP);
     }
@@ -58,7 +58,7 @@ public class Utilities {
      * @param numOfDecimals the number of decimal places of the number.
      * @return the random non-zero BigDecimal between the bounds.
      */
-    protected static BigDecimal randomBigDecimalNotZero(double lowerBound, double upperBound, int numOfDecimals) {
+    public static BigDecimal randomBigDecimalNotZero(double lowerBound, double upperBound, int numOfDecimals) {
         double randNum;
         BigDecimal decimalNum;
         while (true) {
@@ -75,7 +75,7 @@ public class Utilities {
      * @param number the number that is added or subtracted.
      * @return a positive number as addition and a negative number as subtraction.
      */
-    protected static String additionOrSubtractionString(int number) {
+    public static String additionOrSubtractionString(int number) {
         if (number < 0) {
             return "- " + (-1 * number);
         } else
@@ -87,7 +87,7 @@ public class Utilities {
      * @param number the number that is added or subtracted.
      * @return a positive number as addition and a negative number as subtraction.
      */
-    protected static String additionOrSubtractionString(BigDecimal number) {
+    public static String additionOrSubtractionString(BigDecimal number) {
         if (number.compareTo(new BigDecimal(0)) < 0) {
             return "- " + (number.multiply(new BigDecimal(-1)));
         } else
@@ -99,7 +99,7 @@ public class Utilities {
      * @param fraction the fraction that is added or subtracted.
      * @return a positive fraction as addition and a negative fraction as subtraction.
      */
-    protected static String additionOrSubtractionString(Fraction fraction) {
+    public static String additionOrSubtractionString(Fraction fraction) {
         if (fraction.getNumerator() < 0) {
             return "- " + (fraction.multiply(new Fraction(-1, 1)).toString());
         } else
@@ -112,7 +112,7 @@ public class Utilities {
      * @param number the number to check.
      * @return the number enclosed in parenthesis if negative, unchanged otherwise.
      */
-    protected static String parenthesisIfNegativeString(BigDecimal number) {
+    public static String parenthesisIfNegativeString(BigDecimal number) {
         if (number.compareTo(new BigDecimal(0)) < 0) {
             return "(" + number.toString() + ")";
         } else {
@@ -125,7 +125,7 @@ public class Utilities {
      * @param number the numbers to make superscript.
      * @return the strings of numbers made to superscript.
      */
-    protected static String toSuperscriptNumbers(int number) {
+    public static String toSuperscriptNumbers(int number) {
         String numberStr = Integer.toString(number);
         numberStr = numberStr.replaceAll("0", "⁰");
         numberStr = numberStr.replaceAll("1", "¹");
@@ -147,7 +147,7 @@ public class Utilities {
      * @param number the numbers to make subscript.
      * @return the strings of numbers made to subscript.
      */
-    protected static String toSubscriptNumbers(int number) {
+    public static String toSubscriptNumbers(int number) {
         String numberStr = Integer.toString(number);
         numberStr = numberStr.replaceAll("0", "₀");
         numberStr = numberStr.replaceAll("1", "₁");
