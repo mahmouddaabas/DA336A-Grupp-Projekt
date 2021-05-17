@@ -171,7 +171,7 @@ public class GameLogic {
                 }
             }
             else {
-                //ifNotAnswered();
+                ifNotAnswered();
             }
         }
     }
@@ -300,6 +300,7 @@ public class GameLogic {
      * Shows the shop prompt after a boss level.
      */
     public void showShopPrompt() {
+        musicPlayer.stopTicking();
         if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                 counter.getLevel() == 15) {
             mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1)
