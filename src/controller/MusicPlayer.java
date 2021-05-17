@@ -34,7 +34,7 @@ public class MusicPlayer {
      * @param counter A counter object to be used to get information regarding current level and scene
      */
     public MusicPlayer(Counter counter) {
-        this("resources/soundTracks/soundMissile.wav","resources/soundTracks/soundCars.wav","resources/soundTracks/soundMissile.wav","resources/soundTracks/soundMissile.wav","");
+        this("resources/soundtracks/soundRegularLevel.wav","resources/soundtracks/soundRegularLevel.wav","resources/soundTracks/soundMissile.wav","resources/soundTracks/soundCars.wav","");
         this.counter = counter;
     }
 
