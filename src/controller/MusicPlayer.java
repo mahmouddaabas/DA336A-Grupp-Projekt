@@ -8,6 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.io.*;
+import java.sql.Struct;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +23,14 @@ public class MusicPlayer {
     private ArrayList<File> files;
 
     private AudioInputStream audioInput;
-    private Clip clip;
+    private Clip clipMusic;
+    private Clip clipSoundEffects;
     private FloatControl volume;
 
     private boolean isPlaying;
     private boolean isMuted;
     private boolean isShop;
+    private boolean ticking;
 
     /**
      * Constructor that provides the private constructor with file paths to all of the audio clips
@@ -122,19 +125,35 @@ public class MusicPlayer {
 
         try {
             audioInput = AudioSystem.getAudioInputStream(fileToPlay);
-            clip = AudioSystem.getClip();
+            clipMusic = AudioSystem.getClip();
             isPlaying = true;
-            clip.open(audioInput);
-            clip.loop(clip.LOOP_CONTINUOUSLY);
+            clipMusic.open(audioInput);
+            clipMusic.loop(clipMusic.LOOP_CONTINUOUSLY);
 
             if(isMuted) {
-                setPreferredVolume(-50000f);
+                setPreferredVolume(-50000f, clipMusic);
             } else {
-                setPreferredVolume(-30f);
+                setPreferredVolume(-30f, clipMusic);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void playSoundEffects(String filePath) {
+        try {
+            audioInput = AudioSystem.getAudioInputStream(new File(filePath));
+            clipSoundEffects = AudioSystem.getClip();
+            clipSoundEffects.open(audioInput);
+            clipSoundEffects.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setPreferredVolume(-30f, clipSoundEffects);
+        while (clipSoundEffects.getMicrosecondLength() < 5000L) {
+            System.out.println(" < 5 sek");
+        }
+    //    clipSoundEffects.stop(); //tills att vi kunnat klippa i time-soundet till 5 sek
     }
 
 
@@ -143,16 +162,21 @@ public class MusicPlayer {
      */
     public void stopMusic() {
         if(isPlaying) {
-            clip.stop();
+            clipMusic.stop();
             isPlaying = false;
         }
+    }
+
+    public void stopSoundEffect() {
+        clipSoundEffects.stop();
+        ticking = false;
     }
 
     /**
      * Private method that sets the volume of the audio
      * @param preferredVolume the float value to be set as volume
      */
-    private void setPreferredVolume(float preferredVolume) {
+    private void setPreferredVolume(float preferredVolume, Clip clip) {
         volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         volume.setValue(preferredVolume);
     }
@@ -163,12 +187,19 @@ public class MusicPlayer {
      */
     public void audioOnOff() {
         if(isMuted) {
-            setPreferredVolume(-30f);
+            setPreferredVolume(-30f, clipMusic);
         } else {
-            setPreferredVolume(-50000f);
+            setPreferredVolume(-50000f, clipMusic);
         }
         isMuted = !isMuted;
         mainFrame.setAudioIcon(isMuted);
+    }
+
+    public void startTicking() {
+        if(!ticking) {
+            ticking = true;
+            playSoundEffects("resources/soundtracks/TickingClock.wav");
+        }
     }
 
     /**
