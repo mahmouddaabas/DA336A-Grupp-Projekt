@@ -110,6 +110,7 @@ public class GameLogic {
      * @param level current level
      */
     public void startFight(int level) {
+        musicPlayer.stopTicking();
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
@@ -170,7 +171,7 @@ public class GameLogic {
                 }
             }
             else {
-                ifNotAnswered();
+                //ifNotAnswered();
             }
         }
     }

@@ -19,41 +19,21 @@ public class MusicPlayer {
     private Counter counter;
     private MainFrame mainFrame;
 
-    private ArrayList<File> files;
-
-    private AudioInputStream audioInput;
     private Clip clip;
+    private Clip clipTimer;
     private FloatControl volume;
 
     private boolean isPlaying;
     private boolean isMuted;
     private boolean isShop;
+    private boolean ticking;
 
     /**
      * Constructor that provides the private constructor with file paths to all of the audio clips
      * @param counter A counter object to be used to get information regarding current level and scene
      */
     public MusicPlayer(Counter counter) {
-        this("resources/soundTracks/soundMissile.wav","resources/soundTracks/soundCars.wav","resources/soundTracks/soundMissile.wav","resources/soundTracks/soundMissile.wav","");
         this.counter = counter;
-    }
-
-    /**
-     * Private constructor which initializes the ArrayList files and passes the values of the parameters to the
-     * creation of multiple File objects
-     * @param pathMainMenu filepath to the audio to be played on the MainMenu-screen/Startup-screen
-     * @param pathRegularLvl filepath to the audio to be played on all of the levels with regular monsters
-     * @param pathBossLvl filepath to the audio to be played on all of the levels with bosses
-     * @param pathShop filepath to the audio to be played while player is at the shop
-     * @param pathWinner filepath to the audio to be played when player reaches the winner-screen
-     */
-    private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String pathWinner) {
-        files = new ArrayList<>();
-        files.add(0, new File(pathMainMenu));
-        files.add(1, new File(pathRegularLvl));
-        files.add(2, new File(pathBossLvl));
-        files.add(3, new File(pathShop));
-        files.add(4, new File(pathWinner));
     }
 
     /**
@@ -71,15 +51,16 @@ public class MusicPlayer {
     public void startMusic() {
         if(isShop) {
             //shop scene
-            playMusic(files.get(3));
+            clip.stop();
+            clip = play("resources/soundTracks/ShopSound.wav", -30f);
         } else {
             switch (counter.getLevel()) {
                 case 0:
                     //startup screen
-                    playMusic(files.get(0));
+                    clip = play("resources/soundTracks/MainMenuSound.wav", -30f);
                     break;
 
-                case 1:
+                case 1:clip.stop();
                 case 2:
                 case 3:
                 case 4:
@@ -96,7 +77,7 @@ public class MusicPlayer {
                 case 18:
                 case 19:
                     //regular levels
-                    playMusic(files.get(1));
+                    clip = play("resources/soundTracks/regularLevelSound.wav", -30f);
                     break;
 
                 case 5:
@@ -104,39 +85,60 @@ public class MusicPlayer {
                 case 15:
                 case 20:
                     //boss levels
-                    playMusic(files.get(2));
+                    clip.stop();
+                    clip = play("resources/soundTracks/bossFightSound.wav", -30f);
                     break;
             }
         }
     }
 
     /**
-     * Private method that uses an AudioInputStream and a Clip object to play audio
-     * Checks if any audio is playing and in that case stops the music before playing the audio
-     * @param fileToPlay A File object with the filepath to the audio which is used to pass to the AudioInputStream and to be played
+     * Method that starts the audio.
+     * @param filename
+     * @param volume
+     * @return clip
      */
-    private void playMusic(File fileToPlay) {
-        if(isPlaying) {
-            stopMusic();
-        }
-
+    public Clip play(String filename, float volume) {
         try {
-            audioInput = AudioSystem.getAudioInputStream(fileToPlay);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
             clip = AudioSystem.getClip();
-            isPlaying = true;
-            clip.open(audioInput);
-            clip.loop(clip.LOOP_CONTINUOUSLY);
+            clip.open(audioInputStream);
+            clip.setFramePosition(0);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
 
-            if(isMuted) {
-                setPreferredVolume(-50000f);
-            } else {
-                setPreferredVolume(-30f);
-            }
-        } catch (Exception e) {
+            // values have min/max values, for now don't check for outOfBounds values
+            FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volume);
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
+        return clip;
     }
 
+    /**
+     * Method that starts the audio for the timer.
+     * @param filename
+     * @param volume
+     * @return clip
+     */
+    public Clip playTimer(String filename, float volume) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+            clipTimer = AudioSystem.getClip();
+            clipTimer.open(audioInputStream);
+            clipTimer.setFramePosition(0);
+            clipTimer.loop(Clip.LOOP_CONTINUOUSLY);
+
+            // values have min/max values, for now don't check for outOfBounds values
+            FloatControl gainControl = (FloatControl)clipTimer.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volume);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return clipTimer;
+    }
 
     /**
      * Method that stops the audio if playing
@@ -144,6 +146,7 @@ public class MusicPlayer {
     public void stopMusic() {
         if(isPlaying) {
             clip.stop();
+            clipTimer.stop();
             isPlaying = false;
         }
     }
@@ -169,6 +172,26 @@ public class MusicPlayer {
         }
         isMuted = !isMuted;
         mainFrame.setAudioIcon(isMuted);
+    }
+
+    /**
+     * Starts the ticking sound when called.
+     */
+    public void startTicking() {
+        if(!ticking) {
+            ticking = true;
+            clipTimer = playTimer("resources/soundTracks/TickingClock.wav", -30f);
+        }
+    }
+
+    /**
+     * Stops the ticking sound when called.
+     */
+    public void stopTicking() {
+        if(ticking) {
+            ticking = false;
+            clipTimer.stop();
+        }
     }
 
     /**
