@@ -10,6 +10,7 @@ import java.util.LinkedList;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
 public class SceneChanger {
@@ -113,6 +114,9 @@ public class SceneChanger {
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
 
+        controller.getMusicPlayer().setShopActive(true);
+        controller.getMusicPlayer().startMusic();
+
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
@@ -130,6 +134,9 @@ public class SceneChanger {
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(true);
         controller.getMainFrame().getShopPanels().getPnlShop().setVisible(false);
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(false);
+
+        controller.getMusicPlayer().setShopActive(false);
+        controller.getMusicPlayer().startMusic();
     }
 
     /**
@@ -186,6 +193,8 @@ public class SceneChanger {
         controller.getPlayer().restoreHealth();
         controller.getPlayer().setOutOfCombat(true);
         controller.getCounter().setLevel(1);
+
+        controller.getMusicPlayer().startMusic();
 
         controller.getMainFrame().getTextArea().setVisible(true);
 

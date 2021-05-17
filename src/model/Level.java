@@ -4,6 +4,7 @@ import model.questions.MathQuestions;
 
 /**
  * @author Duy Nguyen
+ * @author Vilgot Mattsson
  * Class that functions as a Level for the game
  */
 public class Level {
