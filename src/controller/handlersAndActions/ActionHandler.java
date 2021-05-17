@@ -64,8 +64,13 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
 
                 //MUSIC
-            case "audioOnOff":
-                controller.getMusicPlayer().audioOnOff();
+            case "audioOn":
+                //controller.getMusicPlayer().audioOnOff();
+                controller.getMusicPlayer().mute();
+                break;
+
+            case "audioOff":
+                controller.getMusicPlayer().unmute();
                 break;
 
                 //SHOP

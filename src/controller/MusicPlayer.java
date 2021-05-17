@@ -22,6 +22,7 @@ public class MusicPlayer {
     private Clip clip;
     private Clip clipTimer;
     private FloatControl volume;
+    private Float value = -30f;
 
     private boolean isPlaying;
     private boolean isMuted;
@@ -51,16 +52,17 @@ public class MusicPlayer {
     public void startMusic() {
         if(isShop) {
             //shop scene
+            stopTicking();
             clip.stop();
-            clip = play("resources/soundTracks/ShopSound.wav", -30f);
+            clip = play("resources/audio/ShopSound.wav", value);
         } else {
             switch (counter.getLevel()) {
                 case 0:
                     //startup screen
-                    clip = play("resources/soundTracks/MainMenuSound.wav", -30f);
+                    clip = play("resources/audio/MainMenuSound.wav", value);
                     break;
 
-                case 1:clip.stop();
+                case 1:
                 case 2:
                 case 3:
                 case 4:
@@ -76,8 +78,9 @@ public class MusicPlayer {
                 case 17:
                 case 18:
                 case 19:
-                    //regular levels
-                    clip = play("resources/soundTracks/regularLevelSound.wav", -30f);
+                        //regular levels
+                        clip.stop();
+                        clip = play("resources/audio/regularLevelSound.wav", value);
                     break;
 
                 case 5:
@@ -86,7 +89,7 @@ public class MusicPlayer {
                 case 20:
                     //boss levels
                     clip.stop();
-                    clip = play("resources/soundTracks/bossFightSound.wav", -30f);
+                    clip = play("resources/audio/bossFightSound.wav", value);
                     break;
             }
         }
@@ -99,20 +102,20 @@ public class MusicPlayer {
      * @return clip
      */
     public Clip play(String filename, float volume) {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.setFramePosition(0);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+                clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.setFramePosition(0);
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
 
-            // values have min/max values, for now don't check for outOfBounds values
-            FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volume);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+                // values have min/max values, for now don't check for outOfBounds values
+                FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volume);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         return clip;
     }
 
@@ -120,23 +123,23 @@ public class MusicPlayer {
      * Method that starts the audio for the timer.
      * @param filename
      * @param volume
-     * @return clip
+     * @return clipTimer
      */
     public Clip playTimer(String filename, float volume) {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
-            clipTimer = AudioSystem.getClip();
-            clipTimer.open(audioInputStream);
-            clipTimer.setFramePosition(0);
-            clipTimer.loop(Clip.LOOP_CONTINUOUSLY);
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+                clipTimer = AudioSystem.getClip();
+                clipTimer.open(audioInputStream);
+                clipTimer.setFramePosition(0);
+                clipTimer.loop(Clip.LOOP_CONTINUOUSLY);
 
-            // values have min/max values, for now don't check for outOfBounds values
-            FloatControl gainControl = (FloatControl)clipTimer.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volume);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+                // values have min/max values, for now don't check for outOfBounds values
+                FloatControl gainControl = (FloatControl)clipTimer.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volume);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         return clipTimer;
     }
 
@@ -158,19 +161,24 @@ public class MusicPlayer {
     private void setPreferredVolume(float preferredVolume) {
         volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         volume.setValue(preferredVolume);
+        value = preferredVolume;
     }
 
     /**
-     * Method that turns the audio on/off depending on the value of boolean variable isMute
-     * and then notifies the MainFrame about the change of state
+     * Method to mute the sound.
      */
-    public void audioOnOff() {
-        if(isMuted) {
-            setPreferredVolume(-30f);
-        } else {
-            setPreferredVolume(-50000f);
-        }
-        isMuted = !isMuted;
+    public void mute() {
+        isMuted = true;
+        setPreferredVolume(-50000f);
+        mainFrame.setAudioIcon(isMuted);
+    }
+
+    /**
+     * Method to unmute the sound.
+     */
+    public void unmute() {
+        isMuted = false;
+        setPreferredVolume(-30f);
         mainFrame.setAudioIcon(isMuted);
     }
 
@@ -180,7 +188,7 @@ public class MusicPlayer {
     public void startTicking() {
         if(!ticking) {
             ticking = true;
-            clipTimer = playTimer("resources/soundTracks/TickingClock.wav", -30f);
+            clipTimer = playTimer("resources/audio/TickingClock.wav", -30f);
         }
     }
 

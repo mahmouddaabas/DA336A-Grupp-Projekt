@@ -246,7 +246,7 @@ public class MainFrame extends JFrame {
         btnAudioOn.setLayout(null);
 
         btnAudioOn.addActionListener(action);
-        btnAudioOn.setActionCommand("audioOnOff");
+        btnAudioOn.setActionCommand("audioOn");
 
         btnAudioOn.setIcon(audioIconOn);
         btnAudioOn.setContentAreaFilled(false);
@@ -265,7 +265,7 @@ public class MainFrame extends JFrame {
         btnAudioOff.setLayout(null);
 
         btnAudioOff.addActionListener(action);
-        btnAudioOff.setActionCommand("audioOnOff");
+        btnAudioOff.setActionCommand("audioOff");
 
         btnAudioOff.setIcon(audioIconOff);
         btnAudioOff.setFocusable(false);
