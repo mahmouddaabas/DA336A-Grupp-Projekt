@@ -54,8 +54,8 @@ public class GameLogic {
         timer = new Timer(this);
         counter = new Counter(this);
 
-        musicPlayer = new MusicPlayer(counter);
-        musicPlayer.setMainFrame(mainFrame);
+        //musicPlayer = new MusicPlayer(counter);
+        //musicPlayer.setMainFrame(mainFrame);
 
         gameOver = new GameOverScreen(this);
         shopItems = new ShopItems(this);
@@ -63,7 +63,7 @@ public class GameLogic {
 
         sceneChanger.showMainMenu();
         playerList.loadProfileList();
-        musicPlayer.startMusic();
+        //musicPlayer.startMusic();
     }
 
     /**
@@ -101,7 +101,7 @@ public class GameLogic {
         counter.setLevel(1);
         counter.setCurrentScene(0);
         sceneChanger.showScene(counter.getCurrentScene());
-        musicPlayer.startMusic();
+        //musicPlayer.startMusic();
     }
 
     /**

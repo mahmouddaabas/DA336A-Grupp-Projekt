@@ -9,10 +9,10 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
  * @author Duy Nguyen
@@ -115,7 +115,7 @@ public class ObjectCreator {
         lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
-        lblShopKeeper.setIcon(ImageResizer.resize("resources/entities/Oleg.png", 200, 350));
+        lblShopKeeper.setIcon(ImageResizer.resize("src/entities/Oleg.png", 200, 350));
         lblShopKeeper.setBounds(600, 80, 150, 400);
 
         lblShopKeeper.addMouseListener(new MouseListener() {
@@ -145,8 +145,9 @@ public class ObjectCreator {
      */
     public void createMonsterObjects() {
         try {
-            String path = "resources/entities/monsterImageLocation.txt";
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String path = "/entities/monsterImageLocation.txt";
+            InputStreamReader isr = new InputStreamReader(ObjectCreator.class.getResourceAsStream(path));
+            BufferedReader br = new BufferedReader(isr);
             String str = br.readLine();
             JPopupMenu popupMenu = createMonsterMenu();
 
@@ -196,8 +197,9 @@ public class ObjectCreator {
      */
     public void setMonsterBounds() {
         try {
-            String path = "resources/entities/monsterBounds.txt";
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String path = "/entities/monsterBounds.txt";
+            InputStreamReader isr = new InputStreamReader(ObjectCreator.class.getResourceAsStream(path));
+            BufferedReader br = new BufferedReader(isr);
             String str = br.readLine();
 
             while (str != null) {

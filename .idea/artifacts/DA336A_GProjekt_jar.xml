@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="DA336A-GProjekt:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DA336A_GProjekt_jar</output-path>
+    <root id="root">
+      <element id="archive" name="ClimbTheTower.jar">
+        <element id="module-output" name="DA336A-GProjekt" />
+      </element>
+    </root>
+  </artifact>
+</component>

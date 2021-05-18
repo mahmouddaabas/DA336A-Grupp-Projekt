@@ -5,10 +5,10 @@ import view.MainFrame;
 import controller.handlersAndActions.ActionHandler;
 import javax.swing.*;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
  * @author Duy Nguyen
@@ -45,7 +45,7 @@ public class SceneCreator {
     }
 
     public void addArrowButtons(int sceneNbr, String command) {
-        ImageIcon arrowIcon = new ImageIcon("resources/misc/upArrow.png");
+        ImageIcon arrowIcon = new ImageIcon("src/misc/upArrow.png");
 
         JButton btnArrow = new JButton();
         btnArrow.setBounds(550, 10, 50, 50);
@@ -66,8 +66,9 @@ public class SceneCreator {
      */
     public void createBackgrounds() {
         try {
-            String path = "resources/backgrounds/backgroundImageLocation.txt";
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String path = "/backgrounds/backgroundImageLocation.txt";
+            InputStreamReader isr = new InputStreamReader(SceneCreator.class.getResourceAsStream(path));
+            BufferedReader br = new BufferedReader(isr);
             String str = br.readLine();
 
             int sceneNbr = 0; //Level 1 is scene 1

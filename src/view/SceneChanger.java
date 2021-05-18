@@ -67,8 +67,9 @@ public class SceneChanger {
      */
     public void readSceneTexts() {
         try {
-            String path = "resources/backgrounds/sceneTexts.txt";
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String path = "/backgrounds/sceneTexts.txt";
+            InputStreamReader isr = new InputStreamReader(SceneChanger.class.getResourceAsStream(path));
+            BufferedReader br = new BufferedReader(isr);
             String str = br.readLine();
 
             while (str != null) {
@@ -86,8 +87,9 @@ public class SceneChanger {
      */
     public void readEnemyUniqueLines() {
         try {
-            String path = "resources/entities/enemyLines.txt";
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String path = "/entities/enemyLines.txt";
+            InputStreamReader isr = new InputStreamReader(SceneChanger.class.getResourceAsStream(path));
+            BufferedReader br = new BufferedReader(isr);
             String str = br.readLine();
 
             while (str != null) {

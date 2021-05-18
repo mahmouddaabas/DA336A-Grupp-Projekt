@@ -15,13 +15,14 @@ public class PlayerList {
     private final int MAX_PLAYERS = 10;
     private GameLogic controller;
 
-    private String playersPath = "resources/saves/players.txt";
+    private String playersPath = "";
 
     /**
      * Constructor
      * @param controller GameLogic-object to set own variable
      */
     public PlayerList(GameLogic controller) {
+        playersPath = "/saves/players.txt";
         players = new Player[MAX_PLAYERS];
         nbrOfPlayers = 0;
         this.controller = controller;
@@ -80,17 +81,17 @@ public class PlayerList {
      */
     public void deletePlayerFromTxt(String name) {
         try {
-        FileReader reader = new FileReader(playersPath);
-        BufferedReader br = new BufferedReader(reader);
+            FileReader reader = new FileReader(playersPath);
+            BufferedReader br = new BufferedReader(reader);
 
-        String data = br.readLine();
-        LinkedList<String> players = new LinkedList<>();
+            String data = br.readLine();
+            LinkedList<String> players = new LinkedList<>();
 
-        while (data != null) {
-            if (!data.equals(name)) {
-                players.add(data);
-            }
-            data = br.readLine();
+            while (data != null) {
+                if (!data.equals(name)) {
+                    players.add(data);
+                }
+                data = br.readLine();
         }
 
         br.close();
@@ -112,8 +113,8 @@ public class PlayerList {
      */
     public void loadProfileList() {
         try {
-            FileReader reader = new FileReader(playersPath);
-            BufferedReader br = new BufferedReader(reader);
+            InputStreamReader isr = new InputStreamReader(PlayerList.class.getResourceAsStream(playersPath));
+            BufferedReader br = new BufferedReader(isr);
 
             String data = br.readLine();
             while (data != null) {

@@ -14,7 +14,7 @@ public class HealthBar {
     private GameLogic controller;
     private JPanel healthPanel;
     private JLabel[] healthLabel;
-    private ImageIcon healthIcon = new ImageIcon("resources/misc/hearts.png");
+    private ImageIcon healthIcon = new ImageIcon("src/misc/hearts.png");
 
     /**
      * Constructs the healthBar class.

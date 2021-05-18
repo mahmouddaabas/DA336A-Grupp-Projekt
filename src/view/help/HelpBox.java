@@ -94,7 +94,7 @@ public class HelpBox {
         bgPanel = new JPanel();
         bgPanel.setLayout(null);
         bgPanel.setBounds(0, 0, 400, 600);
-        String path = "resources/backgrounds/helpBG.png";
+        String path = "src/backgrounds/helpBG.png";
         bgLabel = new JLabel();
         bgLabel.setBounds(0, 0, 400, 600);
         bgLabel.setIcon(ImageResizer.resize(path, 400, 600));
