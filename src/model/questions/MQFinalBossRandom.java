@@ -81,10 +81,10 @@ public class MQFinalBossRandom extends MathQuestions {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQFractionsAddition(1, 20, 1, 20, 2);
+                randomQuestion = new MQFractionsAddition(1, 10, 2, 10, 2);
                 break;
             case 1:
-                randomQuestion = new MQ2NumbersDivision(20, 100, 1, 3, 10, 1, 2);
+                randomQuestion = new MQ2NumbersDivision(20, 100, 0, 3, 10, 0, 2);
                 break;
             case 2:
                 randomQuestion = new MQManyNumbersAddition(1, 9, 1, 4);
@@ -93,10 +93,10 @@ public class MQFinalBossRandom extends MathQuestions {
                 randomQuestion = new MQManyNumbersMultiplication(-9, 9, 1, 3);
                 break;
             case 4:
-                randomQuestion = new MQPolynomialDerivation(-20, 20, -9, 9, 1);
+                randomQuestion = new MQFractionsAddition(-10, 10, 2, 6, 2);
                 break;
             case 5:
-                randomQuestion = new MQPolynomialIntegration(-20, 20, -9, 9, 1);
+                randomQuestion = new MQFractionsDivision(-10, 10, 2, 7, 2);
                 break;
         }
     }

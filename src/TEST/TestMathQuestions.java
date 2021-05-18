@@ -40,13 +40,14 @@ public class TestMathQuestions {
 //        mathQuestion = new MQFractionsMultiplication(-10, 10, -10, 10, 3);
 //        mathQuestion = new MQFractionsDivision(-9, 9, -9, 9, 3);
 //        mathQuestion = new MQPolynomialDerivation(-4, 4, -4, 4, 2);
-        mathQuestion = new MQPolynomialDoubleDerivation(-4, 4, -4, 4, 3);
+//        mathQuestion = new MQPolynomialDoubleDerivation(-4, 4, -4, 4, 3);
 //        mathQuestion = new MQPolynomialIntegration(-4, 4, -4, 0, 3);
 //        mathQuestion = new MQQuadraticExpand(-4, 4, 1, 4);
 //        mathQuestion = new MQQuadraticRoots(-3, 3, 1, 1);
 //        mathQuestion = new MQQuadraticSimplify(-3, 3, -3, 3);
 //        mathQuestion = new MQPrimeFactorisation(2, 10, 3, 5);
 //        mathQuestion = new MQFinalBossRandom(Difficulty.Easy);
+        mathQuestion = new MQFractionsDivision(-10, 10, 2, 7, 2);
         
         while (true) {
             mathQuestion.generateNewQuestion();

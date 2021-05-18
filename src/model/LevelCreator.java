@@ -35,14 +35,17 @@ public class LevelCreator {
         int[] times;
         switch (difficulty) {
             case Easy:
+                createLookHintsEasy(lookDialogues);
                 times = createEasyTimes();
                 mathQuestions = createEasyMathQuestions();
                 break;
             case Medium:
+                createLookHintsMedium(lookDialogues);
                 times = createMediumTimes();
                 mathQuestions = createMediumMathQuestions();
                 break;
             default: // Hard
+                createLookHintsHard(lookDialogues);
                 times = createHardTimes();
                 mathQuestions = createHardMathQuestions();
                 break;
@@ -62,108 +65,6 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the math questions associated with "Easy" difficulty
-     * @return math questions array
-     */
-    private MathQuestions[] createEasyMathQuestions() {
-        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
-
-        mathQuestions[0] = new MQ2NumbersAddition(1, 5, 0, 1, 5, 0);
-        mathQuestions[1] = new MQ2NumbersSubtraction(1, 9,0, 1, 9,0, false);
-        mathQuestions[2] = new MQ2NumbersMultiplication(1, 6, 0, 1, 6, 0);
-        mathQuestions[3] = new MQManyNumbersAddition(1, 5, 0, 3);
-        mathQuestions[4] = new MQDivisionRemainder(10, 30, 1, 5);
-
-        mathQuestions[5] = new MQ2NumbersAddition(1, 10, 0, -10, -1, 0);
-        mathQuestions[6] = new MQ2NumbersSubtraction(1, 10, 0, -10, -1, 0, true);
-        mathQuestions[7] = new MQManyNumbersAddition(-10, 10, 0, 3);
-        mathQuestions[8] = new MQManyNumbersMultiplication(1, 5, 0, 3);
-        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, 1, 5, 0, 2);
-
-        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 1);
-        mathQuestions[11] = new MQFractionsMultiplication(-5, 5, -5, 5, 2);
-        mathQuestions[12] = new MQFractionsAddition(1, 8, 1, 4, 2);
-        mathQuestions[13] = new MQFractionsDivision(1, 5, 1, 5, 2);
-        mathQuestions[14] = new MQFractionsAddition(1, 4, 1, 4, 3);
-
-        mathQuestions[15] = new MQPolynomialDerivation(1, 10, 0, 5, 1);
-        mathQuestions[16] = new MQPolynomialIntegration(1, 10, 0, 4, 1);
-        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -4, -2, 1);
-        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -5, -2, 1);
-        mathQuestions[19] = new MQFinalBossRandom(difficulty);
-
-        return mathQuestions;
-    }
-
-    /**
-     * Creates the math questions associated with "Medium" difficulty
-     * @return math questions array
-     */
-    private MathQuestions[] createMediumMathQuestions() {
-        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
-
-        mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0, 1, 9, 0);
-        mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 18,0, false);
-        mathQuestions[2] = new MQ2NumbersMultiplication(2, 10, 0, 2, 10, 0);
-        mathQuestions[3] = new MQManyNumbersAddition(1, 9, 0, 3);
-        mathQuestions[4] = new MQDivisionRemainder(10, 100, 3, 10);
-
-        mathQuestions[5] = new MQ2NumbersAddition(-10, 15, 0, -15, 10, 0);
-        mathQuestions[6] = new MQ2NumbersSubtraction(-18, 27, 0, -27, 18, 0, true);
-        mathQuestions[7] = new MQManyNumbersAddition(-30, 30, 0, 3);
-        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 3);
-        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, -10, 10, 0, 2);
-
-        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 2, -0.9, 0.9, 2);
-        mathQuestions[11] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
-        mathQuestions[12] = new MQFractionsAddition(-10, 10, -10, 10, 2);
-        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10, 2);
-        mathQuestions[14] = new MQFractionsAddition(-5, 5, -5, 5, 3);
-
-        mathQuestions[15] = new MQPolynomialDerivation(1, 20, 0, 9, 1);
-        mathQuestions[16] = new MQPolynomialIntegration(1, 20, 0, 8, 1);
-        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -8, -2, 1);
-        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -9, -2, 1);
-        mathQuestions[19] = new MQFinalBossRandom(difficulty);
-
-        return mathQuestions;
-    }
-
-    /**
-     * Creates the math questions associated with "Hard" difficulty
-     * @return math questions array
-     */
-    private MathQuestions[] createHardMathQuestions() {
-        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
-
-        mathQuestions[0] = new MQ2NumbersAddition(1.0, 9.0, 1, 1.0, 9.0, 1);
-        mathQuestions[1] = new MQ2NumbersSubtraction(0.1, 18.0,1, 0.1, 18.0,1, false);
-        mathQuestions[2] = new MQ2NumbersMultiplication(11, 20, 0, 1.0, 2.0, 2);
-        mathQuestions[3] = new MQManyNumbersAddition(1.0, 9.0, 1, 3);
-        mathQuestions[4] = new MQDivisionRemainder(12, 120, 6, 12);
-
-        mathQuestions[5] = new MQ2NumbersAddition(-99, 99, 0, -99, 99, 0);
-        mathQuestions[6] = new MQ2NumbersSubtraction(-99, 99, 0, -99, 99, 0, true);
-        mathQuestions[7] = new MQManyNumbersAddition(-10.0, 10.0, 2, 4);
-        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 4);
-        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 1, -10, 10, 1, 2);
-
-        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 3);
-        mathQuestions[11] = new MQFractionsMultiplication(-6, 6, -6, 6, 3);
-        mathQuestions[12] = new MQFractionsAddition(5, 30, 3, 10, 2);
-        mathQuestions[13] = new MQFractionsDivision(-20, 20, -20, 20, 2);
-        mathQuestions[14] = new MQFractionsAddition(-10, 10, -10, 10, 3);
-
-        mathQuestions[15] = new MQPolynomialDerivation(5, 30, 0, 20, 1);
-        mathQuestions[16] = new MQPolynomialIntegration(5, 30, 0, 19, 1);
-        mathQuestions[17] = new MQPolynomialDerivation(-20, 20, -19, -2, 1);
-        mathQuestions[18] = new MQPolynomialIntegration(-20, 20, -20, -2, 1);
-        mathQuestions[19] = new MQFinalBossRandom(difficulty);
-
-        return mathQuestions;
-    }
-
-    /**
      * Creates the health for the monsters on each level. Regular monsters have 3 health, bosses have 5 health, and
      * the final boss has 7 health.
      * @return the health for the monsters on each level.
@@ -180,60 +81,6 @@ public class LevelCreator {
             }
         }
         return healths;
-    }
-
-    /**
-     * Creates the lookDialogue for the monsters.
-     * @return the lookDialogue for the monsters..
-     */
-    private String[] createLookDialogues() {
-        String[] lookDialogues = new String[NUM_OF_LEVELS];
-
-        lookDialogues[0] = "You see a goblin standing right in front of you, it doesn't seem that strong." +
-                "\nThis monster appears to like Addition!";
-        lookDialogues[1] = "A skeleton stands in the way, defeat it!" +
-                "\nThis monster appears to like Subtraction!";
-        lookDialogues[2] = "You see a rather short warden upfront. Should you get any closer?" +
-                "\nThis monster appears to like Multiplication!";
-        lookDialogues[3] = "The goblin in front of you seem stronger than the previous one. Though, he does not seem talkative." +
-                "\nThis monster appears to like Addition!";
-        lookDialogues[4] = "You spot the biggest greenskin ever! Should you turn back?" +
-                "\nThis boss appears to like Division!";
-
-        lookDialogues[5] = "The mad dwarf stares at you intently." +
-                "\nThis monster appears to like Addition!";
-        lookDialogues[6] = "The stone-like gargoyle advances towards you." +
-                "\nThis monster appears to like Subtraction!";
-        lookDialogues[7] = "The mace-wielding fighter stares at you menacingly." +
-                "\nThis monster appears to like Addition!";
-        lookDialogues[8] = "The knight without a face stands proudly. Does it talk?" +
-                "\nThis monster appears to like Multiplication!";
-        lookDialogues[9] = "The paladin's armor shines brightly." +
-                "\nThis boss appears to like Division!";
-
-        lookDialogues[10] = "The viscous snake-man is poised to strike." +
-                "\nThis monster appears to like Multiplication!";
-        lookDialogues[11] = "The steadfast dwarf has no intention of letting you pass without a fight." +
-                "\nThis monster appears to like Multiplication!";
-        lookDialogues[12] = "The skeleton mage is far more powerful than any other undead you've met before." +
-                "\nThis monster appears to like Addition!";
-        lookDialogues[13] = "You feel the ancient golem stare into your soul." +
-                "\nThis monster appears to like Division!";
-        lookDialogues[14] = "The mighty mage looks down on you with contempt." +
-                "\nThis boss appears to like Addition!";
-
-        lookDialogues[15] = "Can you truly kill that which has no life?" +
-                "\nThis monster appears to like Derivation!";
-        lookDialogues[16] = "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask" +
-                "\nThis monster appears to like Integration!";
-        lookDialogues[17] = "You gaze upon a GOD." +
-                "\nThis monster appears to like Derivation!";
-        lookDialogues[18] = "The gargantuan guardian towers above you." +
-                "\nThis monster appears to like Integration!";
-        lookDialogues[19] = "Whoa! The breathtaking immortal stands before you." +
-                "\nThis boss appears to like everything!";
-
-        return lookDialogues;
     }
 
     /**
@@ -271,6 +118,74 @@ public class LevelCreator {
     }
 
     /**
+     * Creates the lookDialogue for the monsters.
+     * @return the lookDialogue for the monsters..
+     */
+    private String[] createLookDialogues() {
+        String[] lookDialogues = new String[NUM_OF_LEVELS];
+
+        lookDialogues[0] = "You see a goblin standing right in front of you, it doesn't seem that strong.";
+        lookDialogues[1] = "A skeleton stands in the way, defeat it!";
+        lookDialogues[2] = "You see a rather short warden upfront. Should you get any closer?";
+        lookDialogues[3] = "The goblin in front of you seem stronger than the previous one. Though, he does not seem talkative.";
+        lookDialogues[4] = "You spot the biggest greenskin ever! Should you turn back?";
+
+        lookDialogues[5] = "The mad dwarf stares at you intently.";
+        lookDialogues[6] = "The stone-like gargoyle advances towards you.";
+        lookDialogues[7] = "The mace-wielding fighter stares at you menacingly.";
+        lookDialogues[8] = "The knight without a face stands proudly. Does it talk?";
+        lookDialogues[9] = "The paladin's armor shines brightly.";
+
+        lookDialogues[10] = "The viscous snake-man is poised to strike.";
+        lookDialogues[11] = "The steadfast dwarf has no intention of letting you pass without a fight.";
+        lookDialogues[12] = "The skeleton mage is far more powerful than any other undead you've met before.";
+        lookDialogues[13] = "You feel the ancient golem stare into your soul.";
+        lookDialogues[14] = "The mighty mage looks down on you with contempt.";
+
+        lookDialogues[15] = "Can you truly kill that which has no life?";
+        lookDialogues[16] = "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask";
+        lookDialogues[17] = "You gaze upon a GOD.";
+        lookDialogues[18] = "The gargantuan guardian towers above you.";
+        lookDialogues[19] = "Whoa! The breathtaking immortal stands before you.";
+
+        return lookDialogues;
+    }
+
+    /**
+     * Creates the math questions associated with "Easy" difficulty. Made with Swedish middle school (years 7-9) in mind.
+     * @return math questions array
+     */
+    private MathQuestions[] createEasyMathQuestions() {
+        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
+
+        mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0);
+        mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 9,0, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(1, 9, 0);
+        mathQuestions[3] = new MQManyNumbersAddition(1, 5, 0, 3);
+        mathQuestions[4] = new MQDivisionRemainder(10, 30, 2, 5);
+
+        mathQuestions[5] = new MQ2NumbersAddition(1.0, 9.9, 1);
+        mathQuestions[6] = new MQ2NumbersMultiplication(0.1, 0.9, 1);
+        mathQuestions[7] = new MQFractionsMultiplication(1, 5, 1, 5, 2);
+        mathQuestions[8] = new MQFractionsDivision(1, 6, 1, 6, 2);
+        mathQuestions[9] = new MQFractionsAddition(1, 8, 1, 4, 2);
+
+        mathQuestions[10] = new MQ2NumbersAddition(1, 20, 0, -20, -1, 0);
+        mathQuestions[11] = new MQ2NumbersSubtraction(1, 20, 0, -20, -1, 0, true);
+        mathQuestions[12] = new MQManyNumbersAddition(-10, 10, 0, 3);
+        mathQuestions[13] = new MQ2NumbersMultiplication(-10, 10, 0);
+        mathQuestions[14] = new MQ2NumbersDivision(-100, 100, 0, 2, 5, 0, 2);
+
+        mathQuestions[15] = new MQManyNumbersAddition(-0.2, 0.2, 2,3);
+        mathQuestions[16] = new MQManyNumbersMultiplication(-0.5, 0.5, 1, 3);
+        mathQuestions[17] = new MQFractionsMultiplication(-6, 6, 1, 5, 2);
+        mathQuestions[18] = new MQFractionsAddition(-7, 7, 1, 4, 2);
+        mathQuestions[19] = new MQFinalBossRandom(difficulty);
+
+        return mathQuestions;
+    }
+
+    /**
      * Creates the time the player has to answer the question in Easy difficulty.
      * @return the time the player has to answer the question in Easy difficulty.
      */
@@ -283,17 +198,17 @@ public class LevelCreator {
         times[3] = 18;
         times[4] = 25;
 
-        times[5] = 22;
-        times[6] = 26;
-        times[7] = 28;
-        times[8] = 28;
-        times[9] = 25;
+        times[5] = 15;
+        times[6] = 18;
+        times[7] = 25;
+        times[8] = 25;
+        times[9] = 30;
 
-        times[10] = 20;
-        times[11] = 25;
-        times[12] = 25;
-        times[13] = 32;
-        times[14] = 35;
+        times[10] = 15;
+        times[11] = 15;
+        times[12] = 20;
+        times[13] = 20;
+        times[14] = 30;
 
         times[15] = 25;
         times[16] = 25;
@@ -302,6 +217,71 @@ public class LevelCreator {
         times[19] = 35;
 
         return times;
+    }
+
+    /**
+     * Creates and adds the descriptions of the types of questions for the monsters for the Easy difficulty.
+     * @param lookDialogues the base lookDialogue for the monsters.
+     */
+    private void createLookHintsEasy(String[] lookDialogues) {
+        lookDialogues[0] += "\nYou sense that the monster uses addition.";
+        lookDialogues[1] += "\nYou sense that the monster uses addition.";
+        lookDialogues[2] += "\nYou sense that the monster uses addition.";
+        lookDialogues[3] += "\nYou sense that the monster uses addition.";
+        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[5] += "\nYou sense that the monster uses addition.";
+        lookDialogues[6] += "\nYou sense that the monster uses addition.";
+        lookDialogues[7] += "\nYou sense that the monster uses addition.";
+        lookDialogues[8] += "\nYou sense that the monster uses addition.";
+        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[10] += "\nYou sense that the monster uses addition.";
+        lookDialogues[11] += "\nYou sense that the monster uses addition.";
+        lookDialogues[12] += "\nYou sense that the monster uses addition.";
+        lookDialogues[13] += "\nYou sense that the monster uses addition.";
+        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[15] += "\nYou sense that the monster uses addition.";
+        lookDialogues[16] += "\nYou sense that the monster uses addition.";
+        lookDialogues[17] += "\nYou sense that the monster uses addition.";
+        lookDialogues[18] += "\nYou sense that the monster uses addition.";
+        lookDialogues[19] += "\nYou sense that the monster uses addition.";
+    }
+
+    /**
+     * Creates the math questions associated with "Medium" difficulty. Made with Swedish high school (years 10-12) in
+     * mind.
+     * @return math questions array
+     */
+    private MathQuestions[] createMediumMathQuestions() {
+        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
+
+        mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0, 1, 9, 0);
+        mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 18,0, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(2, 10, 0, 2, 10, 0);
+        mathQuestions[3] = new MQManyNumbersAddition(1, 9, 0, 3);
+        mathQuestions[4] = new MQDivisionRemainder(10, 100, 3, 10);
+
+        mathQuestions[5] = new MQ2NumbersAddition(-10, 15, 0, -15, 10, 0);
+        mathQuestions[6] = new MQ2NumbersSubtraction(-18, 27, 0, -27, 18, 0, true);
+        mathQuestions[7] = new MQManyNumbersAddition(-30, 30, 0, 3);
+        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 3);
+        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, -10, 10, 0, 2);
+
+        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 2, -0.9, 0.9, 2);
+        mathQuestions[11] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
+        mathQuestions[12] = new MQFractionsAddition(-10, 10, -10, 10, 2);
+        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10, 2);
+        mathQuestions[14] = new MQFractionsAddition(-5, 5, -5, 5, 3);
+
+        mathQuestions[15] = new MQPolynomialDerivation(1, 20, 0, 9, 1);
+        mathQuestions[16] = new MQPolynomialIntegration(1, 20, 0, 8, 1);
+        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -8, -2, 1);
+        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -9, -2, 1);
+        mathQuestions[19] = new MQFinalBossRandom(difficulty);
+
+        return mathQuestions;
     }
 
     /**
@@ -339,6 +319,70 @@ public class LevelCreator {
     }
 
     /**
+     * Creates and adds the descriptions of the types of questions for the monsters for the Medium difficulty.
+     * @param lookDialogues the base lookDialogue for the monsters.
+     */
+    private void createLookHintsMedium(String[] lookDialogues) {
+        lookDialogues[0] += "\nYou sense that the monster uses addition.";
+        lookDialogues[1] += "\nYou sense that the monster uses addition.";
+        lookDialogues[2] += "\nYou sense that the monster uses addition.";
+        lookDialogues[3] += "\nYou sense that the monster uses addition.";
+        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[5] += "\nYou sense that the monster uses addition.";
+        lookDialogues[6] += "\nYou sense that the monster uses addition.";
+        lookDialogues[7] += "\nYou sense that the monster uses addition.";
+        lookDialogues[8] += "\nYou sense that the monster uses addition.";
+        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[10] += "\nYou sense that the monster uses addition.";
+        lookDialogues[11] += "\nYou sense that the monster uses addition.";
+        lookDialogues[12] += "\nYou sense that the monster uses addition.";
+        lookDialogues[13] += "\nYou sense that the monster uses addition.";
+        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[15] += "\nYou sense that the monster uses addition.";
+        lookDialogues[16] += "\nYou sense that the monster uses addition.";
+        lookDialogues[17] += "\nYou sense that the monster uses addition.";
+        lookDialogues[18] += "\nYou sense that the monster uses addition.";
+        lookDialogues[19] += "\nYou sense that the monster uses addition.";
+    }
+
+    /**
+     * Creates the math questions associated with "Hard" difficulty. Made with Swedish high school (years 10-12) in mind.
+     * @return math questions array
+     */
+    private MathQuestions[] createHardMathQuestions() {
+        MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
+
+        mathQuestions[0] = new MQ2NumbersAddition(1.0, 9.0, 1, 1.0, 9.0, 1);
+        mathQuestions[1] = new MQ2NumbersSubtraction(0.1, 18.0,1, 0.1, 18.0,1, false);
+        mathQuestions[2] = new MQ2NumbersMultiplication(11, 20, 0, 1.0, 2.0, 2);
+        mathQuestions[3] = new MQManyNumbersAddition(1.0, 9.0, 1, 3);
+        mathQuestions[4] = new MQDivisionRemainder(12, 120, 6, 12);
+
+        mathQuestions[5] = new MQ2NumbersAddition(-99, 99, 0, -99, 99, 0);
+        mathQuestions[6] = new MQ2NumbersSubtraction(-99, 99, 0, -99, 99, 0, true);
+        mathQuestions[7] = new MQManyNumbersAddition(-10.0, 10.0, 2, 4);
+        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 4);
+        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 1, -10, 10, 1, 2);
+
+        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 1, -0.9, 0.9, 3);
+        mathQuestions[11] = new MQFractionsMultiplication(-6, 6, -6, 6, 3);
+        mathQuestions[12] = new MQFractionsAddition(5, 30, 3, 10, 2);
+        mathQuestions[13] = new MQFractionsDivision(-20, 20, -20, 20, 2);
+        mathQuestions[14] = new MQFractionsAddition(-10, 10, -10, 10, 3);
+
+        mathQuestions[15] = new MQPolynomialDerivation(5, 30, 0, 20, 1);
+        mathQuestions[16] = new MQPolynomialIntegration(5, 30, 0, 19, 1);
+        mathQuestions[17] = new MQPolynomialDerivation(-20, 20, -19, -2, 1);
+        mathQuestions[18] = new MQPolynomialIntegration(-20, 20, -20, -2, 1);
+        mathQuestions[19] = new MQFinalBossRandom(difficulty);
+
+        return mathQuestions;
+    }
+
+    /**
      * Creates the time the player has to answer the question in Hard difficulty.
      * @return the time the player has to answer the question in Hard difficulty.
      */
@@ -370,6 +414,36 @@ public class LevelCreator {
         times[19] = 30;
 
         return times;
+    }
+
+    /**
+     * Creates and adds the descriptions of the types of questions for the monsters for the Hard difficulty.
+     * @param lookDialogues the base lookDialogue for the monsters.
+     */
+    private void createLookHintsHard(String[] lookDialogues) {
+        lookDialogues[0] += "\nYou sense that the monster uses addition.";
+        lookDialogues[1] += "\nYou sense that the monster uses addition.";
+        lookDialogues[2] += "\nYou sense that the monster uses addition.";
+        lookDialogues[3] += "\nYou sense that the monster uses addition.";
+        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[5] += "\nYou sense that the monster uses addition.";
+        lookDialogues[6] += "\nYou sense that the monster uses addition.";
+        lookDialogues[7] += "\nYou sense that the monster uses addition.";
+        lookDialogues[8] += "\nYou sense that the monster uses addition.";
+        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[10] += "\nYou sense that the monster uses addition.";
+        lookDialogues[11] += "\nYou sense that the monster uses addition.";
+        lookDialogues[12] += "\nYou sense that the monster uses addition.";
+        lookDialogues[13] += "\nYou sense that the monster uses addition.";
+        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+
+        lookDialogues[15] += "\nYou sense that the monster uses addition.";
+        lookDialogues[16] += "\nYou sense that the monster uses addition.";
+        lookDialogues[17] += "\nYou sense that the monster uses addition.";
+        lookDialogues[18] += "\nYou sense that the monster uses addition.";
+        lookDialogues[19] += "\nYou sense that the monster uses addition.";
     }
 
     /**

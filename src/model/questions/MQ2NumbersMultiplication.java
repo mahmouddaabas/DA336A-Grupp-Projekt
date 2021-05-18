@@ -24,6 +24,18 @@ public class MQ2NumbersMultiplication extends Arithmetic2NumberQuestions {
     }
 
     /**
+     * Constructor that initializes the instance variables for the bounds and the number of decimal places by using
+     * the same values for both numbers.
+     * @param numberLowerBound the lowest value the numbers can have.
+     * @param numberUpperBound the highest value the numbers can have.
+     * @param numOfDecimals the number of decimal places for the numbers.
+     */
+    public MQ2NumbersMultiplication(double numberLowerBound, double numberUpperBound, int numOfDecimals) {
+        super(numberLowerBound, numberUpperBound, numOfDecimals,
+                numberLowerBound, numberUpperBound, numOfDecimals, '*');
+    }
+
+    /**
      * Creates the answer from the two numbers by multiplying them.
      * @return the answer from the two numbers.
      */
