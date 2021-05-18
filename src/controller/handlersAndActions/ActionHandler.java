@@ -63,6 +63,9 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "equipShield":
                 controller.getPlayerActions().equipShield();
                 break;
+            case "useHint":
+                controller.getPlayerActions().useHint();
+                break;
 
                 //MUSIC
             case "audioOnOff":

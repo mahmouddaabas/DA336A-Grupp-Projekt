@@ -38,7 +38,7 @@ public class ShopHandler implements ActionListener {
                 controller.getShopItems().buyShield();
                 break;
             case "fourthButton":
-                controller.getMainFrame().getTextArea().setText("Not added yet...");
+                controller.getShopItems().buyHint();
                 break;
         }
     }

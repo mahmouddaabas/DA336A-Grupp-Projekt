@@ -190,6 +190,9 @@ public class MainFrame extends JFrame {
         add(btnShield);
     }
 
+    /**
+     * Creates the hint button that is shown on the GUI.
+     */
     public void createHint() {
         ImageIcon hintIcon = ImageResizer.resize("resources/misc/Hint.png", 50, 50);
         btnHint = new JButton();
@@ -457,5 +460,13 @@ public class MainFrame extends JFrame {
      */
     public EnemyHealthBar getEnemyHealthBar() {
         return enemyHealthBar;
+    }
+
+    /**
+     * Returns hint button.
+     * @return btnHint
+     */
+    public JButton getBtnHint() {
+        return btnHint;
     }
 }
