@@ -40,7 +40,7 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped() &&usedShield) {
+        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield) {
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
             controller.getMainFrame().getBtnShield().setVisible(false);
