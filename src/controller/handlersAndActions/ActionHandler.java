@@ -53,6 +53,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 break;
             case "attackEnemy":
                 controller.getEventMonsters().attackEnemy();
+                controller.getMusicPlayer().playSoundEffects("resources/soundtracks/swordSound.wav");
                 break;
 
                 //PLAYER ACTIONS

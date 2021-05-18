@@ -148,7 +148,7 @@ public class MainFrame extends JFrame {
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
         btnDamagePotion.setVisible(false);
-        btnDamagePotion.setBounds(1230, 750, 50, 50);
+        btnDamagePotion.setBounds(1170, 750, 50, 50);
         btnDamagePotion.setLayout(null);
 
         btnDamagePotion.addActionListener(action);
@@ -172,7 +172,7 @@ public class MainFrame extends JFrame {
         btnShield = new JButton();
         btnShield.setOpaque(false);
         btnShield.setVisible(false);
-        btnShield.setBounds(1175, 750, 50, 50);
+        btnShield.setBounds(1120, 750, 50, 50);
         btnShield.setLayout(null);
 
         btnShield.addActionListener(action);
@@ -242,7 +242,7 @@ public class MainFrame extends JFrame {
         btnAudioOn = new JButton();
         btnAudioOn.setOpaque(false);
         btnAudioOn.setVisible(true);
-        btnAudioOn.setBounds(1000, 750, 50, 50);
+        btnAudioOn.setBounds(1230, 750, 50, 50);
         btnAudioOn.setLayout(null);
 
         btnAudioOn.addActionListener(action);
@@ -251,6 +251,7 @@ public class MainFrame extends JFrame {
         btnAudioOn.setIcon(audioIconOn);
         btnAudioOn.setContentAreaFilled(false);
         btnAudioOn.setFocusPainted(false);
+        btnAudioOn.setFocusable(false);
         btnAudioOn.setBackground(null);
         btnAudioOn.setBorderPainted(false);
 
@@ -260,7 +261,7 @@ public class MainFrame extends JFrame {
         btnAudioOff = new JButton();
         btnAudioOff.setOpaque(false);
         btnAudioOff.setVisible(false);
-        btnAudioOff.setBounds(1000, 750, 50, 50);
+        btnAudioOff.setBounds(1230, 750, 50, 50);
         btnAudioOff.setLayout(null);
 
         btnAudioOff.addActionListener(action);
@@ -269,6 +270,7 @@ public class MainFrame extends JFrame {
         btnAudioOff.setIcon(audioIconOff);
         btnAudioOff.setContentAreaFilled(false);
         btnAudioOff.setFocusPainted(false);
+        btnAudioOff.setFocusable(false);
         btnAudioOff.setBackground(null);
         btnAudioOff.setBorderPainted(false);
 
