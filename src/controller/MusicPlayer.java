@@ -8,7 +8,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.io.*;
-import java.sql.Struct;
 import java.util.ArrayList;
 
 /**
@@ -151,10 +150,6 @@ public class MusicPlayer {
             e.printStackTrace();
         }
         setPreferredVolume(-30f, clipSoundEffects);
-        while (clipSoundEffects.getMicrosecondLength() < 5000L) {
-            System.out.println(" < 5 sek");
-        }
-    //    clipSoundEffects.stop(); //tills att vi kunnat klippa i time-soundet till 5 sek
     }
 
 
@@ -202,7 +197,7 @@ public class MusicPlayer {
     public void startTicking() {
         if(!ticking) {
             ticking = true;
-            playSoundEffects("resources/soundtracks/TickingClock.wav");
+            playSoundEffects("resources/soundtracks/tickTokClock.wav");
         }
     }
 
