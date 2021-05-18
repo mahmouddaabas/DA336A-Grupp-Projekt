@@ -37,7 +37,8 @@ public class MusicPlayer {
      * @param counter A counter object to be used to get information regarding current level and scene
      */
     public MusicPlayer(Counter counter) {
-        this("resources/soundtracks/soundRegularLevel.wav","resources/soundtracks/soundRegularLevel.wav","resources/soundtracks/bossFightSound.wav","resources/soundtracks/ShopSound.wav","");
+        this("resources/soundtracks/soundRegularLevel.wav","resources/soundtracks/soundRegularLevel.wav",
+                "resources/soundtracks/bossFightSound.wav","resources/soundtracks/ShopSound.wav","");
         this.counter = counter;
     }
 
@@ -195,10 +196,23 @@ public class MusicPlayer {
         mainFrame.setAudioIcon(isMuted);
     }
 
+    /**
+     * Starts the clock effect.
+     */
     public void startTicking() {
         if(!ticking) {
             ticking = true;
             playSoundEffects("resources/soundtracks/TickingClock.wav");
+        }
+    }
+
+    /**
+     * Stops the clock effect.
+     */
+    public void stopTicking() {
+        if(ticking) {
+            ticking = false;
+            clipSoundEffects.stop();
         }
     }
 
