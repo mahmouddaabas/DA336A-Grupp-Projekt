@@ -144,7 +144,7 @@ public class MainFrame extends JFrame {
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createDamagePotion() {
-        ImageIcon damagePotionIcon = ImageResizer.resize("src/misc/DamagePotion.png", 50, 50);
+        ImageIcon damagePotionIcon = ImageResizer.resize("misc/DamagePotion.png", 50, 50);
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
         btnDamagePotion.setVisible(false);
@@ -168,7 +168,7 @@ public class MainFrame extends JFrame {
      * Creates the shield button that is shown on the GUI.
      */
     public void createShield() {
-        ImageIcon shieldIcon = ImageResizer.resize("src/misc/RedShield.png", 50, 50);
+        ImageIcon shieldIcon = ImageResizer.resize("misc/RedShield.png", 50, 50);
         btnShield = new JButton();
         btnShield.setOpaque(false);
         btnShield.setVisible(false);
@@ -192,7 +192,7 @@ public class MainFrame extends JFrame {
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createHelpQuestionMark() {
-        ImageIcon getHelpIcon = ImageResizer.resize("src/misc/QuestionMark.png", 50, 50);
+        ImageIcon getHelpIcon = ImageResizer.resize("misc/QuestionMark.png", 50, 50);
         btnGetHelp = new JButton();
         btnGetHelp.setOpaque(false);
         btnGetHelp.setVisible(true);
@@ -237,7 +237,7 @@ public class MainFrame extends JFrame {
      * with different ImageIcons but with same functionality
      */
     public void createAudioButtons() {
-        ImageIcon audioIconOn = ImageResizer.resize("src/misc/audioIcons/audioIconOn.png", 50, 50);
+        ImageIcon audioIconOn = ImageResizer.resize("misc/audioIcons/audioIconOn.png", 50, 50);
 
         btnAudioOn = new JButton();
         btnAudioOn.setOpaque(false);
@@ -255,7 +255,7 @@ public class MainFrame extends JFrame {
         btnAudioOn.setBorderPainted(false);
 
 
-        ImageIcon audioIconOff = ImageResizer.resize("src/misc/audioIcons/audioIconOff.png", 50, 50);
+        ImageIcon audioIconOff = ImageResizer.resize("misc/audioIcons/audioIconOff.png", 50, 50);
 
         btnAudioOff = new JButton();
         btnAudioOff.setOpaque(false);

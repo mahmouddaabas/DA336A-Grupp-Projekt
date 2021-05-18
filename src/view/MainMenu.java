@@ -47,7 +47,7 @@ public class MainMenu {
         pnlMainMenu.setVisible(false);
 
         JLabel lblBg = new JLabel();
-        lblBg.setIcon(ImageResizer.resize("src/backgrounds/mainMenuBG.png", 1350, 850));
+        lblBg.setIcon(ImageResizer.resize("backgrounds/mainMenuBG.png", 1350, 850));
         lblBg.setBounds(0, 0, 1350, 850);
 
         JLabel lblGameName = new JLabel("Climb The Tower", JLabel.CENTER);

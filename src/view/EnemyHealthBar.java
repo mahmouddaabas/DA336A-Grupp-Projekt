@@ -67,10 +67,10 @@ public class EnemyHealthBar {
     public void checkEnemyType() {
         String path;
         if (controller.getLevelCreator().getLevel(controller.getCounter().getLevel()).getEnemy().isBoss()) {
-           path = "src/misc/skullRed.png";
+           path = "misc/skullRed.png";
         }
         else {
-            path = "src/misc/skull.png";
+            path = "misc/skull.png";
         }
         enemyHealthIcon = new ImageIcon(path);
     }

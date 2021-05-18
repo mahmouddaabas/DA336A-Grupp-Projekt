@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Objects;
 
 /**
  * @author Duy Nguyen
@@ -45,7 +44,7 @@ public class SceneCreator {
     }
 
     public void addArrowButtons(int sceneNbr, String command) {
-        ImageIcon arrowIcon = new ImageIcon("src/misc/upArrow.png");
+        ImageIcon arrowIcon = new ImageIcon("misc/upArrow.png");
 
         JButton btnArrow = new JButton();
         btnArrow.setBounds(550, 10, 50, 50);

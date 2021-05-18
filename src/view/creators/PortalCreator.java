@@ -72,7 +72,7 @@ public class PortalCreator {
         lblPortal = new JLabel();
         JPopupMenu popupMenu = createPortalMenu();
 
-        lblPortal.setIcon(ImageResizer.resize("src/entities/WinPortal.png", 200, 350));
+        lblPortal.setIcon(ImageResizer.resize("entities/WinPortal.png", 200, 350));
         lblPortal.setBounds(600, 80, 150, 400);
 
         lblPortal.addMouseListener(new MouseListener() {

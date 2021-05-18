@@ -42,7 +42,7 @@ public class LabelsAndStatus {
      * Creates the combat status label.
      */
     public void createCombatStatusLabel() {
-        ImageIcon statusIcon = ImageResizer.resize("src/misc/combat.png", 50, 50);
+        ImageIcon statusIcon = ImageResizer.resize("misc/combat.png", 50, 50);
         lblCombatStatus = new JLabel();
         lblCombatStatus.setBounds(130, 750, 50, 50);
         lblCombatStatus.setOpaque(false);
@@ -55,7 +55,7 @@ public class LabelsAndStatus {
      * Creates the potion status label.
      */
     public void createPotionStatusLabel() {
-        ImageIcon statusIcon = ImageResizer.resize("src/misc/bicep.png", 50, 50);
+        ImageIcon statusIcon = ImageResizer.resize("misc/bicep.png", 50, 50);
         lblPotionStatus = new JLabel();
         lblPotionStatus.setBounds(70, 750, 50, 50);
         lblPotionStatus.setOpaque(false);
@@ -68,7 +68,7 @@ public class LabelsAndStatus {
      * Creates the shield status label.
      */
     public void createShieldStatus() {
-        ImageIcon statusIcon = ImageResizer.resize("src/misc/GreenShield.png", 50, 50);
+        ImageIcon statusIcon = ImageResizer.resize("misc/GreenShield.png", 50, 50);
         shieldStatus = new JLabel();
         shieldStatus.setBounds(20, 750, 50, 50);
         shieldStatus.setOpaque(false);
@@ -110,7 +110,7 @@ public class LabelsAndStatus {
      * Creates the coin label that displays the users coins on the GUI.
      */
     public void createCoinLabel() {
-        ImageIcon coinIcon = ImageResizer.resize("src/misc/coin.png", 35, 35);
+        ImageIcon coinIcon = ImageResizer.resize("misc/coin.png", 35, 35);
         lblCoins = new JLabel();
         lblCoins.setOpaque(false);
         lblCoins.setVisible(false);

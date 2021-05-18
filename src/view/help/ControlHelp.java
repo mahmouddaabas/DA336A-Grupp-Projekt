@@ -47,7 +47,7 @@ public class ControlHelp {
      * Creates the control help label that contains all the information.
      */
     public void createControlHelpLabel() {
-        ImageIcon healthIcon = ImageResizer.resize("src/misc/helpPictures/ControlHelp.png", 780, 600);
+        ImageIcon healthIcon = ImageResizer.resize("misc/helpPictuControlHelp.png", 780, 600);
         lblControlHelp = new JLabel();
         lblControlHelp.setBounds(0, 0, 780, 600);
         lblControlHelp.setOpaque(false);

@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Objects;
 
 /**
  * @author Duy Nguyen
@@ -115,7 +114,7 @@ public class ObjectCreator {
         lblShopKeeper = new JLabel();
         JPopupMenu popupMenu = createShopMenu();
 
-        lblShopKeeper.setIcon(ImageResizer.resize("src/entities/Oleg.png", 200, 350));
+        lblShopKeeper.setIcon(ImageResizer.resize("entities/Oleg.png", 200, 350));
         lblShopKeeper.setBounds(600, 80, 150, 400);
 
         lblShopKeeper.addMouseListener(new MouseListener() {
