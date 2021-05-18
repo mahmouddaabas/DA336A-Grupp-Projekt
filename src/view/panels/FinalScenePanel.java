@@ -43,7 +43,7 @@ public class FinalScenePanel {
         pnlFinalScene.setVisible(false);
 
         JLabel lblBg = new JLabel();
-        lblBg.setIcon(ImageResizer.resize("/backgrounds/Win.png", 1350, 850));
+        lblBg.setIcon(ImageResizer.resize("backgrounds/Win.png", 1350, 850));
         lblBg.setBounds(0, 0, 1350, 850);
 
         JLabel lblFinaleName = new JLabel("Climbed The Tower", JLabel.CENTER);

@@ -2,7 +2,7 @@
   <artifact name="DA336A-GProjekt:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/DA336A_GProjekt_jar</output-path>
     <root id="root">
-      <element id="archive" name="DA336A-GProjekt.jar">
+      <element id="archive" name="ClimbTheTower.jar">
         <element id="module-output" name="DA336A-GProjekt" />
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/res" />

@@ -169,9 +169,12 @@ public class GameLogic {
                     advance();
                 }
             }
+            /*
             else {
                 ifNotAnswered();
             }
+
+             */
         }
     }
 
@@ -209,6 +212,7 @@ public class GameLogic {
             sceneChanger.showPortal();
             mainFrame.getLabelsAndStatus().getLblCoins().setVisible(false);
             mainFrame.getHealthBar().getHealthPanel().setVisible(false);
+            mainFrame.getBtnShield().setVisible(false);
         }
     }
 
