@@ -31,12 +31,12 @@ public class Timer implements Runnable {
                 controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(true);
                 time--;
                 Thread.sleep(1000);
-                if(time <= 5) {
+                if(time <= 5 && timer != null) {
                     controller.getMusicPlayer().startTicking();
                 }
                 if (time < 0) {
                     controller.ifNotAnswered();
-                    controller.getMusicPlayer().stopSoundEffect();
+                    controller.getMusicPlayer().stopTicking();
                 }
             }
             catch (InterruptedException e) {
