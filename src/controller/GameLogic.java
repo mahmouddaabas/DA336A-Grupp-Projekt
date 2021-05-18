@@ -110,7 +110,6 @@ public class GameLogic {
      * @param level current level
      */
     public void startFight(int level) {
-        musicPlayer.stopTicking();
         mathQuestion = levelCreator.getLevel(level).getMathQuestions();
         timer.setTime(levelCreator.getLevel(level).getTime());
         mathQuestion.generateNewQuestion();
@@ -141,8 +140,11 @@ public class GameLogic {
      * Answer is incorrect -> Tells the user and reduces their HP.
      */
     public void checkAnswer() {
+        musicPlayer.stopTicking();
+
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
+                musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerSound.wav");
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
                     int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
@@ -171,6 +173,7 @@ public class GameLogic {
                 }
             }
             else {
+                musicPlayer.playSoundEffects("resources/soundtracks/incorrectAnswerSound.wav");
                 ifNotAnswered();
             }
         }
