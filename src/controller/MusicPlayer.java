@@ -149,7 +149,7 @@ public class MusicPlayer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        setPreferredVolume(-30f, clipSoundEffects);
+        setPreferredVolume(-20f, clipSoundEffects);
     }
 
 
@@ -197,7 +197,7 @@ public class MusicPlayer {
     public void startTicking() {
         if(!ticking) {
             ticking = true;
-            playSoundEffects("resources/soundtracks/tickTokClock.wav");
+            playSoundEffects("resources/soundtracks/TickingClock.wav");
         }
     }
 
