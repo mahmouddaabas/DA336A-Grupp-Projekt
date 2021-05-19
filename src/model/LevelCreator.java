@@ -53,7 +53,7 @@ public class LevelCreator {
 
         Level level;
         for (int i = 0; i < NUM_OF_LEVELS; i++) {
-            if ((i+1) % 5 == 0) {
+            if ((i+1) % 5 == 0) { // every 5th is a boss level
                 level = new Level(i + 1, mathQuestions[i], new Monster(true, healths[i],
                         lookDialogues[i], talkDialogues[i]), times[i]);
             } else {
@@ -84,8 +84,8 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the talkDialogue for the monsters..
-     * @return the talkDialogue for the monsters.
+     * Creates the talkDialogue for each monster.
+     * @return the talkDialogue for each monster.
      */
     private String[] createTalkDialogues() {
         String[] talkDialogues = new String[NUM_OF_LEVELS];
@@ -118,8 +118,8 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the lookDialogue for the monsters.
-     * @return the lookDialogue for the monsters..
+     * Creates the lookDialogue for each monster.
+     * @return the lookDialogue for each monster.
      */
     private String[] createLookDialogues() {
         String[] lookDialogues = new String[NUM_OF_LEVELS];
@@ -152,30 +152,35 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the math questions associated with "Easy" difficulty. Made with Swedish middle school (years 7-9) in mind.
+     * Creates the math questions associated with the "Easy" difficulty. Made with Swedish middle school (years 7-9) in
+     * mind.
      * @return math questions array
      */
     private MathQuestions[] createEasyMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
+        // positive integers
         mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0);
         mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 9,0, false);
         mathQuestions[2] = new MQ2NumbersMultiplication(1, 9, 0);
         mathQuestions[3] = new MQManyNumbersAddition(1, 5, 0, 3);
         mathQuestions[4] = new MQDivisionRemainder(10, 30, 2, 5);
 
-        mathQuestions[5] = new MQ2NumbersAddition(1.0, 9.9, 1);
-        mathQuestions[6] = new MQ2NumbersMultiplication(0.1, 0.9, 1);
+        // decimals and fractions
+        mathQuestions[5] = new MQ2NumbersAddition(0.1, 9.9, 1);
+        mathQuestions[6] = new MQ2NumbersMultiplication(1, 9, 0, 0.1, 0.9, 1);
         mathQuestions[7] = new MQFractionsMultiplication(1, 5, 1, 5, 2);
-        mathQuestions[8] = new MQFractionsDivision(1, 6, 1, 6, 2);
-        mathQuestions[9] = new MQFractionsAddition(1, 8, 1, 4, 2);
+        mathQuestions[8] = new MQFractionsAddition(1, 13, 4, 4, 2);
+        mathQuestions[9] = new MQFractionsDivision(2, 9, 2, 9, 2);
 
+        // negative numbers
         mathQuestions[10] = new MQ2NumbersAddition(1, 20, 0, -20, -1, 0);
         mathQuestions[11] = new MQ2NumbersSubtraction(1, 20, 0, -20, -1, 0, true);
         mathQuestions[12] = new MQManyNumbersAddition(-10, 10, 0, 3);
         mathQuestions[13] = new MQ2NumbersMultiplication(-10, 10, 0);
-        mathQuestions[14] = new MQ2NumbersDivision(-100, 100, 0, 2, 5, 0, 2);
+        mathQuestions[14] = new MQ2NumbersDivision(-50, 50, 0, 2, 5, 0, 2);
 
+        // all together
         mathQuestions[15] = new MQManyNumbersAddition(-0.2, 0.2, 2,3);
         mathQuestions[16] = new MQManyNumbersMultiplication(-0.5, 0.5, 1, 3);
         mathQuestions[17] = new MQFractionsMultiplication(-6, 6, 1, 5, 2);
@@ -186,8 +191,8 @@ public class LevelCreator {
     }
 
     /**
-     * Creates the time the player has to answer the question in Easy difficulty.
-     * @return the time the player has to answer the question in Easy difficulty.
+     * Creates the time the player has to answer each question in Easy difficulty.
+     * @return the time the player has to answer each question in Easy difficulty.
      */
     private int[] createEasyTimes() {
         int[] times = new int[NUM_OF_LEVELS];
@@ -224,29 +229,29 @@ public class LevelCreator {
      * @param lookDialogues the base lookDialogue for the monsters.
      */
     private void createLookHintsEasy(String[] lookDialogues) {
-        lookDialogues[0] += "\nYou sense that the monster uses addition.";
-        lookDialogues[1] += "\nYou sense that the monster uses addition.";
-        lookDialogues[2] += "\nYou sense that the monster uses addition.";
-        lookDialogues[3] += "\nYou sense that the monster uses addition.";
-        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+        lookDialogues[0] += "\nYou sense that the monster uses addition with 2 positive numbers.";
+        lookDialogues[1] += "\nYou sense that the monster uses subtraction with 2 positive numbers.";
+        lookDialogues[2] += "\nYou sense that the monster uses multiplication with 2 positive numbers.";
+        lookDialogues[3] += "\nYou sense that the monster uses addition with 3 positive numbers.";
+        lookDialogues[4] += "\nYou sense that the boss uses division with remainders.";
 
-        lookDialogues[5] += "\nYou sense that the monster uses addition.";
-        lookDialogues[6] += "\nYou sense that the monster uses addition.";
-        lookDialogues[7] += "\nYou sense that the monster uses addition.";
-        lookDialogues[8] += "\nYou sense that the monster uses addition.";
-        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+        lookDialogues[5] += "\nYou sense that the monster uses addition with 2 positive decimal numbers.";
+        lookDialogues[6] += "\nYou sense that the monster uses multiplication with 2 positive decimal numbers.";
+        lookDialogues[7] += "\nYou sense that the monster uses multiplication with 2 positive fractions.";
+        lookDialogues[8] += "\nYou sense that the monster uses addition with 2 positive fractions.";
+        lookDialogues[9] += "\nYou sense that the boss uses division with 2 positive fractions.";
 
-        lookDialogues[10] += "\nYou sense that the monster uses addition.";
-        lookDialogues[11] += "\nYou sense that the monster uses addition.";
-        lookDialogues[12] += "\nYou sense that the monster uses addition.";
-        lookDialogues[13] += "\nYou sense that the monster uses addition.";
-        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+        lookDialogues[10] += "\nYou sense that the monster uses negative addition with 2 numbers.";
+        lookDialogues[11] += "\nYou sense that the monster uses negative subtraction with 2 numbers.";
+        lookDialogues[12] += "\nYou sense that the monster uses addition and subtraction with 3 numbers.";
+        lookDialogues[13] += "\nYou sense that the monster uses multiplication with 2 numbers.";
+        lookDialogues[14] += "\nYou sense that the boss uses division with 2 numbers.";
 
-        lookDialogues[15] += "\nYou sense that the monster uses addition.";
-        lookDialogues[16] += "\nYou sense that the monster uses addition.";
-        lookDialogues[17] += "\nYou sense that the monster uses addition.";
-        lookDialogues[18] += "\nYou sense that the monster uses addition.";
-        lookDialogues[19] += "\nYou sense that the monster uses addition.";
+        lookDialogues[15] += "\nYou sense that the monster uses addition and subtraction with 3 decimal numbers.";
+        lookDialogues[16] += "\nYou sense that the monster uses multiplication with 3 decimal numbers.";
+        lookDialogues[17] += "\nYou sense that the monster uses multiplication with 2 fractions.";
+        lookDialogues[18] += "\nYou sense that the monster uses addition with 2 fractions.";
+        lookDialogues[19] += "\nYou sense that the boss will put all your skills to the test.";
     }
 
     /**
@@ -257,28 +262,32 @@ public class LevelCreator {
     private MathQuestions[] createMediumMathQuestions() {
         MathQuestions[] mathQuestions = new MathQuestions[NUM_OF_LEVELS];
 
-        mathQuestions[0] = new MQ2NumbersAddition(1, 9, 0, 1, 9, 0);
-        mathQuestions[1] = new MQ2NumbersSubtraction(1, 18,0, 1, 18,0, false);
-        mathQuestions[2] = new MQ2NumbersMultiplication(2, 10, 0, 2, 10, 0);
-        mathQuestions[3] = new MQManyNumbersAddition(1, 9, 0, 3);
+        // integers
+        mathQuestions[0] = new MQ2NumbersAddition(-15, 10, 0, -10, 15, 0);
+        mathQuestions[1] = new MQ2NumbersSubtraction(-15, 10, 0, -10, 15, 0,true);
+        mathQuestions[2] = new MQ2NumbersMultiplication(-10, 10, 0);
+        mathQuestions[3] = new MQManyNumbersAddition(-9, 9, 0, 3);
         mathQuestions[4] = new MQDivisionRemainder(10, 100, 3, 10);
 
-        mathQuestions[5] = new MQ2NumbersAddition(-10, 15, 0, -15, 10, 0);
-        mathQuestions[6] = new MQ2NumbersSubtraction(-18, 27, 0, -27, 18, 0, true);
-        mathQuestions[7] = new MQManyNumbersAddition(-30, 30, 0, 3);
-        mathQuestions[8] = new MQManyNumbersMultiplication(-5, 5, 0, 3);
-        mathQuestions[9] = new MQ2NumbersDivision(-100, 100, 0, -10, 10, 0, 2);
+        // decimals and fractions
+        mathQuestions[5] = new MQManyNumbersAddition(-10, 10, 1, 3);
+        mathQuestions[6] = new MQ2NumbersMultiplication(-0.9, 0.9, 2);
+        mathQuestions[7] = new MQFractionsAddition(-15, 15, 2, 5, 2);
+        mathQuestions[8] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
+        mathQuestions[9] = new MQFractionsAddition(-7, 7, 2, 5, 3);
 
-        mathQuestions[10] = new MQ2NumbersMultiplication(-0.9, 0.9, 2, -0.9, 0.9, 2);
-        mathQuestions[11] = new MQFractionsMultiplication(-10, 10, -10, 10, 2);
-        mathQuestions[12] = new MQFractionsAddition(-10, 10, -10, 10, 2);
-        mathQuestions[13] = new MQFractionsDivision(-10, 10, 1, 10, 2);
-        mathQuestions[14] = new MQFractionsAddition(-5, 5, -5, 5, 3);
+        // polynomials
+        mathQuestions[10] = new MQQuadraticExpand(-6, 6, 1, 1);
+        mathQuestions[11] = new MQQuadraticSimplify(-6, 6, 1, 1);
+        mathQuestions[12] = new MQPolynomialDerivation(1, 9, 0, 9, 1);
+        mathQuestions[13] = new MQPolynomialIntegration(1, 9, 0, 9, 1);
+        mathQuestions[14] = new MQQuadraticRoots(-6, 6, 1, 1);
 
-        mathQuestions[15] = new MQPolynomialDerivation(1, 20, 0, 9, 1);
-        mathQuestions[16] = new MQPolynomialIntegration(1, 20, 0, 8, 1);
-        mathQuestions[17] = new MQPolynomialDerivation(-9, 9, -8, -2, 1);
-        mathQuestions[18] = new MQPolynomialIntegration(-9, 9, -9, -2, 1);
+        // mix
+        mathQuestions[15] = new MQManyNumbersMultiplication(-1, 1, 1, 3);
+        mathQuestions[16] = new MQ2NumbersDivision(20, 100, 0, 3, 10, 0, 2);
+        mathQuestions[17] = new MQFractionsDivision(3, 10, 3, 10, 2);
+        mathQuestions[18] = new MQPolynomialDoubleDerivation(-5, 5, 1, 9, 1);
         mathQuestions[19] = new MQFinalBossRandom(difficulty);
 
         return mathQuestions;
@@ -292,24 +301,24 @@ public class LevelCreator {
         int[] times = new int[NUM_OF_LEVELS];
 
         times[0] = 10;
-        times[1] = 12;
+        times[1] = 10;
         times[2] = 12;
         times[3] = 15;
         times[4] = 20;
 
         times[5] = 18;
-        times[6] = 21;
+        times[6] = 20;
         times[7] = 24;
         times[8] = 24;
-        times[9] = 20;
+        times[9] = 30;
 
         times[10] = 15;
-        times[11] = 20;
+        times[11] = 18;
         times[12] = 20;
-        times[13] = 28;
+        times[13] = 20;
         times[14] = 30;
 
-        times[15] = 20;
+        times[15] = 24;
         times[16] = 20;
         times[17] = 25;
         times[18] = 25;
@@ -323,33 +332,34 @@ public class LevelCreator {
      * @param lookDialogues the base lookDialogue for the monsters.
      */
     private void createLookHintsMedium(String[] lookDialogues) {
-        lookDialogues[0] += "\nYou sense that the monster uses addition.";
-        lookDialogues[1] += "\nYou sense that the monster uses addition.";
-        lookDialogues[2] += "\nYou sense that the monster uses addition.";
-        lookDialogues[3] += "\nYou sense that the monster uses addition.";
-        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+        lookDialogues[0] += "\nYou sense that the monster uses addition with 2 numbers.";
+        lookDialogues[1] += "\nYou sense that the monster uses subtraction with 2 numbers.";
+        lookDialogues[2] += "\nYou sense that the monster uses multiplication with 2 numbers.";
+        lookDialogues[3] += "\nYou sense that the monster uses addition with 3 numbers.";
+        lookDialogues[4] += "\nYou sense that the boss uses division with remainders.";
 
-        lookDialogues[5] += "\nYou sense that the monster uses addition.";
-        lookDialogues[6] += "\nYou sense that the monster uses addition.";
-        lookDialogues[7] += "\nYou sense that the monster uses addition.";
-        lookDialogues[8] += "\nYou sense that the monster uses addition.";
-        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+        lookDialogues[5] += "\nYou sense that the monster uses addition with 3 decimal numbers.";
+        lookDialogues[6] += "\nYou sense that the monster uses multiplication with 2 decimal numbers.";
+        lookDialogues[7] += "\nYou sense that the monster uses addition with 2 fractions.";
+        lookDialogues[8] += "\nYou sense that the monster uses multiplication with 2 fractions.";
+        lookDialogues[9] += "\nYou sense that the boss uses addition with 3 fractions.";
 
-        lookDialogues[10] += "\nYou sense that the monster uses addition.";
-        lookDialogues[11] += "\nYou sense that the monster uses addition.";
-        lookDialogues[12] += "\nYou sense that the monster uses addition.";
-        lookDialogues[13] += "\nYou sense that the monster uses addition.";
-        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+        lookDialogues[10] += "\nYou sense that the monster uses expansion of quadratic expressions.";
+        lookDialogues[11] += "\nYou sense that the monster uses simplification of quadratic expressions.";
+        lookDialogues[12] += "\nYou sense that the monster uses derivation of polynomials.";
+        lookDialogues[13] += "\nYou sense that the monster uses integration of polynomials.";
+        lookDialogues[14] += "\nYou sense that the boss uses finding roots of quadratic expressions.";
 
-        lookDialogues[15] += "\nYou sense that the monster uses addition.";
-        lookDialogues[16] += "\nYou sense that the monster uses addition.";
-        lookDialogues[17] += "\nYou sense that the monster uses addition.";
-        lookDialogues[18] += "\nYou sense that the monster uses addition.";
-        lookDialogues[19] += "\nYou sense that the monster uses addition.";
+        lookDialogues[15] += "\nYou sense that the monster uses multiplication of 3 decimal numbers.";
+        lookDialogues[16] += "\nYou sense that the monster uses division of 2 numbers.";
+        lookDialogues[17] += "\nYou sense that the monster uses division of fractions.";
+        lookDialogues[18] += "\nYou sense that the monster uses double derivations of polynomials.";
+        lookDialogues[19] += "\nYou sense that the boss will put all your skills to the test.";
     }
 
     /**
-     * Creates the math questions associated with "Hard" difficulty. Made with Swedish high school (years 10-12) in mind.
+     * Creates the math questions associated with "Hard" difficulty. Made with Swedish high school (years 10-12) in mind
+     * like with the "Medium" difficulty, but with larger bounds.
      * @return math questions array
      */
     private MathQuestions[] createHardMathQuestions() {
@@ -425,25 +435,25 @@ public class LevelCreator {
         lookDialogues[1] += "\nYou sense that the monster uses addition.";
         lookDialogues[2] += "\nYou sense that the monster uses addition.";
         lookDialogues[3] += "\nYou sense that the monster uses addition.";
-        lookDialogues[4] += "\nYou sense that the monster uses addition.";
+        lookDialogues[4] += "\nYou sense that the boss uses addition.";
 
         lookDialogues[5] += "\nYou sense that the monster uses addition.";
         lookDialogues[6] += "\nYou sense that the monster uses addition.";
         lookDialogues[7] += "\nYou sense that the monster uses addition.";
         lookDialogues[8] += "\nYou sense that the monster uses addition.";
-        lookDialogues[9] += "\nYou sense that the monster uses addition.";
+        lookDialogues[9] += "\nYou sense that the boss uses addition.";
 
         lookDialogues[10] += "\nYou sense that the monster uses addition.";
         lookDialogues[11] += "\nYou sense that the monster uses addition.";
         lookDialogues[12] += "\nYou sense that the monster uses addition.";
         lookDialogues[13] += "\nYou sense that the monster uses addition.";
-        lookDialogues[14] += "\nYou sense that the monster uses addition.";
+        lookDialogues[14] += "\nYou sense that the boss uses addition.";
 
         lookDialogues[15] += "\nYou sense that the monster uses addition.";
         lookDialogues[16] += "\nYou sense that the monster uses addition.";
         lookDialogues[17] += "\nYou sense that the monster uses addition.";
         lookDialogues[18] += "\nYou sense that the monster uses addition.";
-        lookDialogues[19] += "\nYou sense that the monster uses addition.";
+        lookDialogues[19] += "\nYou sense that the boss will put all your skills to the test.";
     }
 
     /**

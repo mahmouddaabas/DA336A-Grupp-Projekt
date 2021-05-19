@@ -27,7 +27,7 @@ public class MQQuadraticRoots extends QuadraticQuestions {
      * @return the quadratic question.
      */
     protected String getQuadraticQuestion(Quadratic questionQuadratic) {
-        return "What is the expansion of f(x) = " + questionQuadratic.toStringExpanded() + "?";
+        return "What are the roots of f(x) = " + questionQuadratic.toStringExpanded() + "?";
     }
 
     /**

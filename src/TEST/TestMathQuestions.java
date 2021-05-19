@@ -47,7 +47,7 @@ public class TestMathQuestions {
 //        mathQuestion = new MQQuadraticSimplify(-3, 3, -3, 3);
 //        mathQuestion = new MQPrimeFactorisation(2, 10, 3, 5);
 //        mathQuestion = new MQFinalBossRandom(Difficulty.Easy);
-        mathQuestion = new MQFractionsDivision(-10, 10, 2, 7, 2);
+        mathQuestion = new MQPolynomialDoubleDerivation(-7, 7, 1, 9, 2);
         
         while (true) {
             mathQuestion.generateNewQuestion();
