@@ -132,25 +132,28 @@ public class MQFinalBossRandom extends MathQuestions {
      * Generates a random question from the list of hard difficulty questions.
      */
     private void generateHardDifficultyQuestions() {
-        int questionNumber = Utilities.randomInt(0, 5);
+        int questionNumber = Utilities.randomInt(0, 6);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQFractionsAddition(-20, 20, -20, 20, 2);
+                randomQuestion = new MQFractionsAddition(-11, 11, 3, 10, 3);
                 break;
             case 1:
-                randomQuestion = new MQ2NumbersDivision(20, 400, 1, 10, 19, 1, 2);
+                randomQuestion = new MQ2NumbersDivision(20, 200, 1, 10, 19, 0, 2);
                 break;
             case 2:
-                randomQuestion = new MQManyNumbersAddition(-20, 20, 1, 5);
+                randomQuestion = new MQManyNumbersAddition(-20, 20, 0, 6);
                 break;
             case 3:
-                randomQuestion = new MQManyNumbersMultiplication(-15, 15, 1, 4);
+                randomQuestion = new MQQuadraticRoots(-9, 9, -9, 9);
                 break;
             case 4:
-                randomQuestion = new MQPolynomialDerivation(-10, 10, -30, 30, 2);
+                randomQuestion = new MQPolynomialDoubleDerivation(-10, 10, -30, 30, 2);
                 break;
             case 5:
                 randomQuestion = new MQPolynomialIntegration(-10, 10, -30, 30, 2);
+                break;
+            case 6:
+                randomQuestion = new MQPrimeFactorisation(2, 7, 3, 6);
                 break;
         }
     }

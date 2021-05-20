@@ -96,7 +96,7 @@ public class MainFrame extends JFrame {
      */
     public void populateAnswerPanel() {
         answerPanel = new JPanel();
-        answerPanel.setBounds(520, 670, 380, 100);
+        answerPanel.setBounds(480, 670, 400, 100);
         answerPanel.setBackground(Color.BLUE);
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
