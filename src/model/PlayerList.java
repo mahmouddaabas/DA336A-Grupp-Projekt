@@ -129,6 +129,17 @@ public class PlayerList {
         }
     }
 
+    public boolean compareProfiles(String name) {
+        boolean ok = false;
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].getName().equals(name)) {
+                ok = true;
+            }
+        }
+
+        return ok;
+    }
+
     /**
      * Returns the player names in a String-array format
      * @return String-array of player names
