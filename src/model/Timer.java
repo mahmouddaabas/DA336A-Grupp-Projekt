@@ -35,8 +35,8 @@ public class Timer implements Runnable {
                     controller.getMusicPlayer().startTicking();
                 }
                 if (time < 0) {
-                    controller.ifNotAnswered();
                     controller.getMusicPlayer().stopTicking();
+                    controller.ifNotAnswered();
                 }
             }
             catch (InterruptedException e) {
