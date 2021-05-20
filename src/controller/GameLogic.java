@@ -141,6 +141,8 @@ public class GameLogic {
      * Answer is incorrect -> Tells the user and reduces their HP.
      */
     public void checkAnswer() {
+        playerActions.setUsedHint(false);
+        resetButtons();
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 //Handles the combat, if enemy is not dead generates new questions and answers.
@@ -242,6 +244,8 @@ public class GameLogic {
             checkAndApplyDamage();
             startFight(counter.getLevel());
         }
+        playerActions.setUsedHint(false);
+        resetButtons();
     }
 
     /**
@@ -308,6 +312,15 @@ public class GameLogic {
             if (!mainFrame.getObjectCreator().getLblShopKeeper().isVisible()) {
                 mainFrame.getObjectCreator().getLblShopKeeper().setVisible(true);
             }
+        }
+    }
+
+    /**
+     * Resets all the buttons to enabled.
+     */
+    public void resetButtons() {
+        for(int i = 0; i < mainFrame.getAnswerButton().length; i++) {
+            mainFrame.getAnswerButton()[i].setEnabled(true);
         }
     }
 

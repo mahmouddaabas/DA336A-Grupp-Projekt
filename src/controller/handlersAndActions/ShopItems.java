@@ -1,6 +1,7 @@
 package controller.handlersAndActions;
 
 import controller.GameLogic;
+import jdk.jfr.ContentType;
 import model.items.DamagePotion;
 import model.items.Shield;
 
@@ -19,6 +20,7 @@ public class ShopItems {
     //Used to limit the purchase of items.
     private int damagePotionLimit;
     private int shieldLimit;
+    private int hintLimit;
 
     /**
      * Constructs the class.
@@ -99,6 +101,29 @@ public class ShopItems {
     }
 
     /**
+     * Method that allows the user to purchase a hint.
+     */
+    public void buyHint() {
+        if(controller.getPlayer().getGold() > 1 && hintLimit == 0) {
+            controller.getMainFrame().getBtnHint().setVisible(true);
+            controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
+            controller.getCounter().updateCoinLabel();
+            controller.getMainFrame().getTextArea().setText("You purchased a hint for 2 gold. \n" +
+                    "You can activate it on the bottom right of the screen. \n" +
+                    "The hint will disable a button with the wrong answer for 1 answer. \n");
+            hintLimit = 1;
+
+        }
+        else if (hintLimit == 1) {
+            controller.getMainFrame().getTextArea().setText("You already have a hint.\n" +
+                    "You need to use it before buying a new one.");
+        }
+        else {
+            controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
+        }
+    }
+
+    /**
      * Allows you to set the Damage Potion limit from outside of the class.
      * @param damagePotionLimit new limit
      */
@@ -128,5 +153,13 @@ public class ShopItems {
      */
     public Shield getShield() {
         return shield;
+    }
+
+    /**
+     * Allows you to set the hint limit from outside the class.
+     * @param hintLimit
+     */
+    public void setHintLimit(int hintLimit) {
+        this.hintLimit = hintLimit;
     }
 }

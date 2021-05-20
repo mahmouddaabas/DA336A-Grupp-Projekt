@@ -41,7 +41,7 @@ public class EventShop {
         controller.getMainFrame().getShopPanels().getShopButtons()[0].setText("Health (2 coins)");
         controller.getMainFrame().getShopPanels().getShopButtons()[1].setText("Damage Potion (3 coins)");
         controller.getMainFrame().getShopPanels().getShopButtons()[2].setText("Shield (2 coins)");
-        controller.getMainFrame().getShopPanels().getShopButtons()[3].setText("To be added");
+        controller.getMainFrame().getShopPanels().getShopButtons()[3].setText("Hint (2 coins)");
         controller.getMainFrame().getShopPanels().getPnlShop().setVisible(true);
     }
 }
