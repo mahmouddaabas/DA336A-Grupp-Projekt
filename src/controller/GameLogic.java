@@ -269,6 +269,13 @@ public class GameLogic {
                 mainFrame.getTextArea().setText(dealt);
                 mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
                 break;
+            case "blocked":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.RED);
+                String blocked = "Incorrect answer, you block and take " + player.getDamageTaken() + " damage." + "\n";
+                mainFrame.getTextArea().setText(blocked);
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
             default:
                 mainFrame.getTextArea().setText(mathQuestion.getQuestion());
                 break;
@@ -285,6 +292,7 @@ public class GameLogic {
             shopItems.getShield().setEquipped(false);
             mainFrame.getLabelsAndStatus().getShieldStatus().setVisible(false);
             playerActions.setUsedShield(false);
+            status = "blocked";
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             player.setDamageTaken(2);
