@@ -7,6 +7,7 @@ import model.items.Shield;
 /**
  * @author Mahmoud Daabas
  * @author Annie Tran
+ * @author Vilgot Mattsson
  * This class has the items that are available for purchase in the shop.
  */
 public class ShopItems {
@@ -37,6 +38,7 @@ public class ShopItems {
      */
     public void buyHealth() {
         if (controller.getPlayer().getPlayerHealth() < 10 && controller.getPlayer().getGold() > 1) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/heartBeatSound.wav");
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
@@ -59,6 +61,7 @@ public class ShopItems {
      */
     public void buyDamagePotion() {
         if (controller.getPlayer().getGold() > 2 && damagePotionLimit == 0) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/itemBoughtSound.wav");
             controller.getMainFrame().getBtnDamagePotion().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 3);
             controller.getCounter().updateCoinLabel();
@@ -81,6 +84,7 @@ public class ShopItems {
      */
     public void buyShield() {
         if (controller.getPlayer().getGold() > 1 && shieldLimit == 0) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/itemBoughtSound.wav");
             controller.getMainFrame().getBtnShield().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
             controller.getCounter().updateCoinLabel();
