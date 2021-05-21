@@ -182,9 +182,19 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "deleteProfile":
-                String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
-                controller.deletePlayer(playerIndex);
-                controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
+                if (playerIndex >= 0) {
+                    String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
+                    String message = "Are you sure?";
+                    String title = "Delete player";
+                    int c = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+                    if (c == JOptionPane.YES_OPTION) {
+                        controller.deletePlayer(playerIndex);
+                        controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No profile selected!");
+                }
                 break;
             case "goMainMenu":
                 if (controller.getMainFrame().getMainMenu().getPnlProfiles().isVisible()) {
