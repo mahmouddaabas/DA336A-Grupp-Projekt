@@ -180,6 +180,9 @@ public class ActionHandler implements ActionListener, KeyListener {
                         JOptionPane.showMessageDialog(null, "Duplicate profile!");
                     }
                 }
+                else {
+                    JOptionPane.showMessageDialog(null, "Invalid name!");
+                }
                 break;
             case "deleteProfile":
                 if (playerIndex >= 0) {
