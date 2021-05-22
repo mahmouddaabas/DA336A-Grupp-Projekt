@@ -181,6 +181,7 @@ public class SceneChanger {
 
         controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
+        controller.calculateGrade();
     }
 
     /**
@@ -249,6 +250,7 @@ public class SceneChanger {
                 }
             }
         }
+        controller.calculateGrade();
     }
 
     /**

@@ -13,6 +13,8 @@ public class Counter {
     private GameLogic controller;
     private int level;
     private int currentScene;
+    private String grade;
+    private int answeredAmount;
 
     /**
      * This method updates the level label when called.
@@ -67,5 +69,37 @@ public class Counter {
      */
     public void setCurrentScene(int currentScene) {
         this.currentScene = currentScene;
+    }
+
+    /**
+     * Returns the grade.
+     * @return grade
+     */
+    public String getGrade() {
+        return grade;
+    }
+
+    /**
+     * Sets the grade.
+     * @param grade
+     */
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    /**
+     * Returns the answered amount of question.
+     * @return
+     */
+    public int getAnsweredAmount() {
+        return answeredAmount;
+    }
+
+    /**
+     * Sets the answered amount.
+     * @param answeredAmount
+     */
+    public void setAnsweredAmount(int answeredAmount) {
+        this.answeredAmount = answeredAmount;
     }
 }

@@ -151,6 +151,7 @@ public class GameLogic {
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     mainFrame.getEnemyHealthBar().updateEnemyHealth();
+                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -161,6 +162,7 @@ public class GameLogic {
                     mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
                     addGold();
 
+                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
                     hideComponents();
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
@@ -330,6 +332,32 @@ public class GameLogic {
         for(int i = 0; i < mainFrame.getAnswerButton().length; i++) {
             mainFrame.getAnswerButton()[i].setEnabled(true);
         }
+    }
+
+    /**
+     * Calculates and applies the score.
+     */
+    public void calculateGrade() {
+        if(counter.getAnsweredAmount() >= 63) {
+            counter.setGrade("A");
+        }
+        else if(counter.getAnsweredAmount() >= 56) {
+            counter.setGrade("B");
+        }
+        else if(counter.getAnsweredAmount() >= 49) {
+            counter.setGrade("C");
+        }
+        else if(counter.getAnsweredAmount() >= 42) {
+            counter.setGrade("D");
+        }
+        else if(counter.getAnsweredAmount() >= 35) {
+            counter.setGrade("E");
+        }
+        else if(counter.getAnsweredAmount() < 35) {
+            counter.setGrade("F");
+        }
+        System.out.println("Your grade: " + counter.getGrade() + "\nYou managed to answer: " +
+                counter.getAnsweredAmount() + " questions out of 70.");
     }
 
     /**
