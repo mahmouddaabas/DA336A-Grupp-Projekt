@@ -81,22 +81,22 @@ public class MQFinalBossRandom extends MathQuestions {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQFractionsAddition(1, 20, 1, 20, 2);
+                randomQuestion = new MQ2NumbersAddition(0.01, 10, 2);
                 break;
             case 1:
-                randomQuestion = new MQ2NumbersDivision(20, 100, 1, 3, 10, 1, 2);
-                break;
-            case 2:
                 randomQuestion = new MQManyNumbersAddition(1, 9, 1, 4);
                 break;
-            case 3:
+            case 2:
                 randomQuestion = new MQManyNumbersMultiplication(-9, 9, 1, 3);
                 break;
+            case 3:
+                randomQuestion = new MQ2NumbersDivision(20, 100, 0, 3, 10, 0, 2);
+                break;
             case 4:
-                randomQuestion = new MQPolynomialDerivation(-20, 20, -9, 9, 1);
+                randomQuestion = new MQFractionsAddition(-10, 10, 2, 6, 2);
                 break;
             case 5:
-                randomQuestion = new MQPolynomialIntegration(-20, 20, -9, 9, 1);
+                randomQuestion = new MQFractionsDivision(-10, 10, 2, 7, 2);
                 break;
         }
     }
@@ -108,22 +108,22 @@ public class MQFinalBossRandom extends MathQuestions {
         int questionNumber = Utilities.randomInt(0, 5);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQFractionsAddition(-20, 20, -20, 20, 2);
+                randomQuestion = new MQFractionsAddition(-20, 20, 3, 10, 2);
                 break;
             case 1:
-                randomQuestion = new MQ2NumbersDivision(20, 400, 1, 3, 10, 1, 2);
+                randomQuestion = new MQ2NumbersDivision(50, 100, 1, 3, 10, 0, 2);
                 break;
             case 2:
-                randomQuestion = new MQManyNumbersAddition(-9, 9, 1, 4);
+                randomQuestion = new MQManyNumbersAddition(-19, 19, 0, 4);
                 break;
             case 3:
-                randomQuestion = new MQManyNumbersMultiplication(-5, 5, 1, 4);
+                randomQuestion = new MQPolynomialDoubleDerivation(-7, 7, 1, 9, 2);
                 break;
             case 4:
-                randomQuestion = new MQPolynomialDerivation(-20, 20, -9, 9, 2);
+                randomQuestion = new MQPolynomialDerivation(-20, 20, 0, 9, 2);
                 break;
             case 5:
-                randomQuestion = new MQPolynomialIntegration(-20, 20, -9, 9, 2);
+                randomQuestion = new MQPolynomialIntegration(-20, 20, 0, 9, 2);
                 break;
         }
     }
@@ -132,25 +132,28 @@ public class MQFinalBossRandom extends MathQuestions {
      * Generates a random question from the list of hard difficulty questions.
      */
     private void generateHardDifficultyQuestions() {
-        int questionNumber = Utilities.randomInt(0, 5);
+        int questionNumber = Utilities.randomInt(0, 6);
         switch (questionNumber) {
             case 0:
-                randomQuestion = new MQFractionsAddition(-20, 20, -20, 20, 2);
+                randomQuestion = new MQFractionsAddition(-11, 11, 3, 10, 3);
                 break;
             case 1:
-                randomQuestion = new MQ2NumbersDivision(20, 400, 1, 10, 19, 1, 2);
+                randomQuestion = new MQ2NumbersDivision(20, 200, 1, 10, 19, 0, 2);
                 break;
             case 2:
-                randomQuestion = new MQManyNumbersAddition(-20, 20, 1, 5);
+                randomQuestion = new MQManyNumbersAddition(-20, 20, 0, 6);
                 break;
             case 3:
-                randomQuestion = new MQManyNumbersMultiplication(-15, 15, 1, 4);
+                randomQuestion = new MQQuadraticRoots(-9, 9, -9, 9);
                 break;
             case 4:
-                randomQuestion = new MQPolynomialDerivation(-10, 10, -30, 30, 2);
+                randomQuestion = new MQPolynomialDoubleDerivation(-10, 10, -30, 30, 2);
                 break;
             case 5:
                 randomQuestion = new MQPolynomialIntegration(-10, 10, -30, 30, 2);
+                break;
+            case 6:
+                randomQuestion = new MQPrimeFactorisation(2, 7, 3, 6);
                 break;
         }
     }

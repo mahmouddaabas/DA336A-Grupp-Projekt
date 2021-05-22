@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
      */
     public void populateAnswerPanel() {
         answerPanel = new JPanel();
-        answerPanel.setBounds(580, 670, 270, 100);
+        answerPanel.setBounds(480, 670, 400, 100);
         answerPanel.setBackground(Color.BLUE);
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
@@ -111,6 +111,7 @@ public class MainFrame extends JFrame {
             answerButton[i].addActionListener(answers);
             answerButton[i].addKeyListener(answers);
             answerButton[i].setActionCommand(s);
+            answerButton[i].setFont(new Font("Cambria", Font.BOLD, 12));
             answerPanel.add(answerButton[i]);
         }
         answerPanel.setVisible(false);

@@ -27,7 +27,7 @@ public class MQQuadraticSimplify extends QuadraticQuestions {
      * @return the quadratic question.
      */
     protected String getQuadraticQuestion(Quadratic questionQuadratic) {
-        return "What is the expansion of f(x) = " + questionQuadratic.toStringExpanded() + "?";
+        return "What is the simplification of f(x) = " + questionQuadratic.toStringExpanded() + "?";
     }
 
     /**
