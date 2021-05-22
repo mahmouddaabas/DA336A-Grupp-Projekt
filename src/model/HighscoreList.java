@@ -3,11 +3,9 @@ package model;
 import controller.GameLogic;
 import view.panels.HighscorePanel;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @author Mahmoud Daabas
@@ -39,6 +37,56 @@ public class HighscoreList {
     }
 
     /**
+     * Deletes a score from the list based on the index.
+     * @param index
+     */
+    public void deleteHighscore(int index) {
+        highscoreList.remove(index);
+        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(getHighscoreData());
+    }
+
+    /**
+     * Adds a highscore to the list without saving to txt file.
+     * @param result highscore result.
+     */
+    public void addHighscoreNoTxt(String result) {
+        highscoreList.add(result);
+    }
+
+    /**
+     * Deletes a highscore from the text file.
+     * @param score
+     */
+    public void deleteHighscoreFromTxt(String score) {
+        try {
+            FileReader reader = new FileReader(highscorePath);
+            BufferedReader br = new BufferedReader(reader);
+
+            String data = br.readLine();
+            LinkedList<String> highscores = new LinkedList<>();
+
+            while (data != null) {
+                if (!data.equals(score)) {
+                    highscores.add(data);
+                }
+                data = br.readLine();
+            }
+            br.close();
+
+            PrintWriter write = new PrintWriter(new FileWriter(highscorePath));
+            BufferedWriter bw = new BufferedWriter(write);
+
+            for (String addBackScore : highscores) {
+                bw.write(addBackScore + "\n");
+            }
+            bw.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Saves the highscore into a text file.
      * @param result saves highscore.
      */
@@ -62,7 +110,7 @@ public class HighscoreList {
 
             String data = br.readLine();
             while (data != null) {
-                addHighscore(data);
+                addHighscoreNoTxt(data);
                 data = br.readLine();
             }
             br.close();
@@ -74,10 +122,14 @@ public class HighscoreList {
         }
     }
 
-    public ArrayList<String> getHighscoreData() {
-        ArrayList<String> highscoreData = new ArrayList<>();
+    /**
+     * Returns an String array with the data inside the highscore list.
+     * @return highscoreData
+     */
+    public String[] getHighscoreData() {
+        String[] highscoreData = new String[highscoreList.size()];
         for (int i = 0; i < highscoreList.size(); i++) {
-            highscoreData.add(highscoreList.get(i));
+            highscoreData[i] = highscoreList.get(i);
         }
         return highscoreData;
     }

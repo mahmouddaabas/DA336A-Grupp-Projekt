@@ -3,6 +3,7 @@ package view.panels;
 import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -15,7 +16,9 @@ public class HighscorePanel extends JPanel {
 
     private ActionHandler actionHandler;
     private JList<String> highscore;
+    private JScrollPane scrollbar;
     private JButton btnDel;
+    private JButton btnBack;
 
     /**
      * Constructs the class.
@@ -43,7 +46,10 @@ public class HighscorePanel extends JPanel {
         highscore.setForeground(Color.BLACK);
         highscore.setFont(new Font("Oswald", Font.PLAIN, 15));
 
-        add(highscore, BorderLayout.CENTER);
+        scrollbar = new JScrollPane(highscore);
+        createScrollBar();
+
+        add(scrollbar, BorderLayout.CENTER);
         add(lblHighscore, BorderLayout.NORTH);
 
         createSouthButtons();
@@ -55,15 +61,19 @@ public class HighscorePanel extends JPanel {
      * Creates the south buttons on the panel.
      */
     public void createSouthButtons() {
-        JPanel pnlSouthButtons = new JPanel(new GridLayout(1, 1));
+        JPanel pnlSouthButtons = new JPanel(new GridLayout(1, 2));
 
         btnDel = new JButton("Delete");
         btnDel.setPreferredSize(new Dimension(50, 50));
+
+        btnBack = new JButton("Back");
+        btnBack.setPreferredSize(new Dimension(50, 50));
 
         createButtonListeners();
         createButtonAttributes();
 
         pnlSouthButtons.add(btnDel);
+        pnlSouthButtons.add(btnBack);
         add(pnlSouthButtons, BorderLayout.SOUTH);
     }
 
@@ -72,11 +82,18 @@ public class HighscorePanel extends JPanel {
      */
     public void createButtonAttributes() {
         Font buttonFont = new Font("Oswald", Font.BOLD, 15);
+
         btnDel.setContentAreaFilled(false);
         btnDel.setFocusPainted(false);
         btnDel.setBackground(Color.GRAY);
         btnDel.setOpaque(true);
         btnDel.setFont(buttonFont);
+
+        btnBack.setContentAreaFilled(false);
+        btnBack.setFocusPainted(false);
+        btnBack.setBackground(Color.GRAY);
+        btnBack.setOpaque(true);
+        btnBack.setFont(buttonFont);
     }
 
     /**
@@ -85,23 +102,42 @@ public class HighscorePanel extends JPanel {
     public void createButtonListeners() {
         btnDel.addActionListener(actionHandler);
         btnDel.setActionCommand("deleteHighscore");
+
+        btnBack.addActionListener(actionHandler);
+        btnBack.setActionCommand("backHighscore");
+    }
+
+    /**
+     * Creates the scrollbar.
+     */
+    public void createScrollBar() {
+        scrollbar.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
+        scrollbar.getVerticalScrollBar().setForeground(Color.BLACK);
+
+        scrollbar.getHorizontalScrollBar().setBackground(Color.DARK_GRAY);
+        scrollbar.getHorizontalScrollBar().setForeground(Color.BLACK);
+
+        scrollbar.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = Color.GRAY;
+            }
+        });
     }
 
     /**
      * Updates the highscore list with scores.
      * @param score String-array of player names
      */
-    public void updateHighscoreList(ArrayList<String> score) {
-        DefaultListModel data = new DefaultListModel();
-        data.addElement(score);
-        highscore.setModel(data);
+    public void updateHighscoreList(String[] score) {
+        highscore.setListData(score);
     }
 
     /**
      * Returns the selected index in the list
      * @return the index
      */
-    public int getProfilesIndex() {
+    public int getSelectedIndex() {
         return highscore.getSelectedIndex();
     }
 
@@ -109,7 +145,7 @@ public class HighscorePanel extends JPanel {
      * Returns teh selected score in the list.
      * @return the score
      */
-    public String getSelectedName() {
+    public String getSelectedScore() {
         return highscore.getSelectedValue();
     }
 }
