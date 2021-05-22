@@ -4,6 +4,7 @@ import controller.handlersAndActions.ActionHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @Author Mahmoud Daabas
@@ -90,7 +91,7 @@ public class HighscorePanel extends JPanel {
      * Updates the highscore list with scores.
      * @param score String-array of player names
      */
-    public void updatePlayerNamestest(String score) {
+    public void updateHighscoreList(ArrayList<String> score) {
         DefaultListModel data = new DefaultListModel();
         data.addElement(score);
         highscore.setModel(data);

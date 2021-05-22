@@ -1,7 +1,10 @@
 package model;
 
 import controller.GameLogic;
+import view.panels.HighscorePanel;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,5 +50,35 @@ public class HighscoreList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Loads all the players into the text file to the profile list.
+     */
+    public void loadHighscoreList() {
+        try {
+            FileReader reader = new FileReader(highscorePath);
+            BufferedReader br = new BufferedReader(reader);
+
+            String data = br.readLine();
+            while (data != null) {
+                addHighscore(data);
+                data = br.readLine();
+            }
+            br.close();
+
+            controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(getHighscoreData());
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> getHighscoreData() {
+        ArrayList<String> highscoreData = new ArrayList<>();
+        for (int i = 0; i < highscoreList.size(); i++) {
+            highscoreData.add(highscoreList.get(i));
+        }
+        return highscoreData;
     }
 }
