@@ -21,6 +21,7 @@ import java.awt.*;
 public class GameLogic {
     private Player player;
     private PlayerList playerList;
+    private HighscoreList highscoreList;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
@@ -47,7 +48,7 @@ public class GameLogic {
      */
     public GameLogic() {
         playerList = new PlayerList(this);
-
+        highscoreList = new HighscoreList(this);
         mainFrame = new MainFrame(this);
         sceneChanger = new SceneChanger(this);
 
@@ -489,6 +490,14 @@ public class GameLogic {
             player = playerList.getPlayer(index);
             JOptionPane.showMessageDialog(null, player.getName() + " Selected!");
         }
+    }
+
+    /**
+     * Returns highscorelist
+     * @return highscorelist
+     */
+    public HighscoreList getHighscoreList() {
+        return highscoreList;
     }
 
     /**
