@@ -358,8 +358,6 @@ public class GameLogic {
         else if(counter.getAnsweredAmount() < 35) {
             counter.setGrade("F");
         }
-        System.out.println("Your grade: " + counter.getGrade() + "\nYou managed to answer: " +
-                counter.getAnsweredAmount() + " questions out of 70.");
     }
 
     /**
