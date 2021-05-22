@@ -22,7 +22,7 @@ public class MainMenu {
     private DifficultiesPanel pnlDiff;
 
     private JButton btnNew;
-    private JButton btnProfiles;
+    private JButton btnScores;
     private JButton btnExit;
 
     /**
@@ -79,18 +79,18 @@ public class MainMenu {
         pnlButtons = new JPanel(new GridLayout(3, 1));
 
         btnNew = new JButton("New Game");
-        btnProfiles = new JButton("Profiles");
+        btnScores = new JButton("Scores");
         btnExit = new JButton("Exit");
 
         btnNew.setBounds(0, 0, 200, 100);
-        btnProfiles.setBounds(0, 0, 200, 100);
+        btnScores.setBounds(0, 0, 200, 100);
         btnExit.setBounds(0, 0, 200, 100);
 
         changeButtonAttributes();
         addActionListener();
 
         pnlButtons.add(btnNew);
-        pnlButtons.add(btnProfiles);
+        pnlButtons.add(btnScores);
         pnlButtons.add(btnExit);
 
         pnlButtons.setBounds(100, 250, 200, 300);
@@ -102,24 +102,24 @@ public class MainMenu {
      */
     public void changeButtonAttributes() {
         btnNew.setContentAreaFilled(false);
-        btnProfiles.setContentAreaFilled(false);
+        btnScores.setContentAreaFilled(false);
         btnExit.setContentAreaFilled(false);
 
         btnNew.setFocusPainted(false);
-        btnProfiles.setFocusPainted(false);
+        btnScores.setFocusPainted(false);
         btnExit.setFocusPainted(false);
 
         btnNew.setBackground(Color.GRAY);
-        btnProfiles.setBackground(Color.GRAY);
+        btnScores.setBackground(Color.GRAY);
         btnExit.setBackground(Color.GRAY);
 
         btnNew.setOpaque(true);
-        btnProfiles.setOpaque(true);
+        btnScores.setOpaque(true);
         btnExit.setOpaque(true);
 
         Font buttonFont = new Font("Oswald", Font.BOLD, 20);
         btnNew.setFont(buttonFont);
-        btnProfiles.setFont(buttonFont);
+        btnScores.setFont(buttonFont);
         btnExit.setFont(buttonFont);
     }
 
@@ -128,11 +128,11 @@ public class MainMenu {
      */
     public void addActionListener() {
         btnNew.addActionListener(actionHandler);
-        btnProfiles.addActionListener(actionHandler);
+        btnScores.addActionListener(actionHandler);
         btnExit.addActionListener(actionHandler);
 
         btnNew.setActionCommand("newGame");
-        btnProfiles.setActionCommand("profiles");
+        btnScores.setActionCommand("scores");
         btnExit.setActionCommand("exitGame");
     }
 

@@ -109,17 +109,11 @@ public class ActionHandler implements ActionListener, KeyListener {
 
                 //MAIN MENU
             case "newGame":
-                if (controller.getPlayer() == null) {
-                    JOptionPane.showMessageDialog(null, "Please select a profile");
-                }
-                else {
-                    controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(false);
-                    controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
-                }
-                break;
-            case "profiles":
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(true);
+                break;
+            case "scores":
+                JOptionPane.showMessageDialog(null, "SCORES LIST GOES HERE!");
                 break;
             case "exitGame":
                 System.exit(0);
@@ -179,13 +173,31 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "addProfile":
                 String playerName = JOptionPane.showInputDialog("Enter player name");
                 if (playerName != null && !playerName.equals("")) {
-                    controller.addPlayer(playerName);
+                    if (controller.getPlayerList().compareProfiles(playerName)) {
+                        controller.addPlayer(playerName);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Duplicate profile!");
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Invalid name!");
                 }
                 break;
             case "deleteProfile":
-                String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
-                controller.deletePlayer(playerIndex);
-                controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
+                if (playerIndex >= 0) {
+                    String nameToDelete = controller.getMainFrame().getMainMenu().getPnlProfiles().getSelectedName();
+                    String message = "Are you sure?";
+                    String title = "Delete player";
+                    int c = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+                    if (c == JOptionPane.YES_OPTION) {
+                        controller.deletePlayer(playerIndex);
+                        controller.getPlayerList().deletePlayerFromTxt(nameToDelete);
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No profile selected!");
+                }
                 break;
             case "goMainMenu":
                 if (controller.getMainFrame().getMainMenu().getPnlProfiles().isVisible()) {
@@ -197,9 +209,14 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
             case "selectProfile":
-                controller.setPlayer(playerIndex);
-                controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
-                controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
+                if (playerIndex >= 0) {
+                    controller.setPlayer(playerIndex);
+                    controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                    controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(true);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No profile selected!");
+                }
                 break;
 
             case "hard":
