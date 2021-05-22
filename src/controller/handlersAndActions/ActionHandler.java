@@ -113,7 +113,8 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(true);
                 break;
             case "scores":
-                JOptionPane.showMessageDialog(null, "SCORES LIST GOES HERE!");
+                controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(false);
+                controller.getMainFrame().getMainMenu().getPnlHighscore().setVisible(true);
                 break;
             case "exitGame":
                 System.exit(0);
