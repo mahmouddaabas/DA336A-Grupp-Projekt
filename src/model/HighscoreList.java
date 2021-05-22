@@ -37,53 +37,11 @@ public class HighscoreList {
     }
 
     /**
-     * Deletes a score from the list based on the index.
-     * @param index
-     */
-    public void deleteHighscore(int index) {
-        highscoreList.remove(index);
-        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(getHighscoreData());
-    }
-
-    /**
      * Adds a highscore to the list without saving to txt file.
      * @param result highscore result.
      */
     public void addHighscoreNoTxt(String result) {
         highscoreList.add(result);
-    }
-
-    /**
-     * Deletes a highscore from the text file.
-     * @param score
-     */
-    public void deleteHighscoreFromTxt(String score) {
-        try {
-            FileReader reader = new FileReader(highscorePath);
-            BufferedReader br = new BufferedReader(reader);
-
-            String data = br.readLine();
-            LinkedList<String> highscores = new LinkedList<>();
-
-            while (data != null) {
-                if (!data.equals(score)) {
-                    highscores.add(data);
-                }
-                data = br.readLine();
-            }
-            br.close();
-
-            PrintWriter write = new PrintWriter(new FileWriter(highscorePath));
-            BufferedWriter bw = new BufferedWriter(write);
-
-            for (String addBackScore : highscores) {
-                bw.write(addBackScore + "\n");
-            }
-            bw.close();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

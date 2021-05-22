@@ -147,19 +147,6 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlHighscore().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                 break;
-            case "deleteHighscore":
-                if (controller.getMainFrame().getMainMenu().getPnlHighscore().getSelectedIndex() >= 0) {
-                    String scoreToDelete = controller.getMainFrame().getMainMenu().getPnlHighscore().getSelectedScore();
-                    int indexToDelete = controller.getMainFrame().getMainMenu().getPnlHighscore().getSelectedIndex();
-                    String message = "Are you sure?";
-                    String title = "Delete Highscore";
-                    int c = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-                    if (c == JOptionPane.YES_OPTION) {
-                        controller.getHighscoreList().deleteHighscore(indexToDelete);
-                        controller.getHighscoreList().deleteHighscoreFromTxt(scoreToDelete);
-                    }
-                }
-                break;
 
                 //HELP
             case "requestHelp":

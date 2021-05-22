@@ -17,7 +17,6 @@ public class HighscorePanel extends JPanel {
     private ActionHandler actionHandler;
     private JList<String> highscore;
     private JScrollPane scrollbar;
-    private JButton btnDel;
     private JButton btnBack;
 
     /**
@@ -61,10 +60,7 @@ public class HighscorePanel extends JPanel {
      * Creates the south buttons on the panel.
      */
     public void createSouthButtons() {
-        JPanel pnlSouthButtons = new JPanel(new GridLayout(1, 2));
-
-        btnDel = new JButton("Delete");
-        btnDel.setPreferredSize(new Dimension(50, 50));
+        JPanel pnlSouthButtons = new JPanel(new GridLayout(1, 1));
 
         btnBack = new JButton("Back");
         btnBack.setPreferredSize(new Dimension(50, 50));
@@ -72,7 +68,6 @@ public class HighscorePanel extends JPanel {
         createButtonListeners();
         createButtonAttributes();
 
-        pnlSouthButtons.add(btnDel);
         pnlSouthButtons.add(btnBack);
         add(pnlSouthButtons, BorderLayout.SOUTH);
     }
@@ -82,12 +77,6 @@ public class HighscorePanel extends JPanel {
      */
     public void createButtonAttributes() {
         Font buttonFont = new Font("Oswald", Font.BOLD, 15);
-
-        btnDel.setContentAreaFilled(false);
-        btnDel.setFocusPainted(false);
-        btnDel.setBackground(Color.GRAY);
-        btnDel.setOpaque(true);
-        btnDel.setFont(buttonFont);
 
         btnBack.setContentAreaFilled(false);
         btnBack.setFocusPainted(false);
@@ -100,9 +89,6 @@ public class HighscorePanel extends JPanel {
      * Creates the button listeners.
      */
     public void createButtonListeners() {
-        btnDel.addActionListener(actionHandler);
-        btnDel.setActionCommand("deleteHighscore");
-
         btnBack.addActionListener(actionHandler);
         btnBack.setActionCommand("backHighscore");
     }
@@ -131,21 +117,5 @@ public class HighscorePanel extends JPanel {
      */
     public void updateHighscoreList(String[] score) {
         highscore.setListData(score);
-    }
-
-    /**
-     * Returns the selected index in the list
-     * @return the index
-     */
-    public int getSelectedIndex() {
-        return highscore.getSelectedIndex();
-    }
-
-    /**
-     * Returns teh selected score in the list.
-     * @return the score
-     */
-    public String getSelectedScore() {
-        return highscore.getSelectedValue();
     }
 }
