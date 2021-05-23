@@ -17,6 +17,7 @@ import java.awt.event.KeyListener;
  * @author Mahmoud Daabas
  * @author Duy Nguyen
  * @author Leith Ahmad
+ * @author Vilgot Mattsson
  * This class handles the actions that gets pressed on the GUI by sending an action command.
  * It then calls the appropriate method from the event class to determine what to do.
  */
@@ -92,6 +93,8 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().exitGameOverScreen();
                 controller.getCounter().setCurrentScene(0);
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
+                controller.getMusicPlayer().setGameOverActive(false);
+                controller.getMusicPlayer().startMusic();
                 break;
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
@@ -232,7 +235,7 @@ public class ActionHandler implements ActionListener, KeyListener {
         //Checks if the current scene is correct before allowing player to start combat with enter.
         else if (controller.getCounter().getCurrentScene() == controller.getCounter().getLevel() + 1) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                controller.startFight(controller.getCounter().getLevel());
+                controller.getEventMonsters().attackEnemy();
             }
         }
     }
