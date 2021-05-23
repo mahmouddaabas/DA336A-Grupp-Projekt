@@ -144,7 +144,12 @@ public class GameLogic {
 
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
-                musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerSound2.wav");
+                if((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
+                    musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerBossLvlSound.wav");
+                } else {
+                    musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerRegLvlSound.wav");
+                }
+
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
                     int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
@@ -233,7 +238,6 @@ public class GameLogic {
      * if the player picks the wrong answer.
      */
     public void ifNotAnswered() {
-        musicPlayer.playSoundEffects("resources/soundtracks/incorrectAnswerSound.wav");
         if (player.getPlayerHealth() <= 1) { //Regulars
             sceneChanger.showGameOverScreen();
         }
@@ -241,6 +245,7 @@ public class GameLogic {
             sceneChanger.showGameOverScreen();
         }
         else {
+            musicPlayer.playSoundEffects("resources/soundtracks/incorrectAnswerSound.wav");
             player.setOutOfCombat(true);
             checkAndApplyDamage();
             startFight(counter.getLevel());
