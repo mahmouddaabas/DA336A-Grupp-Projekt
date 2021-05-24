@@ -40,7 +40,7 @@ public class ShopItems {
      */
     public void buyHealth() {
         if (controller.getPlayer().getPlayerHealth() < 10 && controller.getPlayer().getGold() > 1) {
-            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/heartBeatSound.wav");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/itemBoughtSound.wav");
             int previousHealth = controller.getPlayer().getPlayerHealth();
             previousHealth++;
             controller.getPlayer().setPlayerHealth(previousHealth);
@@ -52,9 +52,11 @@ public class ShopItems {
         }
         else if (controller.getPlayer().getGold() < 2) {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
         else {
             controller.getMainFrame().getTextArea().setText("You already have full hp!");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/heartBeatSound.wav");
         }
     }
 
@@ -78,6 +80,7 @@ public class ShopItems {
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
     }
 
@@ -101,6 +104,7 @@ public class ShopItems {
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
     }
 
@@ -109,6 +113,7 @@ public class ShopItems {
      */
     public void buyHint() {
         if(controller.getPlayer().getGold() > 1 && hintLimit == 0) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/itemBoughtSound.wav");
             controller.getMainFrame().getBtnHint().setVisible(true);
             controller.getPlayer().setGold(controller.getPlayer().getGold() - 2);
             controller.getCounter().updateCoinLabel();
@@ -124,6 +129,7 @@ public class ShopItems {
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
     }
 
