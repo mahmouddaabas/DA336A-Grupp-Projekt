@@ -26,6 +26,7 @@ public class GameLogic {
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
+    private boolean inMainMenu;
 
     private String status = "";
 
@@ -520,5 +521,21 @@ public class GameLogic {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * Gets is in mainMenu from outside of the class.
+     * @return
+     */
+    public boolean isInMainMenu() {
+        return inMainMenu;
+    }
+
+    /**
+     * Sets inMainMenu from outside of the class.
+     * @param inMainMenu
+     */
+    public void setInMainMenu(boolean inMainMenu) {
+        this.inMainMenu = inMainMenu;
     }
 }

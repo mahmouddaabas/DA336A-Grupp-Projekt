@@ -227,47 +227,52 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "resetGame":
-                if(controller.getPlayer().isOutOfCombat()) {
-                    String message = "Are you sure?";
-                    String title = "Return to main menu?";
-                    int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-                    if (reply == JOptionPane.YES_OPTION) {
-                        for(int i = 0; i < controller.getMainFrame().getSceneCreator().getBgPanels().size(); i++){
-                            controller.getMainFrame().getSceneCreator().getBgPanels().get(i).setVisible(false);
-                            controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
-
-                            for(int j = 0; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++){
-                                if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
-                                    controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
-                                }
-                            }
-                        }
-
-                        //Sets all enemies to visible
-                        for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
-                            if (!controller.getMainFrame().getObjectCreator().getMonsters().get(i).isVisible()) {
-                                controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
-                            }
-                        }
-                        controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
-
-                        if(controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
-                            controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
-                        }
-
-                        controller.getPlayer().restoreHealth();
-                        controller.getCounter().setCurrentScene(0);
-                        controller.getMusicPlayer().stopMusic();
-                        controller.getCounter().setLevel(0);
-                        controller.getMusicPlayer().startMusic();
-                        controller.getSceneChanger().showMainMenu();
-                        controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
-                        controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
-                        controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
-                    }
+                if(controller.isInMainMenu()) {
+                    JOptionPane.showMessageDialog(null, "You are already in the main menu!");
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "You are in combat!");
+                    if(controller.getPlayer().isOutOfCombat()) {
+                        String message = "Are you sure?";
+                        String title = "Return to main menu?";
+                        int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+                        if (reply == JOptionPane.YES_OPTION) {
+                            for(int i = 0; i < controller.getMainFrame().getSceneCreator().getBgPanels().size(); i++){
+                                controller.getMainFrame().getSceneCreator().getBgPanels().get(i).setVisible(false);
+                                controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+
+                                for(int j = 0; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++){
+                                    if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
+                                        controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
+                                    }
+                                }
+                            }
+
+                            //Sets all enemies to visible
+                            for (int i = 0; i < controller.getLevelCreator().getLevels().size(); i++) {
+                                if (!controller.getMainFrame().getObjectCreator().getMonsters().get(i).isVisible()) {
+                                    controller.getMainFrame().getObjectCreator().getMonsters().get(i).setVisible(true);
+                                }
+                            }
+                            controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
+
+                            if(controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
+                                controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
+                            }
+
+                            controller.getPlayer().restoreHealth();
+                            controller.getCounter().setCurrentScene(0);
+                            controller.getMusicPlayer().stopMusic();
+                            controller.getCounter().setLevel(0);
+                            controller.getMusicPlayer().startMusic();
+                            controller.getSceneChanger().showMainMenu();
+                            controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                            controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
+                            controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "You are in combat!");
+                    }
                 }
                 break;
 

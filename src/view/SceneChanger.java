@@ -31,6 +31,7 @@ public class SceneChanger {
      * Shows the main menu when starting
      */
     public void showMainMenu() {
+        controller.setInMainMenu(true);
         controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(true);
     }
 
@@ -48,6 +49,7 @@ public class SceneChanger {
             controller.getCounter().updateLblLevel();
             controller.getCounter().updateCoinLabel();
             controller.getMainFrame().getSceneCreator().getArrowButtons().get(0).setVisible(true);
+            controller.setInMainMenu(false);
         }
 
         if (sceneNbr == 1) {
