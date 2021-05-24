@@ -21,6 +21,7 @@ import java.awt.*;
 public class GameLogic {
     private Player player;
     private PlayerList playerList;
+    private HighscoreList highscoreList;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
@@ -47,7 +48,7 @@ public class GameLogic {
      */
     public GameLogic() {
         playerList = new PlayerList(this);
-
+        highscoreList = new HighscoreList(this);
         mainFrame = new MainFrame(this);
         sceneChanger = new SceneChanger(this);
 
@@ -63,6 +64,7 @@ public class GameLogic {
 
         sceneChanger.showMainMenu();
         playerList.loadProfileList();
+        highscoreList.loadHighscoreList();
         musicPlayer.startMusic();
     }
 
@@ -157,6 +159,7 @@ public class GameLogic {
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     mainFrame.getEnemyHealthBar().updateEnemyHealth();
+                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -167,6 +170,7 @@ public class GameLogic {
                     mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
                     addGold();
 
+                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
                     hideComponents();
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
@@ -340,6 +344,30 @@ public class GameLogic {
     }
 
     /**
+     * Calculates and applies the score.
+     */
+    public void calculateGrade() {
+        if(counter.getAnsweredAmount() >= 63) {
+            counter.setGrade("A");
+        }
+        else if(counter.getAnsweredAmount() >= 56) {
+            counter.setGrade("B");
+        }
+        else if(counter.getAnsweredAmount() >= 49) {
+            counter.setGrade("C");
+        }
+        else if(counter.getAnsweredAmount() >= 42) {
+            counter.setGrade("D");
+        }
+        else if(counter.getAnsweredAmount() >= 35) {
+            counter.setGrade("E");
+        }
+        else if(counter.getAnsweredAmount() < 35) {
+            counter.setGrade("F");
+        }
+    }
+
+    /**
      * Returns the mathQuestion object for use outside of class
      * @return mathQuestion
      */
@@ -468,6 +496,14 @@ public class GameLogic {
             player = playerList.getPlayer(index);
             JOptionPane.showMessageDialog(null, player.getName() + " Selected!");
         }
+    }
+
+    /**
+     * Returns highscorelist
+     * @return highscorelist
+     */
+    public HighscoreList getHighscoreList() {
+        return highscoreList;
     }
 
     /**

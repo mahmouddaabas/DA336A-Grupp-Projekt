@@ -184,6 +184,12 @@ public class SceneChanger {
 
         controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
+        controller.calculateGrade();
+
+        String name = controller.getPlayer().getName() + " - ";
+        String grade = controller.getCounter().getGrade() + " - ";
+        String amount = String.valueOf(controller.getCounter().getAnsweredAmount()) + "/70";
+        controller.getHighscoreList().addHighscore(name + grade + amount);
     }
 
     /**
@@ -252,6 +258,11 @@ public class SceneChanger {
                 }
             }
         }
+        controller.calculateGrade();
+        String name = controller.getPlayer().getName() + " - ";
+        String grade = controller.getCounter().getGrade() + " - ";
+        String amount = String.valueOf(controller.getCounter().getAnsweredAmount()) + "/70";
+        controller.getHighscoreList().addHighscore(name + grade + amount);
     }
 
     /**
