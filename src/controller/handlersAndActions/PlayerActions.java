@@ -42,7 +42,7 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped() &&usedShield) {
+        if (controller.getShopItems().getShield().getIsEquipped() &&!usedShield) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
