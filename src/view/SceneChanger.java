@@ -43,6 +43,13 @@ public class SceneChanger {
             controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(false);
         }
 
+        if(sceneNbr == 0){
+            controller.getPlayer().setGold(0);
+            controller.getCounter().updateLblLevel();
+            controller.getCounter().updateCoinLabel();
+            controller.getMainFrame().getSceneCreator().getArrowButtons().get(0).setVisible(true);
+        }
+
         if (sceneNbr == 1) {
             controller.getMainFrame().getHealthBar().createHealthBar();
         }
@@ -184,6 +191,8 @@ public class SceneChanger {
 
         controller.getShopItems().setDamagePotionLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
+        controller.getMainFrame().getBtnShield().setVisible(false);
+        controller.getMainFrame().getBtnHint().setVisible(false);
         controller.calculateGrade();
 
         String name = controller.getPlayer().getName() + " - ";
