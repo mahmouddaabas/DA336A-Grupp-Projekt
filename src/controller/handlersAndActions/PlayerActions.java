@@ -5,6 +5,7 @@ import controller.GameLogic;
 /**
  * @author Mahmoud Daabas
  * @author Annie Tran
+ * @author Vilgot Mattsson
  * This class handles the actions by the player.
  */
 public class PlayerActions {
@@ -28,6 +29,7 @@ public class PlayerActions {
     public void drinkDamagePotion() {
         controller.getShopItems().getDmgPot().setPotionActive(true);
         if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getPlayer().setDamageDealt(controller.getShopItems().getDmgPot().getDamageBoost());
             controller.getShopItems().setDamagePotionLimit(0);
             usedPotion = true;
@@ -43,6 +45,7 @@ public class PlayerActions {
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
         if (controller.getShopItems().getShield().getIsEquipped() && !usedShield) {
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
             controller.getMainFrame().getBtnShield().setVisible(false);

@@ -8,7 +8,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.io.*;
-import java.sql.Struct;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +29,8 @@ public class MusicPlayer {
     private boolean isPlaying;
     private boolean isMuted;
     private boolean isShop;
+    private boolean gameOver;
+    private boolean isWinner;
     private boolean ticking;
 
     /**
@@ -38,7 +39,8 @@ public class MusicPlayer {
      */
     public MusicPlayer(Counter counter) {
         this("resources/soundtracks/mainMenuSound.wav","resources/soundtracks/regularLevelSound.wav",
-                "resources/soundtracks/bossFightSound.wav","resources/soundtracks/ShopSound.wav","");
+                "resources/soundtracks/bossFightSound.wav","resources/soundtracks/ShopSound.wav",
+                "resources/soundtracks/gameOverSound.wav","");
         this.counter = counter;
     }
 
@@ -51,13 +53,14 @@ public class MusicPlayer {
      * @param pathShop filepath to the audio to be played while player is at the shop
      * @param pathWinner filepath to the audio to be played when player reaches the winner-screen
      */
-    private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String pathWinner) {
+    private MusicPlayer(String pathMainMenu, String pathRegularLvl, String pathBossLvl, String pathShop, String gameOver, String pathWinner) {
         files = new ArrayList<>();
         files.add(0, new File(pathMainMenu));
         files.add(1, new File(pathRegularLvl));
         files.add(2, new File(pathBossLvl));
         files.add(3, new File(pathShop));
-        files.add(4, new File(pathWinner));
+        files.add(4, new File(gameOver));
+        files.add(5, new File(pathWinner));
     }
 
     /**
@@ -76,6 +79,10 @@ public class MusicPlayer {
         if(isShop) {
             //shop scene
             playMusic(files.get(3));
+        } else if(gameOver) {
+            playMusic(files.get(4));
+        } else if(isWinner) {
+            playMusic(files.get(5));
         } else {
             switch (counter.getLevel()) {
                 case 0:
@@ -150,11 +157,7 @@ public class MusicPlayer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        setPreferredVolume(-30f, clipSoundEffects);
-        while (clipSoundEffects.getMicrosecondLength() < 5000L) {
-            System.out.println(" < 5 sek");
-        }
-    //    clipSoundEffects.stop(); //tills att vi kunnat klippa i time-soundet till 5 sek
+        setPreferredVolume(-20f, clipSoundEffects);
     }
 
 
@@ -170,7 +173,6 @@ public class MusicPlayer {
 
     public void stopSoundEffect() {
         clipSoundEffects.stop();
-        ticking = false;
     }
 
     /**
@@ -222,5 +224,13 @@ public class MusicPlayer {
      */
     public void setShopActive(boolean shopActive) {
         isShop = shopActive;
+    }
+
+    public void setGameOverActive(boolean gameOverActive) {
+        gameOver = gameOverActive;
+    }
+
+    public void setWinner(boolean isWinner) {
+        this.isWinner = isWinner;
     }
 }

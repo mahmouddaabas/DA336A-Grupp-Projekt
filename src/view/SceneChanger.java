@@ -157,6 +157,9 @@ public class SceneChanger {
      */
     public void showGameOverScreen() {
         controller.getTimer().stopTimer();
+        controller.getMusicPlayer().stopSoundEffect();
+        controller.getMusicPlayer().setGameOverActive(true);
+        controller.getMusicPlayer().startMusic();
 
         //Hides all the panels.
         controller.getMainFrame().getAnswerPanel().setVisible(false);

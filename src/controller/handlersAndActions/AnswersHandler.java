@@ -59,20 +59,17 @@ public class AnswersHandler implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(0);
-            controller.checkAnswer();
         }
         else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(1);
-            controller.checkAnswer();
         }
         else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(2);
-            controller.checkAnswer();
         }
         else if (e.getKeyCode() == KeyEvent.VK_4 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
             controller.setAnswerIndex(3);
-            controller.checkAnswer();
         }
+        controller.checkAnswer();
     }
     @Override
     public void keyReleased(KeyEvent e) {}

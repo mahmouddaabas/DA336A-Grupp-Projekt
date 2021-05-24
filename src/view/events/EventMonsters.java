@@ -40,6 +40,7 @@ public class EventMonsters {
      * Same as lookAtEnemy(), but for "Attack" option.
      */
     public void attackEnemy() {
+        controller.getMusicPlayer().playSoundEffects("resources/soundtracks/swordSound.wav");
         controller.startFight(controller.getCounter().getLevel());
     }
 }
