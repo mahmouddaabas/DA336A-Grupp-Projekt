@@ -44,6 +44,7 @@ public class MainFrame extends JFrame {
     private JButton[] answerButton;
     private JButton btnDamagePotion;
     private JButton btnShield;
+    private JButton btnHint;
     private JButton btnGetHelp;
     private JButton btnAudioOn;
     private JButton btnAudioOff;
@@ -87,6 +88,7 @@ public class MainFrame extends JFrame {
         createHelpQuestionMark();
         createTextArea();
         createShield();
+        createHint();
         createAudioButtons();
     }
 
@@ -96,7 +98,7 @@ public class MainFrame extends JFrame {
      */
     public void populateAnswerPanel() {
         answerPanel = new JPanel();
-        answerPanel.setBounds(580, 670, 270, 100);
+        answerPanel.setBounds(480, 670, 400, 100);
         answerPanel.setBackground(Color.BLUE);
         answerPanel.setLayout(new GridLayout(2, 2));
         answerPanel.setOpaque(false);
@@ -109,6 +111,7 @@ public class MainFrame extends JFrame {
             answerButton[i].addActionListener(answers);
             answerButton[i].addKeyListener(answers);
             answerButton[i].setActionCommand(s);
+            answerButton[i].setFont(new Font("Cambria", Font.BOLD, 12));
             answerPanel.add(answerButton[i]);
         }
         answerPanel.setVisible(false);
@@ -186,6 +189,30 @@ public class MainFrame extends JFrame {
 
         btnShield.setForeground(Color.WHITE);
         add(btnShield);
+    }
+
+    /**
+     * Creates the hint button that is shown on the GUI.
+     */
+    public void createHint() {
+        ImageIcon hintIcon = ImageResizer.resize("resources/misc/Hint.png", 50, 50);
+        btnHint = new JButton();
+        btnHint.setOpaque(false);
+        btnHint.setVisible(false);
+        btnHint.setBounds(1070, 750, 50, 50);
+        btnHint.setLayout(null);
+
+        btnHint.addActionListener(action);
+        btnHint.setActionCommand("useHint");
+
+        btnHint.setIcon(hintIcon);
+        btnHint.setContentAreaFilled(false);
+        btnHint.setFocusPainted(false);
+        btnHint.setBackground(null);
+        btnHint.setBorderPainted(false);
+
+        btnHint.setForeground(Color.WHITE);
+        add(btnHint);
     }
 
     /**
@@ -434,5 +461,13 @@ public class MainFrame extends JFrame {
      */
     public EnemyHealthBar getEnemyHealthBar() {
         return enemyHealthBar;
+    }
+
+    /**
+     * Returns hint button.
+     * @return btnHint
+     */
+    public JButton getBtnHint() {
+        return btnHint;
     }
 }

@@ -31,6 +31,20 @@ public class MQ2NumbersSubtraction extends Arithmetic2NumberQuestions {
     }
 
     /**
+     * Constructor that initializes the instance variables for the bounds and the number of decimal places by using
+     * the same values for both numbers.
+     * @param numberLowerBound the lowest value the numbers can have.
+     * @param numberUpperBound the highest value the numbers can have.
+     * @param numOfDecimals the number of decimal places for the numbers.
+     */
+    public MQ2NumbersSubtraction(double numberLowerBound, double numberUpperBound, int numOfDecimals,
+                                 boolean allowNegativeAnswer) {
+        super(numberLowerBound, numberUpperBound, numOfDecimals,
+                numberLowerBound, numberUpperBound, numOfDecimals, '-');
+        this.allowNegativeAnswer = allowNegativeAnswer;
+    }
+
+    /**
      * Generates the two random numbers from the given bounds. If the answer should not be negative, then the second
      * number cannot be greater than the first, so switches numbers 1 and 2 if that happens.
      */

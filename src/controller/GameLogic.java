@@ -141,7 +141,8 @@ public class GameLogic {
      */
     public void checkAnswer() {
         musicPlayer.stopTicking();
-
+        playerActions.setUsedHint(false);
+        resetButtons();
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 if((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
@@ -250,6 +251,8 @@ public class GameLogic {
             checkAndApplyDamage();
             startFight(counter.getLevel());
         }
+        playerActions.setUsedHint(false);
+        resetButtons();
     }
 
     /**
@@ -273,6 +276,13 @@ public class GameLogic {
                 mainFrame.getTextArea().setText(dealt);
                 mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
                 break;
+            case "blocked":
+                mainFrame.getTextArea2().setVisible(true);
+                mainFrame.getTextArea().setForeground(Color.RED);
+                String blocked = "Incorrect answer, you block and take " + player.getDamageTaken() + " damage." + "\n";
+                mainFrame.getTextArea().setText(blocked);
+                mainFrame.getTextArea2().setText(mathQuestion.getQuestion());
+                break;
             default:
                 mainFrame.getTextArea().setText(mathQuestion.getQuestion());
                 break;
@@ -289,6 +299,7 @@ public class GameLogic {
             shopItems.getShield().setEquipped(false);
             mainFrame.getLabelsAndStatus().getShieldStatus().setVisible(false);
             playerActions.setUsedShield(false);
+            status = "blocked";
         }
         else if (levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss()) {
             player.setDamageTaken(2);
@@ -316,6 +327,15 @@ public class GameLogic {
             if (!mainFrame.getObjectCreator().getLblShopKeeper().isVisible()) {
                 mainFrame.getObjectCreator().getLblShopKeeper().setVisible(true);
             }
+        }
+    }
+
+    /**
+     * Resets all the buttons to enabled.
+     */
+    public void resetButtons() {
+        for(int i = 0; i < mainFrame.getAnswerButton().length; i++) {
+            mainFrame.getAnswerButton()[i].setEnabled(true);
         }
     }
 

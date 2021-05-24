@@ -12,6 +12,8 @@ public class PlayerActions {
     private GameLogic controller;
     private boolean usedPotion;
     private boolean usedShield;
+    private boolean usedHint;
+    private boolean inShop;
 
     /**
      * Constructor setting own GameLogic-object
@@ -42,12 +44,31 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped() &&!usedShield) {
+        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
             controller.getMainFrame().getBtnShield().setVisible(false);
             controller.getMainFrame().getLabelsAndStatus().getShieldStatus().setVisible(true);
+        }
+    }
+
+    public void useHint() {
+        if(!usedHint && !inShop) {
+            try {
+                int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()+1;
+                controller.getMainFrame().getAnswerButton()[controller.getMathQuestion().getCorrectAnswerIndex()+buttonToDisable].setEnabled(false);
+                controller.getShopItems().setHintLimit(0);
+                usedHint = true;
+                controller.getMainFrame().getBtnHint().setVisible(false);
+            }
+            catch(ArrayIndexOutOfBoundsException e) {
+                int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()-1;
+                controller.getMainFrame().getAnswerButton()[controller.getMathQuestion().getCorrectAnswerIndex()-buttonToDisable].setEnabled(false);
+                controller.getShopItems().setHintLimit(0);
+                usedHint = true;
+                controller.getMainFrame().getBtnHint().setVisible(false);
+            }
         }
     }
 
@@ -65,5 +86,21 @@ public class PlayerActions {
      */
     public void setUsedShield(boolean usedShield) {
         this.usedShield = usedShield;
+    }
+
+    /**
+     * Sets the used hint boolean
+     * @param usedHint new boolean value
+     */
+    public void setUsedHint(boolean usedHint) {
+        this.usedHint = usedHint;
+    }
+
+    /**
+     * Sets the used inShop boolean
+     * @param inShop
+     */
+    public void setInShop(boolean inShop) {
+        this.inShop = inShop;
     }
 }

@@ -3,6 +3,7 @@ package model;
 import controller.GameLogic;
 import java.io.*;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * @author Duy Nguyen
@@ -127,6 +128,23 @@ public class PlayerList {
         catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Checks the list for the inputted name before adding the player to the list.
+     * @param name inputted name
+     * @return true if there is no equal name, false if there is.
+     */
+    public boolean compareProfiles(String name) {
+        boolean ok = true;
+        for (Player player : players) {
+            if (player != null) {
+                if (player.getName().toLowerCase(Locale.ROOT).equals(name.toLowerCase(Locale.ROOT))) {
+                    ok = false;
+                }
+            }
+        }
+        return ok;
     }
 
     /**

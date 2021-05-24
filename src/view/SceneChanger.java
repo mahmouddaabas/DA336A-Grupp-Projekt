@@ -113,6 +113,7 @@ public class SceneChanger {
         controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
+        controller.getPlayerActions().setInShop(true);
 
         controller.getMusicPlayer().setShopActive(true);
         controller.getMusicPlayer().startMusic();
@@ -136,6 +137,7 @@ public class SceneChanger {
         controller.getMainFrame().getSceneCreator().getArrowButtons().get(21).setVisible(false);
 
         controller.getMusicPlayer().setShopActive(false);
+        controller.getPlayerActions().setInShop(false);
         controller.getMusicPlayer().startMusic();
     }
 
