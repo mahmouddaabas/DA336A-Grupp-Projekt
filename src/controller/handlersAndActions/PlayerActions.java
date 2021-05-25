@@ -28,7 +28,7 @@ public class PlayerActions {
      */
     public void drinkDamagePotion() {
         controller.getShopItems().getDmgPot().setPotionActive(true);
-        if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion) {
+        if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion && !inShop) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getPlayer().setDamageDealt(controller.getShopItems().getDmgPot().getDamageBoost());
             controller.getShopItems().setDamagePotionLimit(0);
@@ -44,7 +44,7 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield) {
+        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield && !inShop) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
@@ -56,6 +56,7 @@ public class PlayerActions {
     public void useHint() {
         if(!usedHint && !inShop) {
             try {
+                controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
                 int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()+1;
                 controller.getMainFrame().getAnswerButton()[controller.getMathQuestion().getCorrectAnswerIndex()+buttonToDisable].setEnabled(false);
                 controller.getShopItems().setHintLimit(0);
