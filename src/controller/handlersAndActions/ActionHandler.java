@@ -254,6 +254,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                                 }
                             }
                             controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
+                            controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
 
                             if(controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
                                 controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
