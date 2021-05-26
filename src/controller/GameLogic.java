@@ -143,6 +143,7 @@ public class GameLogic {
      * Answer is incorrect -> Tells the user and reduces their HP.
      */
     public void checkAnswer() {
+        musicPlayer.stopSoundEffect();
         musicPlayer.stopTicking();
         playerActions.setUsedHint(false);
         resetButtons();

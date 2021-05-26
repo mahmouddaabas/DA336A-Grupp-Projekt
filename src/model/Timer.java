@@ -2,6 +2,8 @@ package model;
 
 import controller.GameLogic;
 
+import java.awt.*;
+
 /**
  * @author Duy Nguyen
  * Timer class for the questions. Implements a Runnable i.e a thread.
@@ -32,9 +34,11 @@ public class Timer implements Runnable {
                 time--;
                 Thread.sleep(1000);
                 if(time <= 5 && timer != null) {
+                    controller.getMainFrame().getLabelsAndStatus().getLblTimer().setForeground(Color.RED);
                     controller.getMusicPlayer().startTicking();
                 }
                 if (time < 0) {
+                    controller.getMainFrame().getLabelsAndStatus().getLblTimer().setForeground(Color.YELLOW);
                     controller.getMusicPlayer().stopTicking();
                     controller.ifNotAnswered();
                 }
