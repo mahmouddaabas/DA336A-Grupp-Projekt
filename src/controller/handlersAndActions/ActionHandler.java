@@ -137,6 +137,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setOpaque(false);
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
                 }
+                controller.getPlayer().restoreHealth();
                 controller.getEventPortal().enterPortal();
                 controller.getMainFrame().getFinalScenePanel().scoreAttributes();
                 break;
