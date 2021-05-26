@@ -48,7 +48,7 @@ public class GameHelp {
      * Creates the game help label that contains all the information.
      */
     public void createGameHelpLabel() {
-        ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/gameHelp.png", 780, 600);
+        ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/GameHelp.png", 780, 600);
         lblGameHelp = new JLabel();
         lblGameHelp.setBounds(0, 0, 780, 600);
         lblGameHelp.setOpaque(false);
