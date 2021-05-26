@@ -237,7 +237,7 @@ public class GameLogic {
 
         switch (difficulty) {
             case Hard:
-                gold = rand.nextInt(6) + 1;
+                gold = rand.nextInt(6) + 1; //In order to prevent player getting 0
                 break;
             case Medium:
                 gold = rand.nextInt(4) + 1;
