@@ -194,6 +194,8 @@ public class SceneChanger {
         controller.getPlayer().setGold(0);
 
         controller.getShopItems().setDamagePotionLimit(0);
+        controller.getShopItems().setHintLimit(0);
+        controller.getShopItems().setShieldLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
         controller.getMainFrame().getBtnShield().setVisible(false);
         controller.getMainFrame().getBtnHint().setVisible(false);

@@ -161,7 +161,7 @@ public class GameLogic {
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     mainFrame.getEnemyHealthBar().updateEnemyHealth();
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -170,14 +170,14 @@ public class GameLogic {
                     status = "";
                     timer.stopTimer();
                     mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
-                    addGold();
 
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    addGold();
                     hideComponents();
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     playerActions.setUsedPotion(false);
 
                     showShopPrompt();
