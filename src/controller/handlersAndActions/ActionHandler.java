@@ -98,6 +98,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMusicPlayer().setGameOverActive(false);
                 controller.getMusicPlayer().startMusic();
+                controller.getCounter().resetGrade();
                 break;
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
@@ -137,6 +138,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
                 }
                 controller.getEventPortal().enterPortal();
+                controller.getMainFrame().getFinalScenePanel().scoreAttributes();
                 break;
             case "returnMenu":
                 controller.getSceneChanger().exitFinalScene();
@@ -145,6 +147,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                 controller.getMainFrame().getFinalScenePanel().getPnlButtons().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getCounter().resetGrade();
                 break;
             case "backHighscore":
                 controller.getMainFrame().getMainMenu().getPnlHighscore().setVisible(false);
@@ -215,6 +218,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                 }
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                controller.getCounter().resetGrade();
                 break;
             case "selectProfile":
                 if (playerIndex >= 0) {
@@ -269,6 +273,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                             controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                            controller.getCounter().resetGrade();
                         }
                     }
                     else {

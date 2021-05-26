@@ -2,6 +2,8 @@ package controller.handlersAndActions;
 
 import controller.GameLogic;
 
+import javax.swing.*;
+
 /**
  * @author Mahmoud Daabas
  * @author Annie Tran
@@ -28,7 +30,7 @@ public class PlayerActions {
      */
     public void drinkDamagePotion() {
         controller.getShopItems().getDmgPot().setPotionActive(true);
-        if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion) {
+        if (controller.getShopItems().getDmgPot().getPotionActive() && !usedPotion && !inShop && !controller.getPlayer().isOutOfCombat()) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getPlayer().setDamageDealt(controller.getShopItems().getDmgPot().getDamageBoost());
             controller.getShopItems().setDamagePotionLimit(0);
@@ -37,6 +39,9 @@ public class PlayerActions {
             controller.getMainFrame().getBtnDamagePotion().setVisible(false);
             controller.getMainFrame().getLabelsAndStatus().getLblPotionStatus().setVisible(true);
         }
+        else if(controller.getPlayer().isOutOfCombat()){
+            JOptionPane.showMessageDialog(null, "You are not in combat!");
+        }
     }
 
     /**
@@ -44,17 +49,20 @@ public class PlayerActions {
      */
     public void equipShield() {
         controller.getShopItems().getShield().setEquipped(true);
-        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield) {
+        if (controller.getShopItems().getShield().getIsEquipped() && !usedShield && !inShop && !controller.getPlayer().isOutOfCombat()) {
             controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
             controller.getShopItems().setShieldLimit(0);
             usedShield = true;
             controller.getMainFrame().getBtnShield().setVisible(false);
             controller.getMainFrame().getLabelsAndStatus().getShieldStatus().setVisible(true);
         }
+        else if(controller.getPlayer().isOutOfCombat()){
+            JOptionPane.showMessageDialog(null, "You are not in combat!");
+        }
     }
 
     public void useHint() {
-        if(!usedHint && !inShop) {
+        if(!usedHint && !inShop && !controller.getPlayer().isOutOfCombat()) {
             try {
                 controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
                 int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()+1;
@@ -70,6 +78,9 @@ public class PlayerActions {
                 usedHint = true;
                 controller.getMainFrame().getBtnHint().setVisible(false);
             }
+        }
+        else if(controller.getPlayer().isOutOfCombat()){
+            JOptionPane.showMessageDialog(null, "You are not in combat!");
         }
     }
 
