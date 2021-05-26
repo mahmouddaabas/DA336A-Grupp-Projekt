@@ -49,6 +49,7 @@ public class MainFrame extends JFrame {
     private JButton btnGetHelp;
     private JButton btnAudioOn;
     private JButton btnAudioOff;
+    private JButton btnMainMenu;
 
     /**
      * Constructs the class and instantiates controller and the action listeners.
@@ -91,6 +92,7 @@ public class MainFrame extends JFrame {
         createShield();
         createHint();
         createAudioButtons();
+        createBackToMenuDoor();
     }
 
     /**
@@ -145,6 +147,30 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * Creates the button that returns the user to the main menu.
+     */
+    public void createBackToMenuDoor(){
+        ImageIcon doorIcon = ImageResizer.resize("resources/misc/doorMainMenu.png", 50, 50);
+        btnMainMenu = new JButton();
+        btnMainMenu.setOpaque(false);
+        btnMainMenu.setVisible(true);
+        btnMainMenu.setBounds(1230, 750, 50, 50);
+        btnMainMenu.setLayout(null);
+
+        btnMainMenu.addActionListener(action);
+        btnMainMenu.setActionCommand("resetGame");
+
+        btnMainMenu.setIcon(doorIcon);
+        btnMainMenu.setContentAreaFilled(false);
+        btnMainMenu.setFocusPainted(false);
+        btnMainMenu.setBackground(null);
+        btnMainMenu.setBorderPainted(false);
+
+        btnMainMenu.setForeground(Color.WHITE);
+        add(btnMainMenu);
+    }
+
+    /**
      * Creates the damage potion button that is shown on the GUI.
      */
     public void createDamagePotion() {
@@ -152,7 +178,7 @@ public class MainFrame extends JFrame {
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
         btnDamagePotion.setVisible(false);
-        btnDamagePotion.setBounds(1170, 750, 50, 50);
+        btnDamagePotion.setBounds(1120, 750, 50, 50);
         btnDamagePotion.setLayout(null);
 
         btnDamagePotion.addActionListener(action);
@@ -176,7 +202,7 @@ public class MainFrame extends JFrame {
         btnShield = new JButton();
         btnShield.setOpaque(false);
         btnShield.setVisible(false);
-        btnShield.setBounds(1120, 750, 50, 50);
+        btnShield.setBounds(1070, 750, 50, 50);
         btnShield.setLayout(null);
 
         btnShield.addActionListener(action);
@@ -200,7 +226,7 @@ public class MainFrame extends JFrame {
         btnHint = new JButton();
         btnHint.setOpaque(false);
         btnHint.setVisible(false);
-        btnHint.setBounds(1070, 750, 50, 50);
+        btnHint.setBounds(1020, 750, 50, 50);
         btnHint.setLayout(null);
 
         btnHint.addActionListener(action);
@@ -270,7 +296,7 @@ public class MainFrame extends JFrame {
         btnAudioOn = new JButton();
         btnAudioOn.setOpaque(false);
         btnAudioOn.setVisible(true);
-        btnAudioOn.setBounds(1230, 750, 50, 50);
+        btnAudioOn.setBounds(1170, 750, 50, 50);
         btnAudioOn.setLayout(null);
 
         btnAudioOn.addActionListener(action);
@@ -289,7 +315,7 @@ public class MainFrame extends JFrame {
         btnAudioOff = new JButton();
         btnAudioOff.setOpaque(false);
         btnAudioOff.setVisible(false);
-        btnAudioOff.setBounds(1230, 750, 50, 50);
+        btnAudioOff.setBounds(1170, 750, 50, 50);
         btnAudioOff.setLayout(null);
 
         btnAudioOff.addActionListener(action);
