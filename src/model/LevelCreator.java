@@ -91,7 +91,7 @@ public class LevelCreator {
         String[] talkDialogues = new String[NUM_OF_LEVELS];
 
         talkDialogues[0] = "\"Prepare to die human!\"";
-        talkDialogues[1] = "\"I have a bone to pick with you. NYEEHEHEHEHE!\"";
+        talkDialogues[1] = "\"I have a BONE to pick with you. NYEEHEHEHEHE!\"";
         talkDialogues[2] = "\"Halt! Who goes there?\"";
         talkDialogues[3] = "\"...\"";
         talkDialogues[4] = "\"I'z da meanest and greenest 'dere iz, 'ooman! WAAAGGGHHH!\"";
@@ -100,18 +100,18 @@ public class LevelCreator {
         talkDialogues[6] = "\"Trespasser!\"";
         talkDialogues[7] = "\"I'll take your head as a trophy!\"";
         talkDialogues[8] = "Having no face, the knight does not talk.";
-        talkDialogues[9] = "\"Forgive me adventurer for what I must do...\"";
+        talkDialogues[9] = "\"Forgive me, adventurer, for what I must do...\"";
 
         talkDialogues[10] = "*HIIISSSSSSSSS!*";
         talkDialogues[11] = "\"Us warriors have no need for words.\"";
-        talkDialogues[12] = "\"Let us see if you have more of a spine than the previous fools who dared challenge me.\"";
+        talkDialogues[12] = "\"Let us see if you have have the guts to challenge me.\"";
         talkDialogues[13] = "\"You possess great knowledge, young one. Come, let me help you nurture it.\"";
         talkDialogues[14] = "\"Foolish adventurer! You are no match for my magical might!\"";
 
         talkDialogues[15] = "*moooaaaannn*";
         talkDialogues[16] = "\"You are strong, adventurer, but are you strong enough?\"";
         talkDialogues[17] = "\"You braved the depths of hell to reach me, but the hand of man, which deals in false justice and forsaken love, can never hope to defeat the lord master of hell.\"";
-        talkDialogues[18] = "\"Puny mortal! You are unworthy of meeting my precious underlings!\"";
+        talkDialogues[18] = "\"Puny mortal! You are unworthy of meeting my master!\"";
         talkDialogues[19] = "\"Excellent! People keep asking if I'm back, but yeah, I am the ONE!\"";
 
         return talkDialogues;
@@ -133,7 +133,7 @@ public class LevelCreator {
         lookDialogues[5] = "The mad dwarf stares at you intently.";
         lookDialogues[6] = "The stone-like gargoyle advances towards you.";
         lookDialogues[7] = "The mace-wielding fighter stares at you menacingly.";
-        lookDialogues[8] = "The knight without a face stands proudly. Does it talk?";
+        lookDialogues[8] = "The knight without a face stands proudly. Does it speak?";
         lookDialogues[9] = "The paladin's armor shines brightly.";
 
         lookDialogues[10] = "The viscous snake-man is poised to strike.";
@@ -143,7 +143,7 @@ public class LevelCreator {
         lookDialogues[14] = "The mighty mage looks down on you with contempt.";
 
         lookDialogues[15] = "Can you truly kill that which has no life?";
-        lookDialogues[16] = "You try hard, but you cannot get a grasp of thoughts of the man beneath the mask";
+        lookDialogues[16] = "You try hard, but you cannot get a grasp of the true nature of the man beneath the mask.";
         lookDialogues[17] = "You gaze upon a GOD.";
         lookDialogues[18] = "The gargantuan guardian towers above you.";
         lookDialogues[19] = "Whoa! The breathtaking immortal stands before you.";
@@ -375,7 +375,7 @@ public class LevelCreator {
         // multiplication and division
         mathQuestions[5] = new MQManyNumbersMultiplication(-5, 5, 0, 4);
         mathQuestions[6] = new MQFractionsMultiplication(-9, 9, 2, 6, 3);
-        mathQuestions[7] = new MQ2NumbersDivision(-100, 100, 1, -10, 10, 0, 2);
+        mathQuestions[7] = new MQ2NumbersDivision(-100, 100, 1, -10, 10, 0, 3);
         mathQuestions[8] = new MQFractionsDivision(-9, 9, 9, 9, 3);
         mathQuestions[9] = new MQPrimeFactorisation(2, 5, 3, 5);
 
