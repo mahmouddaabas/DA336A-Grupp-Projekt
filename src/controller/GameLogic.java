@@ -264,6 +264,12 @@ public class GameLogic {
      * if the player picks the wrong answer.
      */
     public void ifNotAnswered() {
+        counter.setAnsweredAmount(counter.getAnsweredAmount() - 1);
+        //Cant go under 0
+        if(counter.getAnsweredAmount() < 0){
+            counter.setAnsweredAmount(0);
+        }
+
         checkAndApplyDamage();
         if (player.getPlayerHealth() <= 0) { //Regulars
             sceneChanger.showGameOverScreen();
@@ -393,8 +399,9 @@ public class GameLogic {
 
         String name = getPlayer().getName() + " - ";
         String grade = getCounter().getGrade() + " - ";
-        String amount = String.valueOf(getCounter().getAnsweredAmount()) + "/70";
-        getHighscoreList().addHighscore(name + grade + amount);
+        String amount = String.valueOf(getCounter().getAnsweredAmount()) + "/70 - ";
+        String difficulty = String.valueOf(levelCreator.getDifficulty());
+        getHighscoreList().addHighscore(name + grade + amount + difficulty);
     }
 
     /**
@@ -403,7 +410,8 @@ public class GameLogic {
      */
     public String getFinalGrade() {
         String result = player.getName() + " - " +
-                counter.getGrade() + " - " + counter.getAnsweredAmount() + "/70";
+                counter.getGrade() + " - " + counter.getAnsweredAmount() + "/70 - "
+                + levelCreator.getDifficulty();
 
         return result;
     }

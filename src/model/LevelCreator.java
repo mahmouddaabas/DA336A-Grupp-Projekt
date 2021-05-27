@@ -481,4 +481,12 @@ public class LevelCreator {
     public LinkedList<Level> getLevels() {
         return levels;
     }
+
+    /**
+     * Returns the difficulty of the current session
+     * @return difficulty
+     */
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
 }
