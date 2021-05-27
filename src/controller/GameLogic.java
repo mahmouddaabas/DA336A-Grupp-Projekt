@@ -263,16 +263,13 @@ public class GameLogic {
      * if the player picks the wrong answer.
      */
     public void ifNotAnswered() {
-        if (player.getPlayerHealth() <= 1) { //Regulars
-            sceneChanger.showGameOverScreen();
-        }
-        else if (player.getPlayerHealth() <= 0) { //Boss
+        checkAndApplyDamage();
+        if (player.getPlayerHealth() <= 0) { //Regulars
             sceneChanger.showGameOverScreen();
         }
         else {
             musicPlayer.playSoundEffects("resources/soundtracks/incorrectAnswerSound.wav");
             player.setOutOfCombat(true);
-            checkAndApplyDamage();
             startFight(counter.getLevel());
         }
         playerActions.setUsedHint(false);
@@ -334,6 +331,11 @@ public class GameLogic {
             player.setDamageTaken(1);
             player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
             status = "incorrect";
+        }
+
+        if(player.getPlayerHealth() < 0){
+            player.setDamageTaken(0);
+            System.out.println("Set player health to 0");
         }
         checkStatusAndGetQuestion();
         mainFrame.getHealthBar().updateHealth();
