@@ -98,13 +98,14 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMusicPlayer().setGameOverActive(false);
                 controller.getMusicPlayer().startMusic();
+                controller.getCounter().resetGrade();
                 break;
             case "continue":
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
 
                 int currLevel = controller.getCounter().getLevel();
-                if(currLevel == 5 || currLevel == 6 || currLevel == 10
+                if (currLevel == 5 || currLevel == 6 || currLevel == 10
                         || currLevel == 11 || currLevel == 15 || currLevel == 16) {
                     controller.getMusicPlayer().startMusic();
                 }
@@ -136,7 +137,9 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setOpaque(false);
                     controller.getMainFrame().getSceneCreator().getImageInPanel(i).setVisible(false);
                 }
+                controller.getPlayer().restoreHealth();
                 controller.getEventPortal().enterPortal();
+                controller.getMainFrame().getFinalScenePanel().scoreAttributes();
                 break;
             case "returnMenu":
                 controller.getSceneChanger().exitFinalScene();
@@ -145,6 +148,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                 controller.getMainFrame().getFinalScenePanel().getPnlButtons().setVisible(false);
                 controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+                controller.getCounter().resetGrade();
                 break;
             case "backHighscore":
                 controller.getMainFrame().getMainMenu().getPnlHighscore().setVisible(false);
@@ -215,6 +219,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                     controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                 }
                 controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                controller.getCounter().resetGrade();
                 break;
             case "selectProfile":
                 if (playerIndex >= 0) {
@@ -227,20 +232,20 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "resetGame":
-                if(controller.isInMainMenu()) {
+                if (controller.isInMainMenu()) {
                     JOptionPane.showMessageDialog(null, "You are already in the main menu!");
                 }
                 else {
-                    if(controller.getPlayer().isOutOfCombat()) {
+                    if (controller.getPlayer().isOutOfCombat()) {
                         String message = "Are you sure?";
                         String title = "Return to main menu?";
                         int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
                         if (reply == JOptionPane.YES_OPTION) {
-                            for(int i = 0; i < controller.getMainFrame().getSceneCreator().getBgPanels().size(); i++){
+                            for (int i = 0; i < controller.getMainFrame().getSceneCreator().getBgPanels().size(); i++){
                                 controller.getMainFrame().getSceneCreator().getBgPanels().get(i).setVisible(false);
                                 controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
 
-                                for(int j = 0; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++){
+                                for (int j = 0; j < controller.getMainFrame().getSceneCreator().getArrowButtons().size(); j++){
                                     if (controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).isVisible()) {
                                         controller.getMainFrame().getSceneCreator().getArrowButtons().get(j).setVisible(false);
                                     }
@@ -256,7 +261,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                             controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
                             controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
 
-                            if(controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
+                            if (controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
                                 controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
                             }
 
@@ -269,6 +274,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                             controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
+                            controller.getCounter().resetGrade();
                         }
                     }
                     else {
@@ -279,14 +285,17 @@ public class ActionHandler implements ActionListener, KeyListener {
 
             case "hard":
                 controller.createLevelCreator(Difficulty.Hard);
+                controller.setDifficulty(Difficulty.Hard);
                 controller.startGame();
                 break;
             case "medium":
                 controller.createLevelCreator(Difficulty.Medium);
+                controller.setDifficulty(Difficulty.Medium);
                 controller.startGame();
                 break;
             case "easy":
                 controller.createLevelCreator(Difficulty.Easy);
+                controller.setDifficulty(Difficulty.Easy);
                 controller.startGame();
                 break;
         }

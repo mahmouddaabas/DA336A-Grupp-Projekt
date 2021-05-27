@@ -76,12 +76,12 @@ public class MusicPlayer {
      * the playMusic-method with the filepath to the desired audio clip
      */
     public void startMusic() {
-        if(isShop) {
+        if (isShop) {
             //shop scene
             playMusic(files.get(3));
-        } else if(gameOver) {
+        } else if (gameOver) {
             playMusic(files.get(4));
-        } else if(isWinner) {
+        } else if (isWinner) {
             playMusic(files.get(5));
         } else {
             switch (counter.getLevel()) {
@@ -127,7 +127,7 @@ public class MusicPlayer {
      * @param fileToPlay A File object with the filepath to the audio which is used to pass to the AudioInputStream and to be played
      */
     private void playMusic(File fileToPlay) {
-        if(isPlaying) {
+        if (isPlaying) {
             stopMusic();
         }
 
@@ -138,7 +138,7 @@ public class MusicPlayer {
             clipMusic.open(audioInput);
             clipMusic.loop(clipMusic.LOOP_CONTINUOUSLY);
 
-            if(isMuted) {
+            if (isMuted) {
                 setPreferredVolume(-50000f, clipMusic);
             } else {
                 setPreferredVolume(-30f, clipMusic);
@@ -165,7 +165,7 @@ public class MusicPlayer {
      * Method that stops the audio if playing
      */
     public void stopMusic() {
-        if(isPlaying) {
+        if (isPlaying) {
             clipMusic.stop();
             isPlaying = false;
         }
@@ -189,7 +189,7 @@ public class MusicPlayer {
      * and then notifies the MainFrame about the change of state
      */
     public void audioOnOff() {
-        if(isMuted) {
+        if (isMuted) {
             setPreferredVolume(-30f, clipMusic);
         } else {
             setPreferredVolume(-50000f, clipMusic);
@@ -202,7 +202,7 @@ public class MusicPlayer {
      * Starts the clock effect.
      */
     public void startTicking() {
-        if(!ticking) {
+        if (!ticking) {
             ticking = true;
             playSoundEffects("resources/soundtracks/TickingClock.wav");
         }
@@ -212,7 +212,7 @@ public class MusicPlayer {
      * Stops the clock effect.
      */
     public void stopTicking() {
-        if(ticking) {
+        if (ticking) {
             ticking = false;
             clipSoundEffects.stop();
         }

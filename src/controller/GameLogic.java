@@ -9,6 +9,7 @@ import view.*;
 import view.events.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * @author Mattias Bengtsson
@@ -21,12 +22,14 @@ import java.awt.*;
 public class GameLogic {
     private Player player;
     private PlayerList playerList;
+    private Difficulty difficulty;
     private HighscoreList highscoreList;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
     private Timer timer;
     private int answerIndex;
     private boolean inMainMenu;
+    private boolean passed;
 
     private String status = "";
 
@@ -149,7 +152,7 @@ public class GameLogic {
         resetButtons();
         if (answerIndex != -1) {
             if (mathQuestion.compareAnswer(answerIndex)) {
-                if((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
+                if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
                     musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerBossLvlSound.wav");
                 } else {
                     musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerRegLvlSound.wav");
@@ -161,7 +164,7 @@ public class GameLogic {
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     mainFrame.getEnemyHealthBar().updateEnemyHealth();
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -170,14 +173,14 @@ public class GameLogic {
                     status = "";
                     timer.stopTimer();
                     mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
-                    addGold();
 
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    addGold();
                     hideComponents();
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     playerActions.setUsedPotion(false);
 
                     showShopPrompt();
@@ -228,14 +231,29 @@ public class GameLogic {
     }
 
     /**
-     * Method that adds gold to the player based on the type of enemy defeated.
+     * Method that adds a randomised amount of gold based on the difficulty.
      */
     public void addGold() {
+        Random rand = new Random();
+        int gold = 0;
+
+        switch (difficulty) {
+            case Hard:
+                gold = rand.nextInt(6) + 1; //In order to prevent player getting 0
+                break;
+            case Medium:
+                gold = rand.nextInt(4) + 1;
+                break;
+            case Easy:
+                gold = rand.nextInt(3) + 1;
+                break;
+        }
+
         if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
-            player.setGold(player.getGold() + 2);
+            player.setGold(player.getGold() + (gold + 1));
         }
         else {
-            player.setGold(player.getGold() + 1);
+            player.setGold(player.getGold() + gold);
         }
         mainFrame.getLabelsAndStatus().getLblCoins().setText(" " + player.getGold());
     }
@@ -340,7 +358,7 @@ public class GameLogic {
      * Resets all the buttons to enabled.
      */
     public void resetButtons() {
-        for(int i = 0; i < mainFrame.getAnswerButton().length; i++) {
+        for (int i = 0; i < mainFrame.getAnswerButton().length; i++) {
             mainFrame.getAnswerButton()[i].setEnabled(true);
         }
     }
@@ -349,24 +367,43 @@ public class GameLogic {
      * Calculates and applies the score.
      */
     public void calculateGrade() {
-        if(counter.getAnsweredAmount() >= 63) {
+        if (counter.getAnsweredAmount() >= 63) {
             counter.setGrade("A");
         }
-        else if(counter.getAnsweredAmount() >= 56) {
+        else if (counter.getAnsweredAmount() >= 56) {
             counter.setGrade("B");
         }
-        else if(counter.getAnsweredAmount() >= 49) {
+        else if (counter.getAnsweredAmount() >= 49) {
             counter.setGrade("C");
         }
-        else if(counter.getAnsweredAmount() >= 42) {
+        else if (counter.getAnsweredAmount() >= 42) {
             counter.setGrade("D");
         }
-        else if(counter.getAnsweredAmount() >= 35) {
+        else if (counter.getAnsweredAmount() >= 35) {
             counter.setGrade("E");
         }
-        else if(counter.getAnsweredAmount() < 35) {
+        else if (counter.getAnsweredAmount() < 35) {
             counter.setGrade("F");
         }
+        if(counter.getAnsweredAmount() >= 35) {
+            passed = true;
+        }
+
+        String name = getPlayer().getName() + " - ";
+        String grade = getCounter().getGrade() + " - ";
+        String amount = String.valueOf(getCounter().getAnsweredAmount()) + "/70";
+        getHighscoreList().addHighscore(name + grade + amount);
+    }
+
+    /**
+     * Returns the final grade as a string.
+     * @return result
+     */
+    public String getFinalGrade() {
+        String result = player.getName() + " - " +
+                counter.getGrade() + " - " + counter.getAnsweredAmount() + "/70";
+
+        return result;
     }
 
     /**
@@ -526,7 +563,7 @@ public class GameLogic {
 
     /**
      * Gets is in mainMenu from outside of the class.
-     * @return
+     * @return inMainMenu boolean flag
      */
     public boolean isInMainMenu() {
         return inMainMenu;
@@ -534,9 +571,33 @@ public class GameLogic {
 
     /**
      * Sets inMainMenu from outside of the class.
-     * @param inMainMenu
+     * @param inMainMenu new boolean value
      */
     public void setInMainMenu(boolean inMainMenu) {
         this.inMainMenu = inMainMenu;
+    }
+
+    /**
+     * Returns the passed boolean.
+     * @return passed
+     */
+    public boolean isPassed() {
+        return passed;
+    }
+
+    /**
+     * Sets the passed boolean.
+     * @param passed
+     */
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
+
+    /**
+     * Sets difficulty
+     * @param difficulty new difficulty
+     */
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }

@@ -36,6 +36,14 @@ public class Counter {
     }
 
     /**
+     * Resets the grade after it has been applied.
+     */
+    public void resetGrade() {
+        grade = "";
+        answeredAmount = 0;
+    }
+
+    /**
      * Constructor that initializes the controller.
      * @param controller GameLogic-object used to initialize own GameLogic-object
      */
