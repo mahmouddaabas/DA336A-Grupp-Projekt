@@ -29,6 +29,7 @@ public class GameLogic {
     private Timer timer;
     private int answerIndex;
     private boolean inMainMenu;
+    private boolean passed;
 
     private String status = "";
 
@@ -162,7 +163,7 @@ public class GameLogic {
                     int newHealth = currHealth - player.getDamageDealt();
                     levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
                     mainFrame.getEnemyHealthBar().updateEnemyHealth();
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     status = "correct";
                     startFight(counter.getLevel());
                 }
@@ -171,14 +172,14 @@ public class GameLogic {
                     status = "";
                     timer.stopTimer();
                     mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
-                    addGold();
 
-                    counter.setAnsweredAmount(counter.getAnsweredAmount()+1);
+                    addGold();
                     hideComponents();
 
                     mainFrame.getTextArea().setForeground(Color.WHITE);
                     //Resets the damage dealt to 1 in case a damage potion was active before.
                     player.setDamageDealt(1);
+                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
                     playerActions.setUsedPotion(false);
 
                     showShopPrompt();
@@ -383,6 +384,25 @@ public class GameLogic {
         else if (counter.getAnsweredAmount() < 35) {
             counter.setGrade("F");
         }
+        if(counter.getAnsweredAmount() >= 35) {
+            passed = true;
+        }
+
+        String name = getPlayer().getName() + " - ";
+        String grade = getCounter().getGrade() + " - ";
+        String amount = String.valueOf(getCounter().getAnsweredAmount()) + "/70";
+        getHighscoreList().addHighscore(name + grade + amount);
+    }
+
+    /**
+     * Returns the final grade as a string.
+     * @return result
+     */
+    public String getFinalGrade() {
+        String result = player.getName() + " - " +
+                counter.getGrade() + " - " + counter.getAnsweredAmount() + "/70";
+
+        return result;
     }
 
     /**
@@ -554,6 +574,22 @@ public class GameLogic {
      */
     public void setInMainMenu(boolean inMainMenu) {
         this.inMainMenu = inMainMenu;
+    }
+
+    /**
+     * Returns the passed boolean.
+     * @return passed
+     */
+    public boolean isPassed() {
+        return passed;
+    }
+
+    /**
+     * Sets the passed boolean.
+     * @param passed
+     */
+    public void setPassed(boolean passed) {
+        this.passed = passed;
     }
 
     /**

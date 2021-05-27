@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
         objectCreator.createObjects();
 
         shopPanels = new ShopPanels(controller, this, action);
-        finalScenePanel = new FinalScenePanel(this, action);
+        finalScenePanel = new FinalScenePanel(this, action, controller);
 
         portalCreator = new PortalCreator(this, controller, action);
         portalCreator.createTP();
@@ -165,6 +165,7 @@ public class MainFrame extends JFrame {
         btnMainMenu.setFocusPainted(false);
         btnMainMenu.setBackground(null);
         btnMainMenu.setBorderPainted(false);
+        btnMainMenu.setFocusable(false);
 
         btnMainMenu.setForeground(Color.WHITE);
         add(btnMainMenu);

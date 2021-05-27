@@ -1,5 +1,6 @@
 package view.panels;
 
+import controller.GameLogic;
 import controller.ImageResizer;
 import view.MainFrame;
 import controller.handlersAndActions.ActionHandler;
@@ -14,21 +15,24 @@ import java.awt.*;
 public class FinalScenePanel {
     private MainFrame mainFrame;
     private ActionHandler actionHandler;
+    private GameLogic controller;
 
     private JPanel pnlFinalScene;
     private JPanel pnlButtons;
 
     private JButton btnReturn;
     private JButton btnExit;
+    private JLabel lblScore;
 
     /**
      * Constructor
      * @param mainFrame Mainframe-object to set own MainFrame-object
      * @param actionHandler ActionHandler-object to set own ActionHandler-object
      */
-    public FinalScenePanel(MainFrame mainFrame, ActionHandler actionHandler) {
+    public FinalScenePanel(MainFrame mainFrame, ActionHandler actionHandler, GameLogic controller) {
         this.mainFrame = mainFrame;
         this.actionHandler = actionHandler;
+        this.controller = controller;
 
         createFinalScene();
     }
@@ -51,9 +55,14 @@ public class FinalScenePanel {
         lblFinaleName.setBounds(0, 0, 1350, 100);
         lblFinaleName.setForeground(Color.BLACK);
 
+        lblScore = new JLabel("TEST", JLabel.CENTER);
+        lblScore.setFont(new Font("Permanent Marker", Font.ITALIC, 60));
+        lblScore.setBounds(0, 70, 1350, 100);
+
         createButtons();
 
         pnlFinalScene.add(lblFinaleName);
+        pnlFinalScene.add(lblScore);
         pnlFinalScene.add(lblBg);
 
         mainFrame.add(pnlFinalScene);
@@ -111,6 +120,20 @@ public class FinalScenePanel {
 
         btnReturn.setActionCommand("returnMenu");
         btnExit.setActionCommand("exitGame");
+    }
+
+    /**
+     * Sets the score label attributes.
+     */
+    public void scoreAttributes() {
+        if(controller.isPassed()) {
+            lblScore.setForeground(Color.GREEN);
+        }
+        else if(!controller.isPassed()) {
+            lblScore.setForeground(Color.RED);
+        }
+        lblScore.setText("Grade: " + controller.getFinalGrade());
+        lblScore.setVisible(true);
     }
 
     /**

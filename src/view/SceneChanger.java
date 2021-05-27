@@ -159,6 +159,8 @@ public class SceneChanger {
         controller.getMainFrame().getAnswerPanel().setVisible(false);
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(true);
+        controller.calculateGrade();
+        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(controller.getHighscoreList().getHighscoreData());
     }
 
     /**
@@ -192,15 +194,13 @@ public class SceneChanger {
         controller.getPlayer().setGold(0);
 
         controller.getShopItems().setDamagePotionLimit(0);
+        controller.getShopItems().setHintLimit(0);
+        controller.getShopItems().setShieldLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
         controller.getMainFrame().getBtnShield().setVisible(false);
         controller.getMainFrame().getBtnHint().setVisible(false);
         controller.calculateGrade();
-
-        String name = controller.getPlayer().getName() + " - ";
-        String grade = controller.getCounter().getGrade() + " - ";
-        String amount = String.valueOf(controller.getCounter().getAnsweredAmount()) + "/70";
-        controller.getHighscoreList().addHighscore(name + grade + amount);
+        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(controller.getHighscoreList().getHighscoreData());
     }
 
     /**
@@ -269,11 +269,6 @@ public class SceneChanger {
                 }
             }
         }
-        controller.calculateGrade();
-        String name = controller.getPlayer().getName() + " - ";
-        String grade = controller.getCounter().getGrade() + " - ";
-        String amount = String.valueOf(controller.getCounter().getAnsweredAmount()) + "/70";
-        controller.getHighscoreList().addHighscore(name + grade + amount);
     }
 
     /**
