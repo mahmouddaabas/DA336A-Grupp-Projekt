@@ -38,7 +38,7 @@ public class Timer implements Runnable {
                     controller.getMusicPlayer().startTicking();
                 }
                 if (time < 0) {
-                    controller.getMainFrame().getLabelsAndStatus().getLblTimer().setForeground(Color.YELLOW);
+                    controller.getMainFrame().getLabelsAndStatus().getLblTimer().setForeground(Color.WHITE);
                     controller.getMusicPlayer().stopTicking();
                     controller.ifNotAnswered();
                 }
