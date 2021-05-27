@@ -335,7 +335,6 @@ public class GameLogic {
 
         if(player.getPlayerHealth() < 0){
             player.setDamageTaken(0);
-            System.out.println("Set player health to 0");
         }
         checkStatusAndGetQuestion();
         mainFrame.getHealthBar().updateHealth();
