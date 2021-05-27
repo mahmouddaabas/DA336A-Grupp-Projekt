@@ -54,7 +54,7 @@ public class PlayerActions {
     }
 
     public void useHint() {
-        if(!usedHint && !inShop) {
+        if (!usedHint && !inShop) {
             try {
                 controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
                 int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()+1;
