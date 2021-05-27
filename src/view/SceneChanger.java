@@ -44,7 +44,7 @@ public class SceneChanger {
             controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(false);
         }
 
-        if(sceneNbr == 0){
+        if (sceneNbr == 0){
             controller.getPlayer().setGold(0);
             controller.getCounter().updateLblLevel();
             controller.getCounter().updateCoinLabel();

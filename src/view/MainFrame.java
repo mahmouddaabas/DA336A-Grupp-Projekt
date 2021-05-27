@@ -338,7 +338,7 @@ public class MainFrame extends JFrame {
      * @param soundOff a boolean value to determine which button that should be shown on user interface
      */
     public void setAudioIcon(boolean soundOff) {
-        if(soundOff) {
+        if (soundOff) {
             btnAudioOff.setVisible(true);
             btnAudioOn.setVisible(false);
         } else {

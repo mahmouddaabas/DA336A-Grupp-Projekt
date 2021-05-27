@@ -62,7 +62,7 @@ public class PlayerActions {
     }
 
     public void useHint() {
-        if(!usedHint && !inShop && !controller.getPlayer().isOutOfCombat()) {
+        if (!usedHint && !inShop && !controller.getPlayer().isOutOfCombat()) {
             try {
                 controller.getMusicPlayer().playSoundEffects("resources/soundtracks/activateEquipmentSound.wav");
                 int buttonToDisable = controller.getMathQuestion().getCorrectAnswerIndex()+1;
