@@ -36,7 +36,7 @@ public class TestMathQuestions {
 //        mathQuestion = new MQManyNumbersAddition(1, 9, 2, 4);
 //        mathQuestion = new MQManyNumbersMultiplication(-9, 9, 0, 3);
 //        mathQuestion = new MQDivisionRemainder(10, 50, 2, 10);
-//        mathQuestion = new MQFractionsAddition(-10, 10, 1, 3, 3);
+        mathQuestion = new MQFractionsAddition(-10, 10, 2, 5, 3);
 //        mathQuestion = new MQFractionsMultiplication(-10, 10, -10, 10, 3);
 //        mathQuestion = new MQFractionsDivision(-9, 9, -9, 9, 3);
 //        mathQuestion = new MQPolynomialDerivation(-4, 4, -4, 4, 2);
@@ -47,7 +47,7 @@ public class TestMathQuestions {
 //        mathQuestion = new MQQuadraticSimplify(-3, 3, -3, 3);
 //        mathQuestion = new MQPrimeFactorisation(2, 10, 3, 5);
 //        mathQuestion = new MQFinalBossRandom(Difficulty.Easy);
-        mathQuestion = new MQ2NumbersAddition(0, 100000000, -6);
+//        mathQuestion = new MQ2NumbersAddition(0, 100000000, -6);
         
         while (true) {
             mathQuestion.generateNewQuestion();
