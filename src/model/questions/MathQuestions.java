@@ -32,7 +32,10 @@ public abstract class MathQuestions {
      */
     protected void setAnswerStr(String[] answerStr) {
         if (answerStr != null && answerStr.length == NUM_OF_ANSWERS) {
-            this.answerStr = answerStr;
+            this.answerStr = new String[NUM_OF_ANSWERS];
+            for (int i = 0; i < answerStr.length; i++) {
+                this.answerStr[i] = "[" + Utilities.indexToAlphabet(i) + "]  " + answerStr[i];
+            }
         }
     }
 

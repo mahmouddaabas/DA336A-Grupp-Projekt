@@ -117,7 +117,7 @@ public class MQDivisionRemainder extends MathQuestions {
     protected void generateAnswerStrings() {
         String[] answerStr = new String[getNUM_OF_ANSWERS()];
         for (int i = 0; i < getNUM_OF_ANSWERS(); i++) {
-            answerStr[i] = "[" + (i+1) + "]  " + answers[i][0];
+            answerStr[i] = Integer.toString(answers[i][0]);
             if (answers[i][1] != 0) {
                 answerStr[i] += " R " + answers[i][1];
             }
