@@ -56,7 +56,7 @@ public class ShopItems {
         }
         else {
             controller.getMainFrame().getTextArea().setText("You already have full hp!");
-            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/heartBeatSound.wav");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
     }
 
@@ -77,6 +77,7 @@ public class ShopItems {
         else if (damagePotionLimit == 1) {
             controller.getMainFrame().getTextArea().setText("You already have a damage potion.\n" +
                     "You need to consume it before buying a new one.");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
@@ -101,6 +102,7 @@ public class ShopItems {
         else if (shieldLimit == 1) {
             controller.getMainFrame().getTextArea().setText("You already have a shield.\n" +
                     "You need to equip it before buying a new one.");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
@@ -126,6 +128,7 @@ public class ShopItems {
         else if (hintLimit == 1) {
             controller.getMainFrame().getTextArea().setText("You already have a hint.\n" +
                     "You need to use it before buying a new one.");
+            controller.getMusicPlayer().playSoundEffects("resources/soundtracks/numbButtonSound.wav");
         }
         else {
             controller.getMainFrame().getTextArea().setText("You don't have enough gold!");
