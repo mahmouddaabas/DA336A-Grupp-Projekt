@@ -3,6 +3,7 @@ package view;
 import controller.GameLogic;
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 
 /**
  * @author Mahmoud Daabas
@@ -49,7 +50,7 @@ public class HealthBar {
      */
     public void createHealthBar() {
         healthPanel = new JPanel();
-        healthLabel = new JLabel[10];
+        healthLabel = new JLabel[controller.getPlayer().getPlayerHealth()];
         healthPanel.setBounds(100, 48, 400, 50);
         healthPanel.setBackground(Color.black);
         healthPanel.setLayout(new GridLayout(1, 5));

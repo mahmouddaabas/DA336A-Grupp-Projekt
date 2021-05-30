@@ -31,6 +31,7 @@ public class SceneChanger {
      * Shows the main menu when starting
      */
     public void showMainMenu() {
+        controller.setInMainMenu(true);
         controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(true);
     }
 
@@ -41,6 +42,14 @@ public class SceneChanger {
     public void showScene(int sceneNbr) {
         if (controller.getMainFrame().getMainMenu().getPnlMainMenu().isVisible()) {
             controller.getMainFrame().getMainMenu().getPnlMainMenu().setVisible(false);
+        }
+
+        if (sceneNbr == 0){
+            controller.getPlayer().setGold(0);
+            controller.getCounter().updateLblLevel();
+            controller.getCounter().updateCoinLabel();
+            controller.getMainFrame().getSceneCreator().getArrowButtons().get(0).setVisible(true);
+            controller.setInMainMenu(false);
         }
 
         if (sceneNbr == 1) {
@@ -150,6 +159,8 @@ public class SceneChanger {
         controller.getMainFrame().getAnswerPanel().setVisible(false);
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(true);
+        controller.calculateGrade();
+        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(controller.getHighscoreList().getHighscoreData());
     }
 
     /**
@@ -183,7 +194,13 @@ public class SceneChanger {
         controller.getPlayer().setGold(0);
 
         controller.getShopItems().setDamagePotionLimit(0);
+        controller.getShopItems().setHintLimit(0);
+        controller.getShopItems().setShieldLimit(0);
         controller.getMainFrame().getBtnDamagePotion().setVisible(false);
+        controller.getMainFrame().getBtnShield().setVisible(false);
+        controller.getMainFrame().getBtnHint().setVisible(false);
+        controller.calculateGrade();
+        controller.getMainFrame().getMainMenu().getPnlHighscore().updateHighscoreList(controller.getHighscoreList().getHighscoreData());
     }
 
     /**

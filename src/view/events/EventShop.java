@@ -38,10 +38,10 @@ public class EventShop {
      * The panel/buttons can be expanded from the MainFrame class.
      */
     public void buyFromShopKeeper() {
-        controller.getMainFrame().getShopPanels().getShopButtons()[0].setText("Health (2 coins)");
-        controller.getMainFrame().getShopPanels().getShopButtons()[1].setText("Damage Potion (3 coins)");
-        controller.getMainFrame().getShopPanels().getShopButtons()[2].setText("Shield (2 coins)");
-        controller.getMainFrame().getShopPanels().getShopButtons()[3].setText("Hint (2 coins)");
+        controller.getMainFrame().getShopPanels().getShopButtons()[0].setText("Health (3 coins)");
+        controller.getMainFrame().getShopPanels().getShopButtons()[1].setText("Damage Potion (6 coins)");
+        controller.getMainFrame().getShopPanels().getShopButtons()[2].setText("Shield (6 coins)");
+        controller.getMainFrame().getShopPanels().getShopButtons()[3].setText("Hint (5 coins)");
         controller.getMainFrame().getShopPanels().getPnlShop().setVisible(true);
     }
 }

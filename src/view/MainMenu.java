@@ -3,6 +3,7 @@ package view;
 import controller.ImageResizer;
 import controller.handlersAndActions.ActionHandler;
 import view.panels.DifficultiesPanel;
+import view.panels.HighscorePanel;
 import view.panels.ProfilesPanel;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class MainMenu {
     private JPanel pnlButtons;
     private ProfilesPanel pnlProfiles;
     private DifficultiesPanel pnlDiff;
+    private HighscorePanel pnlHighscore;
 
     private JButton btnNew;
     private JButton btnScores;
@@ -60,10 +62,14 @@ public class MainMenu {
         pnlProfiles = new ProfilesPanel(actionHandler);
         pnlProfiles.setBounds(100, 250, 200, 350);
 
+        pnlHighscore = new HighscorePanel(actionHandler);
+        pnlHighscore.setBounds(100, 250, 200, 350);
+
         pnlDiff = new DifficultiesPanel(actionHandler);
         pnlDiff.setBounds(100, 250, 200, 360);
 
         pnlMainMenu.add(pnlProfiles, BorderLayout.CENTER);
+        pnlMainMenu.add(pnlHighscore, BorderLayout.CENTER);
         pnlMainMenu.add(pnlDiff, BorderLayout.CENTER);
 
         pnlMainMenu.add(lblGameName);
@@ -166,5 +172,13 @@ public class MainMenu {
      */
     public DifficultiesPanel getPnlDiff() {
         return pnlDiff;
+    }
+
+    /**
+     * Returns the highscore panel.
+     * @return pnlHighscore
+     */
+    public HighscorePanel getPnlHighscore() {
+        return pnlHighscore;
     }
 }

@@ -21,6 +21,7 @@ public abstract class FractionQuestions extends MathQuestions {
      * @param denominatorLowerBound the lowest value the denominators can have. Should be a positive number.
      * @param denominatorUpperBound the highest value the denominator can have. Should be a positive number.
      * @param numOfFractions the amount of fractions to add. 2 or greater.
+     * @param operator the operator of the operation. (+, *, or / with - included in +)
      */
     public FractionQuestions(int numeratorLowerBound, int numeratorUpperBound,
                              int denominatorLowerBound, int denominatorUpperBound,
@@ -77,17 +78,25 @@ public abstract class FractionQuestions extends MathQuestions {
     }
 
     /**
-     * Generates random fractions from the given bounds. The numbers cannot be 0. Also used to generate the fractions
-     * for the fake answers for more believable answers.
+     * Generates random fractions from the given bounds. The numbers cannot be 0. The generated numbers must be a
+     * fraction and not an integer. Also used to generate the fractions for the fake answers for more believable
+     * answers.
      */
     private Fraction[] generateFractions() {
         Fraction[] fractionArray = new Fraction[fractions.length];
         int numerator;
         int denominator;
+        boolean ok;
         for (int i = 0; i < fractionArray.length; i++) {
-            numerator = Utilities.randomIntNotZero(numeratorLowerBound, numeratorUpperBound);
-            denominator = Utilities.randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
-            fractionArray[i] = new Fraction(numerator, denominator);
+            ok = false;
+            while (!ok) {
+                numerator = Utilities.randomIntNotZero(numeratorLowerBound, numeratorUpperBound);
+                denominator = Utilities.randomIntNotZero(denominatorLowerBound, denominatorUpperBound);
+                fractionArray[i] = new Fraction(numerator, denominator);
+                if (fractionArray[i].getDenominator() != 1) {
+                    ok = true;
+                }
+            }
         }
         return fractionArray;
     }
