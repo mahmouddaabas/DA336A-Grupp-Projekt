@@ -163,4 +163,22 @@ public class Utilities {
 
         return numberStr;
     }
+
+    /**
+     * Converts an integer to a corresponding capital letter for the answer panels for the questions. Only supports up
+     * to 4 answers.
+     * @param index the index of the answer.
+     * @return a capital letter corresponding to the index of the answer.
+     */
+    public static String indexToAlphabet(int index) {
+        if (index == 0) {
+            return "A";
+        } else if (index == 1) {
+            return "B";
+        } else if (index == 2) {
+            return "C";
+        } else { // index == 3
+            return "D";
+        }
+    }
 }

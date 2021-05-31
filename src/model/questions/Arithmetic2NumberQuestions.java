@@ -181,7 +181,7 @@ public abstract class Arithmetic2NumberQuestions extends MathQuestions {
     protected void generateAnswerStrings() {
         String[] answerStr = new String[getNUM_OF_ANSWERS()];
         for (int i = 0; i < answerStr.length; i++) {
-            answerStr[i] = "[" + (i+1) + "]  " + answers[i].toString();
+            answerStr[i] = answers[i].toString();
         }
         setAnswerStr(answerStr);
     }
