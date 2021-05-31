@@ -29,7 +29,7 @@ public class GameOverScreen {
     /**
      * Creates the game over "screen"
      */
-    public void createGameOverField() {
+    private void createGameOverField() {
         titleLabel = new JLabel("", JLabel.CENTER);
         titleLabel.setBounds(500, 200, 400, 200);
         titleLabel.setForeground(Color.red);

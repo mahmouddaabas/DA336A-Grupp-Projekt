@@ -67,7 +67,7 @@ public class MusicPlayer {
      * Method used by GameLogic to provide this class with GameLogic's MainFrame object
      * @param mainFrame the MainFrame object to be passed to this class' MainFrame variable
      */
-    public void setMainFrame (MainFrame mainFrame) {
+    public void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 

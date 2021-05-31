@@ -41,7 +41,7 @@ public class LabelsAndStatus {
     /**
      * Creates the combat status label.
      */
-    public void createCombatStatusLabel() {
+    private void createCombatStatusLabel() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/combat.png", 50, 50);
         lblCombatStatus = new JLabel();
         lblCombatStatus.setBounds(130, 750, 50, 50);
@@ -54,7 +54,7 @@ public class LabelsAndStatus {
     /**
      * Creates the potion status label.
      */
-    public void createPotionStatusLabel() {
+    private void createPotionStatusLabel() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/bicep.png", 50, 50);
         lblPotionStatus = new JLabel();
         lblPotionStatus.setBounds(70, 750, 50, 50);
@@ -67,7 +67,7 @@ public class LabelsAndStatus {
     /**
      * Creates the shield status label.
      */
-    public void createShieldStatus() {
+    private void createShieldStatus() {
         ImageIcon statusIcon = ImageResizer.resize("resources/misc/GreenShield.png", 50, 50);
         shieldStatus = new JLabel();
         shieldStatus.setBounds(20, 750, 50, 50);
@@ -80,7 +80,7 @@ public class LabelsAndStatus {
     /**
      * Creates the label that displays the current level on the GUI.
      */
-    public void createLevelLabel(){
+    private void createLevelLabel(){
         lblLevel = new JLabel();
         lblLevel.setVisible(false);
         lblLevel.setBounds(600, 0, 330, 150);
@@ -95,7 +95,7 @@ public class LabelsAndStatus {
     /**
      * Creates the label that displays the timer on the GUI.
      */
-    public void createTimerLabel(){
+    private void createTimerLabel(){
         lblTimer = new JLabel();
         lblTimer.setVisible(false);
         lblTimer.setBounds(100, 650, 220, 150);
@@ -109,7 +109,7 @@ public class LabelsAndStatus {
     /**
      * Creates the coin label that displays the users coins on the GUI.
      */
-    public void createCoinLabel() {
+    private void createCoinLabel() {
         ImageIcon coinIcon = ImageResizer.resize("resources/misc/coin.png", 35, 35);
         lblCoins = new JLabel();
         lblCoins.setOpaque(false);

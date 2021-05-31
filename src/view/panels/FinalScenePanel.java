@@ -40,7 +40,7 @@ public class FinalScenePanel {
     /**
      * Creates the final scene panel and adds a background image
      */
-    public void createFinalScene() {
+    private void createFinalScene() {
         pnlFinalScene = new JPanel();
         pnlFinalScene.setLayout(null);
         pnlFinalScene.setBounds(0, 0, 1350, 850);
@@ -71,7 +71,7 @@ public class FinalScenePanel {
     /**
      * Creates buttons for the finale
      */
-    public void createButtons() {
+    private void createButtons() {
         pnlButtons = new JPanel(new GridLayout(2, 1));
 
         btnReturn = new JButton("Return to main menu");
@@ -93,7 +93,7 @@ public class FinalScenePanel {
     /**
      * Change attributes of finale buttons
      */
-    public void changeButtonAttributes() {
+    private void changeButtonAttributes() {
         btnReturn.setContentAreaFilled(false);
         btnExit.setContentAreaFilled(false);
 
@@ -114,7 +114,7 @@ public class FinalScenePanel {
     /**
      * Add action listeners to main menu buttons
      */
-    public void addActionsListener() {
+    private void addActionsListener() {
         btnReturn.addActionListener(actionHandler);
         btnExit.addActionListener(actionHandler);
 

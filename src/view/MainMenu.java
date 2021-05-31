@@ -42,7 +42,7 @@ public class MainMenu {
     /**
      * Creates the main menu panel and adds a background image
      */
-    public void createMenu() {
+    private void createMenu() {
         pnlMainMenu = new JPanel();
         pnlMainMenu.setLayout(new BorderLayout());
         pnlMainMenu.setBounds(0, 0, 1350, 850);
@@ -81,7 +81,7 @@ public class MainMenu {
     /**
      * Creates main menu buttons
      */
-    public void createButtons() {
+    private void createButtons() {
         pnlButtons = new JPanel(new GridLayout(3, 1));
 
         btnNew = new JButton("New Game");
@@ -106,7 +106,7 @@ public class MainMenu {
     /**
      * Change attributes of main menu buttons
      */
-    public void changeButtonAttributes() {
+    private void changeButtonAttributes() {
         btnNew.setContentAreaFilled(false);
         btnScores.setContentAreaFilled(false);
         btnExit.setContentAreaFilled(false);
@@ -132,7 +132,7 @@ public class MainMenu {
     /**
      * Add action listeners to main menu buttons
      */
-    public void addActionListener() {
+    private void addActionListener() {
         btnNew.addActionListener(actionHandler);
         btnScores.addActionListener(actionHandler);
         btnExit.addActionListener(actionHandler);

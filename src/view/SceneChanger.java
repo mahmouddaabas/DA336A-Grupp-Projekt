@@ -74,7 +74,7 @@ public class SceneChanger {
     /**
      * Reads a txt file and stores all texts connected to a scene in a list
      */
-    public void readSceneTexts() {
+    private void readSceneTexts() {
         try {
             String path = "resources/backgrounds/sceneTexts.txt";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
@@ -93,7 +93,7 @@ public class SceneChanger {
     /**
      * Reads a txt file with all the monsters unique lines and stores them in a list.
      */
-    public void readEnemyUniqueLines() {
+    private void readEnemyUniqueLines() {
         try {
             String path = "resources/entities/enemyLines.txt";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
@@ -130,7 +130,7 @@ public class SceneChanger {
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
-
+        controller.getCounter().setCurrentScene(21);
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
         controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
@@ -180,7 +180,9 @@ public class SceneChanger {
         controller.getMainFrame().getLabelsAndStatus().getLblLevel().setVisible(false);
         controller.getMainFrame().getLabelsAndStatus().getLblTimer().setVisible(false);
         controller.getMainFrame().getLabelsAndStatus().getLblCoins().setVisible(false);
-        controller.getMainFrame().getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        if (controller.getMainFrame().getEnemyHealthBar().getEnemyHealthPanel() != null) {
+            controller.getMainFrame().getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        }
         controller.getMainFrame().getEnemyHealthBar().setEnemyHealthPanel(null);
         controller.getMainFrame().getLabelsAndStatus().getLblCombatStatus().setVisible(false);
 
@@ -269,6 +271,18 @@ public class SceneChanger {
                 }
             }
         }
+    }
+
+    /**
+     * Shows the treasure room when pressing required button
+     */
+    public void showTreasureRoom() {
+        String text = "There is a chest in here! Does it contain anything? (Left click the chest to open)";
+        for (int i = 0; i < controller.getCounter().getCurrentScene(); i++) {
+            controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
+        }
+        controller.getMainFrame().getSceneCreator().getTreasurePanel().setVisible(true);
+        controller.getMainFrame().getTextArea().setText(text);
     }
 
     /**
