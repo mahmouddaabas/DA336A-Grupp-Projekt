@@ -3,6 +3,8 @@ package controller.handlersAndActions;
 import controller.GameLogic;
 import controller.MusicPlayer;
 import model.Difficulty;
+import model.questions.MQFinalBossRandom;
+import model.questions.MathQuestions;
 import view.help.ControlHelp;
 import view.help.GameHelp;
 import view.help.HelpBox;
@@ -47,13 +49,35 @@ public class ActionHandler implements ActionListener, KeyListener {
         switch (yourChoice) {
                 //ENEMY ACTIONS
             case "lookAtEnemy":
-                controller.getEventMonsters().lookAtEnemy();
+                if (controller.getCounter().getCurrentScene() == 21) {
+                    String lookDialogue = "This cat seem strange. Does it talk?";
+                    controller.getMainFrame().getTextArea().setText(lookDialogue);
+                }
+                else {
+                    controller.getEventMonsters().lookAtEnemy();
+                }
                 break;
             case "talkToEnemy":
-                controller.getEventMonsters().talkToEnemy();
+                if (controller.getCounter().getCurrentScene() == 21) {
+                    String talkDialogue = "The cat lets out a meow";
+                    controller.getMainFrame().getTextArea().setText(talkDialogue);
+                }
+                else {
+                    controller.getEventMonsters().talkToEnemy();
+                }
                 break;
             case "attackEnemy":
-                controller.getEventMonsters().attackEnemy();
+                if (controller.getCounter().getCurrentScene() == 21) {
+                    String message = "Are you sure you want to do this? There is no turning back!";
+                    String title = "Are you really attacking a cat?";
+                    int c = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+                    if (c == JOptionPane.YES_OPTION) {
+                        controller.startCatFight();
+                    }
+                }
+                else {
+                    controller.getEventMonsters().attackEnemy();
+                }
                 controller.getMusicPlayer().playSoundEffects("resources/soundtracks/swordSound.wav");
                 break;
 
@@ -86,10 +110,6 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "buyFromShopKeeper":
                 controller.getEventShop().buyFromShopKeeper();
                 break;
-            case "goBackToTower":
-                controller.getSceneChanger().showScene(controller.getCounter().getLevel());
-                controller.getSceneChanger().exitShop();
-                break;
 
                 //GAME-OVER AND ARROWS
             case "restart":
@@ -101,6 +121,9 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getCounter().resetGrade();
                 break;
             case "continue":
+                if (controller.getMainFrame().getSceneCreator().getTreasurePanel().isVisible()) {
+                    controller.getMainFrame().getSceneCreator().getTreasurePanel().setVisible(false);
+                }
                 controller.getSceneChanger().showScene(controller.getCounter().getCurrentScene());
                 controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
 
@@ -109,6 +132,10 @@ public class ActionHandler implements ActionListener, KeyListener {
                         || currLevel == 11 || currLevel == 15 || currLevel == 16) {
                     controller.getMusicPlayer().startMusic();
                 }
+                break;
+            case "goBackToTower":
+                controller.getSceneChanger().showScene(controller.getCounter().getLevel());
+                controller.getSceneChanger().exitShop();
                 break;
 
                 //MAIN MENU
@@ -264,7 +291,6 @@ public class ActionHandler implements ActionListener, KeyListener {
                             if (controller.getMainFrame().getHealthBar().getHealthPanel() != null) {
                                 controller.getMainFrame().getHealthBar().getHealthPanel().setVisible(false);
                             }
-
                             controller.getPlayer().restoreHealth();
                             controller.getCounter().setCurrentScene(0);
                             controller.getMusicPlayer().stopMusic();
@@ -272,9 +298,14 @@ public class ActionHandler implements ActionListener, KeyListener {
                             controller.getMusicPlayer().startMusic();
                             controller.getSceneChanger().showMainMenu();
                             controller.getMainFrame().getMainMenu().getPnlProfiles().setVisible(false);
+
+                            controller.getMainFrame().getShopPanels().getPnlShopPrompt().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlDiff().setVisible(false);
                             controller.getMainFrame().getMainMenu().getPnlButtons().setVisible(true);
                             controller.getCounter().resetGrade();
+                            controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(true);
+                            controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(false);
+                            controller.getMainFrame().getSceneCreator().getEnterTreasureButton().setVisible(false);
                         }
                     }
                     else {
@@ -297,6 +328,18 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.createLevelCreator(Difficulty.Easy);
                 controller.setDifficulty(Difficulty.Easy);
                 controller.startGame();
+                break;
+
+                //Easter eggs
+            case "enterTreasure":
+                controller.getSceneChanger().showTreasureRoom();
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(true);
+                break;
+            case "openChest":
+                controller.addGold(true);
+                String text = "You receive 7 gold from the chest!";
+                controller.getMainFrame().getTextArea().setText(text);
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(false);
                 break;
         }
     }

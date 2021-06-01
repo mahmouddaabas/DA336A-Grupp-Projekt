@@ -31,7 +31,7 @@ public class HighscorePanel extends JPanel {
     /**
      * Creates the highscore panel.
      */
-    public void createHighScorePanel() {
+    private void createHighScorePanel() {
         setLayout(new BorderLayout());
 
         JLabel lblHighscore = new JLabel("Highscore");
@@ -59,7 +59,7 @@ public class HighscorePanel extends JPanel {
     /**
      * Creates the south buttons on the panel.
      */
-    public void createSouthButtons() {
+    private void createSouthButtons() {
         JPanel pnlSouthButtons = new JPanel(new GridLayout(1, 1));
 
         btnBack = new JButton("Back");
@@ -75,7 +75,7 @@ public class HighscorePanel extends JPanel {
     /**
      * Creates the button attributes.
      */
-    public void createButtonAttributes() {
+    private void createButtonAttributes() {
         Font buttonFont = new Font("Oswald", Font.BOLD, 15);
 
         btnBack.setContentAreaFilled(false);
@@ -88,7 +88,7 @@ public class HighscorePanel extends JPanel {
     /**
      * Creates the button listeners.
      */
-    public void createButtonListeners() {
+    private void createButtonListeners() {
         btnBack.addActionListener(actionHandler);
         btnBack.setActionCommand("backHighscore");
     }
@@ -96,7 +96,7 @@ public class HighscorePanel extends JPanel {
     /**
      * Creates the scrollbar.
      */
-    public void createScrollBar() {
+    private void createScrollBar() {
         scrollbar.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
         scrollbar.getVerticalScrollBar().setForeground(Color.BLACK);
 

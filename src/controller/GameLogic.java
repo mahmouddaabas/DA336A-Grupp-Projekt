@@ -111,6 +111,29 @@ public class GameLogic {
     }
 
     /**
+     * Starts a fight with the cat in the shop
+     */
+    public void startCatFight() {
+        MathQuestions catQuestion = new MQFinalBossRandom(Difficulty.Hard);
+        timer.setTime(1);
+        catQuestion.generateNewQuestion();
+        checkStatusAndGetQuestion();
+
+        mainFrame.getLabelsAndStatus().getLblCombatStatus().setVisible(true);
+        mainFrame.getBtnGetHelp().setFocusable(false);
+        player.setOutOfCombat(false);
+        timer.startTimer();
+
+        for (int i = 0; i < 4; i++) {
+            mainFrame.getAnswerButton()[i].setText(catQuestion.getAnswerStr()[i]);
+        }
+        mainFrame.getAnswerPanel().setVisible(true);
+        mainFrame.getAnswerButton()[0].requestFocus();
+        mainFrame.getTextArea().setBounds(100,550,900,100);
+        mainFrame.getTextArea2().setBounds(100,580,900,100);
+    }
+
+    /**
      * Starts a "fight" with a given level id. LevelCreator creates a level (creates mathematical question)
      * depending on the player's current level. Amount of time per question is also based on the current level.
      * @param level current level
@@ -130,7 +153,7 @@ public class GameLogic {
         timer.startTimer();
 
         for (int i = 0; i < 4; i++) {
-            mainFrame.getAnswerButton()[i].setText(getMathQuestion().getAnswerStr()[i]);
+            mainFrame.getAnswerButton()[i].setText(mathQuestion.getAnswerStr()[i]);
         }
         mainFrame.getAnswerPanel().setVisible(true);
 
@@ -155,36 +178,24 @@ public class GameLogic {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
+                    if (counter.getCurrentScene() != 21) {
+                        int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
+                        int newHealth = currHealth - player.getDamageDealt();
+                        levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
+                        mainFrame.getEnemyHealthBar().updateEnemyHealth();
+                        counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
+                        status = "correct";
+                        startFight(counter.getLevel());
+                    }
+                    else {
+                        sceneChanger.exitShop();
+                        onDefeatEnemy();
+                        sceneChanger.showScene(counter.getLevel());
+                    }
                     musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerSound.wav");
-                    int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
-                    int newHealth = currHealth - player.getDamageDealt();
-                    levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
-                    mainFrame.getEnemyHealthBar().updateEnemyHealth();
-                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
-                    status = "correct";
-                    startFight(counter.getLevel());
                 }
                 else {
-                    if((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
-                        musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerBossLvlSound.wav");
-                    } else {
-                        musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerRegLvlSound.wav");
-                    }
-
-                    player.setOutOfCombat(true);
-                    status = "";
-                    timer.stopTimer();
-                    mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
-
-                    addGold();
-                    hideComponents();
-
-                    mainFrame.getTextArea().setForeground(Color.WHITE);
-                    //Resets the damage dealt to 1 in case a damage potion was active before.
-                    player.setDamageDealt(1);
-                    counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
-                    playerActions.setUsedPotion(false);
-
+                    onDefeatEnemy();
                     showShopPrompt();
                     advance();
                 }
@@ -198,10 +209,12 @@ public class GameLogic {
     /**
      * Hides or changes components when combat is over.
      */
-    public void hideComponents() {
+    private void hideComponents() {
         mainFrame.getLabelsAndStatus().getLblTimer().setVisible(false);
         mainFrame.getLabelsAndStatus().getLblLevel().setVisible(false);
-        mainFrame.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        if (mainFrame.getEnemyHealthBar().getEnemyHealthPanel() != null) {
+            mainFrame.getEnemyHealthBar().getEnemyHealthPanel().setVisible(false);
+        }
         mainFrame.getLabelsAndStatus().getLblPotionStatus().setVisible(false);
         mainFrame.getLabelsAndStatus().getLblCombatStatus().setVisible(false);
         mainFrame.getBtnGetHelp().setFocusable(true);
@@ -210,12 +223,41 @@ public class GameLogic {
     }
 
     /**
+     * This method gets called after defeating an enemy.
+     * Stops timer, changes scene text and plays a sound effect depending on monster
+     */
+    private void onDefeatEnemy() {
+        if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
+            musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerBossLvlSound.wav");
+        } else {
+            musicPlayer.playSoundEffects("resources/soundtracks/correctAnswerRegLvlSound.wav");
+        }
+
+        player.setOutOfCombat(true);
+        status = "";
+        timer.stopTimer();
+        mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1));
+
+        addGold(false);
+        hideComponents();
+
+        mainFrame.getTextArea().setForeground(Color.WHITE);
+        //Resets the damage dealt to 1 in case a damage potion was active before.
+        player.setDamageDealt(1);
+        counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
+        playerActions.setUsedPotion(false);
+    }
+
+    /**
      * Advances the player's progression (level), hides the monster after defeating it and sets an arrow button
      * to visible. Shows a portal on the last level instead of an arrow.
      */
-    public void advance() {
+    private void advance() {
         if (counter.getLevel() <= 20) {
             if (counter.getLevel() != 5 && counter.getLevel() != 10 && counter.getLevel() != 15) {
+                if (counter.getLevel() == 3) {
+                    mainFrame.getSceneCreator().getEnterTreasureButton().setVisible(true);
+                }
                 mainFrame.getSceneCreator().getArrowButtons().get(counter.getLevel()).setVisible(true);
             }
             //LinkedList starts at 0. Level 1 -> index 0
@@ -235,23 +277,28 @@ public class GameLogic {
     /**
      * Method that adds a randomised amount of gold based on the difficulty.
      */
-    public void addGold() {
+    public void addGold(boolean fromChest) {
         Random rand = new Random();
         int gold = 0;
 
-        switch (difficulty) {
-            case Hard:
-                gold = rand.nextInt(6) + 1; //In order to prevent player getting 0
-                break;
-            case Medium:
-                gold = rand.nextInt(4) + 1;
-                break;
-            case Easy:
-                gold = rand.nextInt(3) + 1;
-                break;
+        if (fromChest) {
+            gold = 7;
+        }
+        else {
+            switch (difficulty) {
+                case Hard:
+                    gold = rand.nextInt(4) + 1; //In order to prevent player getting 0
+                    break;
+                case Medium:
+                    gold = rand.nextInt(3) + 1;
+                    break;
+                case Easy:
+                    gold = rand.nextInt(2) + 1;
+                    break;
+            }
         }
 
-        if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())){
+        if ((levelCreator.getLevel(counter.getLevel()).getEnemy().isBoss())) {
             player.setGold(player.getGold() + (gold + 1));
         }
         else {
@@ -267,7 +314,7 @@ public class GameLogic {
     public void ifNotAnswered() {
         counter.setAnsweredAmount(counter.getAnsweredAmount() - 1);
         //Cant go under 0
-        if(counter.getAnsweredAmount() < 0){
+        if (counter.getAnsweredAmount() < 0) {
             counter.setAnsweredAmount(0);
         }
 
@@ -289,7 +336,7 @@ public class GameLogic {
      * "incorrect" makes the player take damage.
      * "correct" makes the player deal damage to the enemy.
      */
-    public void checkStatusAndGetQuestion() {
+    private void checkStatusAndGetQuestion() {
         switch (status) {
             case "incorrect":
                 mainFrame.getTextArea2().setVisible(true);
@@ -321,7 +368,7 @@ public class GameLogic {
     /**
      * Methods that checks statements before applying the appropriate damage.
      */
-    public void checkAndApplyDamage() {
+    private void checkAndApplyDamage() {
         if (shopItems.getShield().getIsEquipped()) {
             player.setDamageTaken(0);
             //Sets the shield to false and hides it after successfully blocking a hit.
@@ -336,12 +383,19 @@ public class GameLogic {
             status = "incorrect";
         }
         else {
-            player.setDamageTaken(1);
-            player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
-            status = "incorrect";
+            if (counter.getCurrentScene() != 21) {
+                player.setDamageTaken(1);
+                player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
+                status = "incorrect";
+            }
+            else {
+                sceneChanger.exitShop();
+                player.setDamageTaken(10);
+                player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
+            }
         }
 
-        if(player.getPlayerHealth() < 0){
+        if (player.getPlayerHealth() < 0) {
             player.setDamageTaken(0);
         }
         checkStatusAndGetQuestion();
@@ -351,7 +405,7 @@ public class GameLogic {
     /**
      * Shows the shop prompt after a boss level.
      */
-    public void showShopPrompt() {
+    private void showShopPrompt() {
         if (counter.getLevel() == 5 || counter.getLevel() == 10 ||
                 counter.getLevel() == 15) {
             mainFrame.getTextArea().setText(sceneChanger.getEnemyLines().get(counter.getLevel() - 1)
@@ -366,7 +420,7 @@ public class GameLogic {
     /**
      * Resets all the buttons to enabled.
      */
-    public void resetButtons() {
+    private void resetButtons() {
         for (int i = 0; i < mainFrame.getAnswerButton().length; i++) {
             mainFrame.getAnswerButton()[i].setEnabled(true);
         }
@@ -394,15 +448,15 @@ public class GameLogic {
         else if (counter.getAnsweredAmount() < 35) {
             counter.setGrade("F");
         }
-        if(counter.getAnsweredAmount() >= 35) {
+        if (counter.getAnsweredAmount() >= 35) {
             passed = true;
         }
 
-        String name = getPlayer().getName() + " - ";
-        String grade = getCounter().getGrade() + " - ";
-        String amount = String.valueOf(getCounter().getAnsweredAmount()) + "/70 - ";
+        String name = player.getName() + " - ";
+        String grade = counter.getGrade() + " - ";
+        String amount = counter.getAnsweredAmount() + "/70 - ";
         String difficulty = String.valueOf(levelCreator.getDifficulty());
-        getHighscoreList().addHighscore(name + grade + amount + difficulty);
+        highscoreList.addHighscore(name + grade + amount + difficulty);
     }
 
     /**
@@ -410,11 +464,9 @@ public class GameLogic {
      * @return result
      */
     public String getFinalGrade() {
-        String result = player.getName() + " - " +
+        return player.getName() + " - " +
                 counter.getGrade() + " - " + counter.getAnsweredAmount() + "/70 - "
                 + levelCreator.getDifficulty();
-
-        return result;
     }
 
     /**
@@ -485,7 +537,7 @@ public class GameLogic {
      * Returns the timer object.
      * @return timer
      */
-    public Timer getTimer(){
+    public Timer getTimer() {
         return timer;
     }
 
@@ -598,7 +650,7 @@ public class GameLogic {
 
     /**
      * Sets the passed boolean.
-     * @param passed
+     * @param passed new boolean value
      */
     public void setPassed(boolean passed) {
         this.passed = passed;

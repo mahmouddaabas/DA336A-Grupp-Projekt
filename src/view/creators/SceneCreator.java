@@ -19,6 +19,9 @@ public class SceneCreator {
     private LinkedList<JPanel> bgPanels;
     private LinkedList<JLabel> bgImages;
     private LinkedList<JButton> arrowButtons;
+    private JPanel treasurePanel;
+    private JButton enterTreasureButton;
+    private JButton openChestButton;
 
     private MainFrame mainFrame;
     private ActionHandler actionHandler;
@@ -42,9 +45,11 @@ public class SceneCreator {
      */
     public void generateScenes() {
         createBackgrounds();
+        createTreasureRoom();
+        createTreasureButton();
     }
 
-    public void addArrowButtons(int sceneNbr, String command) {
+    private JButton addArrowButtons(String command) {
         ImageIcon arrowIcon = new ImageIcon("resources/misc/upArrow.png");
 
         JButton btnArrow = new JButton();
@@ -58,13 +63,13 @@ public class SceneCreator {
         btnArrow.addActionListener(actionHandler);
         btnArrow.setActionCommand(command);
 
-        arrowButtons.add(sceneNbr, btnArrow);
+        return btnArrow;
     }
 
     /**
      * Creates all background panels by reading a text file
      */
-    public void createBackgrounds() {
+    private void createBackgrounds() {
         try {
             String path = "resources/backgrounds/backgroundImageLocation.txt";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
@@ -85,10 +90,10 @@ public class SceneCreator {
                 bgImages.add(sceneNbr, lblBg);
 
                 if (sceneNbr == 21) {
-                    addArrowButtons(sceneNbr, "goBackToTower");
+                    arrowButtons.add(sceneNbr, addArrowButtons("goBackToTower"));
                 }
                 else {
-                    addArrowButtons(sceneNbr, "continue");
+                    arrowButtons.add(sceneNbr, addArrowButtons("continue"));
                 }
 
                 bgPanels.get(sceneNbr).add(arrowButtons.get(sceneNbr));
@@ -108,6 +113,52 @@ public class SceneCreator {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Creates the treasure room with a button to open the chest
+     */
+    private void createTreasureRoom() {
+        String treasureRoomPath = "resources/misc/TreasureRoomEasterEgg.png";
+        treasurePanel = new JPanel();
+        treasurePanel.setBounds(90, 100, 1150, 450);
+        treasurePanel.setLayout(null);
+        treasurePanel.setVisible(false);
+
+        JLabel treasureLabel = new JLabel();
+        treasureLabel.setBounds(0, 0, 1300, 500);
+        treasureLabel.setIcon(ImageResizer.resize(treasureRoomPath, 1300, 500));
+
+        openChestButton = new JButton();
+        openChestButton.setOpaque(false);
+        openChestButton.setContentAreaFilled(false);
+        openChestButton.setBorderPainted(false);
+        openChestButton.setVisible(false);
+        openChestButton.setBounds(520, 300, 200, 70);
+        openChestButton.addActionListener(actionHandler);
+        openChestButton.setActionCommand("openChest");
+
+        treasurePanel.add(addArrowButtons("continue"));
+        treasurePanel.add(openChestButton);
+        treasurePanel.add(treasureLabel);
+        mainFrame.add(treasurePanel);
+    }
+
+    /**
+     * Creates the button required to enter the treasure room
+     */
+    private void createTreasureButton() {
+        enterTreasureButton = new JButton();
+        enterTreasureButton.setOpaque(false);
+        enterTreasureButton.setContentAreaFilled(false);
+        enterTreasureButton.setBorderPainted(false);
+        enterTreasureButton.setVisible(false);
+
+        enterTreasureButton.setBounds(840, 150, 50, 150);
+        enterTreasureButton.addActionListener(actionHandler);
+        enterTreasureButton.setActionCommand("enterTreasure");
+
+        bgPanels.get(3).add(enterTreasureButton);
     }
 
     /**
@@ -150,5 +201,29 @@ public class SceneCreator {
      */
     public LinkedList<JButton> getArrowButtons() {
         return arrowButtons;
+    }
+
+    /**
+     * Returns treasurePanel
+     * @return treasurePanel
+     */
+    public JPanel getTreasurePanel() {
+        return treasurePanel;
+    }
+
+    /**
+     * Returns enterTreasureButton
+     * @return enterTreasureButton
+     */
+    public JButton getEnterTreasureButton() {
+        return enterTreasureButton;
+    }
+
+    /**
+     * Returns openChestButton
+     * @return openChestButton
+     */
+    public JButton getOpenChestButton() {
+        return openChestButton;
     }
 }

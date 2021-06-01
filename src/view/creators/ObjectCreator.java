@@ -28,7 +28,12 @@ public class ObjectCreator {
     private ActionHandler actionHandler;
     private GameLogic controller;
 
+    private JPopupMenu shopMenu;
+    private JPopupMenu catMenu;
     private JLabel lblShopKeeper;
+    private JLabel lblCat;
+
+    private ShopMouseListener mouseListener;
 
     /**
      * Constructor
@@ -37,6 +42,7 @@ public class ObjectCreator {
      * @param actionHandler actionHandler object used to initialize own controller object
      */
     public ObjectCreator(MainFrame mainFrame, GameLogic controller, ActionHandler actionHandler) {
+        mouseListener = new ShopMouseListener();
         this.mainFrame = mainFrame;
         this.controller = controller;
         this.actionHandler = actionHandler;
@@ -58,7 +64,7 @@ public class ObjectCreator {
      * Creates a popup menu for the shop keeper and returns it for use
      * @return the popup menu
      */
-    public JPopupMenu createShopMenu() {
+    private JPopupMenu createShopMenu() {
         JPopupMenu shopMenu = new JPopupMenu();
 
         JMenuItem[] menuItems = new JMenuItem[3];
@@ -85,7 +91,7 @@ public class ObjectCreator {
      * Creates a popup menu for all monsters and returns it for use
      * @return the popup menu
      */
-    public JPopupMenu createMonsterMenu() {
+    private JPopupMenu createMonsterMenu() {
         JPopupMenu monsterMenu = new JPopupMenu();
 
         JMenuItem[] menuItems = new JMenuItem[3];
@@ -111,39 +117,53 @@ public class ObjectCreator {
     /**
      * Creates the shopkeeper
      */
-    public void createShopKeeper() {
+    private void createShopKeeper() {
         lblShopKeeper = new JLabel();
-        JPopupMenu popupMenu = createShopMenu();
+        lblCat = new JLabel();
+        shopMenu = createShopMenu();
+        catMenu = createMonsterMenu();
 
         lblShopKeeper.setIcon(ImageResizer.resize("resources/entities/Oleg.png", 200, 350));
         lblShopKeeper.setBounds(600, 80, 150, 400);
 
-        lblShopKeeper.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)) {
-                    if (controller.getPlayer().isOutOfCombat()) {
-                        popupMenu.show(lblShopKeeper, e.getX(), e.getY());
+        lblCat.setBounds(860, 300, 50, 50);
+
+        lblShopKeeper.addMouseListener(mouseListener);
+        lblCat.addMouseListener(mouseListener);
+
+        bgPanels.get(21).add(lblShopKeeper);
+        bgPanels.get(21).add(lblCat);
+        bgPanels.get(21).add(bgImages.get(21));
+    }
+
+    private class ShopMouseListener implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {}
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                if (controller.getPlayer().isOutOfCombat()) {
+                    if (e.getSource() == lblShopKeeper) {
+                        shopMenu.show(lblShopKeeper, e.getX(), e.getY());
+                    }
+                    else if (e.getSource() == lblCat) {
+                        catMenu.show(lblCat, e.getX(), e.getY());
                     }
                 }
             }
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
-        bgPanels.get(21).add(lblShopKeeper);
-        bgPanels.get(21).add(bgImages.get(21));
+        }
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
     }
 
     /**
      * Creates all monster objects (label)
      */
-    public void createMonsterObjects() {
+    private void createMonsterObjects() {
         try {
             String path = "resources/entities/monsterImageLocation.txt";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
@@ -194,7 +214,7 @@ public class ObjectCreator {
     /**
      * Sets the bounds of the monsters by reading a file (includes dimensional values)
      */
-    public void setMonsterBounds() {
+    private void setMonsterBounds() {
         try {
             String path = "resources/entities/monsterBounds.txt";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));

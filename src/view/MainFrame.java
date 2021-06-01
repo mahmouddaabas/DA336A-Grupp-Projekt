@@ -85,7 +85,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates all the components.
      */
-    public void createAllComponents() {
+    private void createAllComponents() {
         createDamagePotion();
         createHelpQuestionMark();
         createTextArea();
@@ -124,7 +124,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the main JFrame of the game.
      */
-    public void createMainWindow() {
+    private void createMainWindow() {
         setSize(1350, 850);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
@@ -149,7 +149,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the button that returns the user to the main menu.
      */
-    public void createBackToMenuDoor(){
+    private void createBackToMenuDoor(){
         ImageIcon doorIcon = ImageResizer.resize("resources/misc/doorMainMenu.png", 50, 50);
         btnMainMenu = new JButton();
         btnMainMenu.setOpaque(false);
@@ -174,7 +174,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the damage potion button that is shown on the GUI.
      */
-    public void createDamagePotion() {
+    private void createDamagePotion() {
         ImageIcon damagePotionIcon = ImageResizer.resize("resources/misc/DamagePotion.png", 50, 50);
         btnDamagePotion = new JButton();
         btnDamagePotion.setOpaque(false);
@@ -198,7 +198,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the shield button that is shown on the GUI.
      */
-    public void createShield() {
+    private void createShield() {
         ImageIcon shieldIcon = ImageResizer.resize("resources/misc/RedShield.png", 50, 50);
         btnShield = new JButton();
         btnShield.setOpaque(false);
@@ -222,7 +222,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the hint button that is shown on the GUI.
      */
-    public void createHint() {
+    private void createHint() {
         ImageIcon hintIcon = ImageResizer.resize("resources/misc/Hint.png", 50, 50);
         btnHint = new JButton();
         btnHint.setOpaque(false);
@@ -246,7 +246,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the damage potion button that is shown on the GUI.
      */
-    public void createHelpQuestionMark() {
+    private void createHelpQuestionMark() {
         ImageIcon getHelpIcon = ImageResizer.resize("resources/misc/QuestionMark.png", 50, 50);
         btnGetHelp = new JButton();
         btnGetHelp.setOpaque(false);
@@ -272,7 +272,7 @@ public class MainFrame extends JFrame {
     /**
      * Creates the secondary text area that displays the math question.
      */
-    public void createTextArea() {
+    private void createTextArea() {
         textArea2 = new JTextArea();
         textArea2.setBounds(100, 580, 900, 250);
         textArea2.setBackground(Color.black);
@@ -291,7 +291,7 @@ public class MainFrame extends JFrame {
      * Creates two different types of buttons which is used to mute and un-mute sound displaying,
      * with different ImageIcons but with same functionality
      */
-    public void createAudioButtons() {
+    private void createAudioButtons() {
         ImageIcon audioIconOn = ImageResizer.resize("resources/misc/audioIcons/audioIconOn.png", 50, 50);
 
         btnAudioOn = new JButton();

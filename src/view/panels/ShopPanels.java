@@ -43,7 +43,7 @@ public class ShopPanels {
     /**
      * Creates the button that are displayed when the shop is visited.
      */
-    public void populateShopPanel() {
+    private void populateShopPanel() {
         pnlShop = new JPanel();
         pnlShop.setBounds(580, 670, 350, 100);
         pnlShop.setBackground(Color.BLUE);
@@ -66,7 +66,7 @@ public class ShopPanels {
     /**
      * Creates the panel with the yes/no buttons asking if user wants to visit the shop.
      */
-    public void createShopPrompt() {
+    private void createShopPrompt() {
         pnlShopPrompt = new JPanel();
         pnlShopPrompt.setBounds(580, 670, 300, 80);
         pnlShopPrompt.setBackground(Color.BLUE);

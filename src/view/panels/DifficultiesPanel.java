@@ -33,7 +33,7 @@ public class DifficultiesPanel extends JPanel {
     /**
      * Creates the panel's buttons
      */
-    public void createButtons() {
+    private void createButtons() {
         btnHard = new JButton("Hard");
         btnMedium = new JButton("Medium");
         btnEasy = new JButton("Easy");
@@ -56,7 +56,7 @@ public class DifficultiesPanel extends JPanel {
     /**
      * Changes the attributes of the buttons
      */
-    public void changeButtonAttributes() {
+    private void changeButtonAttributes() {
         btnHard.setContentAreaFilled(false);
         btnMedium.setContentAreaFilled(false);
         btnEasy.setContentAreaFilled(false);
@@ -87,7 +87,7 @@ public class DifficultiesPanel extends JPanel {
     /**
      * Adds an actionListener and sets an action command to each button
      */
-    public void addActionListener() {
+    private void addActionListener() {
         btnHard.addActionListener(actionHandler);
         btnMedium.addActionListener(actionHandler);
         btnEasy.addActionListener(actionHandler);

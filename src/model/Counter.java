@@ -89,7 +89,7 @@ public class Counter {
 
     /**
      * Sets the grade.
-     * @param grade
+     * @param grade new String grade
      */
     public void setGrade(String grade) {
         this.grade = grade;
@@ -97,7 +97,7 @@ public class Counter {
 
     /**
      * Returns the answered amount of question.
-     * @return
+     * @return answeredAmount
      */
     public int getAnsweredAmount() {
         return answeredAmount;
@@ -105,7 +105,7 @@ public class Counter {
 
     /**
      * Sets the answered amount.
-     * @param answeredAmount
+     * @param answeredAmount new int value
      */
     public void setAnsweredAmount(int answeredAmount) {
         this.answeredAmount = answeredAmount;

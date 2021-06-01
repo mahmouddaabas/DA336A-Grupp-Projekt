@@ -31,7 +31,7 @@ public class ProfilesPanel extends JPanel {
     /**
      * Creates the panel, its label and the JList which houses the profiles
      */
-    public void createPanel() {
+    private void createPanel() {
         setLayout(new BorderLayout());
 
         JLabel lblProfiles = new JLabel("Profiles");
@@ -56,7 +56,7 @@ public class ProfilesPanel extends JPanel {
     /**
      * Creates the panel's south buttons
      */
-    public void createSouthButtons() {
+    private void createSouthButtons() {
         JPanel pnlSouthButtons = new JPanel(new GridLayout(2, 2));
 
         btnAdd = new JButton("Add");
@@ -83,7 +83,7 @@ public class ProfilesPanel extends JPanel {
     /**
      * Changes the attributes of the south buttons
      */
-    public void southButtonAttributes() {
+    private void southButtonAttributes() {
         btnAdd.setContentAreaFilled(false);
         btnDel.setContentAreaFilled(false);
         btnBack.setContentAreaFilled(false);
@@ -114,7 +114,7 @@ public class ProfilesPanel extends JPanel {
     /**
      * Adds an actionListener and sets an action command to each south button
      */
-    public void southButtonListeners() {
+    private void southButtonListeners() {
         btnAdd.addActionListener(actionHandler);
         btnDel.addActionListener(actionHandler);
         btnBack.addActionListener(actionHandler);
