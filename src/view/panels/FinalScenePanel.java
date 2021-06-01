@@ -13,9 +13,9 @@ import java.awt.*;
  * Class for the finale
  */
 public class FinalScenePanel {
-    private MainFrame mainFrame;
-    private ActionHandler actionHandler;
-    private GameLogic controller;
+    private final MainFrame mainFrame;
+    private final ActionHandler actionHandler;
+    private final GameLogic controller;
 
     private JPanel pnlFinalScene;
     private JPanel pnlButtons;

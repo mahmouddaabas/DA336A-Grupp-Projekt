@@ -8,7 +8,7 @@ import model.Difficulty;
  * to get a question to generate the question and answers.
  */
 public class MQFinalBossRandom extends MathQuestions {
-    private Difficulty difficulty;
+    private final Difficulty difficulty;
     private MathQuestions randomQuestion;
 
     /**

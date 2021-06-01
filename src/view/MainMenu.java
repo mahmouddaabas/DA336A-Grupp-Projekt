@@ -14,8 +14,8 @@ import java.awt.*;
  * Class that functions as the main menu
  */
 public class MainMenu {
-    private MainFrame mainFrame;
-    private ActionHandler actionHandler;
+    private final MainFrame mainFrame;
+    private final ActionHandler actionHandler;
 
     private JPanel pnlMainMenu;
     private JPanel pnlButtons;

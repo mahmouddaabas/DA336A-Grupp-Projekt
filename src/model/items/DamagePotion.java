@@ -5,7 +5,7 @@ package model.items;
  * This class represents a damage potion.
  */
 public class DamagePotion {
-    private int damageBoost;
+    private final int damageBoost;
     private boolean potionActive;
 
     /**

@@ -1,11 +1,9 @@
 package model;
 
 import controller.GameLogic;
-import view.panels.HighscorePanel;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * @author Mahmoud Daabas
@@ -14,9 +12,9 @@ import java.util.LinkedList;
  */
 public class HighscoreList {
 
-    private ArrayList<String> highscoreList;
-    private GameLogic controller;
-    private String highscorePath = "resources/saves/highscore.txt";
+    private final ArrayList<String> highscoreList;
+    private final GameLogic controller;
+    private final String highscorePath = "resources/saves/highscore.txt";
 
     /**
      * Constructor

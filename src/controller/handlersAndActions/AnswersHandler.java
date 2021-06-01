@@ -29,7 +29,6 @@ public class AnswersHandler implements ActionListener, KeyListener {
      * This handles the button presses during the game and sets the answer index accordingly.
      * Then calls the checkAnswer method from the controller to check given answer.
      */
-
     @Override
     public void actionPerformed(ActionEvent e) {
         String yourChoice = e.getActionCommand();

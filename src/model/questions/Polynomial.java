@@ -7,8 +7,8 @@ import java.util.Arrays;
  * A representation of a polynomial with a given number of terms with a coefficient and an exponent.
  */
 public class Polynomial {
-    private int[] coefficients;
-    private int[] exponents;
+    private final int[] coefficients;
+    private final int[] exponents;
 
     /**
      * Initializes the instance variables with a value that will not be used. This constructor is used to generate a

@@ -19,12 +19,11 @@ public class MusicPlayer {
     private Counter counter;
     private MainFrame mainFrame;
 
-    private ArrayList<File> files;
+    private final ArrayList<File> files;
 
     private AudioInputStream audioInput;
     private Clip clipMusic;
     private Clip clipSoundEffects;
-    private FloatControl volume;
 
     private boolean isPlaying;
     private boolean isMuted;
@@ -148,6 +147,10 @@ public class MusicPlayer {
         }
     }
 
+    /**
+     * Method to play sound effects
+     * @param filePath sound file path
+     */
     public void playSoundEffects(String filePath) {
         try {
             audioInput = AudioSystem.getAudioInputStream(new File(filePath));
@@ -180,7 +183,7 @@ public class MusicPlayer {
      * @param preferredVolume the float value to be set as volume
      */
     private void setPreferredVolume(float preferredVolume, Clip clip) {
-        volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         volume.setValue(preferredVolume);
     }
 
@@ -228,9 +231,5 @@ public class MusicPlayer {
 
     public void setGameOverActive(boolean gameOverActive) {
         gameOver = gameOverActive;
-    }
-
-    public void setWinner(boolean isWinner) {
-        this.isWinner = isWinner;
     }
 }

@@ -11,7 +11,7 @@ import java.awt.*;
  * Separate class for all labels and statuses (also labels)
  */
 public class LabelsAndStatus {
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
     private JLabel lblCombatStatus;
     private JLabel lblPotionStatus;

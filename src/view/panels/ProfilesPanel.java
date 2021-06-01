@@ -10,7 +10,7 @@ import java.awt.*;
  * Class that functions as the profiles panel associated with main menu
  */
 public class ProfilesPanel extends JPanel {
-    private ActionHandler actionHandler;
+    private final ActionHandler actionHandler;
 
     private JList<String> profiles;
     private JButton btnBack;

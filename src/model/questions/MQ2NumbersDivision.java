@@ -9,7 +9,7 @@ import java.math.RoundingMode;
  * generate the numbers and answers. BigDecimal is used instead of double to aid with the precision and rounding.
  */
 public class MQ2NumbersDivision extends Arithmetic2NumberQuestions {
-    private int numOfDecimalsAnswer;
+    private final int numOfDecimalsAnswer;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the number of decimal places.

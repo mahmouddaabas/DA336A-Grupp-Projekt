@@ -9,7 +9,7 @@ import java.util.Random;
  * A collection of static methods used by the MathQuestions classes for number and string generation.
  */
 public class Utilities {
-    private static Random rand = new Random();
+    private final static Random rand = new Random();
 
     /**
      * Generates a random integer between the two bounds.
@@ -114,7 +114,7 @@ public class Utilities {
      */
     public static String parenthesisIfNegativeString(BigDecimal number) {
         if (number.compareTo(new BigDecimal(0)) < 0) {
-            return "(" + number.toString() + ")";
+            return "(" + number + ")";
         } else {
             return number.toString();
         }

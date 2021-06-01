@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class LevelCreator {
     private LinkedList<Level> levels;
-    private Difficulty difficulty;
+    private final Difficulty difficulty;
     private final int NUM_OF_LEVELS = 20;
 
     /**

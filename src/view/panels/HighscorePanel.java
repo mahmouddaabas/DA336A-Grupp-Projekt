@@ -5,7 +5,6 @@ import controller.handlersAndActions.ActionHandler;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * @Author Mahmoud Daabas
@@ -14,14 +13,14 @@ import java.util.ArrayList;
  */
 public class HighscorePanel extends JPanel {
 
-    private ActionHandler actionHandler;
+    private final ActionHandler actionHandler;
     private JList<String> highscore;
     private JScrollPane scrollbar;
     private JButton btnBack;
 
     /**
      * Constructs the class.
-     * @param actionHandler
+     * @param actionHandler object used to set own actionHandler-object
      */
     public HighscorePanel(ActionHandler actionHandler) {
         this.actionHandler = actionHandler;

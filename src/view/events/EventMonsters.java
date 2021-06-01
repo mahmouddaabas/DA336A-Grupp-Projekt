@@ -8,7 +8,7 @@ import controller.GameLogic;
  * EventMonsters will handle all the different mob interactions in the game.
  */
 public class EventMonsters {
-    private GameLogic controller;
+    private final GameLogic controller;
 
     /**
      * Constructor

@@ -10,8 +10,7 @@ import java.awt.*;
  * This class manages the frame that opens when "Control Help" is pressed in the Help Box.
  */
 public class ControlHelp {
-    private JFrame controlFrame;
-    private JLabel lblControlHelp;
+    private final JFrame controlFrame;
 
     /**
      * Constructs the class
@@ -48,7 +47,7 @@ public class ControlHelp {
      */
     public void createControlHelpLabel() {
         ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/ControlHelp.png", 780, 600);
-        lblControlHelp = new JLabel();
+        JLabel lblControlHelp = new JLabel();
         lblControlHelp.setBounds(0, 0, 780, 600);
         lblControlHelp.setOpaque(false);
         lblControlHelp.setVisible(true);

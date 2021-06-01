@@ -6,10 +6,10 @@ package model.questions;
  */
 public abstract class PolynomialCalculusQuestions extends MathQuestions {
     private Polynomial[] answers;
-    private int coefficientLowerBound;
-    private int coefficientUpperBound;
-    private int exponentLowerBound;
-    private int exponentUpperBound;
+    private final int coefficientLowerBound;
+    private final int coefficientUpperBound;
+    private final int exponentLowerBound;
+    private final int exponentUpperBound;
     private Polynomial polynomial;
 
     /**

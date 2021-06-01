@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * Handles the button choices in the shop by calling appropriate methods.
  */
 public class ShopHandler implements ActionListener {
-    private GameLogic controller;
+    private final GameLogic controller;
 
     /**
      * Constructor

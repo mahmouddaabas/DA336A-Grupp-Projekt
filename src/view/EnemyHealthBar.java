@@ -10,8 +10,8 @@ import java.awt.*;
  * The class also manages the removal of the skulls if the player damages the enemy.
  */
 public class EnemyHealthBar {
-    private GameLogic controller;
-    private MainFrame frame;
+    private final GameLogic controller;
+    private final MainFrame frame;
     private JPanel enemyHealthPanel;
     private JLabel[] enemyHealthLabel;
     private ImageIcon enemyHealthIcon;

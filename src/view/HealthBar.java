@@ -3,7 +3,6 @@ package view;
 import controller.GameLogic;
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 
 /**
  * @author Mahmoud Daabas
@@ -11,8 +10,8 @@ import java.lang.reflect.Array;
  * It also manages deducting hearts if the player takes damage.
  */
 public class HealthBar {
-    private MainFrame frame;
-    private GameLogic controller;
+    private final MainFrame frame;
+    private final GameLogic controller;
     private JPanel healthPanel;
     private JLabel[] healthLabel;
     private ImageIcon healthIcon = new ImageIcon("resources/misc/hearts.png");

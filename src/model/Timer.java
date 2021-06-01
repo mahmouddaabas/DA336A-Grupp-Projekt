@@ -9,7 +9,7 @@ import java.awt.*;
  * Timer class for the questions. Implements a Runnable i.e a thread.
  */
 public class Timer implements Runnable {
-    private GameLogic controller;
+    private final GameLogic controller;
     private Thread timer = null;
     private boolean ticking = false;
     private int time;

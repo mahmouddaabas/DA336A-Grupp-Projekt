@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * and rounding.
  */
 public class MQ2NumbersSubtraction extends Arithmetic2NumberQuestions {
-    private boolean allowNegativeAnswer;
+    private final boolean allowNegativeAnswer;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the number of decimal places.

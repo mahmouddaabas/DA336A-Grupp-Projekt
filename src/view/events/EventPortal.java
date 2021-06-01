@@ -7,7 +7,7 @@ import controller.GameLogic;
  * This class handles the interactions with the portal.
  */
 public class EventPortal {
-    private GameLogic controller;
+    private final GameLogic controller;
 
     /**
      * Constructor for the class

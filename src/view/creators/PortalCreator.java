@@ -16,11 +16,11 @@ import java.util.LinkedList;
  */
 public class PortalCreator {
     private JLabel lblPortal;
-    private LinkedList<JPanel> bgPanels;
-    private LinkedList<JLabel> bgImages;
+    private final LinkedList<JPanel> bgPanels;
+    private final LinkedList<JLabel> bgImages;
 
-    private ActionHandler actionHandler;
-    private GameLogic controller;
+    private final ActionHandler actionHandler;
+    private final GameLogic controller;
 
     /**
      * Constructor

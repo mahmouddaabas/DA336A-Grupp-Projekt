@@ -10,7 +10,7 @@ import java.awt.*;
  * Class that functions as the difficulties panel associated with main menu
  */
 public class DifficultiesPanel extends JPanel {
-    private ActionHandler actionHandler;
+    private final ActionHandler actionHandler;
 
     private JButton btnHard;
     private JButton btnMedium;

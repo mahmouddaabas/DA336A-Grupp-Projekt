@@ -1,7 +1,6 @@
 package controller.handlersAndActions;
 
 import controller.GameLogic;
-import jdk.jfr.ContentType;
 import model.items.DamagePotion;
 import model.items.Shield;
 
@@ -12,11 +11,11 @@ import model.items.Shield;
  * This class has the items that are available for purchase in the shop.
  */
 public class ShopItems {
-    private GameLogic controller;
+    private final GameLogic controller;
 
-    private DamagePotion dmgPot;
+    private final DamagePotion dmgPot;
 
-    private Shield shield;
+    private final Shield shield;
 
     //Used to limit the purchase of items.
     private int damagePotionLimit;
@@ -170,7 +169,7 @@ public class ShopItems {
 
     /**
      * Allows you to set the hint limit from outside the class.
-     * @param hintLimit
+     * @param hintLimit new limit
      */
     public void setHintLimit(int hintLimit) {
         this.hintLimit = hintLimit;
