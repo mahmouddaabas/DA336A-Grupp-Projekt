@@ -11,8 +11,7 @@ import java.awt.*;
  * This class manages the frame that opens when "Game Help" is pressed in the Help Box.
  */
 public class GameHelp {
-    private JFrame helpFrame;
-    private JLabel lblGameHelp;
+    private final JFrame helpFrame;
 
     /**
      * Constructs the class
@@ -49,7 +48,7 @@ public class GameHelp {
      */
     public void createGameHelpLabel() {
         ImageIcon healthIcon = ImageResizer.resize("resources/misc/helpPictures/GameHelp.png", 780, 600);
-        lblGameHelp = new JLabel();
+        JLabel lblGameHelp = new JLabel();
         lblGameHelp.setBounds(0, 0, 780, 600);
         lblGameHelp.setOpaque(false);
         lblGameHelp.setVisible(true);

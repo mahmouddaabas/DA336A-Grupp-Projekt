@@ -6,10 +6,10 @@ package model.questions;
  */
 public abstract class QuadraticQuestions extends MathQuestions {
     private Quadratic[] answers;
-    private int rootNumeratorLowerBound;
-    private int rootNumeratorUpperBound;
-    private int rootDenominatorLowerBound;
-    private int rootDenominatorUpperBound;
+    private final int rootNumeratorLowerBound;
+    private final int rootNumeratorUpperBound;
+    private final int rootDenominatorLowerBound;
+    private final int rootDenominatorUpperBound;
 
     /**
      * Constructor that initializes the instance variables for the bounds. All numerators and all denominators of the

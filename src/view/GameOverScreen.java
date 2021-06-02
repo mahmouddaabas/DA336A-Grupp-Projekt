@@ -11,10 +11,10 @@ import java.awt.*;
  * It places a restart button and some text over the screen that allows the player to restart the game.
  */
 public class GameOverScreen {
-    private GameLogic controller;
+    private final GameLogic controller;
     private JLabel titleLabel;
     private JButton restartButton;
-    private ActionHandler action;
+    private final ActionHandler action;
 
     /**
      * Constructor

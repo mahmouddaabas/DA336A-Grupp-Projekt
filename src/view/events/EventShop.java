@@ -8,7 +8,7 @@ import controller.GameLogic;
  * This class handles the event that occur when the player visits the shop.
  */
 public class EventShop {
-    private GameLogic controller;
+    private final GameLogic controller;
 
     /**
      * Constructs the class.

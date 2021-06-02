@@ -10,7 +10,7 @@ import controller.GameLogic;
  * The class can also hold the latest information on current scene or current level.
  */
 public class Counter {
-    private GameLogic controller;
+    private final GameLogic controller;
     private int level;
     private int currentScene;
     private String grade;

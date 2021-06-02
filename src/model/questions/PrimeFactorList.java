@@ -7,7 +7,7 @@ import java.util.Arrays;
  * A representation of a list integers.
  */
 public class PrimeFactorList {
-    int[] primeFactors;
+    private final int[] primeFactors;
 
     /**
      * Initializes the instance variables and sorts them in ascending order.

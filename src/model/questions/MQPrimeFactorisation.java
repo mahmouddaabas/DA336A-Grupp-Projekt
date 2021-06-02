@@ -1,19 +1,17 @@
 package model.questions;
 
-import java.math.BigDecimal;
-
 /**
  * @author Mattias Bengtsson
  * Creates a math question that finds the prime integer factors of a number. Need to call generateNewQuestion() to get
  * a question to generate the numbers and answers.
  */
 public class MQPrimeFactorisation extends MathQuestions {
-    PrimeFactorList[] answers;
-    int minNumOfFactors;
-    int maxNumOfFactors;
-    int[] primeList;
-    int minPrimeIndex;
-    int maxPrimeIndex;
+    private PrimeFactorList[] answers;
+    private final int minNumOfFactors;
+    private final int maxNumOfFactors;
+    private int[] primeList;
+    private int minPrimeIndex;
+    private int maxPrimeIndex;
 
     /**
      * Constructor that initializes the instance variables for the bounds and amount of factors.

@@ -10,10 +10,10 @@ import java.util.Arrays;
  */
 public class MQDivisionRemainder extends MathQuestions {
     private int[][] answers;
-    private int numeratorLowerBound;
-    private int numeratorUpperBound;
-    private int denominatorLowerBound;
-    private int denominatorUpperBound;
+    private final int numeratorLowerBound;
+    private final int numeratorUpperBound;
+    private final int denominatorLowerBound;
+    private final int denominatorUpperBound;
     private int numerator;
     private int denominator;
 

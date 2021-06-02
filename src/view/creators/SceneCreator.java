@@ -16,15 +16,15 @@ import java.util.LinkedList;
  * Class used to create the different scenes with objects and backgrounds
  */
 public class SceneCreator {
-    private LinkedList<JPanel> bgPanels;
-    private LinkedList<JLabel> bgImages;
-    private LinkedList<JButton> arrowButtons;
+    private final LinkedList<JPanel> bgPanels;
+    private final LinkedList<JLabel> bgImages;
+    private final LinkedList<JButton> arrowButtons;
     private JPanel treasurePanel;
     private JButton enterTreasureButton;
     private JButton openChestButton;
 
-    private MainFrame mainFrame;
-    private ActionHandler actionHandler;
+    private final MainFrame mainFrame;
+    private final ActionHandler actionHandler;
 
     /**
      * Constructor
@@ -49,6 +49,11 @@ public class SceneCreator {
         createTreasureButton();
     }
 
+    /**
+     * Method to add arrow buttons with a specific command
+     * @param command String command
+     * @return the created arrow button
+     */
     private JButton addArrowButtons(String command) {
         ImageIcon arrowIcon = new ImageIcon("resources/misc/upArrow.png");
 

@@ -11,7 +11,7 @@ import javax.swing.*;
  * This class handles the actions by the player.
  */
 public class PlayerActions {
-    private GameLogic controller;
+    private final GameLogic controller;
     private boolean usedPotion;
     private boolean usedShield;
     private boolean usedHint;
@@ -61,6 +61,9 @@ public class PlayerActions {
         }
     }
 
+    /**
+     * Method that allows the user to use hints
+     */
     public void useHint() {
         if (!usedHint && !inShop && !controller.getPlayer().isOutOfCombat()) {
             try {
@@ -110,9 +113,17 @@ public class PlayerActions {
 
     /**
      * Sets the used inShop boolean
-     * @param inShop
+     * @param inShop new boolean value
      */
     public void setInShop(boolean inShop) {
         this.inShop = inShop;
+    }
+
+    /**
+     * Returns inShop
+     * @return inShop
+     */
+    public boolean isInShop() {
+        return inShop;
     }
 }

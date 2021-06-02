@@ -14,15 +14,14 @@ import java.awt.*;
  * A separate class for shop buttons and its prompt
  */
 public class ShopPanels {
-    private ShopHandler shopHandler;
-    private ActionHandler actionHandler;
-    private MainFrame mainFrame;
+    private final ShopHandler shopHandler;
+    private final ActionHandler actionHandler;
+    private final MainFrame mainFrame;
 
     private JPanel pnlShop;
     private JPanel pnlShopPrompt;
 
     private JButton[] shopButtons;
-    private JButton[] shopPromptButtons;
 
     public ShopPanels(GameLogic controller, MainFrame mainFrame, ActionHandler actionHandler) {
         shopHandler = new ShopHandler(controller);
@@ -74,7 +73,7 @@ public class ShopPanels {
         pnlShopPrompt.setOpaque(false);
 
         String[] commandsForButtons = {"yesShop", "continue"};
-        shopPromptButtons = new JButton[2];
+        JButton[] shopPromptButtons = new JButton[2];
         for (int i = 0; i < 2; i++) {
             shopPromptButtons[i] = new JButton();
             String s = commandsForButtons[i];

@@ -25,21 +25,21 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private JTextArea textArea;
     private JTextArea textArea2;
-    private LabelsAndStatus labelsAndStatus;
+    private final LabelsAndStatus labelsAndStatus;
 
-    private HealthBar healthBar;
-    private EnemyHealthBar enemyHealthBar;
+    private final HealthBar healthBar;
+    private final EnemyHealthBar enemyHealthBar;
 
-    private ActionHandler action;
-    private AnswersHandler answers;
+    private final ActionHandler action;
+    private final AnswersHandler answers;
 
-    private SceneCreator sceneCreator;
-    private ObjectCreator objectCreator;
-    private PortalCreator portalCreator;
+    private final SceneCreator sceneCreator;
+    private final ObjectCreator objectCreator;
+    private final PortalCreator portalCreator;
 
-    private MainMenu mainMenu;
-    private FinalScenePanel finalScenePanel;
-    private ShopPanels shopPanels;
+    private final MainMenu mainMenu;
+    private final FinalScenePanel finalScenePanel;
+    private final ShopPanels shopPanels;
 
     private JPanel answerPanel;
     private JButton[] answerButton;
@@ -49,7 +49,6 @@ public class MainFrame extends JFrame {
     private JButton btnGetHelp;
     private JButton btnAudioOn;
     private JButton btnAudioOff;
-    private JButton btnMainMenu;
 
     /**
      * Constructs the class and instantiates controller and the action listeners.
@@ -151,7 +150,7 @@ public class MainFrame extends JFrame {
      */
     private void createBackToMenuDoor(){
         ImageIcon doorIcon = ImageResizer.resize("resources/misc/doorMainMenu.png", 50, 50);
-        btnMainMenu = new JButton();
+        JButton btnMainMenu = new JButton();
         btnMainMenu.setOpaque(false);
         btnMainMenu.setVisible(true);
         btnMainMenu.setBounds(1230, 750, 50, 50);
@@ -345,22 +344,6 @@ public class MainFrame extends JFrame {
             btnAudioOn.setVisible(true);
             btnAudioOff.setVisible(false);
         }
-    }
-
-    /**
-     * Returns the audioOn-button
-     * @return btnAudioOn
-     */
-    public JButton getBtnAudioOn() {
-        return btnAudioOn;
-    }
-
-    /**
-     * Returns the audioOff-button
-     * @return btnAudioOff
-     */
-    public JButton getBtnAudioOff() {
-        return btnAudioOff;
     }
 
     /**

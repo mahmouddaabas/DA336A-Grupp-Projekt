@@ -1,10 +1,7 @@
 package controller.handlersAndActions;
 
 import controller.GameLogic;
-import controller.MusicPlayer;
 import model.Difficulty;
-import model.questions.MQFinalBossRandom;
-import model.questions.MathQuestions;
 import view.help.ControlHelp;
 import view.help.GameHelp;
 import view.help.HelpBox;
@@ -24,7 +21,7 @@ import java.awt.event.KeyListener;
  * It then calls the appropriate method from the event class to determine what to do.
  */
 public class ActionHandler implements ActionListener, KeyListener {
-    private GameLogic controller;
+    private final GameLogic controller;
     private HelpBox helpBox;
     private GameHelp gameHelp;
     private ControlHelp controlHelp;
@@ -49,7 +46,7 @@ public class ActionHandler implements ActionListener, KeyListener {
         switch (yourChoice) {
                 //ENEMY ACTIONS
             case "lookAtEnemy":
-                if (controller.getCounter().getCurrentScene() == 21) {
+                if (controller.getPlayerActions().isInShop()) {
                     String lookDialogue = "This cat seem strange. Does it talk?";
                     controller.getMainFrame().getTextArea().setText(lookDialogue);
                 }
@@ -58,7 +55,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "talkToEnemy":
-                if (controller.getCounter().getCurrentScene() == 21) {
+                if (controller.getPlayerActions().isInShop()) {
                     String talkDialogue = "The cat lets out a meow";
                     controller.getMainFrame().getTextArea().setText(talkDialogue);
                 }
@@ -67,7 +64,7 @@ public class ActionHandler implements ActionListener, KeyListener {
                 }
                 break;
             case "attackEnemy":
-                if (controller.getCounter().getCurrentScene() == 21) {
+                if (controller.getPlayerActions().isInShop()) {
                     String message = "Are you sure you want to do this? There is no turning back!";
                     String title = "Are you really attacking a cat?";
                     int c = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);

@@ -10,11 +10,11 @@ import java.util.Arrays;
  */
 public abstract class ArithmeticManyNumbersQuestions extends MathQuestions {
     private BigDecimal[] answers;
-    private double numberLowerBound;
-    private double numberUpperBound;
-    private BigDecimal[] numbers;
-    private int numOfDecimals;
-    private char operator;
+    private final double numberLowerBound;
+    private final double numberUpperBound;
+    private final BigDecimal[] numbers;
+    private final int numOfDecimals;
+    private final char operator;
 
     /**
      * Constructor that initializes the instance variables for the bounds, the number of decimal places and the amount

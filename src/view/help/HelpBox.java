@@ -11,15 +11,10 @@ import java.awt.*;
  * This class creates the help box that helps the user navigate to specific help that is needed.
  */
 public class HelpBox {
-
-    private JFrame helpBox;
+    private final JFrame helpBox;
     private JPanel helpBoxPanel;
-    private JPanel bgPanel;
-    private JLabel bgLabel;
-    private JButton btnGameHelp;
-    private JButton btnControlHelp;
 
-    private ActionHandler actionHandler;
+    private final ActionHandler actionHandler;
 
     /**
      * Constructs the class.
@@ -63,7 +58,7 @@ public class HelpBox {
      * Creates the buttons and adds them to the panel.
      */
     public void createButtons() {
-        btnGameHelp = new JButton();
+        JButton btnGameHelp = new JButton();
         btnGameHelp.addActionListener(actionHandler);
         btnGameHelp.setActionCommand("gameHelp");
         btnGameHelp.setContentAreaFilled(false);
@@ -73,7 +68,7 @@ public class HelpBox {
         btnGameHelp.setFont(new Font("Oswald", Font.BOLD, 20));
         btnGameHelp.setText("Game Help");
 
-        btnControlHelp = new JButton();
+        JButton btnControlHelp = new JButton();
         btnControlHelp.addActionListener(actionHandler);
         btnControlHelp.setActionCommand("controlHelp");
         btnControlHelp.setContentAreaFilled(false);
@@ -91,11 +86,11 @@ public class HelpBox {
      * Creates the background of the help box.
      */
     public void createBackgroundLabel() {
-        bgPanel = new JPanel();
+        JPanel bgPanel = new JPanel();
         bgPanel.setLayout(null);
         bgPanel.setBounds(0, 0, 400, 600);
         String path = "resources/backgrounds/helpBG.png";
-        bgLabel = new JLabel();
+        JLabel bgLabel = new JLabel();
         bgLabel.setBounds(0, 0, 400, 600);
         bgLabel.setIcon(ImageResizer.resize(path, 400, 600));
 

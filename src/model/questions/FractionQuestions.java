@@ -6,12 +6,12 @@ package model.questions;
  */
 public abstract class FractionQuestions extends MathQuestions {
     private Fraction[] answers;
-    private int numeratorLowerBound;
-    private int numeratorUpperBound;
-    private int denominatorLowerBound;
-    private int denominatorUpperBound;
+    private final int numeratorLowerBound;
+    private final int numeratorUpperBound;
+    private final int denominatorLowerBound;
+    private final int denominatorUpperBound;
     private Fraction[] fractions;
-    private char operator;
+    private final char operator;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the amount of fractions. All fractions

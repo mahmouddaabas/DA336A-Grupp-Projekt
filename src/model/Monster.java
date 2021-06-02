@@ -6,9 +6,9 @@ package model;
  */
 public class Monster {
     private int health;
-    private String lookDialogue;
-    private String talkDialogue;
-    private boolean isBoss;
+    private final String lookDialogue;
+    private final String talkDialogue;
+    private final boolean isBoss;
 
     /**
      * Creates the monster object

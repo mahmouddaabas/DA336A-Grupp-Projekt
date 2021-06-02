@@ -21,31 +21,31 @@ import java.util.Random;
  */
 public class GameLogic {
     private Player player;
-    private PlayerList playerList;
+    private final PlayerList playerList;
     private Difficulty difficulty;
-    private HighscoreList highscoreList;
+    private final HighscoreList highscoreList;
     private MathQuestions mathQuestion;
     private LevelCreator levelCreator;
-    private Timer timer;
+    private final Timer timer;
     private int answerIndex;
     private boolean inMainMenu;
     private boolean passed;
 
     private String status = "";
 
-    private MainFrame mainFrame;
-    private SceneChanger sceneChanger;
-    private GameOverScreen gameOver;
-    private Counter counter;
+    private final MainFrame mainFrame;
+    private final SceneChanger sceneChanger;
+    private final GameOverScreen gameOver;
+    private final Counter counter;
 
-    private MusicPlayer musicPlayer;
+    private final MusicPlayer musicPlayer;
 
-    private ShopItems shopItems;
-    private PlayerActions playerActions;
+    private final ShopItems shopItems;
+    private final PlayerActions playerActions;
 
-    private EventMonsters eventMonsters = new EventMonsters(this);
-    private EventShop eventShop = new EventShop(this);
-    private EventPortal eventPortal = new EventPortal(this);
+    private final EventMonsters eventMonsters = new EventMonsters(this);
+    private final EventShop eventShop = new EventShop(this);
+    private final EventPortal eventPortal = new EventPortal(this);
 
     /**
      * Constructor for GameLogic that shows the main menu.
@@ -127,6 +127,7 @@ public class GameLogic {
         for (int i = 0; i < 4; i++) {
             mainFrame.getAnswerButton()[i].setText(catQuestion.getAnswerStr()[i]);
         }
+        mainFrame.getShopPanels().getPnlShop().setVisible(false);
         mainFrame.getAnswerPanel().setVisible(true);
         mainFrame.getAnswerButton()[0].requestFocus();
         mainFrame.getTextArea().setBounds(100,550,900,100);
@@ -178,7 +179,7 @@ public class GameLogic {
             if (mathQuestion.compareAnswer(answerIndex)) {
                 //Handles the combat, if enemy is not dead generates new questions and answers.
                 if (levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth() > 1) {
-                    if (counter.getCurrentScene() != 21) {
+                    if (!playerActions.isInShop()) {
                         int currHealth = levelCreator.getLevel(counter.getLevel()).getEnemy().getHealth();
                         int newHealth = currHealth - player.getDamageDealt();
                         levelCreator.getLevel(counter.getLevel()).getEnemy().setHealth(newHealth);
@@ -646,14 +647,6 @@ public class GameLogic {
      */
     public boolean isPassed() {
         return passed;
-    }
-
-    /**
-     * Sets the passed boolean.
-     * @param passed new boolean value
-     */
-    public void setPassed(boolean passed) {
-        this.passed = passed;
     }
 
     /**

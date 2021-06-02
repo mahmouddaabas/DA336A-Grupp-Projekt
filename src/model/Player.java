@@ -6,7 +6,7 @@ package model;
  * Class for the user/player
  */
 public class Player {
-    private String name;
+    private final String name;
     private int gold;
 
     private int playerHealth;

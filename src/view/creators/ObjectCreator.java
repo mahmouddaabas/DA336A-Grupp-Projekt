@@ -20,20 +20,20 @@ import java.util.LinkedList;
  * Class that creates all entities for the scenes
  */
 public class ObjectCreator {
-    private LinkedList<JLabel> monsters;
-    private LinkedList<JPanel> bgPanels;
-    private LinkedList<JLabel> bgImages;
+    private final LinkedList<JLabel> monsters;
+    private final LinkedList<JPanel> bgPanels;
+    private final LinkedList<JLabel> bgImages;
 
-    private MainFrame mainFrame;
-    private ActionHandler actionHandler;
-    private GameLogic controller;
+    private final MainFrame mainFrame;
+    private final ActionHandler actionHandler;
+    private final GameLogic controller;
 
     private JPopupMenu shopMenu;
     private JPopupMenu catMenu;
     private JLabel lblShopKeeper;
     private JLabel lblCat;
 
-    private ShopMouseListener mouseListener;
+    private final ShopMouseListener mouseListener;
 
     /**
      * Constructor
@@ -136,6 +136,9 @@ public class ObjectCreator {
         bgPanels.get(21).add(bgImages.get(21));
     }
 
+    /**
+     * Inner class that implements MouseListener for the created objects
+     */
     private class ShopMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {}

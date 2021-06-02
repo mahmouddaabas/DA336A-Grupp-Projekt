@@ -10,15 +10,15 @@ import java.util.Arrays;
  */
 public abstract class Arithmetic2NumberQuestions extends MathQuestions {
     private BigDecimal[] answers;
-    private double number1LowerBound;
-    private double number1UpperBound;
-    private double number2LowerBound;
-    private double number2UpperBound;
-    private int numOfDecimalsNumber1;
-    private int numOfDecimalsNumber2;
+    private final double number1LowerBound;
+    private final double number1UpperBound;
+    private final double number2LowerBound;
+    private final double number2UpperBound;
+    private final int numOfDecimalsNumber1;
+    private final int numOfDecimalsNumber2;
     private BigDecimal number1;
     private BigDecimal number2;
-    private char operator;
+    private final char operator;
 
     /**
      * Constructor that initializes the instance variables for the bounds and the number of decimal places.

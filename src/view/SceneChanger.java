@@ -14,9 +14,9 @@ import java.util.LinkedList;
  * This class manages the changing of the scenes by their boolean property in the panel array.
  */
 public class SceneChanger {
-    private GameLogic controller;
-    private LinkedList<String> sceneTexts;
-    private LinkedList<String> enemyLines;
+    private final GameLogic controller;
+    private final LinkedList<String> sceneTexts;
+    private final LinkedList<String> enemyLines;
 
     public SceneChanger(GameLogic controller) {
         this.controller = controller;
@@ -130,7 +130,6 @@ public class SceneChanger {
         for (int i = 0; i < 21; i++) {
             controller.getMainFrame().getSceneCreator().getBackgroundPanel(i).setVisible(false);
         }
-        controller.getCounter().setCurrentScene(21);
         controller.getMainFrame().getSceneCreator().getBackgroundPanel(21).setVisible(true);
         controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
@@ -240,6 +239,9 @@ public class SceneChanger {
         controller.getMainFrame().getBtnGetHelp().requestFocus();
     }
 
+    /**
+     * Method to exit the final scene
+     */
     public void exitFinalScene() {
         controller.getMainFrame().getPortalCreator().getLblPortal().setVisible(false);
         controller.getMainFrame().getFinalScenePanel().getPnlFinalScene().setVisible(false);

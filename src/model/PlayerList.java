@@ -11,18 +11,18 @@ import java.util.Locale;
  * Class that functions as a "list" for all players
  */
 public class PlayerList {
-    private Player[] players;
+    private final Player[] players;
     private int nbrOfPlayers;
-    private final int MAX_PLAYERS = 10;
-    private GameLogic controller;
+    private final GameLogic controller;
 
-    private String playersPath = "resources/saves/players.txt";
+    private final String playersPath = "resources/saves/players.txt";
 
     /**
      * Constructor
      * @param controller GameLogic-object to set own variable
      */
     public PlayerList(GameLogic controller) {
+        int MAX_PLAYERS = 10;
         players = new Player[MAX_PLAYERS];
         nbrOfPlayers = 0;
         this.controller = controller;

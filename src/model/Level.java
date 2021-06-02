@@ -8,10 +8,10 @@ import model.questions.MathQuestions;
  * Class that functions as a Level for the game
  */
 public class Level {
-    private int id;
+    private final int id;
     private MathQuestions mathQuestions;
-    private Monster enemy;
-    private int time;
+    private final Monster enemy;
+    private final int time;
 
     /**
      * Creates the level object
