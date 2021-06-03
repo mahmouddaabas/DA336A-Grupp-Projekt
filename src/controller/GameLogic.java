@@ -384,7 +384,7 @@ public class GameLogic {
             status = "incorrect";
         }
         else {
-            if (counter.getCurrentScene() != 21) {
+            if (!playerActions.isInShop()) {
                 player.setDamageTaken(1);
                 player.setPlayerHealth(player.getPlayerHealth() - player.getDamageTaken());
                 status = "incorrect";
