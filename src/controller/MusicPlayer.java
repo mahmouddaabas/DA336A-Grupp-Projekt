@@ -220,16 +220,24 @@ public class MusicPlayer {
 
     /**
      * Method that sets a boolean value to the variable isShop
-     * @param shopActive the boolean value to set on isShop
+     * @param shopActive the boolean value to be set on isShop
      */
     public void setShopActive(boolean shopActive) {
         isShop = shopActive;
     }
 
+    /**
+     * Method that sets a boolean value to the variable gameOver
+     * @param gameOverActive the boolean value to be set on gameOver
+     */
     public void setGameOverActive(boolean gameOverActive) {
         gameOver = gameOverActive;
     }
 
+    /**
+     * Method that sets a boolean value to the variable isWinner
+     * @param isWinner the boolean value to be set on isWinner
+     */
     public void setWinner(boolean isWinner) {
         this.isWinner = isWinner;
     }
