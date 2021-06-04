@@ -1,5 +1,7 @@
 #Climb the Tower DA336A Projekt Grupp 20
 
+Git-repository: https://github.com/mahmouddaabas/DA336A-Grupp-Projekt
+
 Climb the Tower by answering questions about maths!
 On each level of the tower, you will face dangerous foes.
 They can only be harmed through the magic of mathematics. 
@@ -7,7 +9,8 @@ Can you make your way up all 20 floors of the tower?
 
 **Getting Started**
 
-You will need to have IntelliJ installed and open the project in it.
+In order to start the application you will need to have open the project in IntelliJ 
+and run Main.main() in the controller package.
 
 To start a new game, click on "New Game".
 To create a new profile, click on "Add" and enter a new name.
@@ -67,7 +70,22 @@ been taught.
 *HARD* : the questions are based on what a Swedish high school (gymnasie) student has
 been taught, but with harder and more advanced questions.
 
-**Help**
+**Score**
+
+You will be graded on how many questions you get right and wrong.
+This score can be seen in the score menu that can be accessed from the main menu.
+
+**Tips and Help**
+
+Keep a pen and paper nearby if you need help with juggling the numbers in your head. 
+However, please challenge yourself by not using a calculator.
+
+For some questions, you do not need to actually calculate the entire complete answer
+in order to figure out which answer is the correct answer.
+For example, for 81.4 * 35.7, you do not need to know that the answer is 2905.98. You 
+just need to know that 4 * 7 ends with an 8.
+
+There might be secret things to interact with other than the monsters and shopkeeper.
 
 If you want help during the game, then the question mark in the lower right brings up
 a help window.
