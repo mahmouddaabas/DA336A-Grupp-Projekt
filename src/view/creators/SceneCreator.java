@@ -22,8 +22,8 @@ public class SceneCreator {
     private JPanel treasurePanel;
     private JButton enterTreasureButton;
     private JButton openChestButton;
-    private JButton chestIsOpen;
-    private JLabel chestLabel;
+    private JButton retrieveCoinsButton;
+    private JLabel coinsRetrievedLabel;
 
     private final MainFrame mainFrame;
     private final ActionHandler actionHandler;
@@ -146,19 +146,26 @@ public class SceneCreator {
         openChestButton.addActionListener(actionHandler);
         openChestButton.setActionCommand("openChest");
 
-        chestIsOpen = new JButton();
-        chestIsOpen.setIcon(ImageResizer.resize("resources/misc/treasureOpened.png",170, 100));
-        chestIsOpen.setOpaque(false);
-        chestIsOpen.setContentAreaFilled(false);
-        chestIsOpen.setBorderPainted(false);
-        chestIsOpen.setVisible(false);
-        chestIsOpen.setBounds(620, 300, 170, 100);
-        chestIsOpen.addActionListener(actionHandler);
-        chestIsOpen.setActionCommand("closeChest");
+        retrieveCoinsButton = new JButton();
+        retrieveCoinsButton.setIcon(ImageResizer.resize("resources/misc/treasureOpened.png",190, 130));
+        retrieveCoinsButton.setOpaque(false);
+        retrieveCoinsButton.setContentAreaFilled(false);
+        retrieveCoinsButton.setBorderPainted(false);
+        retrieveCoinsButton.setVisible(false);
+        retrieveCoinsButton.setBounds(620, 280, 190, 130);
+        retrieveCoinsButton.addActionListener(actionHandler);
+        retrieveCoinsButton.setActionCommand("retrieve");
+
+        coinsRetrievedLabel = new JLabel();
+        coinsRetrievedLabel.setBounds(620, 280, 220, 150);
+        coinsRetrievedLabel.setIcon(ImageResizer.resize("resources/misc/treasureOpenedEmpty.png", 220, 150));
+        coinsRetrievedLabel.setVisible(false);
+
+        treasureLabel.add(coinsRetrievedLabel);
 
         treasurePanel.add(addArrowButtons("continue"));
         treasurePanel.add(openChestButton);
-        treasurePanel.add(chestIsOpen);
+        treasurePanel.add(retrieveCoinsButton);
         treasurePanel.add(treasureLabel);
         mainFrame.add(treasurePanel);
     }
@@ -246,7 +253,11 @@ public class SceneCreator {
         return openChestButton;
     }
 
-    public JButton getChestIsOpen() {
-        return chestIsOpen;
+    public JButton getRetrieveCoinsButton() {
+        return retrieveCoinsButton;
+    }
+
+    public JLabel getCoinsRetrievedLabel() {
+        return coinsRetrievedLabel;
     }
 }
