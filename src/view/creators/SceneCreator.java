@@ -22,6 +22,8 @@ public class SceneCreator {
     private JPanel treasurePanel;
     private JButton enterTreasureButton;
     private JButton openChestButton;
+    private JButton chestIsOpen;
+    private JLabel chestLabel;
 
     private final MainFrame mainFrame;
     private final ActionHandler actionHandler;
@@ -135,16 +137,28 @@ public class SceneCreator {
         treasureLabel.setIcon(ImageResizer.resize(treasureRoomPath, 1300, 500));
 
         openChestButton = new JButton();
+        openChestButton.setIcon(ImageResizer.resize("resources/misc/treasureClosed.png",170, 100));
         openChestButton.setOpaque(false);
         openChestButton.setContentAreaFilled(false);
         openChestButton.setBorderPainted(false);
         openChestButton.setVisible(false);
-        openChestButton.setBounds(520, 300, 200, 70);
+        openChestButton.setBounds(620, 300, 170, 100);
         openChestButton.addActionListener(actionHandler);
         openChestButton.setActionCommand("openChest");
 
+        chestIsOpen = new JButton();
+        chestIsOpen.setIcon(ImageResizer.resize("resources/misc/treasureOpened.png",170, 100));
+        chestIsOpen.setOpaque(false);
+        chestIsOpen.setContentAreaFilled(false);
+        chestIsOpen.setBorderPainted(false);
+        chestIsOpen.setVisible(false);
+        chestIsOpen.setBounds(620, 300, 170, 100);
+        chestIsOpen.addActionListener(actionHandler);
+        chestIsOpen.setActionCommand("closeChest");
+
         treasurePanel.add(addArrowButtons("continue"));
         treasurePanel.add(openChestButton);
+        treasurePanel.add(chestIsOpen);
         treasurePanel.add(treasureLabel);
         mainFrame.add(treasurePanel);
     }
@@ -230,5 +244,9 @@ public class SceneCreator {
      */
     public JButton getOpenChestButton() {
         return openChestButton;
+    }
+
+    public JButton getChestIsOpen() {
+        return chestIsOpen;
     }
 }
