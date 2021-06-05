@@ -334,17 +334,20 @@ public class ActionHandler implements ActionListener, KeyListener {
                 controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(true);
                 break;
             case "openChest":
-                controller.addGold(true);
-                String text = "You receive 7 gold from the chest!";
-                controller.getMainFrame().getTextArea().setText(text);
+                controller.getMusicPlayer().playSoundEffects("resources/soundtracks/chestOpeningSound.wav");
+                String chestOpened = "There's lots of coins! Click to retrieve the treasure";
+                controller.getMainFrame().getTextArea().setText(chestOpened);
                 controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(false);
                 controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(false);
-                controller.getMainFrame().getSceneCreator().getChestIsOpen().setVisible(true);
+                controller.getMainFrame().getSceneCreator().getRetrieveCoinsButton().setVisible(true);
                 break;
-            case "closeChest":
-                controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(false);
-                controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(true);
-                controller.getMainFrame().getSceneCreator().getChestIsOpen().setVisible(false);
+            case "retrieve":
+                controller.getMusicPlayer().playSoundEffects("resources/soundtracks/soundEasterEggs.wav");
+                controller.addGold(true);
+                String retrieveCoins = "You receive 7 gold from the chest!";
+                controller.getMainFrame().getTextArea().setText(retrieveCoins);
+                controller.getMainFrame().getSceneCreator().getRetrieveCoinsButton().setVisible(false);
+                controller.getMainFrame().getSceneCreator().getCoinsRetrievedLabel().setVisible(true);
                 break;
         }
     }
