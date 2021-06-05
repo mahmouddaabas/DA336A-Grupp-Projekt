@@ -247,6 +247,8 @@ public class GameLogic {
         player.setDamageDealt(1);
         counter.setAnsweredAmount(counter.getAnsweredAmount() + player.getDamageDealt());
         playerActions.setUsedPotion(false);
+
+        musicPlayer.playSoundEffects("resources/soundtracks/coins.wav");
     }
 
     /**
