@@ -331,12 +331,20 @@ public class ActionHandler implements ActionListener, KeyListener {
             case "enterTreasure":
                 controller.getSceneChanger().showTreasureRoom();
                 controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(true);
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(true);
                 break;
             case "openChest":
                 controller.addGold(true);
                 String text = "You receive 7 gold from the chest!";
                 controller.getMainFrame().getTextArea().setText(text);
                 controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(false);
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(false);
+                controller.getMainFrame().getSceneCreator().getChestIsOpen().setVisible(true);
+                break;
+            case "closeChest":
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setEnabled(false);
+                controller.getMainFrame().getSceneCreator().getOpenChestButton().setVisible(true);
+                controller.getMainFrame().getSceneCreator().getChestIsOpen().setVisible(false);
                 break;
         }
     }
