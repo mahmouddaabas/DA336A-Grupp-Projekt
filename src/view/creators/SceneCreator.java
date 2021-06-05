@@ -124,7 +124,7 @@ public class SceneCreator {
      * Creates the treasure room with a button to open the chest
      */
     private void createTreasureRoom() {
-        String treasureRoomPath = "resources/misc/TreasureRoomEasterEgg.png";
+        String treasureRoomPath = "resources/misc/backgroundTressureRoom.png";
         treasurePanel = new JPanel();
         treasurePanel.setBounds(90, 100, 1150, 450);
         treasurePanel.setLayout(null);
