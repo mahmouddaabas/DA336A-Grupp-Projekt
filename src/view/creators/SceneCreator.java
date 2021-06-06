@@ -253,10 +253,18 @@ public class SceneCreator {
         return openChestButton;
     }
 
+    /**
+     * Returns retrieveCoinsButton
+     * @return retrieveCoinsButton
+     */
     public JButton getRetrieveCoinsButton() {
         return retrieveCoinsButton;
     }
 
+    /**
+     * Returns coinsRetrievedLabel
+     * @return coinsRetrievedLabel
+     */
     public JLabel getCoinsRetrievedLabel() {
         return coinsRetrievedLabel;
     }
