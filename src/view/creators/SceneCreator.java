@@ -157,8 +157,8 @@ public class SceneCreator {
         retrieveCoinsButton.setActionCommand("retrieve");
 
         coinsRetrievedLabel = new JLabel();
-        coinsRetrievedLabel.setBounds(620, 280, 220, 150);
-        coinsRetrievedLabel.setIcon(ImageResizer.resize("resources/misc/treasureOpenedEmpty.png", 220, 150));
+        coinsRetrievedLabel.setBounds(600, 230, 250, 200);
+        coinsRetrievedLabel.setIcon(ImageResizer.resize("resources/misc/treasureOpenedEmpty.png", 250, 200));
         coinsRetrievedLabel.setVisible(false);
 
         treasureLabel.add(coinsRetrievedLabel);
